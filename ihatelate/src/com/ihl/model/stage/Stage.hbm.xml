@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ihl.model.stage">
+	<class name="Stage" table="ihl_stage">
+		<id column="Id" name="id" type="int">
+			<generator class="native" />
+		</id>
+		<property column="step" generated="never" lazy="false"
+			not-null="false" name="step" type="int" />
+		<property column="name" generated="never" lazy="false"
+			length="100" name="name" not-null="false" type="string" />
+		<property column="time" generated="never" lazy="false"
+			not-null="false" name="time" type="int" />
+		<property column="isDefault" generated="never" lazy="false"
+			not-null="false" name="isDefault" type="boolean" />
+		<property column="type" generated="never" lazy="false"
+			not-null="false" name="type" type="int" />
+		<many-to-one name="task" class="com.ihl.model.basetask.BaseTask" column="taskId" not-null="false" />
+
+	</class>
+</hibernate-mapping>

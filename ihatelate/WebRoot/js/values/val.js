@@ -1,0 +1,4 @@
+val = {
+		Numbers: {},
+		Strings: {}
+};

@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type='text/javascript' src="js/lib/jquery-1.10.2.min.js"></script>
+		<script type='text/javascript' src="js/json2.js"></script>
+		
+		<script>
+<!--			$(document).ready(-->
+<!--				function (){-->
+<!--					jQuery.ajax({-->
+<!--					url: "defaultStageAction!obtainDefaultStage.action",-->
+<!--					data: "",    -->
+<!--					type: 'post',-->
+<!--					cache: false,-->
+<!--					dataType: 'json',-->
+<!--					success: function(data){-->
+<!--						var data = eval("("+data+")");-->
+<!--						alert(data.stage);-->
+<!--					},-->
+<!--					error : function(data){-->
+<!--						alert("fail");-->
+<!--					}-->
+<!--				});-->
+<!--				}-->
+<!--			);-->
+			function register(){
+				var email = $("#email").val();
+				var password = $("#password").val();
+				var username = $("#username").val();
+				var sex = $("#sex").val();
+				var type = $("#type").val();
+				var json = "email=" + email + "&password=" + password
+					+ "&username=" + username + "&sex=" + sex + "&type=" + type; 
+				jQuery.ajax({
+					url: "userAction!register.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function login(){
+				var email = $("#email2").val();
+				var password = $("#password2").val();
+				var json = "email=" + email + "&password=" + password; 
+				jQuery.ajax({
+					url: "userAction!login.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function test(){
+				jQuery.ajax({
+					url: "stageAction!obtainDefaultStage.action",
+					data: "type=20",    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var result = JSON.parse(data);
+						result = $.parseJSON(result.stage); 
+						result = result[0];
+						alert(result["1"].name);
+						//var data = eval("("+data+")");
+						//var stages = data.stage;
+						//alert(stages);
+						//var stage = eval("("+stages+")");
+						//stage = eval("("+stages[0]+")");
+						//alert(stage);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			
+			function schedule(){
+				jQuery.ajax({
+					url: "scheduleAction!schedule.action",
+					data: "",
+					type: "POST",
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.scheduel);
+						alert(data.cannotBeCompleted);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function createBookTask(){
+				var id = $("#id").val();
+				var name = $("#name").val();
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+				var totalDay = $("#totalDay").val();
+				var priority = $("#priority").val();
+				var isActive = $("#isActive").val();
+				
+				var title = $("#title").val();
+				var ISBN = $("#ISBN").val();
+				var pageNum = $("#pageNum").val();
+				var efficiency = $("#efficiency").val();
+				
+				var json = "id=" + id + "&name=" + name +"&startTime=" + startTime 
+					+"&endTime=" + endTime +"&totalDay=" + totalDay 
+					+"&type=10" +"&priority=" + priority 
+					+"&isActive=" + isActive;
+					
+				json = json +"&title=" + title 
+					+"&ISBN=" + ISBN +"&pageNum=" + pageNum 
+					+"&efficiency=" + efficiency ;
+					
+				jQuery.ajax({
+					url: "bookTaskAction!create.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function createOpenClassTask(){
+				var id = $("#id").val();
+				var name = $("#name").val();
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+				var totalDay = $("#totalDay").val();
+				var priority = $("#priority").val();
+				var isActive = $("#isActive").val();
+				
+				var className = $("#className").val();
+				var amount = $("#amount").val();
+				var timeForPerClass = $("#timeForPerClass").val();
+				var remark = $("#remark").val();
+				
+				var json = "id=" + id + "&name=" + name +"&startTime=" + startTime 
+					+"&endTime=" + endTime +"&totalDay=" + totalDay 
+					+"&type=10" +"&priority=" + priority 
+					+"&isActive=" + isActive;
+					
+				json = json +"&className=" + className 
+					+"&amount=" + amount +"&timeForPerClass=" + timeForPerClass 
+					+"&remark=" + remark ;
+					
+				jQuery.ajax({
+					url: "openClassTaskAction!create.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function createExerciseTask(){
+				var id = $("#id").val();
+				var name = $("#name").val();
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+				var totalDay = $("#totalDay").val();
+				var priority = $("#priority").val();
+				var isActive = $("#isActive").val();
+				
+				var exerciseName = $("#exerciseName").val();
+				var groupCount = $("#groupCount").val();
+				var timePerGroup = $("#timePerGroup").val();
+				
+				var json = "id=" + id + "&name=" + name +"&startTime=" + startTime 
+					+"&endTime=" + endTime +"&totalDay=" + totalDay 
+					+"&type=10" +"&priority=" + priority 
+					+"&isActive=" + isActive;
+					
+				json = json +"&exerciseName=" + exerciseName 
+					+"&groupCount=" + groupCount +"&timePerGroup=" + timePerGroup;
+					
+				jQuery.ajax({
+					url: "exerciseTaskAction!create.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function createWritePaperTask(){
+				var id = $("#id").val();
+				var name = $("#name").val();
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+				var totalDay = $("#totalDay").val();
+				var priority = $("#priority").val();
+				var isActive = $("#isActive").val();
+				
+				var paperName = $("#paperName").val();
+				var stage1Time = $("#stage1").val();
+				var stage2Time = $("#stage2").val();
+				var stage3Time = $("#stage3").val();
+				
+				var stages = [];
+				var stage1 = new Object();
+				var stage2 = new Object();
+				var stage3 = new Object();
+				
+				stage1.step = "1";
+				stage1.name = "stage1"; 
+				stage1.time = stage1Time;
+				
+				stage2.step = "2";
+				stage2.name = "stage2"; 
+				stage2.time = stage2Time;
+				
+				stage3.step = "3";
+				stage3.name = "stage3"; 
+				stage3.time = stage3Time;
+				
+				stages.push(stage1);
+				stages.push(stage2);
+				stages.push(stage3);
+				
+				var stagesJson = JSON.stringify(stages);
+				
+				var json = "id=" + id + "&name=" + name +"&startTime=" + startTime 
+					+"&endTime=" + endTime +"&totalDay=" + totalDay 
+					+"&type=20" +"&priority=" + priority 
+					+"&isActive=" + isActive;
+				
+				json = json +"&paperName=" + paperName 
+					+"&stages=" + stagesJson;
+				
+				jQuery.ajax({
+					url: "writePaperTaskAction!create.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function createApplyUniversityTask(){
+				var id = $("#id").val();
+				var name = $("#name").val();
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+				var totalDay = $("#totalDay").val();
+				var priority = $("#priority").val();
+				var isActive = $("#isActive").val();
+				
+				var universityName = $("#universityName").val();
+				var deadline = $("#deadline").val();
+				var material = $("#material").val();
+				var stage1Time = $("#stage11").val();
+				var stage2Time = $("#stage21").val();
+				var stage3Time = $("#stage31").val();
+				
+				var stages = [];
+				var stage1 = new Object();
+				var stage2 = new Object();
+				var stage3 = new Object();
+				
+				stage1.step = "1";
+				stage1.name = "stage1"; 
+				stage1.time = stage1Time;
+				
+				stage2.step = "2";
+				stage2.name = "stage2"; 
+				stage2.time = stage2Time;
+				
+				stage3.step = "3";
+				stage3.name = "stage3"; 
+				stage3.time = stage3Time;
+				
+				stages.push(stage1);
+				stages.push(stage2);
+				stages.push(stage3);
+				
+				var stagesJson = JSON.stringify(stages);
+				
+				var json = "id=" + id + "&name=" + name +"&startTime=" + startTime 
+					+"&endTime=" + endTime +"&totalDay=" + totalDay 
+					+"&type=21" +"&priority=" + priority 
+					+"&isActive=" + isActive;
+				
+				json = json +"&universityName=" + universityName
+					+"&deadline=" + deadline
+					+"&material=" + material 
+					+"&stages=" + stagesJson
+					+"&taskID=-1";
+				
+				jQuery.ajax({
+					url: "applyUniversityTaskAction!create.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>邮箱：<input type="text" id="email"/></td>
+				<td>密码：<input type="password" id="password"/></td>
+				<td>用户名：<input type="text" id="username"/></td>
+				<td>性别：<input type="text" id="sex"/></td>
+				<td>类型：<input type="text" id="type"/></td>
+				<td><button onclick="register();">注册</button></td>
+			</tr>
+			<tr>
+				<td>邮箱：<input type="text" id="email2"/></td>
+				<td>密码：<input type="password" id="password2"/></td>
+				<td><button onclick="login();">登录</button><button onclick="schedule();">安排</button><button onclick="test();">test</button></td>
+			</tr>
+		</table>
+<!--		<button onclick="test();">test</button>-->
+		<hr/>
+		<h3>必填信息：</h3>
+		<table>
+			<tr>
+				<td>ID：</td>
+				<td><input id="id" type="text"></td>
+			</tr>
+			<tr>
+				<td>任务名称：</td>
+				<td><input id="name" type="text"></td>
+			</tr>
+			<tr>
+				<td>开始日期：</td>
+				<td><input id="startTime" type="text"></td>
+			</tr>
+			<tr>
+				<td>结束日期：</td>
+				<td><input id="endTime" type="text"></td>
+			</tr>
+			<tr>
+				<td>打算花费的天数：</td>
+				<td><input id="totalDay" type="text"></td>
+			</tr>
+			<tr>
+				<td>优先级：</td>
+				<td><input id="priority" type="text"><span>0高|1中|2低</span></td>
+			</tr>
+			<tr>
+				<td>是否激活：</td>
+				<td><input id="isActive" type="text"><span>0否|1是</span></td>
+			</tr>
+		</table>
+		<hr/>
+		<h3>读书</h3>
+		<table>
+			<tr>
+				<td>书名：</td>
+				<td><input id="title" type="text"></td>
+			</tr>
+			<tr>
+				<td>ISBN：</td>
+				<td><input id="ISBN" type="text"></td>
+			</tr>
+			<tr>
+				<td>页数：</td>
+				<td><input id="pageNum" type="text"></td>
+			</tr>
+			<tr>
+				<td>效率：</td>
+				<td><input id="efficiency" type="text"><span>每页看几分钟</span></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交" onclick="createBookTask();"></td>
+			</tr>
+		</table>
+		<hr/>
+		<h3>上公开课</h3>
+		<table>
+			<tr>
+				<td>课程名称：</td>
+				<td><input id="className" type="text"></td>
+			</tr>
+			<tr>
+				<td>课程节数：</td>
+				<td><input id="amount" type="text"></td>
+			</tr>
+			<tr>
+				<td>每节课时间：</td>
+				<td><input id="timeForPerClass" type="text"></td>
+			</tr>
+			<tr>
+				<td>备注：</td>
+				<td><input id="remark" type="text"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交" onclick="createOpenClassTask();"></td>
+			</tr>
+		</table>
+		<hr/>
+		<h3>健身</h3>
+		<table>
+			<tr>
+				<td>项目名称：</td>
+				<td><input id="exerciseName" type="text"></td>
+			</tr>
+			<tr>
+				<td>组数：</td>
+				<td><input id="groupCount" type="text"></td>
+			</tr>
+			<tr>
+				<td>每组持续时间：</td>
+				<td><input id="timePerGroup" type="text"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交" onclick="createExerciseTask();"></td>
+			</tr>
+		</table>
+		<hr/>
+		<h3>写论文</h3>
+		<table>
+			<tr>
+				<td>论文名称：</td>
+				<td><input id="paperName" type="text"></td>
+			</tr>
+			<tr>
+				<td>stage1 time:</td>
+				<td><input id="stage1" type="text"></td>
+			</tr>
+			<tr>
+				<td>stage2 time:</td>
+				<td><input id="stage2" type="text"></td>
+			</tr>
+			<tr>
+				<td>stage3 time:</td>
+				<td><input id="stage3" type="text"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交" onclick="createWritePaperTask();"></td>
+			</tr>
+		</table>
+		<hr/>
+		<h3>申请大学</h3>
+		<table>
+			<tr>
+				<td>大学名称：</td>
+				<td><input id="universityName" type="text"></td>
+			</tr>
+			<tr>
+				<td>申请截至时间：</td>
+				<td><input id="deadline" type="text"></td>
+			</tr>
+			<tr>
+				<td>所需材料：</td>
+				<td><input id="material" type="text"></td>
+			</tr>
+			<tr>
+				<td>stage1 time:</td>
+				<td><input id="stage11" type="text"></td>
+			</tr>
+			<tr>
+				<td>stage2 time:</td>
+				<td><input id="stage21" type="text"></td>
+			</tr>
+			<tr>
+				<td>stage3 time:</td>
+				<td><input id="stage31" type="text"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交" onclick="createApplyUniversityTask();"></td>
+			</tr>
+		</table>
+		<hr/>
+	</body>
+</html>
+

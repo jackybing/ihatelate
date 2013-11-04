@@ -1,0 +1,30 @@
+head.js(
+	'js/lib/Ajaxer.js',
+	'js/lib/OO.js',
+	'js/lib/jquery-1.10.2.min.js',
+	'js/lib/jquery.backgroundpos.min.js',
+	'js/values/val.js',
+	'js/values/val.Strings.js',
+	'js/values/val.Numbers.js',
+    'js/modules/model/m.js',
+    'js/modules/model/m.Card.js',
+    'js/modules/model/card/m.GateCard.js',
+    'js/modules/model/card/m.BoxOfficeCard.js',
+ 	'js/modules/view/v.js',
+ 	'js/modules/view/v.Widget.js',
+ 	'js/modules/view/v.Card.js',
+ 	'js/modules/view/v.Canvas.js',
+ 	'js/modules/view/v.Board.js',
+ 	'js/modules/view/widget/v.ButtonWidget.js',
+ 	'js/modules/view/widget/v.InputWidget.js',
+ 	'js/modules/view/widget/v.LoadingWidget.js',
+ 	'js/modules/view/widget/v.DropdownWidget.js',
+ 	'js/modules/view/widget/v.ImageWidget.js',
+ 	'js/modules/view/card/v.BoxOfficeCard.js',
+ 	'js/modules/view/card/v.GateCard.js',
+ 	'js/doorKeeper.js'
+, function(){
+	jQuery(document).ready(function(){
+		var dk = new doorKeeper(jQuery('body'));
+	});
+});

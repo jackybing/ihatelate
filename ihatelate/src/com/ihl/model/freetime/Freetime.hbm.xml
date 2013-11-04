@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ihl.model.freetime">
+	<class name="FreeTime" table="ihl_freetime">
+		<id column="Id" name="id" type="int">
+			<generator class="native" />
+		</id>
+		<property column="Tag" generated="never" lazy="false"
+			length="2" name="tag" not-null="false" type="int" />
+		<property column="Day" generated="never" lazy="false"
+			length="50" name="day" not-null="false" type="string" />
+		<property column="Start" generated="never" lazy="false"
+			name="startTime" not-null="false" type="time" />
+		<property column="End" generated="never" lazy="false"
+			name="endTime" not-null="false" type="time" />
+		
+		<many-to-one name="user" class="com.ihl.model.user.User" column="UserID" not-null="false" />
+	</class>
+</hibernate-mapping>
