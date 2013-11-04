@@ -40,6 +40,19 @@
 		</property>
 	</bean>
 	
+	<bean id="ihl.http.url" class="java.lang.String">
+		<!-- <constructor-arg type="java.lang.String" value="http://114.112.95.126" /> -->
+		<constructor-arg type="java.lang.String" value="http://localhost:8080" />
+	</bean>
+	
+	<bean id="ihl.from.email" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="zuoyour@yeah.net" />
+	</bean>
+	
+	<bean id="ihl.from.password" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="zuoyour!@#123" />
+	</bean>
+	
 	<bean id="userDao" class="com.ihl.dao.userdao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
