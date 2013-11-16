@@ -15,4 +15,5 @@
 	<include file="com/ihl/controller/applyuniversitytaskaction/ApplyUniversityTaskAction.xml"></include> 
 	<include file="com/ihl/controller/exercisetaskaction/ExerciseTaskAction.xml"></include> 
 	<include file="com/ihl/controller/taskaction/TaskAction.xml"></include> 
+	<include file="com/ihl/controller/uploadaction/Uploadaction.xml"></include> 
 </struts>

@@ -18,6 +18,13 @@
 			name="type" length="2" not-null="false" type="int" />
 		<property column="CreateDate" generated="never" lazy="false"
 			name="createDate" not-null="false" type="date" />
+			
+		<property column="Avatar" generated="never" lazy="false"
+			length="200" name="avatar" not-null="false" type="string" />
+			
+		<property column="Disk" generated="never" lazy="false"
+			length="200" name="disk" not-null="false" type="string" />
+			
 		<set name="freeTimes" inverse="false" lazy="true">
 			<key column="userID" />
 			<one-to-many class="com.ihl.model.freetime.FreeTime" />

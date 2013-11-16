@@ -9,4 +9,6 @@ public interface UserDao {
 	public User getUserById(final int id);
 	public User save(User user);
 	public List<User> getAll();
+	public Boolean uploadAvatar(Integer userID,String url,String disk);
+	
 }
