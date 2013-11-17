@@ -59,6 +59,8 @@ public class BaseTaskAction extends ActionSupport{
 		baseTask.setPriority(Integer.parseInt(priority));
 		baseTask.setIsActive(isActive.equals("1")?true:false);
 		baseTask.setCreateTime(new Date());
+		baseTask.setSecondaryPriority(baseTask.getEndTime().getTime());
+		baseTask.setThreeStagePriority(baseTask.getCreateTime().getTime());
 		
 		if(stages != null){
 			JSONArray jsonArray = JSONArray.fromObject(stages);

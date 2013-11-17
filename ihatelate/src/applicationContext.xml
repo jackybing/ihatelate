@@ -210,6 +210,11 @@
 		<property name="fileUploadUtil" ref="fileUploadUtil" />
 	</bean>
 	
+	<bean id="modityPriorityAction" class="com.ihl.controller.modifypriorityaction.ModifyPriorityAction"
+		scope="prototype">
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
 	<bean id="sendEmail" class="com.ihl.admin.SendEmail"
 		scope="prototype">
 		<property name="baseTaskService" ref="baseTaskService" />

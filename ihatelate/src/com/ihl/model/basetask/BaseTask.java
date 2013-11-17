@@ -31,6 +31,8 @@ public abstract class BaseTask {
 					//10：读书         11：上公开课     13：健身
 					//20：写论文     21：申大学
 	private int priority;// 优先级：0：高1：中2：低
+	private long secondaryPriority;// 二级优先级：priority相同的情况下进行优先级的比较，默认值为endTime.getTime()
+	private long threeStagePriority;// 三级优先级：priority和secondaryPriority相同的情况下进行优先级的比较，默认值为createTime.getTime()
 	private Date createTime;// 任务创建时间
 
 	private boolean isActive = true;// 任务是否激活
@@ -212,5 +214,17 @@ public abstract class BaseTask {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public long getSecondaryPriority() {
+		return secondaryPriority;
+	}
+	public void setSecondaryPriority(long secondaryPriority) {
+		this.secondaryPriority = secondaryPriority;
+	}
+	public long getThreeStagePriority() {
+		return threeStagePriority;
+	}
+	public void setThreeStagePriority(long threeStagePriority) {
+		this.threeStagePriority = threeStagePriority;
 	}
 }
