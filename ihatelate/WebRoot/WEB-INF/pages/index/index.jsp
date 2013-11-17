@@ -60,17 +60,17 @@
   				<div class="pull-right" style="font-size: 50px; line-height: 55px; color: rgb(98, 98, 98);">
   					<div class="row-fluid" style="margin-bottom: 20px;">
 	  					<div class="span12" style="text-align: right;">
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Index page" id="index-page-btn">
+	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Index page" id="index-page-btn" data-target="#index-wrapper">
   								<i class="icon-info-sign"></i>
   							</button>
-  							<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Idle time calendar" id="idle-time-calendar-btn">
+  							<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Idle time calendar" id="idle-time-calendar-btn" data-target="#idle-calendar-wrapper">
   								<i class="icon-calendar"></i>
   							</button>
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Add a task" id="add-a-task-btn">
+	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Add a task" id="add-a-task-btn" data-target="#add-task-wrapper">
   								<i class="icon-plus-sign-alt"></i>
   							</button>
 	  						
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="View schedule" id="view-schedule-btn">
+	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="View schedule" id="view-schedule-btn" data-target="#view-schedule-wrapper">
   								<i class="icon-tasks"></i>
   							</button>
 	  						
@@ -81,18 +81,52 @@
 	  				
   			</div>
   		</div>
-  		<div id="mutable-part">
-  			<div class="row-fluid">
-	  			<div class="span12 tile" style="">
-	  				<div class="row-fluid tile-row tile-first-row">
-	  					<div class="span12 tile-word">
-	  						What's Next?
-	  					</div>
-	  				</div>
-	  			</div>
+  		<div class="wrapper-container">
+  			<div id="index-wrapper" class="content-wrappers selected">
+	  			<div class="row-fluid">
+		  			<div class="span12 tile" style="">
+		  				<div class="row-fluid tile-row tile-first-row">
+		  					<div class="span12 tile-word">
+		  						What's Next?
+		  					</div>
+		  				</div>
+		  			</div>
+		  		</div>
+	  		</div>
+		  	<div id="idle-calendar-wrapper" class="hide content-wrappers">
+	  			<div class="row-fluid">
+		  			<div class="span12 tile" style="">
+		  				<div class="row-fluid tile-row tile-first-row">
+		  					<div class="span12 tile-word">
+		  						Set your idle time calendar here.
+		  					</div>
+		  				</div>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		<div id="add-task-wrapper" class="hide content-wrappers">
+	  			<div class="row-fluid">
+		  			<div class="span12 tile" style="">
+		  				<div class="row-fluid tile-row tile-first-row">
+		  					<div class="span12 tile-word">
+		  						Add a task
+		  					</div>
+		  				</div>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		<div id="view-schedule-wrapper" class="hide content-wrappers">
+	  			<div class="row-fluid">
+		  			<div class="span12 tile" style="">
+		  				<div class="row-fluid tile-row tile-first-row">
+		  					<div class="span12 tile-word">
+		  						View your schedule
+		  					</div>
+		  				</div>
+		  			</div>
+		  		</div>
 	  		</div>
   		</div>
-	  		
   		
   	</div>
 	<!-- Put Javascripts here to make the page load faster -->
@@ -106,8 +140,13 @@
 					placement: 'bottom'
 				});
 				// when #index-page-btn clicked
-				$("#index-page-btn").on("click", function() {
-					window.location.replace("jumpAction!index");
+				$(".top-right-btns").on("click", function() {
+					/*window.location.replace("jumpAction!index");*/
+					var id_str = $(this).data("target"), cur_target = $(id_str);
+					if(!cur_target.hasClass("selected")) {
+						$(".content-wrappers.selected").removeClass("selected").slideUp();
+						cur_target.addClass("selected").slideDown();
+					}
 				});
 			});
 		})(jQuery);
