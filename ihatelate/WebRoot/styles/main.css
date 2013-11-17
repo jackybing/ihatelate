@@ -32,9 +32,8 @@ html,body {
 }
 
 .v-image-logo{
-	width:300px;
-	height:300px;
-	margin-left:160px;
+	width:230px;
+	height:100px;
 	background: url("image/logo.png") no-repeat;
 }
 
@@ -87,10 +86,6 @@ html,body {
 .v-position-center-horizontal{
 }
 
-.v-position-top-margin-big{
-	margin-top:10em;
-}
-
 .v-loadingIcon{
 	background-color: rgba(255,255,255,0.9);
 	background-image: url("image/loading.gif");
@@ -102,3 +97,11 @@ html,body {
 	top:0;
 	left:0;
 }
+
+.form-horizontal .control-label { width: 85px; }
+.form-horizontal .controls { margin-left: 95px; }
+.form-horizontal input + .help-block, 
+.form-horizontal select + .help-block { 
+	margin-top: 0; 
+}
+.form-horizontal .control-group { margin-bottom: 10px; }

@@ -95,7 +95,7 @@
 						
 				</div>
 			</div>
-			<div class="v-board-clear v-block-top" style="margin-left: 12%;">
+			<div class="v-board-clear" style="margin-left: 12%; top: 10%;">
 				<div class="v-image-logo v-position-top-margin-big"></div>
 			</div>
 		</div>

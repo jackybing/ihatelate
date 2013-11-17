@@ -17,11 +17,11 @@
 		<filter-class>com.ihl.filter.AccessFilter</filter-class>
 		<init-param>
 			<param-name>loginPage</param-name>
-			<param-value>/index.html</param-value>
+			<param-value>/login.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>excludedPage</param-name>
-			<param-value>/index.html,/test.html,/test2.html,/userAction!login.action,/userAction!register.action</param-value>
+			<param-value>/login.jsp,/index.html,/test.html,/test2.html,/userAction!login.action,/userAction!register.action</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
@@ -59,6 +59,7 @@
 	</filter-mapping>
 	
 	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
