@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ihl.model.basetask">
+	<class name="BaseTask" table="ihl_basetask">
+		<id column="Id" name="id" type="int">
+			<generator class="native" />
+		</id>
+		<property column="name" generated="never" lazy="false"
+			length="100" name="name" not-null="false" type="string" />
+		<property column="startTime" generated="never" lazy="false"
+			name="startTime" not-null="false" type="date" />
+		<property column="endTime" generated="never" lazy="false"
+			name="endTime" not-null="false" type="date" />
+		<property column="totalDay" generated="never" lazy="false"
+			not-null="false" name="totalDay" type="int" />
+		<property column="usedDay" generated="never" lazy="false"
+			not-null="false" name="usedDay" type="int" />
+		<property column="total" generated="never" lazy="false"
+			not-null="false" name="total" type="int" />
+		<property column="completed" generated="never" lazy="false"
+			not-null="false" name="completed" type="int" />
+		<property column="time" generated="never" lazy="false"
+			not-null="false" name="time" type="int" />
+		<property column="type" generated="never" lazy="false"
+			not-null="false" name="type" type="int" />
+		<property column="priority" generated="never" lazy="false"
+			not-null="false" name="priority" type="int" />
+		<property column="count" generated="never" lazy="false"
+			not-null="false" name="count" type="int" />
+		<property column="createTime" generated="never" lazy="false"
+			name="createTime" not-null="false" type="timestamp" />
+		<property column="isActive" generated="never" lazy="false"
+			name="isActive" not-null="false" type="boolean" />
+		<property column="isCompleted" generated="never" lazy="false"
+			name="isCompleted" not-null="false" type="boolean" />
+		<property column="isDeleted" generated="never" lazy="false"
+			name="isDeleted" not-null="false" type="boolean" />
+		<many-to-one name="user" class="com.ihl.model.user.User" column="userID" not-null="false" />
+		<set name="stages" table="ihl_stage" inverse="true"  cascade="all" lazy="false">
+				<key column="taskId"/>
+				<one-to-many class="com.ihl.model.stage.Stage"/>
+		</set>
+		
+		<joined-subclass name="com.ihl.model.booktask.BookTask" table="ihl_booktask">
+            <key column="id"></key>
+            <property column="title" generated="never" lazy="false"
+				length="100" name="title" not-null="false" type="string" />
+            <property column="ISBN" generated="never" lazy="false"
+				length="100" name="ISBN" not-null="false" type="string" />
+           <property column="pageNum" generated="never" lazy="false"
+				not-null="false" name="pageNum" type="int" />
+			<property column="efficiency" generated="never" lazy="false"
+				not-null="false" name="efficiency" type="int" />
+        </joined-subclass>
+        
+        <joined-subclass name="com.ihl.model.openclasstask.OpenClassTask" table="ihl_openclasstask">
+            <key column="id"></key>
+            <property column="className" generated="never" lazy="false"
+				length="100" name="className" not-null="false" type="string" />
+           <property column="amount" generated="never" lazy="false"
+				not-null="false" name="amount" type="int" />
+			<property column="timeForPerClass" generated="never" lazy="false"
+				not-null="false" name="timeForPerClass" type="int" />
+			<property column="remark" generated="never" lazy="false"
+				length="100" name="remark" not-null="false" type="string" />
+        </joined-subclass>
+        
+        <joined-subclass name="com.ihl.model.exercisetask.ExerciseTask" table="ihl_exercisetask">
+            <key column="id"></key>
+            <property column="exerciseName" generated="never" lazy="false"
+				length="100" name="exerciseName" not-null="false" type="string" />
+           <property column="groupCount" generated="never" lazy="false"
+				not-null="false" name="groupCount" type="int" />
+			<property column="timePerGroup" generated="never" lazy="false"
+				not-null="false" name="timePerGroup" type="int" />
+			<property column="dayLast" generated="never" lazy="false"
+				not-null="false" name="dayLast" type="int" />
+        </joined-subclass>
+        
+        <joined-subclass name="com.ihl.model.writepapertask.WritePaperTask" table="ihl_writepapertask">
+            <key column="id"></key>
+            <property column="paperName" generated="never" lazy="false"
+				length="100" name="paperName" not-null="false" type="string" />
+        </joined-subclass>
+        
+        <joined-subclass name="com.ihl.model.applyuniversitytask.ApplyUniversityTask" table="ihl_applyuniversitytask">
+            <key column="id"></key>
+            <property column="universityName" generated="never" lazy="false"
+				length="100" name="universityName" not-null="false" type="string" />
+            <property column="deadline" generated="never" lazy="false"
+				length="100" name="deadline" not-null="false" type="string" />
+            <property column="material" generated="never" lazy="false"
+				length="100" name="material" not-null="false" type="string" />
+        </joined-subclass>
+	</class>
+</hibernate-mapping>

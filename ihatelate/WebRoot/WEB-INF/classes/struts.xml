@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ihl" extends="json-default" namespace="/">
+	</package>	
+	<include file="com/ihl/controller/useraction/useraction.xml"></include> 
+	<include file="com/ihl/controller/booktaskaction/BookTaskAction.xml"></include> 
+	<include file="com/ihl/controller/writepapertaskaction/WritePaperTaskAction.xml"></include> 
+	<include file="com/ihl/controller/scheduleaction/ScheduleAction.xml"></include> 
+	<include file="com/ihl/controller/stageaction/StageAction.xml"></include> 
+	<include file="com/ihl/controller/openclasstaskaction/OpenClassTaskAction.xml"></include> 
+	<include file="com/ihl/controller/freetimeaction/FreeTimeAction.xml"></include> 
+	<include file="com/ihl/controller/applyuniversitytaskaction/ApplyUniversityTaskAction.xml"></include> 
+	<include file="com/ihl/controller/exercisetaskaction/ExerciseTaskAction.xml"></include> 
+	<include file="com/ihl/controller/taskaction/TaskAction.xml"></include> 
+	<include file="com/ihl/controller/uploadaction/Uploadaction.xml"></include> 
+</struts>

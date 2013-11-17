@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ihl.model.user">
+	<class name="User" table="ihl_user">
+		<id column="Id" name="id" type="int">
+			<generator class="native" />
+		</id>
+		<property column="UserName" generated="never" lazy="false"
+			length="50" name="userName" not-null="false" type="string" />
+		<property column="Password" generated="never" lazy="false"
+			length="50" name="password" not-null="false" type="string" />
+		<property column="Email" generated="never" lazy="false"
+			length="50" not-null="false" name="email" type="string" />
+		<property column="Sex" generated="never" lazy="false"
+			name="sex" length="2" not-null="false" type="int" />
+		<property column="Type" generated="never" lazy="false"
+			name="type" length="2" not-null="false" type="int" />
+		<property column="CreateDate" generated="never" lazy="false"
+			name="createDate" not-null="false" type="date" />
+			
+		<property column="Avatar" generated="never" lazy="false"
+			length="200" name="avatar" not-null="false" type="string" />
+			
+		<property column="Disk" generated="never" lazy="false"
+			length="200" name="disk" not-null="false" type="string" />
+			
+		<set name="freeTimes" inverse="false" lazy="true">
+			<key column="userID" />
+			<one-to-many class="com.ihl.model.freetime.FreeTime" />
+		</set>
+		<set name="baseTasks" inverse="false" lazy="true">
+			<key column="userID" />
+			<one-to-many class="com.ihl.model.basetask.BaseTask" />
+		</set>
+	</class>
+</hibernate-mapping>

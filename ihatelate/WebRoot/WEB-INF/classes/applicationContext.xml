@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://198.167.137.133:3306/ihl?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<property name="maxPoolSize" value="20" />
+		<property name="minPoolSize" value="1" />
+		<property name="initialPoolSize" value="1" />
+		<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+		<property name="maxIdleTime" value="20"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<!-- 以下存放所有的PO映射文件   -->
+				<value>com/ihl/model/user/User.hbm.xml</value>
+				<value>com/ihl/model/freetime/Freetime.hbm.xml</value>
+				<value>com/ihl/model/basetask/BaseTask.hbm.xml</value>
+				<value>com/ihl/model/stage/Stage.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<!-- 设置Hibernate属性 -->
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=false
+				hibernate.format_sql=true;
+    		</value>
+		</property>
+	</bean>
+	
+	<bean id="ihl.http.url" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="http://198.167.137.133" />
+	</bean>
+	
+	<bean id="ihl.from.email" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="zuoyour@yeah.net" />
+	</bean>
+	
+	<bean id="ihl.from.password" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="zuoyour!@#123" />
+	</bean>
+	
+	<bean id="image.max.size" class="java.lang.Integer">
+		<constructor-arg type="int" value="10485760" />
+	</bean>
+	
+	<bean id="ihl.disk.path" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="http://198.167.137.133/FileDisk/avatar.jpg" />
+	</bean>
+	
+	<bean id="ihl.user.avatar" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="FileDisk" />
+	</bean>
+	
+	<bean id="image.accept.extensions" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key=".jpg" value="true" />
+				<entry key=".gif" value="true" />
+				<entry key=".jpeg" value="true" />
+				<entry key=".bmp" value="true" />
+				<entry key=".png" value="true" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="fileUploadUtil" class="com.ihl.utility.FileUploadUtil"
+		scope="prototype">
+		<property name="fileDisk" ref="ihl.disk.path" />
+		<property name="domain" ref="ihl" />
+		<property name="acceptExtensions" ref="image.accept.extensions" />
+		<property name="imageMaxSize" ref="image.max.size" />
+	</bean>
+	
+	<bean id="userDao" class="com.ihl.dao.userdao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userService" class="com.ihl.service.userservice.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="userAction" class="com.ihl.controller.useraction.UserAction"
+		scope="prototype">
+		<property name="userService" ref="userService" />
+		<property name="avatar" ref="ihl.user.avatar" />
+	</bean>
+	
+	<bean id="freeTimeDao" class="com.ihl.dao.freetimedao.FreeTimeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="freeTimeService" class="com.ihl.service.freetimeservice.FreeTimeServiceImpl">
+		<property name="freeTimeDao" ref="freeTimeDao" />
+	</bean>
+	<bean id="freeTimeAction" class="com.ihl.controller.freetimeaction.FreeTimeAction"
+		scope="prototype">
+		<property name="freeTimeService" ref="freeTimeService" />
+	</bean>
+	
+	<bean id="baseTaskDao" class="com.ihl.dao.basetaskdao.BaseTaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="baseTaskService" class="com.ihl.service.basetaskservice.BaseTaskServiceImpl">
+		<property name="baseTaskDao" ref="baseTaskDao" />
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="scheduleAction" class="com.ihl.controller.scheduleaction.ScheduleAction"
+		scope="prototype">
+		<property name="freeTimeService" ref="freeTimeService" />
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
+	<bean id="bookTaskDao" class="com.ihl.dao.booktaskdao.BookTaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="bookTaskService" class="com.ihl.service.booktaskservice.BookTaskServiceImpl">
+		<property name="bookTaskDao" ref="bookTaskDao" />
+	</bean>
+	<bean id="bookTaskAction" class="com.ihl.controller.booktaskaction.BookTaskAction"
+		scope="prototype">
+		<property name="bookTaskService" ref="bookTaskService" />
+		<property name="userService" ref="userService" />
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
+	<bean id="writePaperTaskDao" class="com.ihl.dao.writepapertaskdao.WritePaperTaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="writePaperTaskService" class="com.ihl.service.writepapertaskservice.WritePaperTaskServiceImpl">
+		<property name="writePaperTaskDao" ref="writePaperTaskDao" />
+	</bean>
+	<bean id="writePaperTaskAction" class="com.ihl.controller.writepapertaskaction.WritePaperTaskAction"
+		scope="prototype">
+		<property name="writePaperTaskService" ref="writePaperTaskService" />
+		<property name="userService" ref="userService" />
+		<property name="stageService" ref="stageService" />
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
+	<bean id="stageDao" class="com.ihl.dao.stagedao.StageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="stageService" class="com.ihl.service.stageservice.StageServiceImpl">
+		<property name="stageDao" ref="stageDao" />
+		<property name="baseTaskDao" ref="baseTaskDao" />
+	</bean>
+	<bean id="stageAction" class="com.ihl.controller.stageaction.StageAction"
+		scope="prototype">
+		<property name="stageService" ref="stageService" />
+	</bean>
+	
+	<bean id="openClassTaskDao" class="com.ihl.dao.openclasstaskdao.OpenClassTaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="openClassTaskService" class="com.ihl.service.openclasstaskservice.OpenClassTaskServiceImpl">
+		<property name="openClassTaskDao" ref="openClassTaskDao" />
+	</bean>
+	<bean id="openClassTaskAction" class="com.ihl.controller.openclasstaskaction.OpenClassTaskAction"
+		scope="prototype">
+		<property name="openClassTaskService" ref="openClassTaskService" />
+		<property name="userService" ref="userService" />
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
+	<bean id="applyUniversityTaskDao" class="com.ihl.dao.applyuniversitytaskdao.ApplyUniversityTaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="applyUniversityTaskService" class="com.ihl.service.applyuniversitytaskservice.ApplyUniversityTaskServiceImpl">
+		<property name="applyUniversityTaskDao" ref="applyUniversityTaskDao" />
+	</bean>
+	<bean id="applyUniversityTaskAction" class="com.ihl.controller.applyuniversitytaskaction.ApplyUniversityTaskAction"
+		scope="prototype">
+		<property name="applyUniversityTaskService" ref="applyUniversityTaskService" />
+		<property name="userService" ref="userService" />
+		<property name="stageService" ref="stageService" />
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
+	<bean id="exerciseTaskDao" class="com.ihl.dao.exercisetaskdao.ExerciseTaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="exerciseTaskService" class="com.ihl.service.exercisetaskservice.ExerciseTaskServiceImpl">
+		<property name="exerciseTaskDao" ref="exerciseTaskDao" />
+	</bean>
+	<bean id="exerciseTaskAction" class="com.ihl.controller.exercisetaskaction.ExerciseTaskAction"
+		scope="prototype">
+		<property name="exerciseTaskService" ref="exerciseTaskService" />
+		<property name="userService" ref="userService" />
+		<property name="baseTaskService" ref="baseTaskService" />
+	</bean>
+	
+	<bean id="taskAction" class="com.ihl.controller.taskaction.TaskAction"
+		scope="prototype">
+		<property name="baseTaskService" ref="baseTaskService" />
+		<property name="userService" ref="userService" />
+	</bean>
+	
+	<bean id="uploadaction" class="com.ihl.controller.uploadaction.UploadAction"
+		scope="prototype">
+		<property name="fileUploadUtil" ref="fileUploadUtil" />
+	</bean>
+	
+	<bean id="sendEmail" class="com.ihl.admin.SendEmail"
+		scope="prototype">
+		<property name="baseTaskService" ref="baseTaskService" />
+		<property name="freeTimeService" ref="freeTimeService" />
+		<property name="userService" ref="userService" />
+	</bean>
+	
+</beans>
