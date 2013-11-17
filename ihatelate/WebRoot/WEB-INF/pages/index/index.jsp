@@ -60,17 +60,18 @@
   				<div class="pull-right" style="font-size: 50px; line-height: 55px; color: rgb(98, 98, 98);">
   					<div class="row-fluid" style="margin-bottom: 20px;">
 	  					<div class="span12" style="text-align: right;">
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Index">
+	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Index page" id="index-page-btn">
   								<i class="icon-info-sign"></i>
   							</button>
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Add plan">
-  								<i class="icon-plus-sign-alt"></i>
-  							</button>
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Calendar">
+  							<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Idle time calendar" id="idle-time-calendar-btn">
   								<i class="icon-calendar"></i>
   							</button>
-	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Task">
-  								<i class="icon-home"></i>
+	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="Add a task" id="add-a-task-btn">
+  								<i class="icon-plus-sign-alt"></i>
+  							</button>
+	  						
+	  						<button class="button button-rounded button-flat top-right-btns" data-toggle="tooltip" title="View schedule" id="view-schedule-btn">
+  								<i class="icon-tasks"></i>
   							</button>
 	  						
 	  					</div>
@@ -100,8 +101,13 @@
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
+				// init tooltips
 				$('#account-setting-btn, #lang-change-btn, .top-right-btns').tooltip({
 					placement: 'bottom'
+				});
+				// when #index-page-btn clicked
+				$("#index-page-btn").on("click", function() {
+					window.location.replace("jumpAction!index");
 				});
 			});
 		})(jQuery);
