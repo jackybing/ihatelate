@@ -15,11 +15,8 @@
 	<include file="com/ihl/controller/applyuniversitytaskaction/ApplyUniversityTaskAction.xml"></include> 
 	<include file="com/ihl/controller/exercisetaskaction/ExerciseTaskAction.xml"></include> 
 	<include file="com/ihl/controller/taskaction/TaskAction.xml"></include> 
-<<<<<<< HEAD
 	<include file="com/ihl/controller/uploadaction/Uploadaction.xml"></include>
 	<include file="com/ihl/controller/jumpaction/JumpAction.xml"></include>
-=======
 	<include file="com/ihl/controller/uploadaction/Uploadaction.xml"></include> 
 	<include file="com/ihl/controller/modifypriorityaction/modifyPriorityAction.xml"></include> 
->>>>>>> 5fc7ba3b0fb9e53d10e19a9dc948fa994e5874ad
 </struts>
