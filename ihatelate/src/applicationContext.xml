@@ -40,6 +40,50 @@
 		</property>
 	</bean>
 	
+	<bean id="ihl.http.url" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="http://198.167.137.133" />
+	</bean>
+	
+	<bean id="ihl.from.email" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="zuoyour@yeah.net" />
+	</bean>
+	
+	<bean id="ihl.from.password" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="zuoyour!@#123" />
+	</bean>
+	
+	<bean id="image.max.size" class="java.lang.Integer">
+		<constructor-arg type="int" value="10485760" />
+	</bean>
+	
+	<bean id="ihl.disk.path" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="http://198.167.137.133/FileDisk/avatar.jpg" />
+	</bean>
+	
+	<bean id="ihl.user.avatar" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="FileDisk" />
+	</bean>
+	
+	<bean id="image.accept.extensions" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key=".jpg" value="true" />
+				<entry key=".gif" value="true" />
+				<entry key=".jpeg" value="true" />
+				<entry key=".bmp" value="true" />
+				<entry key=".png" value="true" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="fileUploadUtil" class="com.ihl.utility.FileUploadUtil"
+		scope="prototype">
+		<property name="fileDisk" ref="ihl.disk.path" />
+		<property name="domain" ref="ihl" />
+		<property name="acceptExtensions" ref="image.accept.extensions" />
+		<property name="imageMaxSize" ref="image.max.size" />
+	</bean>
+	
 	<bean id="userDao" class="com.ihl.dao.userdao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -49,6 +93,7 @@
 	<bean id="userAction" class="com.ihl.controller.useraction.UserAction"
 		scope="prototype">
 		<property name="userService" ref="userService" />
+		<property name="avatar" ref="ihl.user.avatar" />
 	</bean>
 	
 	<bean id="freeTimeDao" class="com.ihl.dao.freetimedao.FreeTimeDaoImpl">
@@ -158,6 +203,11 @@
 		scope="prototype">
 		<property name="baseTaskService" ref="baseTaskService" />
 		<property name="userService" ref="userService" />
+	</bean>
+	
+	<bean id="uploadaction" class="com.ihl.controller.uploadaction.UploadAction"
+		scope="prototype">
+		<property name="fileUploadUtil" ref="fileUploadUtil" />
 	</bean>
 	
 	<bean id="sendEmail" class="com.ihl.admin.SendEmail"

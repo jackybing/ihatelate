@@ -25,6 +25,11 @@ public class UserAction extends ActionSupport {
 	private String sex;
 	private String result;
 	
+	private String url;//头像物理地址
+	private String disk;//头像服务器磁盘地址
+	
+	private String avatar;//默认头像地址
+	
 	//注册
 	public String register() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		Map<String, String> resultMap = new HashMap<String, String>();
@@ -36,6 +41,9 @@ public class UserAction extends ActionSupport {
 			user.setSex(Integer.parseInt(sex));
 			user.setUserName(username);
 			user.setCreateDate(new Date());
+			
+			user.setAvatar(avatar);//设置默认头像地址
+			user.setDisk("");
 			
 			userService.save(user);
 			
@@ -87,6 +95,24 @@ public class UserAction extends ActionSupport {
 		setResult(JSONObject.fromObject(resultMap).toString());
 		return SUCCESS;
 	}
+	
+	public String uploadAvatar() throws Exception{
+		Map<String, String> resultMap = new HashMap<String, String>();
+		Integer userID=(Integer) ActionContext.getContext().getSession().get("userID");
+		if(userID==null){
+			resultMap.put("info", "please login first !");
+			resultMap.put("statusCode", "404");
+		}else{
+			if(userService.uploadAvatar(userID, url, disk)){
+				resultMap.put("info", "upload avatar successfully !");
+				resultMap.put("statusCode", "200");
+			}else {
+				resultMap.put("info", "upload avatar fail !");
+				resultMap.put("statusCode", "404");
+			}
+		}
+		return SUCCESS;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -123,4 +149,23 @@ public class UserAction extends ActionSupport {
 	public void setResult(String result) {
 		this.result = result;
 	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getDisk() {
+		return disk;
+	}
+	public void setDisk(String disk) {
+		this.disk = disk;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
 }

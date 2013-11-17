@@ -14,7 +14,10 @@ public class User {
 	private String userName;
 	private Date createDate;
 	private int sex;//1:man,0:woman
-	private int type;//0:学生，1：办公室职员，2：户外工作者
+	private int type;//0:学生，1：办公室职员，2：户外工作者,3:其他
+	
+	private String avatar;//头像地址
+	private String disk;//头像服务器磁盘地址
 	
 	private Set<FreeTime> freeTimes=new HashSet<FreeTime>(); 
 	private Set<BaseTask> baseTasks = new HashSet<BaseTask>();
@@ -73,4 +76,17 @@ public class User {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	public String getDisk() {
+		return disk;
+	}
+	public void setDisk(String disk) {
+		this.disk = disk;
+	}
+	
 }

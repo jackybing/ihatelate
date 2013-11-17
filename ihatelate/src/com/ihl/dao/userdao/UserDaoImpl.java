@@ -30,7 +30,23 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		return getHibernateTemplate().find("from User");
+	}
+	
+	public Boolean uploadAvatar(Integer userID,String url,String disk){
+		User user=getUserById(userID);
+		user.setAvatar(url);
+		user.setDisk(disk);
+		boolean tag=true;
+		try {
+			getHibernateTemplate().saveOrUpdate(user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("upload avatar failed!"+"  "+e.toString());
+			tag=false;
+		}		
+		return tag;
 	}
 }

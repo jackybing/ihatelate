@@ -12,4 +12,5 @@ public interface UserService {
 	public User getLoginUser();
 	public User save(User user);
 	public List<User> getAll();
+	public Boolean uploadAvatar(Integer userID,String url,String disk);
 }

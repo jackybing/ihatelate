@@ -46,4 +46,8 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAll() {
 		return userDao.getAll();
 	}
+	
+	public Boolean uploadAvatar(Integer userID,String url,String disk){
+		return userDao.uploadAvatar(userID, url, disk);
+	}
 }
