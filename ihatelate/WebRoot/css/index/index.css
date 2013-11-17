@@ -1,7 +1,7 @@
 body { background-color: rgb(238, 238, 238); padding-top: 20px; }
 .tile {
 	min-height: 30px;
-	padding: 15px;
+	padding: 5px 15px;
 	background-color: #fff;
 	border: 1px solid rgb(243,243,243);
 	border: 1px solid rgba(243,243,243,0.3);
@@ -13,7 +13,7 @@ body { background-color: rgb(238, 238, 238); padding-top: 20px; }
 	-moz-background-clip: padding-box;
 	background-clip: padding-box;
 }
-.tile .tile-row { line-height: 47px; }
-.tile .tile-first-row { border-bottom: 1px solid rgb(218, 218, 218); margin-bottom: 8px; padding-bottom: 8px; }
-.tile .tile-row .tile-word { font-size: 30px; color: rgb(128, 128, 128); }
-.tile .tile-row .tile-icon { font-size: 42px; }
+.tile .tile-row { line-height: 37px; }
+.tile .tile-first-row { border-bottom: 1px solid rgb(218, 218, 218); margin-bottom: 6px; padding-bottom: 2px; }
+.tile .tile-row .tile-word { font-size: 20px; color: rgb(128, 128, 128); }
+.tile .tile-row .tile-icon { font-size: 32px; }
