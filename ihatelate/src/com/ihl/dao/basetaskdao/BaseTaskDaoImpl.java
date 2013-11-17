@@ -24,7 +24,7 @@ public class BaseTaskDaoImpl extends HibernateDaoSupport implements BaseTaskDao{
 					public Object doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						List<BaseTask> baseTasks = session
-						.createQuery("from BaseTask b where b.isActive = true and b.isCompleted = false and b.isDeleted = false and b.startTime <= ? and b.user = ? order by priority,createTime")
+						.createQuery("from BaseTask b where b.isActive = true and b.isCompleted = false and b.isDeleted = false and b.startTime <= ? and b.user = ? order by priority,secondaryPriority,threeStagePriority")
 						.setDate(0, date).setEntity(1, user).list();
 						return baseTasks;
 					}

@@ -329,6 +329,28 @@
 					}
 				});
 			}
+			function modifyPriority(){
+				var upperID = $("#upper").val();
+				var beMovedID = $("#beMoved").val();
+				var underID = $("#under").val();
+				
+				var json = "upperID=" + upperID + "&beMovedID=" + beMovedID +"&underID=" + underID ;
+				
+				jQuery.ajax({
+					url: "modityPriorityAction!modifyPriority.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -497,6 +519,25 @@
 			</tr>
 			<tr>
 				<td><input type="submit" value="提交" onclick="createApplyUniversityTask();"></td>
+			</tr>
+		</table>
+		<hr/>
+		<h3>测试调整优先级</h3>
+		<table>
+			<tr>
+				<td>upper：</td>
+				<td><input id="upper" type="text"></td>
+			</tr>
+			<tr>
+				<td>beMoved：</td>
+				<td><input id="beMoved" type="text"></td>
+			</tr>
+			<tr>
+				<td>under：</td>
+				<td><input id="under" type="text"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交" onclick="modifyPriority();"></td>
 			</tr>
 		</table>
 		<hr/>

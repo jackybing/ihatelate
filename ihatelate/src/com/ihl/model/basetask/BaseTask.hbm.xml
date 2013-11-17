@@ -36,6 +36,10 @@
 			name="isCompleted" not-null="false" type="boolean" />
 		<property column="isDeleted" generated="never" lazy="false"
 			name="isDeleted" not-null="false" type="boolean" />
+		<property column="secondaryPriority" generated="never" lazy="false"
+			name="secondaryPriority" not-null="false" type="long" />
+		<property column="threeStagePriority" generated="never" lazy="false"
+			name="threeStagePriority" not-null="false" type="long" />
 		<many-to-one name="user" class="com.ihl.model.user.User" column="userID" not-null="false" />
 		<set name="stages" table="ihl_stage" inverse="true"  cascade="all" lazy="false">
 				<key column="taskId"/>
