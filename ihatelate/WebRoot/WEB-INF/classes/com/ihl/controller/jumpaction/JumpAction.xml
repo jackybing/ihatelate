@@ -1,0 +1,10 @@
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="jumpAction" namespace="/" extends="json-default">
+		<action name="jumpAction!*" class="com.ihl.controller.jumpaction.JumpAction" method="{1}">
+			<result name="index">/WEB-INF/pages/index/index.jsp</result>
+		</action>
+	</package>
+</struts>
