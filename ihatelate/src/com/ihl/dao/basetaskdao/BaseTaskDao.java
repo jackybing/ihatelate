@@ -16,4 +16,5 @@ public interface BaseTaskDao {
 	public void update(BaseTask baseTask);
 	public void flush();
 	public BaseTask getBest(int type);
+	public List<BaseTask> getUncompletedByUser(User user);
 }

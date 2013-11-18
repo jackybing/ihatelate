@@ -14,4 +14,5 @@ public interface BaseTaskService {
 	public void delete(int id);
 	public void delete(List<Integer> ids);
 	public void update(BaseTask baseTask);
+	public List<BaseTask> getUncompletedByUser(User user);
 }

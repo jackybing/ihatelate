@@ -330,11 +330,30 @@
 				});
 			}
 			function modifyPriority(){
-				var upperID = $("#upper").val();
-				var beMovedID = $("#beMoved").val();
-				var underID = $("#under").val();
+				var ID1 = $("#ID1").val();
+				var priority1 = $("#priority1").val();
+				var ID2 = $("#ID2").val();
+				var priority2 = $("#priority2").val();
+				var ID3 = $("#ID3").val();
+				var priority3 = $("#priority3").val();
 				
-				var json = "upperID=" + upperID + "&beMovedID=" + beMovedID +"&underID=" + underID ;
+				var IDPrioritys = [];
+				paramObj1 = new Object();
+				paramObj1.ID = ID1;
+				paramObj1.priority = priority1;
+				IDPrioritys.push(paramObj1); 
+				
+				paramObj2 = new Object();
+				paramObj2.ID = ID2;
+				paramObj2.priority = priority2;
+				IDPrioritys.push(paramObj2); 
+				
+				paramObj3 = new Object();
+				paramObj3.ID = ID3;
+				paramObj3.priority = priority3;
+				IDPrioritys.push(paramObj3); 
+				
+				var json = "IDPriorityStr=" + JSON.stringify(IDPrioritys);
 				
 				jQuery.ajax({
 					url: "modityPriorityAction!modifyPriority.action",
@@ -525,16 +544,21 @@
 		<h3>测试调整优先级</h3>
 		<table>
 			<tr>
-				<td>upper：</td>
-				<td><input id="upper" type="text"></td>
+				<td>ID：</td>
+				<td><input id="ID1" type="text"></td>
+				<td>Priority：</td>
+				<td><input id="priority1" type="text"></td>
 			</tr>
 			<tr>
-				<td>beMoved：</td>
-				<td><input id="beMoved" type="text"></td>
-			</tr>
-			<tr>
-				<td>under：</td>
-				<td><input id="under" type="text"></td>
+				<td>ID：</td>
+				<td><input id="ID2" type="text"></td>
+				<td>Priority：</td>
+				<td><input id="priority2" type="text"></td>
+			</tr><tr>
+				<td>ID：</td>
+				<td><input id="ID3" type="text"></td>
+				<td>Priority：</td>
+				<td><input id="priority3" type="text"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="提交" onclick="modifyPriority();"></td>
