@@ -66,6 +66,7 @@ public class UserAction extends ActionSupport {
 			resultMap.put("statusCode", "200");
 			resultMap.put("username", user.getUserName());
 			resultMap.put("info", "login successfully !");
+			resultMap.put("redirect_url", "jumpAction!index");
 			ActionContext.getContext().getSession().put("userID",
 					user.getId());
 		}else {

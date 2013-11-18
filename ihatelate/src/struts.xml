@@ -17,4 +17,5 @@
 	<include file="com/ihl/controller/taskaction/TaskAction.xml"></include> 
 	<include file="com/ihl/controller/uploadaction/Uploadaction.xml"></include> 
 	<include file="com/ihl/controller/modifypriorityaction/modifyPriorityAction.xml"></include> 
+	<include file="com/ihl/controller/jumpaction/JumpAction.xml"></include> 
 </struts>
