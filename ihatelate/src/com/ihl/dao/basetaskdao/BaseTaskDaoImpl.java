@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.ihl.model.basetask.BaseTask;
 import com.ihl.model.user.User;
 import com.ihl.utility.ConfigUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class BaseTaskDaoImpl extends HibernateDaoSupport implements BaseTaskDao{
 
@@ -82,6 +83,15 @@ public class BaseTaskDaoImpl extends HibernateDaoSupport implements BaseTaskDao{
 			Random random = new Random();
 			int i = random.nextInt(baseTasks.size());
 			return baseTasks.get(i);
+		}
+		return null;
+	}
+
+	public List<BaseTask> getUncompletedByUser(User user) {
+		String query = "from BaseTask b where b.isCompleted = false and b.isDeleted = false and b.endTime >= ? and b.user = ?";
+		List<BaseTask> baseTasks = getHibernateTemplate().find(query,new Date(),user);
+		if(baseTasks != null && baseTasks.size() > 0){
+			return baseTasks;
 		}
 		return null;
 	}

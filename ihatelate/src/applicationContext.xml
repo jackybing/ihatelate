@@ -213,6 +213,7 @@
 	<bean id="modityPriorityAction" class="com.ihl.controller.modifypriorityaction.ModifyPriorityAction"
 		scope="prototype">
 		<property name="baseTaskService" ref="baseTaskService" />
+		<property name="userService" ref="userService" />
 	</bean>
 	
 	<bean id="sendEmail" class="com.ihl.admin.SendEmail"
