@@ -5,6 +5,8 @@
 	<package name="jumpAction" namespace="/" extends="json-default">
 		<action name="jumpAction!*" class="com.ihl.controller.jumpaction.JumpAction" method="{1}">
 			<result name="index">/WEB-INF/pages/index/index.jsp</result>
+			<result name="idleTimeCalendar">/WEB-INF/pages/idleTimeCalendar/idleTimeCalendar.jsp</result>
+			<result name="viewSchedule">/WEB-INF/pages/viewSchedule/viewSchedule.jsp</result>
 		</action>
 	</package>
 </struts>
