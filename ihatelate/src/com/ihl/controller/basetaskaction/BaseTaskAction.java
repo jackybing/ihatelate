@@ -30,7 +30,6 @@ public class BaseTaskAction extends ActionSupport{
 	protected String totalDay;// 计划花费的天数
 
 	protected String type;// 任务类型：0：读书1：写论文2：健身3：申大学
-	protected String priority;// 优先级：0：高1：中2：低
 
 	protected String isActive;// 任务是否激活
 	
@@ -56,11 +55,8 @@ public class BaseTaskAction extends ActionSupport{
 		baseTask.setEndTime(DateUtil.stringToDate(endTime));
 		baseTask.setTotalDay(Integer.parseInt(totalDay));
 		baseTask.setType(Integer.parseInt(type));
-		baseTask.setPriority(Integer.parseInt(priority));
 		baseTask.setIsActive(isActive.equals("1")?true:false);
 		baseTask.setCreateTime(new Date());
-		baseTask.setSecondaryPriority(baseTask.getEndTime().getTime());
-		baseTask.setThreeStagePriority(baseTask.getCreateTime().getTime());
 		
 		if(stages != null){
 			JSONArray jsonArray = JSONArray.fromObject(stages);
@@ -144,15 +140,6 @@ public class BaseTaskAction extends ActionSupport{
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getPriority() {
-		return priority;
-	}
-
-	public void setPriority(String priority) {
-		this.priority = priority;
-	}
-
 	public String getIsActive() {
 		return isActive;
 	}

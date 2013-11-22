@@ -46,6 +46,11 @@ public class BaseTaskServiceImpl implements BaseTaskService {
 			}
 		}
 	}
+	
+
+	public List<BaseTask> getUncompletedByUser(User user) {
+		return baseTaskDao.getUncompletedByUser(user);
+	}
 
 	public List<BaseTask> get(User user) {
 		return baseTaskDao.get(user);
