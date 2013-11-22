@@ -18,7 +18,7 @@
 	<link rel='stylesheet' type='text/css' href='tools/week-calendar/css/demo.css' />
 	<style type="text/css">
 		.container-fluid { padding: 0; }
-		td.wc-day-column-header { font-size: 0.9em; }
+		td.wc-day-column-header { font-size: 0.8em; }
 		.wc-header .wc-scrollbar-shim { width: 0; }
 		.wc-business-hours { font-size: 1.05em; }
 		.wc-header { border-top: 0; }

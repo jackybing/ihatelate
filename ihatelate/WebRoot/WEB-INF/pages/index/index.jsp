@@ -113,12 +113,143 @@
 		  			</div>
 		  		</div>
 	  		</div>
-	  		<div id="add-task-wrapper" class="hide content-wrappers">
+	  		<div id="add-task-wrapper" class="hide content-wrappers margin-bottom-20px">
 	  			<div class="row-fluid">
 		  			<div class="span12 tile" style="">
 		  				<div class="row-fluid tile-row tile-first-row">
 		  					<div class="span12 tile-word">
 		  						Add a task
+		  					</div>
+		  				</div>
+		  				<div class="row-fluid" style="padding-top: 15px;">
+		  					<div class="span12">
+		  						
+		  						<div class="accordion" id="quantify-or-not-accordion">
+								  <div class="accordion-group">
+								    <div class="accordion-heading">
+								      <a class="accordion-toggle" data-toggle="collapse" data-parent="#quantify-or-not-accordion" href="#collapseOne">
+								        Quantifiable Tasks
+								      </a>
+								    </div>
+								    <div id="collapseOne" class="accordion-body collapse in">
+								      <div class="accordion-inner">
+								      	
+								          <ul id="quantifiable-tab" class="nav nav-tabs">
+								              <li class="active"><a href="#reading-tab-pane" data-toggle="tab">Reading Books</a></li>
+								              <li><a href="#open-class-tab-pane" data-toggle="tab">Open Class</a></li>
+								              <li><a href="#fitness-tab-pane" data-toggle="tab">Fitness</a></li>
+								          </ul>
+								          <div id="quantifiable-tab-content" class="tab-content">
+								              <div class="tab-pane fade in active" id="reading-tab-pane">
+								              	<div class="form-horizontal">
+										            <div class="control-group">
+										              <label class="control-label" for="input-task-name">Task Name:</label>
+										              <div class="controls">
+										                <input type="text" id="input-task-name" placeholder="Task Name" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-start-time">Start Time:</label>
+										              <div class="controls">
+										                <input type="text" id="input-start-time" placeholder="Start Time" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-end-time">End Time:</label>
+										              <div class="controls">
+										                <input type="text" id="input-end-time" placeholder="End Time" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-total-day">Days to Spend:</label>
+										              <div class="controls">
+										                <input type="text" id="input-total-day" placeholder="Set start and end time first" disabled />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-title">Book Title:</label>
+										              <div class="controls">
+										                <div class="form-search">
+										                	<div class="input-append">
+															    <input type="text" id="input-title" placeholder="Book Title" class="search-query">
+															    <button type="button" class="btn">Search</button>
+															    <span class="help-inline"></span>
+															</div>
+										                </div>		
+										                
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-isbn">ISBN:</label>
+										              <div class="controls">
+										                <input type="text" id="input-isbn" placeholder="AutoFill on the choosed book" readonly />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-page-num">Number of Pages:</label>
+										              <div class="controls">
+										                <input type="text" id="input-page-num" placeholder="AutoFill on the choosed book" readonly />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-efficiency">Efficiency:</label>
+										              <div class="controls">
+										                <input type="text" id="input-efficiency" placeholder="Minutes for finishing 1 page" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+
+										            <div class="form-actions">
+													  <button type="button" class="btn btn-primary">Add</button>
+													  <button type="button" class="btn btn-danger">Reset</button>
+													</div>
+										            
+										        </div>
+								              </div>
+								              <div class="tab-pane fade" id="open-class-tab-pane">
+								                <p>Open class fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              </div>
+								              <div class="tab-pane fade" id="fitness-tab-pane">
+								                <p>Fitness fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              </div>
+								          </div>
+								      	
+								      </div>
+								    </div>
+								  </div>
+								  <div class="accordion-group">
+								    <div class="accordion-heading">
+								      <a class="accordion-toggle" data-toggle="collapse" data-parent="#quantify-or-not-accordion" href="#collapseTwo">
+								        Non-quantifiable Tasks
+								      </a>
+								    </div>
+								    <div id="collapseTwo" class="accordion-body collapse">
+								      <div class="accordion-inner">
+								      	  <ul id="non-quantifiable-tab" class="nav nav-tabs">
+								              <li class="active"><a href="#papers-tab-pane" data-toggle="tab">Write papers</a></li>
+								              <li><a href="#college-tab-pane" data-toggle="tab">Apply for College</a></li>
+								              
+								          </ul>
+								          <div id="quantifiable-tab-content" class="tab-content">
+								              <div class="tab-pane fade in active" id="papers-tab-pane">
+								                <p>Write papers you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+								              </div>
+								              <div class="tab-pane fade" id="college-tab-pane">
+								                <p>Apply for college fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              </div>
+								              
+								          </div>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+		  						
 		  					</div>
 		  				</div>
 		  			</div>
