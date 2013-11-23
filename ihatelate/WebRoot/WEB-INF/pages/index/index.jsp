@@ -7,6 +7,7 @@
     <title>I Hate Late - Index</title>
     
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bs_4_ihl.css" />
+    <link rel="stylesheet" type="text/css" href="tools/bootstrap-datepicker/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="bootstrap/css/font-awesome.min.css" />
 	<!--[if IE 7]>
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/font-awesome-ie7.min.css" />
@@ -16,6 +17,8 @@
 	<style type="text/css">
 		button.top-right-btns { height: 64px; font-size: 60px; padding: 0 10px; }
 		.margin-bottom-20px { margin-bottom: 20px; }
+		.input-width-280px { width: 280px; }
+		.input-width-128px { width: 127px; }
 	</style>
   </head>
   
@@ -141,73 +144,75 @@
 								          </ul>
 								          <div id="quantifiable-tab-content" class="tab-content">
 								              <div class="tab-pane fade in active" id="reading-tab-pane">
-								              	<div class="form-horizontal">
+								              	<div class="row-fluid hide" id="book-title-search-result">
+
+								              	</div>
+								              	<div id="read-book-task-form" class="form-horizontal">
 										            <div class="control-group">
 										              <label class="control-label" for="input-task-name">Task Name:</label>
 										              <div class="controls">
-										                <input type="text" id="input-task-name" placeholder="Task Name" />
+										                <input type="text" id="input-task-name" placeholder="Task Name" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="input-start-time">Start Time:</label>
+										              <label class="control-label" for="input-start-time">Date Range:</label>
 										              <div class="controls">
-										                <input type="text" id="input-start-time" placeholder="Start Time" />
+
+										                <div class="input-daterange" id="start-end-datepicker" style="display: inline-block">
+														    <input type="text" id="input-start-time" name="input-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <span class="add-on">to</span>
+														    <input type="text" id="input-end-time" name="input-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														</div>
+
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
-										            <div class="control-group">
-										              <label class="control-label" for="input-end-time">End Time:</label>
-										              <div class="controls">
-										                <input type="text" id="input-end-time" placeholder="End Time" />
-										                <span class="help-inline"></span>
-										              </div>
-										            </div>
+										            
 										            <div class="control-group">
 										              <label class="control-label" for="input-total-day">Days to Spend:</label>
 										              <div class="controls">
-										                <input type="text" id="input-total-day" placeholder="Set start and end time first" disabled />
+										                <input type="text" id="input-total-day" placeholder="Integer between 0 and date range" class="input-width-280px"/>
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="input-title">Book Title:</label>
+										              <label class="control-label" for="input-book-title">Book Title:</label>
 										              <div class="controls">
-										                <div class="form-search">
+										                <div class="form-search" style="display: inline-block;">
 										                	<div class="input-append">
-															    <input type="text" id="input-title" placeholder="Book Title" class="search-query">
-															    <button type="button" class="btn">Search</button>
-															    <span class="help-inline"></span>
+															    <input type="text" id="input-book-title" placeholder="Book Title" class="search-query">
+															    <button type="button" id="search-book-title-btn" class="btn">Search</button>
 															</div>
 										                </div>		
-										                
+										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
 										              <label class="control-label" for="input-isbn">ISBN:</label>
 										              <div class="controls">
-										                <input type="text" id="input-isbn" placeholder="AutoFill on the choosed book" readonly />
+										                <input type="text" id="input-isbn" placeholder="AutoFill on the choosed book" readonly class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
 										              <label class="control-label" for="input-page-num">Number of Pages:</label>
 										              <div class="controls">
-										                <input type="text" id="input-page-num" placeholder="AutoFill on the choosed book" readonly />
+										                <input type="text" id="input-page-num" placeholder="AutoFill on the choosed book" readonly class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
 										              <label class="control-label" for="input-efficiency">Efficiency:</label>
 										              <div class="controls">
-										                <input type="text" id="input-efficiency" placeholder="Minutes for finishing 1 page" />
+										                <input type="text" id="input-efficiency" placeholder="Minutes for finishing 1 page" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary">Add</button>
-													  <button type="button" class="btn btn-danger">Reset</button>
+													  <button type="button" class="btn btn-primary" id="add-rb-task-btn">Add a Reading Book Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-rb-task-btn" style="width: 78px;">Reset</button>
 													</div>
 										            
 										        </div>
@@ -279,6 +284,7 @@
 	<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="tools/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 	<script	type="text/javascript">
 		function showGrowlMsg(title, msg) {
 			$.growlUI(title, msg);
@@ -309,12 +315,6 @@
 						
 					}
 				});
-				// init iframe srcs
-				/*function initIframeSrcs() {
-					$("#itc-iframe").attr("src", "jumpAction!idleTimeCalendar");
-					$("#vs-iframe").attr("src", "jumpAction!viewSchedule");
-				}
-				initIframeSrcs();*/
 				// Save idle calendar events
 				function computeDay(myTag) {
 				    var retDay = "mon";
@@ -385,12 +385,6 @@
 						type: 'post',
 						success: function(json_data) {
 							var data = $.parseJSON(json_data);
-							// console.log(data);
-							/*if(data.status == "200") {
-								
-							} else {
-								
-							}*/
 							$.unblockUI({
                                 onUnblock: function(){ 
                                     $.growlUI('Saving Result', data.info);
@@ -406,6 +400,308 @@
 						}
 					});
 				});
+				// init datepicker
+				function initRangeDatepicker() {
+					var cur_date = new Date(),
+						start_date = cur_date.getFullYear() + "-" + (parseInt(cur_date.getMonth()) + 1) + "-" + cur_date.getDate() + "+00:00:00";
+					$('#start-end-datepicker').datepicker({
+					    format: "yyyy-mm-dd",
+					    startDate: start_date,
+					    autoclose: true,
+					    todayHighlight: true
+					});
+				}
+				initRangeDatepicker();
+				// 从豆瓣获取书籍信息
+				$("#search-book-title-btn").on("click", function() {
+					var book_title_element = $("#input-book-title"), book_title = $.trim(book_title_element.val());
+					if(book_title == "") {
+						showErrorTip(book_title_element, "Please input a book title");
+					} else {
+						showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Adding task ...<h1>");
+						$.getJSON("https://api.douban.com/v2/book/search?count=10&start=0&q=" + book_title + "&alt=\"xd\"&callback=?", function(result) {
+							var books_array = result.books;
+						    var btsr_html_array = [], btsr_is_first = true;
+						    if(result.count > 0) {
+						    	for(var book_idx in books_array) {
+							    	var book = books_array[book_idx];
+							    	if(btsr_is_first) {
+							    		btsr_html_array.push('<ul class="thumbnails" style="width: 97%; margin: 3px auto;">');
+							    	}
+							    	btsr_html_array.push(
+							    		'<li class="span6">' +
+							                '<div class="thumbnail">' +
+							                  '<div class="caption" style="height: 500px; overflow: hidden;">' +
+							                  	'<div class="row-fluid" style="border-bottom: 1px solid rgb(218, 218, 218); margin-bottom: 10px;">' +
+							                  		'<div class="span12">' +
+							                  			'<h3 style="margin: 0; white-space:nowrap; overflow: hidden;">' + book.title + '</h3>' +
+							                  		'</div>' +
+							                  	'</div>' +
+							                  	'<div class="row-fluid">' +
+							                  		'<div class="span4">' +
+							                  			'<ul class="thumbnails">' +
+											              '<li class="span12" style="margin-bottom: 0;">' +
+											                '<a href="javascript: void(0);" class="thumbnail" style="cursor: default;">' +
+											                  '<img src="' + book.image + '" alt="' + book.title + '" style="width: 100%; max-height: 180px;" />' +
+											                '</a>' +
+											              '</li>' +
+											            '</ul>' +
+							                  		'</div>' +
+							                  		'<div class="span8" style="overflow: hidden;">' +
+							                  			'<table class="table table-striped" style="margin-bottom: 0;">' +
+							                  				'<thead></thead>' +
+							                  				'<tbody>' +
+							                  					'<tr>' +
+							                  						'<th style="text-align: right;">Pages:</th>' +
+							                  						'<td>' + book.pages + '</td>' +
+							                  					'</tr>' +
+							                  					'<tr>' +
+							                  						'<th style="text-align: right;">Rating:</th>' +
+							                  						'<td>' + book.rating.average + '</td>' +
+							                  					'</tr>' +
+							                  					'<tr>' +
+							                  						'<th style="text-align: right;">ISBN:</th>' +
+							                  						'<td>' + book.isbn10 + '</td>' +
+							                  					'</tr>' +
+							                  					'<tr>' +
+							                  						'<th style="text-align: right;">Publisher:</th>' +
+							                  						'<td style="white-space:nowrap; overflow: hidden;">' + book.publisher + '</td>' +
+							                  					'</tr>' +
+							                  				'</tbody>' +
+							                  			'</table>' +
+							                  			'<table class="table table-striped" style="margin-bottom: 0;">' +
+							                  				'<thead></thead>' +
+							                  				'<tbody>' +
+							                  					'<tr>' +
+							                  						'<td colspan="2">' +
+							                  							'<div class="row-fluid">' +
+							                  								'<div class="span6">' +
+							                  									'<a href="javascript: void(0);" class="btn btn-primary btn-block btsr-choose-btn" data-title="' + book.title + '" data-pages="' + book.pages + '" data-isbn="' + book.isbn10 + '">Choose</a>' +
+							                  								'</div>' +
+							                  								'<div class="span6">' +
+							                  									'<a href="javascript: void(0);" class="btn btn-warning btn-block btsr-reset-btn">Return</a>' +
+							                  								'</div>' +
+							                  							'</div>' +
+							                  						'</td>' +
+							                  					'</tr>' +
+							                  				'</tbody>' +
+							                  			'</table>' +
+							                  		'</div>' +
+							                  	'</div>' +
+							                  	'<div class="row-fluid">' +
+							                  		'<div class="span12">' +
+							                  			'<table class="table table-striped table-condensed" style="margin-bottom: 0;">' +
+							                  				'<thead></thead>' +
+							                  				'<tbody>' +
+							                  					'<tr>' +
+							                  						'<th style="text-align: center;">Summary:</th>' +
+							                  					'</tr>' +
+							                  					'<tr>' +
+							                  						'<td>' +
+							                  							book.summary +
+							                  						'</td>' +
+							                  					'</tr>' +
+							                  				'</tbody>' +
+							                  			'</table>' +
+							                  		'</div>' +
+							                  	'</div>' +
+							                  '</div>' +
+							                '</div>' +
+							            '</li>'
+							        );
+									if(!btsr_is_first) {
+										btsr_html_array.push('</ul>');
+									}
+									btsr_is_first = !btsr_is_first;
+							    }
+							    $.unblockUI({
+	                                onUnblock: function(){ 
+	                                    $("#book-title-search-result").html(btsr_html_array.join("")).slideDown("slow");
+	                                }
+	                            });
+						    } else {
+						    	btsr_html_array.push('<div class="span12" style="text-align: center;">No related book found, please change your title and research.</div>');
+						    	$.unblockUI({
+	                                onUnblock: function(){ 
+	                                    $("#book-title-search-result").html(btsr_html_array.join("")).slideDown("slow");
+	                                    $.growlUI('Search Result', "No related book found");
+	                                }
+	                            });
+						    	
+						    }
+						    
+						});
+					}
+				});
+				function btsrReset() {
+					$("#book-title-search-result").slideUp("slow", function() {
+						$(this).html("");
+					});
+				}
+				// show error tip for controls
+				function showErrorTip(element, msg) {
+					element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
+				}
+				// function to clear error tips
+				function clearMyErrorTip(myself) {
+		            var myControlGroupParent = myself.parents(".control-group");
+		            if(myControlGroupParent.hasClass("error")) {
+		                myControlGroupParent.removeClass("error").find(".help-inline").text("");
+		            }
+		        }
+				// clear error tip for controls
+				$("input").on("input", function() {
+		            clearMyErrorTip($(this));
+		        });
+		        $("input").on("change", function() {
+		            clearMyErrorTip($(this));
+		        });
+		        // function to compute date range days
+		        function computeDateRangeDays(sDate1, sDate2) {	//sDate1和sDate2是2002-12-18格式 
+		        	var aDate, oDate1, oDate2, iDays  
+			        aDate = sDate1.split("-")  
+			        oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0])  //转换为12-18-2002格式 
+			        aDate = sDate2.split("-") 
+			        oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]) 
+			        iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 /24)  //把相差的毫秒数转换为天数 
+			        return iDays 
+		        }
+		        // function to reset Reading Book Task forms
+		        function resetBookTaskForm() {
+		        	$("#read-book-task-form input[type=text]").val("").trigger("change");
+		        }
+				$(document).on("click", ".btsr-reset-btn", function() {
+					btsrReset();
+				}).on("click", ".btsr-choose-btn", function() {
+					var this_btn = $(this), title = this_btn.data("title"), isbn = this_btn.data("isbn"),
+						page_num = this_btn.data("pages");
+					$("#input-book-title").val(title);
+					$("#input-isbn").val(isbn).trigger("change");
+					$("#input-page-num").val(page_num).trigger("change");
+					btsrReset();
+				}).on("click", "#add-rb-task-btn", function() {
+					
+					var task_name_element = $("#input-task-name"), start_time_element = $("#input-start-time"),
+						end_time_element = $("#input-end-time"), total_day_element = $("#input-total-day"),
+						book_title_element = $("#input-book-title"), isbn_element = $("#input-isbn"),
+						page_num_element = $("#input-page-num"), efficiency_element = $("#input-efficiency");
+					var task_name = $.trim(task_name_element.val()), start_time = $.trim(start_time_element.val()),
+						end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
+						book_title = $.trim(book_title_element.val()), isbn = $.trim(isbn_element.val()),
+						page_num = $.trim(page_num_element.val()), efficiency = $.trim(efficiency_element.val());
+					
+					var is_validate = true;
+					if(task_name == "") {
+						showErrorTip(task_name_element, "Please input a task name");
+						is_validate = false;
+					}
+					if(start_time == "" && end_time == "") {
+						showErrorTip(start_time_element, "Please input a start date and an end date");
+						is_validate = false;
+					} else if(start_time == "") {
+						showErrorTip(start_time_element, "Please input a start date");
+						is_validate = false;
+					} else if(end_time == "") {
+						showErrorTip(end_time_element, "Please input an end date");
+						is_validate = false;
+					}
+					if(start_time == "" || end_time == "") {
+						showErrorTip(total_day_element, "Please input Date Range first");
+						is_validate = false;
+					} else if(total_day == "") {
+						showErrorTip(total_day_element, "Please input days you plan to spend on this task");
+						is_validate = false;
+					} else if(isNaN(total_day)) {
+						showErrorTip(total_day_element, "Please input an integer");
+						is_validate = false;
+					} else if(parseInt(total_day) != parseFloat(total_day)) {
+						showErrorTip(total_day_element, "Please input an integer, not a float");
+						is_validate = false;
+					} else {
+						total_day = parseInt(total_day);
+						total_day_element.val(total_day).trigger("change");
+						var date_range_days = computeDateRangeDays(start_time, end_time);
+						if(total_day < 1) {
+							showErrorTip(total_day_element, "You must cost at least 1 day on this task");
+							is_validate = false;
+						} else if(total_day > date_range_days) {
+							showErrorTip(total_day_element, "You must cost no more than " + date_range_days + " days (on date range)");
+							is_validate = false;
+						}
+					}
+					if(book_title == "") {
+						showErrorTip(book_title_element, "Please input a book title");
+						is_validate = false;
+					}
+					if(isbn == "" && page_num == "") {
+						showErrorTip(isbn_element, "Please input a book title and choose a book");
+						showErrorTip(page_num_element, "Please input a book title and choose a book");
+						is_validate = false;
+					}
+					if(efficiency == "") {
+						showErrorTip(efficiency_element, "Please input your efficiency");
+						is_validate = false;
+					} else if(isNaN(efficiency)) {
+						showErrorTip(efficiency_element, "Please input an integer");
+						is_validate = false;
+					} else if(parseInt(efficiency) != parseFloat(efficiency)) {
+						showErrorTip(efficiency_element, "Please input an integer, not a float");
+						is_validate = false;
+					} else {
+						efficiency = parseInt(efficiency);
+						efficiency_element.val(efficiency).trigger("change");
+						if(efficiency < 1) {
+							showErrorTip(efficiency_element, "You must cost at least 1 minutes to finish 1 page");
+							is_validate = false;
+						}
+					}
+
+					if(is_validate) {
+						showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Adding task ...<h1>");
+						$.ajax({
+							url: "bookTaskAction!create.action",
+							data: {
+								name: task_name,
+								startTime: start_time,
+								endTime: end_time,
+								totalDay: total_day,
+								type: "10",
+								isActive: "0",
+								title: book_title,
+								ISBN: isbn,
+								pageNum: page_num,
+								efficiency: efficiency
+							},
+							type: 'post',
+							success: function(json_data) {
+								var data = $.parseJSON(json_data);
+								$.unblockUI({
+	                                onUnblock: function(){ 
+	                                    if(data.statusCode == "200") {
+											$.growlUI('Success', data.info);
+											resetBookTaskForm();
+										} else {
+											$.growlUI('Error', data.info);
+										}
+	                                }
+	                            });
+
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								$.unblockUI({
+	                                onUnblock: function(){ 
+	                                    $.growlUI('Error', textStatus);
+	                                }
+	                            });
+							}
+						});
+
+					}
+
+				}).on("click", "#reset-rb-task-btn", function() {
+					resetBookTaskForm();
+				});
+
 			});
 		})(jQuery);
 	</script>
