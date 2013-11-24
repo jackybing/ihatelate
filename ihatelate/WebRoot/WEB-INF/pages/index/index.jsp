@@ -7,6 +7,7 @@
     <title>I Hate Late - Index</title>
     
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bs_4_ihl.css" />
+    <link rel="stylesheet" type="text/css" href="tools/bootstrap-switch/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="tools/bootstrap-datepicker/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="bootstrap/css/font-awesome.min.css" />
 	<!--[if IE 7]>
@@ -209,6 +210,15 @@
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="input-is-active">Active or not:</label>
+										              <div class="controls">
+										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+														    <input id="input-is-active" type="checkbox" checked />
+														</div>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
 
 										            <div class="form-actions">
 													  <button type="button" class="btn btn-primary" id="add-rb-task-btn">Add a Reading Book Task</button>
@@ -283,6 +293,7 @@
 	<!-- Put Javascripts here to make the page load faster -->
 	<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="tools/bootstrap-switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 	<script	type="text/javascript">
@@ -418,7 +429,7 @@
 					if(book_title == "") {
 						showErrorTip(book_title_element, "Please input a book title");
 					} else {
-						showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Adding task ...<h1>");
+						showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Searching ...<h1>");
 						$.getJSON("https://api.douban.com/v2/book/search?count=10&start=0&q=" + book_title + "&alt=\"xd\"&callback=?", function(result) {
 							var books_array = result.books;
 						    var btsr_html_array = [], btsr_is_first = true;
@@ -584,11 +595,13 @@
 					var task_name_element = $("#input-task-name"), start_time_element = $("#input-start-time"),
 						end_time_element = $("#input-end-time"), total_day_element = $("#input-total-day"),
 						book_title_element = $("#input-book-title"), isbn_element = $("#input-isbn"),
-						page_num_element = $("#input-page-num"), efficiency_element = $("#input-efficiency");
+						page_num_element = $("#input-page-num"), efficiency_element = $("#input-efficiency"),
+						is_active_element = $("#input-is-active");
 					var task_name = $.trim(task_name_element.val()), start_time = $.trim(start_time_element.val()),
 						end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
 						book_title = $.trim(book_title_element.val()), isbn = $.trim(isbn_element.val()),
-						page_num = $.trim(page_num_element.val()), efficiency = $.trim(efficiency_element.val());
+						page_num = $.trim(page_num_element.val()), efficiency = $.trim(efficiency_element.val()),
+						is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
 					
 					var is_validate = true;
 					if(task_name == "") {
@@ -666,7 +679,7 @@
 								endTime: end_time,
 								totalDay: total_day,
 								type: "10",
-								isActive: "0",
+								isActive: is_active,
 								title: book_title,
 								ISBN: isbn,
 								pageNum: page_num,

@@ -66,7 +66,7 @@ $(document).ready(function() {
       //dateFormat: "Y年M月d日",
       timeFormat: "H:i",
       use24Hour: true,
-      businessHours :{start: 0, end: 24, limitDisplay: true },
+      businessHours :{start: 0, end: 23.75, limitDisplay: true },
       daysToShow : 7,
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
@@ -122,15 +122,19 @@ $(document).ready(function() {
                   id++;
                   calEvent.start = new Date(startField.val());
                   var end_field_val = $.trim(endField.val());
+                  var is_valide = true;
                   if(end_field_val.indexOf("00:00:00") > 0) {
-                	  //end_field_val.replace("00:00:00", "24:00:00");
+                	  // end_field_val.replace("00:00:00", "23:45:00");
                 	  window.parent.showGrowlMsg("Warning", "Cannot set End Time to 00:00:00");
+                	  is_valide = false;
                   }
+                  
                   calEvent.end = new Date(end_field_val);
                   calEvent.title = titleField.val();
                   calEvent.body = bodyField.val();
                   if(calEvent.end.toString().indexOf(":") == -1) {
                 	  window.parent.showGrowlMsg("Warning", "Invalid End Time 00:00:00");
+                	  is_valide = false;
                   }
 				  // Start: 201311211709 添加空闲时间
                   /*var myTag = computeTag(calEvent.start);
@@ -155,12 +159,16 @@ $(document).ready(function() {
 				  });*/
                   // End  : 201311211709 添加空闲时间
                   $calendar.weekCalendar("removeUnsavedEvents");
-                  try {
-                	  $calendar.weekCalendar("updateEvent", calEvent);
-                  } catch(e) {
-                	  showGrowlMsg("Error", e);
+                  if(is_valide) {
+                	  try {
+	                	  $calendar.weekCalendar("updateEvent", calEvent);
+	                  } catch(e) {
+	                	  showGrowlMsg("Error", e);
+	                  }
+                  } else {
+                	  $calendar.weekCalendar("removeEvent", calEvent);
                   }
-                  
+	                  
                   $dialogContent.dialog("close");
                },
                //"取消" : function() {
@@ -195,10 +203,20 @@ $(document).ready(function() {
          var bodyField = $dialogContent.find("textarea[name='body']");
          bodyField.val(calEvent.body);
 
+         var dialog_top = $($event[0]).offset().top;
+         dialog_top = parseFloat(dialog_top);
+         if(dialog_top > 1514) {
+        	 dialog_top = 1514;
+         }
+         
          $dialogContent.dialog({
             modal: true,
             //title: "编辑 - " + calEvent.title,
             title: "Edit - " + calEvent.title,
+            open: function( event, ui ) {
+        		$("#ui-dialog-title-event_edit_container").parents(".ui-dialog.ui-widget.ui-widget-content.ui-corner-all").css("top", dialog_top);
+        	 	
+            },
             close: function() {
                $dialogContent.dialog("destroy");
                $dialogContent.hide();
@@ -227,6 +245,10 @@ $(document).ready(function() {
             }
          }).show();
 
+         window.setTimeout(function() {
+         	$("html,body", window.parent.document).scrollTop(parseFloat(dialog_top) + 160);
+         }, 100);
+         
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
          $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));

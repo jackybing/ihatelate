@@ -35,19 +35,19 @@
 					<input type="hidden" />
 					<ul style="padding: 0 11px;">
 						<li>
-							<span>日期：</span><span class="date_holder"></span> 
+							<span>Date: </span><span class="date_holder"></span> 
 						</li>
 						<li>
-							<label for="start">开始时间：</label><select name="start"><option value="">Select Start Time</option></select>
+							<label for="start">Start Time: </label><select name="start"><option value="">Select Start Time</option></select>
 						</li>
 						<li>
-							<label for="end">结束时间：</label><select name="end"><option value="">Select End Time</option></select>
+							<label for="end">End Time: </label><select name="end"><option value="">Select End Time</option></select>
 						</li>
 						<li>
-							<label for="title">主题：</label><input type="text" name="title" />
+							<label for="title">Title: </label><input type="text" name="title" />
 						</li>
 						<li>
-							<label for="body">内容：</label><textarea name="body" style="resize: none;"></textarea>
+							<label for="body">Description: </label><textarea name="body" style="resize: none;"></textarea>
 						</li>
 					</ul>
 				</div>

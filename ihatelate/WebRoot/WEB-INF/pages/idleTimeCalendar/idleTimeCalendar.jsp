@@ -36,7 +36,7 @@
 					<input type="hidden" />
 					<ul style="padding: 0 11px;">
 						<li>
-							<span>Date：</span><span class="date_holder"></span> 
+							<span>Date: </span><span class="date_holder"></span> 
 						</li>
 						<li>
 							<label for="start">Start Time: </label><select name="start"><option value="">Select Start Time</option></select>
