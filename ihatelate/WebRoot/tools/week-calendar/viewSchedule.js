@@ -10,15 +10,15 @@ $(document).ready(function() {
       timeslotsPerHour : 4,
       allowCalEventOverlap : true,
       overlapEventsSeparate: true,
-      newEventText: "创建新事件",
-      timeSeparator: " 到 ",
-      shortMonths: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-      longDays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-      firstDayOfWeek: my_date.getDay(),
-      dateFormat: "Y年M月d日",
+      // newEventText: "创建新事件",
+      // timeSeparator: " 到 ",
+      // shortMonths: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      // longDays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      firstDayOfWeek: todayTag,
+      // dateFormat: "Y年M月d日",
       timeFormat: "H:i",
       use24Hour: true,
-      businessHours :{start: 0, end: 24, limitDisplay: false },
+      businessHours :{start: 0, end: 23.75, limitDisplay: false },
       daysToShow : 7,
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
@@ -77,8 +77,8 @@ $(document).ready(function() {
             }
          }).dialog("open");
          
-         $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
-         setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));*/
+         $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));*/
+         // setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
 
       },
       eventDrop : function(calEvent, $event) {
@@ -130,9 +130,9 @@ $(document).ready(function() {
 
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
-         $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
-         setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
-         $(window).resize().resize(); //fixes a bug in modal overlay size ??*/
+         $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));*/
+         // setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
+         // $(window).resize().resize(); //fixes a bug in modal overlay size ??
 
       },
       eventMouseover : function(calEvent, $event) {
@@ -194,7 +194,7 @@ $(document).ready(function() {
 						               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
 						               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
 						               //"title":"空闲时间"
-						               "title": (cur_task_id + ":" + title + " " + start_page + " - " + end_page),
+						               "title": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
 						               readOnly : true
 						            }
 									eventArray.push(eventObj);
@@ -260,7 +260,8 @@ $(document).ready(function() {
     * form for editing based on the calendar event being edited
     */
    function setupStartAndEndTimeFields($startTimeField, $endTimeField, calEvent, timeslotTimes) {
-
+		$startTimeField.html("");
+		$endTimeField.html("");
       for (var i = 0; i < timeslotTimes.length; i++) {
          var startTime = timeslotTimes[i].start;
          var endTime = timeslotTimes[i].end;
