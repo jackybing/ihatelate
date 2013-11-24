@@ -27,7 +27,7 @@ public abstract class BaseTask {
 	private int time;// 每天需花费的时间，单位为分钟，根据具体参数算出
 
 	private int type;// 任务类型：
-					//10：读书         11：上公开课     13：健身
+					//10：读书         11：上公开课     12：健身
 					//20：写论文     21：申大学
 	private int priority =100;// 优先级0为最高优先级
 	private Date createTime;// 任务创建时间

@@ -41,6 +41,10 @@ public class BookTask extends BaseTask{
 		
 		startPage = getCompleted() / efficiency + 1;
 		endPage = (getCompleted() + allocatedTime) / efficiency;
+		int remainder = (getCompleted() + allocatedTime) % efficiency;
+		if(remainder != 0){
+			endPage++;
+		}
 		
 		jsonObject.put("title", title);
 		jsonObject.put("startPage", startPage);

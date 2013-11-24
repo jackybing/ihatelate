@@ -15,7 +15,7 @@ public class BookTaskAction extends BaseTaskAction{
 	private String title;//书名
 	private String ISBN;
 	private String pageNum;//书页数
-	private String efficiency;//效率，每分钟看多少页
+	private String efficiency;//效率，看一页用多少分钟
 	
 	private BookTaskService bookTaskService;
 	

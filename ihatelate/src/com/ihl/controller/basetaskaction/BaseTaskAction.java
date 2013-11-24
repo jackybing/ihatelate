@@ -29,7 +29,7 @@ public class BaseTaskAction extends ActionSupport{
 	protected String endTime;// 结束时间
 	protected String totalDay;// 计划花费的天数
 
-	protected String type;// 任务类型：0：读书1：写论文2：健身3：申大学
+	protected String type;//
 
 	protected String isActive;// 任务是否激活
 	
