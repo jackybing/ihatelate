@@ -1,6 +1,21 @@
 $(document).ready(function() {
-
-
+	// Start: 201311241721 init dialog
+	var $dialogDetailInfo = $("#detail-info-dialog");
+	$dialogDetailInfo.dialog({
+      	draggable: true,
+    	resizable: false,
+    	autoOpen: false,
+        modal: true,
+        close: function() {
+           
+        },
+        buttons: {
+           "Close" : function() {
+              $dialogDetailInfo.dialog("close");
+           }
+        }
+    });
+	// End  : 201311241721 init dialog
    var $calendar = $('#calendar');
    var id = 10;
    var my_date = new Date();
@@ -18,7 +33,7 @@ $(document).ready(function() {
       // dateFormat: "Y年M月d日",
       timeFormat: "H:i",
       use24Hour: true,
-      businessHours :{start: 0, end: 23.75, limitDisplay: false },
+      businessHours :{start: 0, end: 24, limitDisplay: true },
       daysToShow : 7,
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
@@ -86,7 +101,14 @@ $(document).ready(function() {
       eventResize : function(calEvent, $event) {
       },
       eventClick : function(calEvent, $event) {
-    	  
+    	  console.log(calEvent);
+    	  $("#did-task-id").text(calEvent.id);
+    	  $("#did-title").text(calEvent.title);
+    	  $("#did-start-time").text(calEvent.start_time);
+    	  $("#did-end-time").text(calEvent.end_time);
+    	  $("#did-start-page").text(calEvent.start_page);
+    	  $("#did-end-page").text(calEvent.end_page);
+    	  $dialogDetailInfo.dialog("open");
          /*if (calEvent.readOnly) {
             return;
          }
@@ -136,6 +158,7 @@ $(document).ready(function() {
 
       },
       eventMouseover : function(calEvent, $event) {
+    	  
       },
       eventMouseout : function(calEvent, $event) {
       },
@@ -194,7 +217,12 @@ $(document).ready(function() {
 						               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
 						               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
 						               //"title":"空闲时间"
-						               "title": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
+						               "title": title,
+						               "body_desc": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
+						               "start_time": start_time,
+						               "end_time": end_time,
+						               "start_page": start_page,
+						               "end_page": end_page,
 						               readOnly : true
 						            }
 									eventArray.push(eventObj);

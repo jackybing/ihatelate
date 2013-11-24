@@ -944,8 +944,15 @@
          var options = this.options;
          var startTimeStr = self._formatDate(calEvent.start, options.timeFormat),
          	endTimeStr = self._formatDate(calEvent.end, options.timeFormat);
-         $calEvent.find(".wc-time").html(startTimeStr + options.timeSeparator + endTimeStr).attr("start-time", startTimeStr + ":00").attr("end-time", endTimeStr + ":00");
-         $calEvent.find(".wc-title").html(calEvent.title);
+         
+         // $calEvent.find(".wc-time").html(startTimeStr + options.timeSeparator + endTimeStr).attr("start-time", startTimeStr + ":00").attr("end-time", endTimeStr + ":00");
+         // $calEvent.find(".wc-title").html(calEvent.title);
+         $calEvent.find(".wc-time").html(calEvent.title).attr("start-time", startTimeStr + ":00").attr("end-time", endTimeStr + ":00");
+         $calEvent.find(".wc-title").html(startTimeStr + options.timeSeparator + endTimeStr);
+         if(calEvent.body_desc) {
+        	 $calEvent.find(".wc-title").append("<br />" + calEvent.body_desc);
+         }
+         
          $calEvent.data("calEvent", calEvent);
       },
 

@@ -24,6 +24,9 @@
 		.wc-header { border-top: 0; }
 		.wc-cal-event .wc-time { background-color: rgb(43, 208, 69); border: 1px solid rgb(34, 192, 27); }
 		.wc-cal-event { background-color: rgb(78, 223, 107); }
+		.ui-dialog .ui-dialog-title { margin: 0; padding: 0; }
+		.ui-dialog .ui-dialog-buttonpane { margin: 0 }
+		.ui-dialog .ui-dialog-titlebar-close span { margin-top: 9px; }
 	</style>
   </head>
   
