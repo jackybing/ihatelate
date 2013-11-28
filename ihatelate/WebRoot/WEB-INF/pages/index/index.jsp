@@ -247,18 +247,24 @@
 								    <div id="collapseTwo" class="accordion-body collapse">
 								      <div class="accordion-inner">
 								      	  <ul id="non-quantifiable-tab" class="nav nav-tabs">
-								              <li class="active"><a href="#papers-tab-pane" data-toggle="tab">Write papers</a></li>
-								              <li><a href="#college-tab-pane" data-toggle="tab">Apply for College</a></li>
-								              
+								              <li class="active"><a href="#papers-tab-pane-default" data-toggle="tab">Write papers (default)</a></li>
+								              <li class="active"><a href="#papers-tab-pane-customize" data-toggle="tab">Write papers (customize)</a></li>
+								              <li><a href="#college-tab-pane-default" data-toggle="tab">Apply for College (default)</a></li>
+								              <li><a href="#college-tab-pane-customize" data-toggle="tab">Apply for College (customize)</a></li>
 								          </ul>
 								          <div id="quantifiable-tab-content" class="tab-content">
-								              <div class="tab-pane fade in active" id="papers-tab-pane">
-								                <p>Write papers you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+								              <div class="tab-pane fade in active" id="papers-tab-pane-default">
+								                <p>Write papers (default) you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
 								              </div>
-								              <div class="tab-pane fade" id="college-tab-pane">
-								                <p>Apply for college fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              <div class="tab-pane fade in active" id="papers-tab-pane-customize">
+								                <p>Write papers (customize) you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
 								              </div>
-								              
+								              <div class="tab-pane fade" id="college-tab-pane-default">
+								                <p>Apply for college (default) fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              </div>
+								              <div class="tab-pane fade" id="college-tab-pane-customize">
+								                <p>Apply for college (customize) fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              </div>
 								          </div>
 								      </div>
 								    </div>
