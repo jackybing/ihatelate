@@ -59,6 +59,7 @@
   			</div>
   		</div>
   	</div>
+  	<input id="ihl-calendar-refresh" type="hidden" />
 	<!-- Put Javascripts here to make the page load faster -->
 	<script type='text/javascript' src='tools/jquery/jquery-1.3.2.min.js'></script>
 	<script type='text/javascript' src='tools/jquery-ui/1.7.2/jquery-ui.min.js'></script>
@@ -67,7 +68,9 @@
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
-				
+				var IHL_IndexInitObj_avatars = window.parent.IHL_IndexInitObj;
+				IHL_IndexInitObj_avatars.iframes_idle = true;
+				IHL_IndexInitObj_avatars.endInit();
 			});
 		})(jQuery);
 	</script>

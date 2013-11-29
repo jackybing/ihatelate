@@ -1,11 +1,16 @@
 $(document).ready(function() {
 	// Start: 201311241721 init dialog
+	var dialog_top = 0;
 	var $dialogDetailInfo = $("#detail-info-dialog");
 	$dialogDetailInfo.dialog({
       	draggable: true,
     	resizable: false,
     	autoOpen: false,
         modal: true,
+        open: function( event, ui ) {
+        	$("#ui-dialog-title-detail-info-dialog").parents(".ui-dialog.ui-widget.ui-widget-content.ui-corner-all").css("top", dialog_top);
+        	 	
+        },
         close: function() {
            
         },
@@ -101,7 +106,12 @@ $(document).ready(function() {
       eventResize : function(calEvent, $event) {
       },
       eventClick : function(calEvent, $event) {
-    	  console.log(calEvent);
+    	  dialog_top = $($event[0]).offset().top;
+          dialog_top = parseFloat(dialog_top);
+          if(dialog_top > 1514) {
+        	  dialog_top = 1514;
+          }
+    	  
     	  $("#did-task-id").text(calEvent.id);
     	  $("#did-title").text(calEvent.title);
     	  $("#did-start-time").text(calEvent.start_time);
@@ -109,6 +119,10 @@ $(document).ready(function() {
     	  $("#did-start-page").text(calEvent.start_page);
     	  $("#did-end-page").text(calEvent.end_page);
     	  $dialogDetailInfo.dialog("open");
+    	  
+    	  window.setTimeout(function() {
+         	$("html,body", window.parent.document).scrollTop(parseFloat(dialog_top) + 160);
+         }, 100);
          /*if (calEvent.readOnly) {
             return;
          }
@@ -154,7 +168,7 @@ $(document).ready(function() {
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
          $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));*/
          // setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
-         // $(window).resize().resize(); //fixes a bug in modal overlay size ??
+         $(window).resize().resize(); //fixes a bug in modal overlay size ??
 
       },
       eventMouseover : function(calEvent, $event) {
@@ -167,6 +181,29 @@ $(document).ready(function() {
       },
       data : function(start, end, callback) {
          callback(getEventData());
+      },
+      calendarAfterLoad: function(calendar) {
+    	  	// Start: 201311241706 将每个任务的height和z-index保存
+			$(".wc-day-column-inner.ui-droppable .wc-cal-event.ui-corner-all").each(function() {
+				var this_element = $(this);
+				this_element.data("height", this_element.css("height")).data("zIndex", this_element.css("z-index"));
+				var before = this_element.height();
+				var after = this_element.css("height", "auto").height();
+				this_element.css("height", this_element.data("height"));
+				if(after < before) {
+					this_element.data("isHoverChangeHeight", "false");
+				}
+			}).hover(function() {
+				var this_element = $(this);
+				if(this_element.data("isHoverChangeHeight") != "false") {
+					this_element.css("height", "auto").css("z-index", "999");
+				}
+					
+			}, function() {
+				var this_element = $(this);
+				this_element.css("height", this_element.data("height")).css("z-index", this_element.data("zIndex"));
+			});
+			// End  : 201311241706 将每个任务的height和z-index保存
       }
    });
 
@@ -337,5 +374,10 @@ $(document).ready(function() {
       }
 
    });
-
+	
+    $("#ihl-calendar-refresh").click(function() {
+		$calendar.weekCalendar("refresh");
+	});
+    
+    
 });

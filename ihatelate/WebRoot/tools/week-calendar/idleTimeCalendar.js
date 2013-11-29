@@ -295,19 +295,12 @@ $(document).ready(function() {
 				data = JSON.parse(data);
 				if(data.status == "200") {
 					var freeTime = data.freeTime;
-					// console.log(freeTime);
 					freeTime = JSON.parse(freeTime);
-					// console.log(freeTime);
-					// console.log(weekday + " : " + year + " : " + month + " : " + day);
 					for(fIndex in freeTime) {
 						var curFreeTime = freeTime[fIndex], tag = parseInt(fIndex) + 1;
 						var dayShift = tag - curTodayTag;
 						dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
-						// console.log("dayShift: " + dayShift);
-						// console.log(tag);
-						// console.log(curFreeTime);
 						var curFreeTimeArray = getCurFreeTimeArray(tag, curFreeTime);
-						// console.log(curFreeTimeArray);
 						for(cftIndex in curFreeTimeArray) {
 							var aFreeTime4Today = curFreeTimeArray[cftIndex];
 							var startTime = aFreeTime4Today.startTime, endTime = aFreeTime4Today.endTime;
@@ -388,5 +381,9 @@ $(document).ready(function() {
       }
 
    });
+   
+    $("#ihl-calendar-refresh").click(function() {
+		$("#calendar").weekCalendar("refresh");
+	});
 
 });

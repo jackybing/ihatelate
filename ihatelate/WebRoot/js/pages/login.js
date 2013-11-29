@@ -53,7 +53,10 @@
 				success: function(json_data){
 					var data = $.parseJSON(json_data);
 					if(data.statusCode == "200") {
-						window.location.replace(data.redirect_url);
+						// 1 second for image loading
+						window.setTimeout(function() {
+							window.location.replace(data.redirect_url);
+						}, 1000);
 					} else {
 						showErrorTip(email_element, data.info);
 						unsetBtnLoading(this_btn);

@@ -115,6 +115,7 @@
 			</tbody>
 		</table>
 	</div>
+	<input id="ihl-calendar-refresh" type="hidden" />
 	<!-- End  : 201311241702 点击后展示任务信息的dialog -->
 	<!-- Put Javascripts here to make the page load faster -->
 	<script type='text/javascript' src='tools/jquery/jquery-1.3.2.min.js'></script>
@@ -124,18 +125,9 @@
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
-				// Start: 201311241706 将每个任务的height和z-index保存
-				$(".wc-day-column-inner.ui-droppable .wc-cal-event.ui-corner-all").each(function() {
-					var this_element = $(this);
-					this_element.data("height", this_element.css("height")).data("zIndex", this_element.css("z-index"));
-				}).hover(function() {
-					var this_element = $(this);
-					this_element.css("height", "auto").css("z-index", "999");
-				}, function() {
-					var this_element = $(this);
-					this_element.css("height", this_element.data("height")).css("z-index", this_element.data("zIndex"));
-				});
-				// End  : 201311241706 将每个任务的height和z-index保存
+				var IHL_IndexInitObj_avatars = window.parent.IHL_IndexInitObj;
+				IHL_IndexInitObj_avatars.iframes_schedule = true;
+				IHL_IndexInitObj_avatars.endInit();
 			});
 		})(jQuery);
 	</script>
