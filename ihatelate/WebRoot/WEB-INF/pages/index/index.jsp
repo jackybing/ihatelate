@@ -248,7 +248,7 @@
 								      <div class="accordion-inner">
 								      	  <ul id="non-quantifiable-tab" class="nav nav-tabs">
 								              <li class="active"><a href="#papers-tab-pane-default" data-toggle="tab">Write papers (default)</a></li>
-								              <li class="active"><a href="#papers-tab-pane-customize" data-toggle="tab">Write papers (customize)</a></li>
+								              <li><a href="#papers-tab-pane-customize" data-toggle="tab">Write papers (customize)</a></li>
 								              <li><a href="#college-tab-pane-default" data-toggle="tab">Apply for College (default)</a></li>
 								              <li><a href="#college-tab-pane-customize" data-toggle="tab">Apply for College (customize)</a></li>
 								          </ul>
@@ -303,7 +303,6 @@
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 	<!-- Scripts for this page -->
-	<script type="text/javascript" src="js/pages/index-books.js"></script>
 	<script	type="text/javascript">
 		function showGrowlMsg(title, msg) {
 			$.growlUI(title, msg);
@@ -363,14 +362,15 @@
 			endInit: function(callback_func) {
 				var is_validate = this.iframes_idle && this.iframes_schedule;
 				if(is_validate) {
-					IHL_BlockMsgObj.unblockMsg(function() {
+					IHL_BlockMsgObj.unblockMsg(/*function() {
+						
 						if(callback_func && typeof(callback_func) == "function") {
 							callback_func();
 						} else {
 							$.growlUI('Initializing finished', "Now you can start using I hate late! Have fun!");
 						}
 						
-					});
+					}*/);
 				}
 				
 			}
@@ -381,5 +381,7 @@
 			});
 		})(jQuery);
 	</script>
+	<script type="text/javascript" src="js/pages/index-books.js"></script>
+	<script type="text/javascript" src="js/pages/index-papers-default.js"></script>
   </body>
 </html>
