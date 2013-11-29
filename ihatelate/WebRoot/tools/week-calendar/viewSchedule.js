@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	// Start: 201311241721 init dialog
 	var dialog_top = 0;
+	var refresh_callback_func = undefined;
 	var $dialogDetailInfo = $("#detail-info-dialog");
 	$dialogDetailInfo.dialog({
       	draggable: true,
@@ -204,6 +205,9 @@ $(document).ready(function() {
 				this_element.css("height", this_element.data("height")).css("z-index", this_element.data("zIndex"));
 			});
 			// End  : 201311241706 将每个任务的height和z-index保存
+			var IHL_IndexInitObj_avatars = window.parent.IHL_IndexInitObj;
+			IHL_IndexInitObj_avatars.iframes_schedule = true;
+			IHL_IndexInitObj_avatars.endInit(refresh_callback_func);
       }
    });
 
@@ -376,7 +380,12 @@ $(document).ready(function() {
    });
 	
     $("#ihl-calendar-refresh").click(function() {
-		$calendar.weekCalendar("refresh");
+    	if(!refresh_callback_func) {
+    		refresh_callback_func = function() {
+    			window.parent.showGrowlMsg("Refreshing finished", "You can view your schedule now!");
+    		};
+    	}
+    	$calendar.weekCalendar("refresh");
 	});
     
     

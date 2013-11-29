@@ -68,9 +68,7 @@
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
-				var IHL_IndexInitObj_avatars = window.parent.IHL_IndexInitObj;
-				IHL_IndexInitObj_avatars.iframes_idle = true;
-				IHL_IndexInitObj_avatars.endInit();
+				
 			});
 		})(jQuery);
 	</script>

@@ -125,9 +125,7 @@
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
-				var IHL_IndexInitObj_avatars = window.parent.IHL_IndexInitObj;
-				IHL_IndexInitObj_avatars.iframes_schedule = true;
-				IHL_IndexInitObj_avatars.endInit();
+				
 			});
 		})(jQuery);
 	</script>

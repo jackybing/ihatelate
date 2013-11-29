@@ -360,11 +360,16 @@
 				$("#itc-iframe").attr("src", "jumpAction!idleTimeCalendar");
 				$("#vs-iframe").attr("src", "jumpAction!viewSchedule");
 			},
-			endInit: function() {
+			endInit: function(callback_func) {
 				var is_validate = this.iframes_idle && this.iframes_schedule;
 				if(is_validate) {
 					IHL_BlockMsgObj.unblockMsg(function() {
-						$.growlUI('Initializing finished', "Now you can start using I hate late! Have fun!");
+						if(callback_func && typeof(callback_func) == "function") {
+							callback_func();
+						} else {
+							$.growlUI('Initializing finished', "Now you can start using I hate late! Have fun!");
+						}
+						
 					});
 				}
 				

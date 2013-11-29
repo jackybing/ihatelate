@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-
+	var refresh_callback_func = undefined;
    var $calendar = $('#calendar');
    var id = 10;
    var my_date = new Date();
@@ -265,6 +265,11 @@ $(document).ready(function() {
       },
       data : function(start, end, callback) {
          callback(getEventData());
+      },
+      calendarAfterLoad: function(calendar) {
+    	  var IHL_IndexInitObj_avatars = window.parent.IHL_IndexInitObj;
+		  IHL_IndexInitObj_avatars.iframes_idle = true;
+		  IHL_IndexInitObj_avatars.endInit(refresh_callback_func);
       }
    });
 
@@ -383,6 +388,11 @@ $(document).ready(function() {
    });
    
     $("#ihl-calendar-refresh").click(function() {
+    	if(!refresh_callback_func) {
+    		refresh_callback_func = function() {
+    			window.parent.showGrowlMsg("Refreshing finished", "You can view your free time now!");
+    		};
+    	}
 		$("#calendar").weekCalendar("refresh");
 	});
 

@@ -19,7 +19,10 @@
 					var iframe_id_str = this_btn.data("iframeId"), iframe_src = this_btn.data("iframeSrc");
 					if(iframe_id_str && iframe_src) {
 						// $(iframe_id_str).attr("src", iframe_src);
-						$(iframe_id_str).contents().find("#ihl-calendar-refresh").trigger("click");
+						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Refreshing ... Please wait ...</h1>", undefined, function() {
+							$(iframe_id_str).contents().find("#ihl-calendar-refresh").trigger("click");
+						});
+						
 					}
 				});
 				
