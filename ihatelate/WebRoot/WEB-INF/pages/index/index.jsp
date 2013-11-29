@@ -160,10 +160,10 @@
 										              <label class="control-label" for="input-start-time">Date Range:</label>
 										              <div class="controls">
 
-										                <div class="input-daterange" id="start-end-datepicker" style="display: inline-block">
-														    <input type="text" id="input-start-time" name="input-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+														    <input type="text" id="input-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
 														    <span class="add-on">to</span>
-														    <input type="text" id="input-end-time" name="input-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														    <input type="text" id="input-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
 														</div>
 
 										                <span class="help-inline"></span>
@@ -254,9 +254,78 @@
 								          </ul>
 								          <div id="quantifiable-tab-content" class="tab-content">
 								              <div class="tab-pane fade in active" id="papers-tab-pane-default">
-								                <p>Write papers (default) you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+								              	
+								              	<div id="papers-default-task-form" class="form-horizontal">
+										            <div class="control-group">
+										              <label class="control-label" for="papers-task-name-d">Task Name:</label>
+										              <div class="controls">
+										                <input type="text" id="papers-task-name-d" placeholder="Task Name" class="input-width-280px">
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="papers-start-time-d">Date Range:</label>
+										              <div class="controls">
+
+										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+														    <input type="text" id="papers-start-time-d" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <span class="add-on">to</span>
+														    <input type="text" id="papers-end-time-d" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														</div>
+
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="papers-total-day-d">Days to Spend:</label>
+										              <div class="controls">
+										                <input type="text" id="papers-total-day-d" placeholder="Integer between 0 and date range" class="input-width-280px">
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="papers-university-name-d">University Name:</label>
+										              <div class="controls">
+										                <input type="text" id="papers-university-name-d" placeholder="University Name" class="input-width-280px">
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="papers-deadline-d">Deadline:</label>
+										              <div class="controls">
+										                <input type="text" id="papers-deadline-d" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="papers-material-d">Material:</label>
+										              <div class="controls">
+										                <input type="text" id="papers-material-d" placeholder="Material" class="input-width-280px">
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+
+										            <div class="control-group">
+										              <label class="control-label" for="papers-is-active-d">Active or not:</label>
+										              <div class="controls">
+										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+														    <input id="papers-is-active-d" type="checkbox" checked />
+														</div>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+
+										            <div class="form-actions">
+													  <button type="button" class="btn btn-primary" id="add-paper-d-task-btn">Add a Writing Paper Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-paper-d-task-btn" style="width: 78px;">Reset</button>
+													</div>
+										            
+										        </div>
+								              	
 								              </div>
-								              <div class="tab-pane fade in active" id="papers-tab-pane-customize">
+								              <div class="tab-pane fade in" id="papers-tab-pane-customize">
 								                <p>Write papers (customize) you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
 								              </div>
 								              <div class="tab-pane fade" id="college-tab-pane-default">
@@ -355,6 +424,9 @@
 				});
 				
 			},
+			initDefaultStages: function() {
+				
+			},
 			initIframes: function() {
 				$("#itc-iframe").attr("src", "jumpAction!idleTimeCalendar");
 				$("#vs-iframe").attr("src", "jumpAction!viewSchedule");
@@ -375,6 +447,7 @@
 				
 			}
 		};
+		
 		(function($) {
 			$(function() {
 				IHL_IndexInitObj.startInit();

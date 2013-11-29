@@ -112,14 +112,16 @@
 		function initRangeDatepicker() {
 			var cur_date = new Date(),
 				start_date = cur_date.getFullYear() + "-" + (parseInt(cur_date.getMonth()) + 1) + "-" + cur_date.getDate() + "+00:00:00";
-			$('#start-end-datepicker').datepicker({
+			$('.start-end-datepicker').datepicker({
 			    format: "yyyy-mm-dd",
 			    startDate: start_date,
 			    autoclose: true,
 			    todayHighlight: true
 			});
+			
 		}
 		initRangeDatepicker();
+		
 		// 从豆瓣获取书籍信息
 		$("#search-book-title-btn").on("click", function() {
 			var book_title_element = $("#input-book-title"), book_title = $.trim(book_title_element.val());
