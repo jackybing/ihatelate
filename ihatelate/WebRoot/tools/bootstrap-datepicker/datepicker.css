@@ -457,7 +457,7 @@
   display: inline-block;
   width: auto;
   min-width: 16px;
-  height: 20px;
+  height: 18px;
   padding: 4px 5px;
   font-weight: normal;
   line-height: 18px;
@@ -467,6 +467,8 @@
   background-color: #eeeeee;
   border: 1px solid #ccc;
   border-left: 0;
-  margin-left: -4px;
+  margin-left: -3px;
   margin-right: -5px;
 }
+/* css hack for webkit browsers by Payne Pandaroid Wang */
+@media screen and (-webkit-min-device-pixel-ratio:0){ .input-daterange .add-on { height: 20px; margin-left: -4px;} }

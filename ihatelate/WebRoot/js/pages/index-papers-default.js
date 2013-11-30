@@ -1,34 +1,15 @@
 (function($) {
 	$(function() {
-		var default_template = {
-			taskId: -1,
-			stages: [{"1":"开题"},{"2":"写正文"},{"3":"答辩"}],
-			initDefaultStages: function() {
-				console.log("taskId: " + this.taskId + "; stages: " + this.stages.toString());
-			},
-			obtainDefaultStages: function() {
-				var that = this;
-				$.ajax({
-					url: "stageAction!obtainDefaultStage.action",
-					data: { type: 20 },
-					async: false,
-					success: function(json_data_obj) {
-						var data_obj = $.parseJSON(json_data_obj);
-						// console.log(data_obj);
-						if(data_obj.statusCode == "200") {
-							that.taskId = data_obj.taskID;
-							that.stages = data_obj.stages;
-							that.initDefaultStages();
-						}
-					}
-				});
-			}
-		};
-		default_template.obtainDefaultStages();
-		
-		
-		
-		
+		$(document).on("click", "#add-paper-d-task-btn", function() {
+			// 先获取所有输入控件
+			
+			// 再获取所有输入控件的值（去掉前后空格）
+			
+			// 对输入控件的值进行检测，如果不对，显示error tip
+			
+			// 通过检测，则ajax提交结果，提交成功后触发reset事件
+			
+		});
 		
 	});
 })(jQuery);

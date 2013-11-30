@@ -56,7 +56,7 @@
 						// 1 second for image loading
 						window.setTimeout(function() {
 							window.location.replace(data.redirect_url);
-						}, 1000);
+						}, 500);
 					} else {
 						showErrorTip(email_element, data.info);
 						unsetBtnLoading(this_btn);
