@@ -311,7 +311,7 @@
 										            	<div>
 										            		<div class="control-group">
 															    <div class="controls">
-															      <button class="btn btn-primary">Add a New Stage</button>
+															      <button data-target="#papers-stages-d" data-item="papers" data-type="d" class="btn btn-primary add-new-stage-btn">Add a New Stage</button>
 															    </div>
 															</div>
 										            	</div>
@@ -615,6 +615,36 @@
 			}
 		};
 		// 默认写论文初始化的对象
+		function formOneStageSubHtml(item, type, stage_step, stage_name, stage_time) {
+			var ret_html = '<div class="control-group">' +
+					              '<label class="control-label" for="' + item + '-sname-' + type + '-' + stage_step + '">Stage ' + stage_step + ' Name:</label>' +
+					              '<div class="controls">' +
+						              '<input value="' + stage_name + '" type="text" id="' + item + '-sname-' + type + '-' + stage_step + '" placeholder="Stage ' + stage_step + ' Name" class="input-width-280px">' +
+						              '<span class="help-inline"></span>' +
+					              '</div>' +
+				             '</div>' +
+				             '<div class="control-group">' +
+					              '<label class="control-label" for="' + item + '-stime-' + type + '-' + stage_step + '">Stage ' + stage_step + ' Time:</label>' +
+					              '<div class="controls">' +
+						              '<input value="' + stage_time + '" type="text" id="' + item + '-stime-' + type + '-' + stage_step + '" placeholder="Stage ' + stage_step + ' Time" class="input-width-280px">' +
+						              '<span class="help-inline"></span>' +
+					              '</div>' +
+				             '</div>' +
+				             '<div class="control-group">' +
+					              '<div class="controls">' +
+						              '<button data-item="' + item + '" data-type="' + type + '" data-wrapper-id="#' + item + '-stage-wrapper-' + type + '-' + stage_step + '" class="btn btn-danger delete-stage-btn">Delete this Stage</button>' +
+					              '</div>' +
+				             '</div>' +
+				             '<div style="width: 98%; height: 1px; border-bottom: 1px solid rgb(210, 210, 210); margin: -10px 0 10px 19px;"></div>';
+			return ret_html;
+		}
+		function formOneStageHtml(item, type, stage_step, stage_name, stage_time, hidden_class) {
+			var class_str =  'class="' + hidden_class + '"' ? hidden_class : "";
+			var ret_html = '<div id="' + item + '-stage-wrapper-' + type + '-' + stage_step + '" data-step="' + stage_step + '"' + class_str + '>' +
+								formOneStageSubHtml(item, type, stage_step, stage_name, stage_time) +
+					       '</div>';
+			return ret_html;
+		}
 		var default_papers_template = {
 			taskId: -1,
 			stages: [{"1":"开题"},{"2":"写正文"},{"3":"答辩"}],
@@ -627,33 +657,12 @@
 					var stages_obj = $.parseJSON(stages[stages_idx]);
 					for(stage_step in stages_obj) {
 						var stage_name = stages_obj[stage_step];
-						var stage_html = '<div class="papers-stage-wrapper">' +
-											 '<div class="control-group">' +
-									              '<label class="control-label" for="papers-sname-d-' + stage_step + '">Stage ' + stage_step + ' Name:</label>' +
-									              '<div class="controls">' +
-										              '<input value="' + stage_name + '" type="text" id="papers-sname-d-' + stage_step + '" placeholder="Stage ' + stage_step + ' Name" class="input-width-280px">' +
-										              '<span class="help-inline"></span>' +
-									              '</div>' +
-								             '</div>' +
-								             '<div class="control-group">' +
-									              '<label class="control-label" for="papers-stime-d-' + stage_step + '">Stage ' + stage_step + ' Time:</label>' +
-									              '<div class="controls">' +
-										              '<input type="text" id="papers-stime-d-' + stage_step + '" placeholder="Stage ' + stage_step + ' Time" class="input-width-280px">' +
-										              '<span class="help-inline"></span>' +
-									              '</div>' +
-								             '</div>' +
-								             '<div class="control-group">' +
-									              '<div class="controls">' +
-										              '<button class="btn btn-danger">Delete this Stage</button>' +
-									              '</div>' +
-								             '</div>' +
-								             '<div style="width: 98%; height: 1px; border-bottom: 1px solid rgb(210, 210, 210); margin: -10px 0 10px 19px;"></div>' +
-								         '</div>';
+						var stage_html = formOneStageHtml("papers", "d", stage_step, stage_name, "");
 						stages_html_array.push(stage_html);
 					}
 						
 				}
-				$("#papers-stages-d").data("taskId", this.taskId).data("totalSteps", stage_step).html(stages_html_array.join(""));
+				$("#papers-stages-d").data("taskId", this.taskId).data("totalStageNum", stage_step).html(stages_html_array.join(""));
 				IHL_IndexInitObj.template_papers_default = true;
 			},
 			obtainDefaultStages: function() {
@@ -695,6 +704,7 @@
 				$("#vs-iframe").attr("src", "jumpAction!viewSchedule");
 			},
 			endInit: function(callback_func) {
+				// console.log("iframes_idle: " + this.iframes_idle + "; iframes_schedule: " + this.iframes_schedule + "; template_papers_default: " + this.template_papers_default);
 				var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default;
 				if(is_validate) {
 					IHL_BlockMsgObj.unblockMsg(/*function() {
@@ -719,7 +729,7 @@
 						url: "userAction!logout.action",
 						success: function(json_data) {
 							var data = $.parseJSON(json_data);
-							console.log(data);
+							// console.log(data);
 							if(data.statusCode == "200") {
 								IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + data.info + "</h1>", undefined, function() {
 									window.location.reload();
