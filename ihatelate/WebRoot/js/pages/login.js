@@ -70,11 +70,11 @@
 		}
 		// function to set button to loading state
 		function setBtnLoading(this_btn) {
-			this_btn.data("originHtml", this_btn.html()).html('<img src="img/loading.gif" style="height: 19px;" alt="Loading ..." />').addClass("disabled");
+			this_btn.data("originHtml", this_btn.html()).html('<img src="img/loading.gif" style="height: 19px;" alt="Loading ..." />').addClass("disabled").attr("disabled", "disabled");
 		}
 		// function to unset button to loading state
 		function unsetBtnLoading(this_btn) {
-			this_btn.html(this_btn.data("originHtml")).removeClass("disabled");
+			this_btn.html(this_btn.data("originHtml")).removeClass("disabled").removeAttr("disabled");
 		}
 		// signin button
 		$("#signin-btn").on("click", function() {

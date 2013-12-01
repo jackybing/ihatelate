@@ -20,6 +20,7 @@
 		.margin-bottom-20px { margin-bottom: 20px; }
 		.input-width-280px { width: 280px; }
 		.input-width-128px { width: 127px; }
+		.margin-left-5px { margin-left: 5px; }
 	</style>
   </head>
   
@@ -308,13 +309,13 @@
 										            	<div id="papers-stages-d">
 										            	
 										            	</div>
-										            	<div>
+										            	<!-- <div>
 										            		<div class="control-group">
 															    <div class="controls">
 															      <button data-target="#papers-stages-d" data-item="papers" data-type="d" class="btn btn-primary add-new-stage-btn">Add a New Stage</button>
 															    </div>
 															</div>
-										            	</div>
+										            	</div> -->
 										            </div>
 
 										            <div class="form-actions">
@@ -633,13 +634,14 @@
 				             '<div class="control-group">' +
 					              '<div class="controls">' +
 						              '<button data-item="' + item + '" data-type="' + type + '" data-wrapper-id="#' + item + '-stage-wrapper-' + type + '-' + stage_step + '" class="btn btn-danger delete-stage-btn">Delete this Stage</button>' +
+						              '<button data-item="' + item + '" data-type="' + type + '" data-wrapper-id="#' + item + '-stage-wrapper-' + type + '-' + stage_step + '" class="btn btn-primary add-new-stage-btn margin-left-5px">Add a New Stage After Me</button>' +
 					              '</div>' +
 				             '</div>' +
 				             '<div style="width: 98%; height: 1px; border-bottom: 1px solid rgb(210, 210, 210); margin: -10px 0 10px 19px;"></div>';
 			return ret_html;
 		}
 		function formOneStageHtml(item, type, stage_step, stage_name, stage_time, hidden_class) {
-			var class_str =  'class="' + hidden_class + '"' ? hidden_class : "";
+			var class_str =  hidden_class ? 'class="' + hidden_class + '"' : "";
 			var ret_html = '<div id="' + item + '-stage-wrapper-' + type + '-' + stage_step + '" data-step="' + stage_step + '"' + class_str + '>' +
 								formOneStageSubHtml(item, type, stage_step, stage_name, stage_time) +
 					       '</div>';

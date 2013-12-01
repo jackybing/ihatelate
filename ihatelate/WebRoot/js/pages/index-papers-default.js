@@ -10,19 +10,33 @@
 			// 通过检测，则ajax提交结果，提交成功后触发reset事件
 			
 		}).on("click", ".add-new-stage-btn", function() {
-			var this_element = $(this), target_id = this_element.data("target"), 
-				item = this_element.data("item"), type = this_element.data("type");
+			var this_element = $(this), wrapper_id = this_element.data("wrapperId"),
+				item = this_element.data("item"), type = this_element.data("type"),
+				target_id = "#" + item + "-stages-" + type;
 			// console.log("target_id: " + target_id + "; item: " + item + "; type: " + type);
-			var target_element = $(target_id), total_stage_num = parseInt(target_element.data("totalStageNum"));
+			var target_element = $(target_id), total_stage_num = parseInt(target_element.data("totalStageNum")),
+				wrapper_element = target_element.find(wrapper_id), step = wrapper_element.data("step");
 			// console.log("total_stage_num: " + total_stage_num);
-			var stage_step = total_stage_num + 1;
-			// console.log("stage_step: " + stage_step);
-			var new_stage_html = formOneStageHtml(item, type, stage_step, "", "", "hidden");
-			target_element.data("totalStageNum", stage_step).append(new_stage_html);
-			$("#" + item + "-stage-wrapper-" + type + "-" + stage_step).slideDown("slow");
-			if(total_stage_num == 1) {
-				target_element.find(".delete-stage-btn").slideDown("slow");
+			// var stage_step = total_stage_num + 1;
+			var add_stage_step = step + 1;
+			// console.log("add_stage_step: " + add_stage_step);
+			
+			for(var i = total_stage_num; i >= add_stage_step; i--) {
+				var stage_wrapper = $("#" + item + "-stage-wrapper-" + type + "-" +  i);
+				var stage_name = stage_wrapper.find("#" + item + "-sname-" + type + "-" + i).val(),
+					stage_time = stage_wrapper.find("#" + item + "-stime-" + type + "-" + i).val(),
+					tmp_stage_step = i + 1;
+				stage_wrapper.html(formOneStageSubHtml(item, type, tmp_stage_step, stage_name, stage_time)).data("step", tmp_stage_step).attr("data-step", tmp_stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + tmp_stage_step);
 			}
+			
+			var new_stage_html = formOneStageHtml(item, type, add_stage_step, "", "", "hide");
+			target_element.data("totalStageNum", total_stage_num + 1);
+			wrapper_element.after(new_stage_html);
+			$("#" + item + "-stage-wrapper-" + type + "-" + add_stage_step).slideDown("slow");
+			if(total_stage_num == 1) {
+				target_element.find(".delete-stage-btn").removeClass("disabled").attr("disabled", "disabled");
+			}
+			
 		}).on("click", ".delete-stage-btn", function() {
 			var this_btn = $(this),
 				item = this_btn.data("item"), type = this_btn.data("type"),
@@ -38,7 +52,7 @@
 					stage_time = stage_wrapper.find("#" + item + "-stime-" + type + "-" + i).val(),
 					stage_step = i - 1;
 				
-				stage_wrapper.html(formOneStageSubHtml(item, type, stage_step, stage_name, stage_time)).data("step", stage_step).attr("data-step", stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + (i - 1));
+				stage_wrapper.html(formOneStageSubHtml(item, type, stage_step, stage_name, stage_time)).data("step", stage_step).attr("data-step", stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + stage_step);
 			}
 			
 			var new_total_stage_num = total_stage_num - 1;
@@ -49,7 +63,7 @@
 			});
 			
 			if(new_total_stage_num == 1) {
-				main_container_element.find(".delete-stage-btn").slideUp("slow");
+				main_container_element.find(".delete-stage-btn").addClass("disabled").removeAttr("disabled");
 			}
 		});
 		
