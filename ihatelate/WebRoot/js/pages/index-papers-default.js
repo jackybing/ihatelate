@@ -20,6 +20,9 @@
 			var new_stage_html = formOneStageHtml(item, type, stage_step, "", "", "hidden");
 			target_element.data("totalStageNum", stage_step).append(new_stage_html);
 			$("#" + item + "-stage-wrapper-" + type + "-" + stage_step).slideDown("slow");
+			if(total_stage_num == 1) {
+				target_element.find(".delete-stage-btn").slideDown("slow");
+			}
 		}).on("click", ".delete-stage-btn", function() {
 			var this_btn = $(this),
 				item = this_btn.data("item"), type = this_btn.data("type"),
@@ -44,6 +47,10 @@
 			wrapper_element.slideUp("slow", function() {
 				$(this).remove();
 			});
+			
+			if(new_total_stage_num == 1) {
+				main_container_element.find(".delete-stage-btn").slideUp("slow");
+			}
 		});
 		
 	});
