@@ -34,36 +34,62 @@
 			wrapper_element.after(new_stage_html);
 			$("#" + item + "-stage-wrapper-" + type + "-" + add_stage_step).slideDown("slow");
 			if(total_stage_num == 1) {
-				target_element.find(".delete-stage-btn").removeClass("disabled").attr("disabled", "disabled");
+				target_element.find(".delete-stage-btn").removeClass("disabled").removeAttr("disabled");
 			}
 			
 		}).on("click", ".delete-stage-btn", function() {
-			var this_btn = $(this),
-				item = this_btn.data("item"), type = this_btn.data("type"),
-				main_container_id = "#" + item + "-stages-" + type, wrapper_id = this_btn.data("wrapperId");
-			// console.log("main_container_id: " + main_container_id + "; wrapper_id: " + wrapper_id);
-			var main_container_element = $(main_container_id), wrapper_element = main_container_element.find(wrapper_id), 
-				total_stage_num = main_container_element.data("totalStageNum"), step = wrapper_element.data("step");
-			// console.log("total_stage_num: " + total_stage_num + "; step: " + step);
-			
-			for(var i = step + 1; i <= total_stage_num; i++) {
-				var stage_wrapper = $("#" + item + "-stage-wrapper-" + type + "-" +  i);
-				var stage_name = stage_wrapper.find("#" + item + "-sname-" + type + "-" + i).val(),
-					stage_time = stage_wrapper.find("#" + item + "-stime-" + type + "-" + i).val(),
-					stage_step = i - 1;
+			var this_btn = $(this);
+			if(!this_btn.hasClass("disabled")) {
+				var	item = this_btn.data("item"), type = this_btn.data("type"),
+					main_container_id = "#" + item + "-stages-" + type, wrapper_id = this_btn.data("wrapperId");
+				// console.log("main_container_id: " + main_container_id + "; wrapper_id: " + wrapper_id);
+				var main_container_element = $(main_container_id), wrapper_element = main_container_element.find(wrapper_id), 
+					total_stage_num = main_container_element.data("totalStageNum"), step = wrapper_element.data("step");
+				// console.log("total_stage_num: " + total_stage_num + "; step: " + step);
 				
-				stage_wrapper.html(formOneStageSubHtml(item, type, stage_step, stage_name, stage_time)).data("step", stage_step).attr("data-step", stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + stage_step);
+				for(var i = step + 1; i <= total_stage_num; i++) {
+					var stage_wrapper = $("#" + item + "-stage-wrapper-" + type + "-" +  i);
+					var stage_name = stage_wrapper.find("#" + item + "-sname-" + type + "-" + i).val(),
+						stage_time = stage_wrapper.find("#" + item + "-stime-" + type + "-" + i).val(),
+						stage_step = i - 1;
+					
+					stage_wrapper.html(formOneStageSubHtml(item, type, stage_step, stage_name, stage_time)).data("step", stage_step).attr("data-step", stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + stage_step);
+				}
+				
+				var new_total_stage_num = total_stage_num - 1;
+				// console.log("new_total_stage_num: " + new_total_stage_num);
+				main_container_element.data("totalStageNum", new_total_stage_num);
+				wrapper_element.slideUp("slow", function() {
+					$(this).remove();
+				});
+				
+				if(new_total_stage_num == 1) {
+					main_container_element.find(".delete-stage-btn").addClass("disabled").removeAttr("disabled");
+				}
 			}
-			
-			var new_total_stage_num = total_stage_num - 1;
-			// console.log("new_total_stage_num: " + new_total_stage_num);
-			main_container_element.data("totalStageNum", new_total_stage_num);
-			wrapper_element.slideUp("slow", function() {
-				$(this).remove();
-			});
-			
-			if(new_total_stage_num == 1) {
-				main_container_element.find(".delete-stage-btn").addClass("disabled").removeAttr("disabled");
+				
+		}).on("click", ".add-new-stage-beginning-btn", function() {
+			var this_btn = $(this), item = this_btn.data("item"), type = this_btn.data("type");
+			// console.log("item: " + item + "; type: " + type);
+			// papers-stage-wrapper-d-1
+			var stages_container_id = "#" + item + "-stages-" + type, wrappers_prefix = "#" + item + "-stage-wrapper-" + type + "-",
+				wrappers_str_prefix = item + "-stage-wrapper-" + type + "-",
+				stage_name_prefix = "#" + item + "-sname-" + type + "-", stage_time_prefix = "#" + item + "-stime-" + type + "-";
+			var stages_container = $(stages_container_id), total_stage_num = parseInt(stages_container.data("totalStageNum"));
+			// console.log("total_stage_num: " + total_stage_num);
+			// 先将已有的wrapper都+1
+			for(var i = total_stage_num; i > 0; i--) {
+				var stage_wrapper = $(wrappers_prefix +  i);
+				var stage_name = stage_wrapper.find(stage_name_prefix + i).val(),
+					stage_time = stage_wrapper.find(stage_time_prefix + i).val(),
+					tmp_stage_step = i + 1;
+				// console.log("tmp_stage_step: " + tmp_stage_step);
+				stage_wrapper.html(formOneStageSubHtml(item, type, tmp_stage_step, stage_name, stage_time)).data("step", tmp_stage_step).attr("data-step", tmp_stage_step).attr("id", wrappers_str_prefix + tmp_stage_step);
+			}
+			// 再增加一个wrapper
+			$(formOneStageHtml(item, type, 1, "", "", "hide")).prependTo(stages_container.data("totalStageNum", total_stage_num + 1)).slideDown("slow");
+			if(total_stage_num == 1) {
+				stages_container.find(".delete-stage-btn").removeClass("disabled").removeAttr("disabled");
 			}
 		});
 		

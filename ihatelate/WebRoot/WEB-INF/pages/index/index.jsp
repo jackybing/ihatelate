@@ -318,9 +318,15 @@
 										            </div>
 										            
 										            <div class="stages-pre-header">
-										            	<div class="row-fluid"><div class="span6">Write Papers (Default) - Stages</div><div class="span6" style="text-align: right;"><button class="btn btn-info">Add a New Stage at the Beginning</button></div></div>
+										            	<div class="row-fluid">
+										            		<div class="span6">
+										            			Write Papers (Default) - Stages
+										            		</div>
+										            		<div class="span6" style="text-align: right;">
+										            			<button data-item="papers" data-type="d" class="btn btn-info add-new-stage-beginning-btn">Add a New Stage at the Beginning</button>
+										            		</div>
+										            	</div>
 										            </div>
-										            <!-- <pre style="margin-bottom: 0; webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;"><div class="row-fluid"><div class="span6">Write Papers (Default) - Stages</div><div class="span6" style="text-align: right;"><button class="btn btn-info">Add a New Stage at the Beginning</button></div></div></pre> -->
 										            <div class="well" style="padding-bottom: 0; padding-left: 0;">
 										            	<div id="papers-stages-d">
 										            	
@@ -391,7 +397,16 @@
 										              </div>
 										            </div>
 										            
-										            <pre style="margin-bottom: 0; webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;"><div class="row-fluid"><div class="span6">Write Papers (Default) - Stages</div><div class="span6" style="text-align: right;"><button class="btn btn-info">Add a New Stage at the Beginning</button></div></div></pre>
+										            <div class="stages-pre-header">
+										            	<div class="row-fluid">
+										            		<div class="span6">
+										            			Write Papers (Default) - Stages
+										            		</div>
+										            		<div class="span6" style="text-align: right;">
+										            			<button class="btn btn-info">Add a New Stage at the Beginning</button>
+										            		</div>
+										            	</div>
+										            </div>
 										            <div id="papers-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;">
 										            
 										            </div>
@@ -466,7 +481,16 @@
 										              </div>
 										            </div>
 										            
-										            <pre style="margin-bottom: 0; webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;">Apply for College (Default) - Stages</pre>
+										            <div class="stages-pre-header">
+										            	<div class="row-fluid">
+										            		<div class="span6">
+										            			Write Papers (Default) - Stages
+										            		</div>
+										            		<div class="span6" style="text-align: right;">
+										            			<button class="btn btn-info">Add a New Stage at the Beginning</button>
+										            		</div>
+										            	</div>
+										            </div>
 										            <div id="college-stages-d" class="well" style="padding-bottom: 0; padding-left: 0;">
 										            
 										            </div>
@@ -541,7 +565,16 @@
 										              </div>
 										            </div>
 										            
-										            <pre style="margin-bottom: 0; webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;">Apply for College (Default) - Stages</pre>
+										            <div class="stages-pre-header">
+										            	<div class="row-fluid">
+										            		<div class="span6">
+										            			Write Papers (Default) - Stages
+										            		</div>
+										            		<div class="span6" style="text-align: right;">
+										            			<button class="btn btn-info">Add a New Stage at the Beginning</button>
+										            		</div>
+										            	</div>
+										            </div>
 										            <div id="college-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;">
 										            
 										            </div>
