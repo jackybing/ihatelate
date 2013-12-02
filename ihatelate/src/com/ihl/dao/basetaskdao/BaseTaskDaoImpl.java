@@ -80,9 +80,14 @@ public class BaseTaskDaoImpl extends HibernateDaoSupport implements BaseTaskDao{
 				condition = 0;
 			}
 			List<BaseTask> baseTasks = getHibernateTemplate().find(query2,type,condition);
-			Random random = new Random();
-			int i = random.nextInt(baseTasks.size());
-			return baseTasks.get(i);
+			if(baseTasks.size() > 0){
+				Random random = new Random();
+				int i = random.nextInt(baseTasks.size());
+				return baseTasks.get(i);
+			}else {
+				return null;
+			}
+			
 		}
 		return null;
 	}
