@@ -279,57 +279,65 @@ $(document).ready(function() {
       $dialogContent.find("textarea").val("");
    }
 
-   function getEventData() {
-	   var dateObj = new Date();
-       var year = dateObj.getFullYear();
-       var month = dateObj.getMonth();
-       var day = dateObj.getDate();
-      var weekday = dateObj.getDay();
-		
-      // Start: 201311212024 ajax读取空闲时间数据
-      var eventArray = [];
-      $.ajax({
-			url: "freeTimeAction!obtainFreeTime.action",
-			data: {
-				
-			},
-			type: 'post',
-			async: false,
-			success: function(json_data){
-				var data = JSON.parse(json_data);
-				data = JSON.parse(data);
-				if(data.status == "200") {
-					var freeTime = data.freeTime;
-					freeTime = JSON.parse(freeTime);
-					for(fIndex in freeTime) {
-						var curFreeTime = freeTime[fIndex], tag = parseInt(fIndex) + 1;
-						var dayShift = tag - curTodayTag;
-						dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
-						var curFreeTimeArray = getCurFreeTimeArray(tag, curFreeTime);
-						for(cftIndex in curFreeTimeArray) {
-							var aFreeTime4Today = curFreeTimeArray[cftIndex];
-							var startTime = aFreeTime4Today.startTime, endTime = aFreeTime4Today.endTime;
-							var eventObj = {
-				               "id": id++,
-				               "start": new Date(year, month, day + dayShift, startTime.substring(0, 2), startTime.substring(3, 5)),
-				               "end": new Date(year, month, day + dayShift, endTime.substring(0, 2), endTime.substring(3, 5)),
-				               //"title":"空闲时间"
-				               "title":"Free Time"
-				            }
-							eventArray.push(eventObj);
+    function getEventData() {
+	    var ihl_itc_is_not_first = window.parent.IHL_IndexInitObj.iframes_idle;
+	    if(ihl_itc_is_not_first) {
+		    // console.log("pull data - idle time");
+		    var dateObj = new Date();
+	        var year = dateObj.getFullYear();
+	        var month = dateObj.getMonth();
+	        var day = dateObj.getDate();
+	        var weekday = dateObj.getDay();
+			
+	        // Start: 201311212024 ajax读取空闲时间数据
+	        var eventArray = [];
+	        $.ajax({
+				url: "freeTimeAction!obtainFreeTime.action",
+				data: {
+					
+				},
+				type: 'post',
+				async: false,
+				success: function(json_data){
+					var data = JSON.parse(json_data);
+					data = JSON.parse(data);
+					if(data.status == "200") {
+						var freeTime = data.freeTime;
+						freeTime = JSON.parse(freeTime);
+						for(fIndex in freeTime) {
+							var curFreeTime = freeTime[fIndex], tag = parseInt(fIndex) + 1;
+							var dayShift = tag - curTodayTag;
+							dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
+							var curFreeTimeArray = getCurFreeTimeArray(tag, curFreeTime);
+							for(cftIndex in curFreeTimeArray) {
+								var aFreeTime4Today = curFreeTimeArray[cftIndex];
+								var startTime = aFreeTime4Today.startTime, endTime = aFreeTime4Today.endTime;
+								var eventObj = {
+					               "id": id++,
+					               "start": new Date(year, month, day + dayShift, startTime.substring(0, 2), startTime.substring(3, 5)),
+					               "end": new Date(year, month, day + dayShift, endTime.substring(0, 2), endTime.substring(3, 5)),
+					               //"title":"空闲时间"
+					               "title":"Free Time"
+					            }
+								eventArray.push(eventObj);
+							}
 						}
+					} else {
+						alert(data.info);
 					}
-				} else {
-					alert(data.info);
 				}
-			}
-	  });
-      // End  : 201311212024 ajax读取空闲时间数据
-      
-      return {
-         events : eventArray
-      };
-   }
+		    });
+	        // End  : 201311212024 ajax读取空闲时间数据
+	      
+	        return {
+	            events : eventArray
+	        };
+	    } else {
+		    console.log("empty data - idle time");
+		    return {events: []};
+	    }
+		   
+    }
 
 
    /*

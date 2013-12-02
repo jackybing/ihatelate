@@ -217,110 +217,118 @@ $(document).ready(function() {
    }
 
     function getEventData() {
-        var year = new Date().getFullYear();
-      	var month = new Date().getMonth();
-      	var day = new Date().getDate();
-	  	
-      	// Start: 201311212024 ajax读取空闲时间数据
-      	var eventArray = [];
-      	$.ajax({
-			url: "scheduleAction!schedule.action",
-			data: {
-				
-			},
-			type: 'post',
-			async: false,
-			success: function(json_data){
-				var data = JSON.parse(json_data);
-				data = JSON.parse(data);
-				if(data.statusCode == "200") {
-					var schedule_array_str = data.scheduel;
-					var schedule_array = JSON.parse(schedule_array_str);
-					for(var sIndex in schedule_array) {
-						var schedule = schedule_array[sIndex];
-						for(var s_tag in schedule) {
-							var dayShift = s_tag - curTodayTag;
-							dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
-							
-							var task_array = schedule[s_tag];
-							
-							for(var task_index in task_array) {
-								var cur_task = task_array[task_index];
-								var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
-									title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
-									end_page = cur_task_schedule_info.endPage, time_array = cur_task.time;
-								for(var time_idx in time_array) {
-									var time_obj = time_array[time_idx], start_time = time_obj.startTime,
-										end_time = time_obj.endTime;
-									
-									var eventObj = {
-						               "id": cur_task_id,
-						               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
-						               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
-						               //"title":"空闲时间"
-						               "title": title,
-						               "body_desc": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
-						               "start_time": start_time,
-						               "end_time": end_time,
-						               "start_page": start_page,
-						               "end_page": end_page,
-						               readOnly : true
-						            }
-									eventArray.push(eventObj);
-									
+    	var ihl_vs_is_not_first = window.parent.IHL_IndexInitObj.iframes_schedule;
+    	if(ihl_vs_is_not_first) {
+    		// console.log("pull data - view schedule");
+    		var year = new Date().getFullYear();
+	      	var month = new Date().getMonth();
+	      	var day = new Date().getDate();
+		  	
+	      	// Start: 201311212024 ajax读取空闲时间数据
+	      	var eventArray = [];
+	      	$.ajax({
+				url: "scheduleAction!schedule.action",
+				data: {
+					
+				},
+				type: 'post',
+				async: false,
+				success: function(json_data){
+					var data = JSON.parse(json_data);
+					data = JSON.parse(data);
+					if(data.statusCode == "200") {
+						var schedule_array_str = data.scheduel;
+						var schedule_array = JSON.parse(schedule_array_str);
+						for(var sIndex in schedule_array) {
+							var schedule = schedule_array[sIndex];
+							for(var s_tag in schedule) {
+								var dayShift = s_tag - curTodayTag;
+								dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
+								
+								var task_array = schedule[s_tag];
+								
+								for(var task_index in task_array) {
+									var cur_task = task_array[task_index];
+									var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
+										title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
+										end_page = cur_task_schedule_info.endPage, time_array = cur_task.time;
+									for(var time_idx in time_array) {
+										var time_obj = time_array[time_idx], start_time = time_obj.startTime,
+											end_time = time_obj.endTime;
+										
+										var eventObj = {
+							               "id": cur_task_id,
+							               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
+							               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
+							               //"title":"空闲时间"
+							               "title": title,
+							               "body_desc": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
+							               "start_time": start_time,
+							               "end_time": end_time,
+							               "start_page": start_page,
+							               "end_page": end_page,
+							               readOnly : true
+							            }
+										eventArray.push(eventObj);
+										
+									}
 								}
 							}
 						}
 					}
+					
 				}
-				
-			}
-	  	});
-      	// End  : 201311212024 ajax读取空闲时间数据
-      	
-      	return {
-         	events : eventArray
-         	/*[
-            	{
-               		"id":1,
-               		"start": new Date(year, month, day, 12),
-               		"end": new Date(year, month, day, 13, 30),
-               		"title":"跟李彦宏吃午饭"
-            	},
-            	{
-               		"id":2,
-               		"start": new Date(year, month, day, 14),
-               		"end": new Date(year, month, day, 14, 45),
-               		"title":"百度WDM研发会议"
-            	},
-            	{
-               		"id":3,
-               		"start": new Date(year, month, day + 1, 17),
-               		"end": new Date(year, month, day + 1, 17, 45),
-               		"title":"去南门威申国际剪头发"
-            	},
-            	{
-               		"id":4,
-               		"start": new Date(year, month, day + 1, 8),
-               		"end": new Date(year, month, day + 1, 9, 30),
-               		"title":"page、mark和plat组团队建设活动"
-            	},
-            	{
-               		"id":5,
-               		"start": new Date(year, month, day + 1, 14),
-               		"end": new Date(year, month, day + 1, 15),
-               		"title":"WD产品展示会"
-            	},
-            	{
-               		"id":6,
-               		"start": new Date(year, month, day, 10),
-               		"end": new Date(year, month, day, 11),
-               		"title":"如果我是只读的，说明朱建兵很帅",
-               		readOnly : true
-            	}
-
-         	]*/
-      	};
+		  	});
+	      	// End  : 201311212024 ajax读取空闲时间数据
+	      	
+	      	return {
+	         	events : eventArray
+	         	/*[
+	            	{
+	               		"id":1,
+	               		"start": new Date(year, month, day, 12),
+	               		"end": new Date(year, month, day, 13, 30),
+	               		"title":"跟李彦宏吃午饭"
+	            	},
+	            	{
+	               		"id":2,
+	               		"start": new Date(year, month, day, 14),
+	               		"end": new Date(year, month, day, 14, 45),
+	               		"title":"百度WDM研发会议"
+	            	},
+	            	{
+	               		"id":3,
+	               		"start": new Date(year, month, day + 1, 17),
+	               		"end": new Date(year, month, day + 1, 17, 45),
+	               		"title":"去南门威申国际剪头发"
+	            	},
+	            	{
+	               		"id":4,
+	               		"start": new Date(year, month, day + 1, 8),
+	               		"end": new Date(year, month, day + 1, 9, 30),
+	               		"title":"page、mark和plat组团队建设活动"
+	            	},
+	            	{
+	               		"id":5,
+	               		"start": new Date(year, month, day + 1, 14),
+	               		"end": new Date(year, month, day + 1, 15),
+	               		"title":"WD产品展示会"
+	            	},
+	            	{
+	               		"id":6,
+	               		"start": new Date(year, month, day, 10),
+	               		"end": new Date(year, month, day, 11),
+	               		"title":"如果我是只读的，说明朱建兵很帅",
+	               		readOnly : true
+	            	}
+	
+	         	]*/
+	      	};
+    	} else {
+    		// console.log("empty data - view schedule");
+    		return {events: []};
+    	}
+	        
    	}
 
 
