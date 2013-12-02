@@ -341,7 +341,7 @@
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-paper-d-task-btn">Add a Writing Paper Task</button>
+													  <button type="button" class="btn btn-primary add-non-quant-task-btn" data-item="papers" data-type="d">Add a Writing Paper Task</button>
 													  <button type="button" class="btn btn-danger" id="reset-paper-d-task-btn" style="width: 78px;">Reset</button>
 													</div>
 										            

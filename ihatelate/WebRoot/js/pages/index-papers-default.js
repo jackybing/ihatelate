@@ -1,6 +1,8 @@
 (function($) {
 	$(function() {
-		$(document).on("click", "#add-paper-d-task-btn", function() {
+		$(document).on("click", ".add-non-quant-task-btn", function() {
+			var this_btn = $(this), item = this_btn.data("item"), type = this_btn.data("type");
+			console.log("item: " + item + "; type: " + type);
 			// 先获取所有输入控件
 			
 			// 再获取所有输入控件的值（去掉前后空格）

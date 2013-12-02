@@ -102,6 +102,11 @@ var default_papers_template = {
 					that.stages = data_obj.stages;
 					that.initDefaultStages();
 				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
+				$("#logout-btn").click();
 			}
 		});
 	}
