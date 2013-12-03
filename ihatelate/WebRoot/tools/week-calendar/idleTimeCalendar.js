@@ -333,7 +333,7 @@ $(document).ready(function() {
 	            events : eventArray
 	        };
 	    } else {
-		    console.log("empty data - idle time");
+		    // console.log("empty data - idle time");
 		    return {events: []};
 	    }
 		   

@@ -111,6 +111,11 @@
 				showErrorTip(paper_name_element, "Please input a paper name");
 				is_validate = false;
 			}
+			// 获取stages的container，以获得step的总数
+			var stages_container = $("#" + item + "-stages-" + type), total_step_num = stages_container.data("totalStageNum");
+			console.log("total_step_num: " + total_step_num);
+			// 先check所有的stages是不是有name，time是不是为整数
+			
 			// 通过检测，则ajax提交结果，提交成功后触发reset事件
 			
 			
