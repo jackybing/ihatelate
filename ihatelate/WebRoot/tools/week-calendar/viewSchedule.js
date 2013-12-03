@@ -236,6 +236,7 @@ $(document).ready(function() {
 				success: function(json_data){
 					var data = JSON.parse(json_data);
 					data = JSON.parse(data);
+					console.log(data);
 					if(data.statusCode == "200") {
 						var schedule_array_str = data.scheduel;
 						var schedule_array = JSON.parse(schedule_array_str);
@@ -248,30 +249,41 @@ $(document).ready(function() {
 								var task_array = schedule[s_tag];
 								
 								for(var task_index in task_array) {
+									console.log(cur_task);
 									var cur_task = task_array[task_index];
-									var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
-										title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
-										end_page = cur_task_schedule_info.endPage, time_array = cur_task.time;
-									for(var time_idx in time_array) {
-										var time_obj = time_array[time_idx], start_time = time_obj.startTime,
-											end_time = time_obj.endTime;
-										
-										var eventObj = {
-							               "id": cur_task_id,
-							               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
-							               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
-							               //"title":"空闲时间"
-							               "title": title,
-							               "body_desc": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
-							               "start_time": start_time,
-							               "end_time": end_time,
-							               "start_page": start_page,
-							               "end_page": end_page,
-							               readOnly : true
-							            }
-										eventArray.push(eventObj);
-										
+									if(cur_task) {
+										if(cur_task.taskID && cur_task.scheduleInfo && cur_task.time) {
+											var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
+												title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
+												end_page = cur_task_schedule_info.endPage, time_array = cur_task.time;
+											console.log(cur_task_schedule_info);
+											for(var time_idx in time_array) {
+												var time_obj = time_array[time_idx], start_time = time_obj.startTime,
+													end_time = time_obj.endTime;
+												
+												var eventObj = {
+									               "id": cur_task_id,
+									               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
+									               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
+									               //"title":"空闲时间"
+									               "title": title,
+									               "body_desc": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
+									               "start_time": start_time,
+									               "end_time": end_time,
+									               "start_page": start_page,
+									               "end_page": end_page,
+									               readOnly : true
+									            }
+												eventArray.push(eventObj);
+												
+											}
+										} else if(cur_task.paperName && cur_task.startStage && cur_task.endStage && cur_task.startStep && cur_task.endStep
+												 && cur_task.startTime && cur_task.endTime) {
+											
+										}
+											
 									}
+										
 								}
 							}
 						}

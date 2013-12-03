@@ -120,7 +120,7 @@
 	<!-- Put Javascripts here to make the page load faster -->
 	<script type='text/javascript' src='tools/jquery/jquery-1.3.2.min.js'></script>
 	<script type='text/javascript' src='tools/jquery-ui/1.7.2/jquery-ui.min.js'></script>
-	<script type='text/javascript' src='tools/week-calendar/jquery.weekcalendar.js'></script>
+	<script type='text/javascript' src='tools/week-calendar/jquery.weekcalendar.vs.js'></script>
 	<script type='text/javascript' src='tools/week-calendar/viewSchedule.js'></script>
 	<script	type="text/javascript">
 		(function($) {

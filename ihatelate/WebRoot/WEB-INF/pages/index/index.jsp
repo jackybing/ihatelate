@@ -269,7 +269,7 @@
 								          <div id="quantifiable-tab-content" class="tab-content">
 								              <div class="tab-pane fade in active" id="papers-tab-pane-default">
 								              	
-								              	<div id="papers-default-task-form" class="form-horizontal">
+								              	<div id="papers-d-task-form" class="form-horizontal">
 										            <div class="control-group">
 										              <label class="control-label" for="papers-task-name-d">Task Name:</label>
 										              <div class="controls">
@@ -342,7 +342,7 @@
 
 										            <div class="form-actions">
 													  <button type="button" class="btn btn-primary add-non-quant-task-btn" data-item="papers" data-type="d">Add a Writing Paper Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-paper-d-task-btn" style="width: 78px;">Reset</button>
+													  <button type="button" class="btn btn-danger reset-non-quant-task-btn" data-item="papers" data-type="d">Reset</button>
 													</div>
 										            
 										        </div>
@@ -623,6 +623,7 @@
 	<script type="text/javascript" src="tools/bootstrap-switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
 	<!-- Scripts for this page -->
 	<script	type="text/javascript">
 		(function($) {

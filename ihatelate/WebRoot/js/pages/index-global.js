@@ -71,22 +71,30 @@ function formOneStageHtml(item, type, stage_step, stage_name, stage_time, hidden
 }
 var default_papers_template = {
 	taskId: -1,
-	stages: [{"1":"开题"},{"2":"写正文"},{"3":"答辩"}],
+	stages: '[{"1":"开题"},{"2":"写正文"},{"3":"答辩"}]',
+	check_stages: [],
 	initDefaultStages: function() {
 		var taskId = this.taskId, stages = $.trim(this.stages);
 		stages = stages.substring(1, stages.length - 1).split(",");
 		var stages_html_array = [];
-		var stage_step = 0;
-		for(var stages_idx in stages) {
-			var stages_obj = $.parseJSON(stages[stages_idx]);
-			for(stage_step in stages_obj) {
-				var stage_name = stages_obj[stage_step];
-				var stage_html = formOneStageHtml("papers", "d", stage_step, stage_name, "");
-				stages_html_array.push(stage_html);
-			}
+		var stage_step = 0, total_step_num = stages.length;
+		for(var step_idx = 1; step_idx <= total_step_num; step_idx++) {
+			for(var stages_idx in stages) {
+				var stages_obj = $.parseJSON(stages[stages_idx]);
+				for(stage_step in stages_obj) {
+					if(step_idx == stage_step) {
+						var stage_name = stages_obj[stage_step];
+						this.check_stages.push(stage_name);
+						var stage_html = formOneStageHtml("papers", "d", stage_step, stage_name, "");
+						stages_html_array.push(stage_html);
+					}
+					
+				}
 				
+			}
 		}
-		$("#papers-stages-d").data("taskId", this.taskId).data("totalStageNum", stage_step).html(stages_html_array.join(""));
+			
+		$("#papers-stages-d").data("taskId", this.taskId).data("totalStageNum", total_step_num).html(stages_html_array.join(""));
 		IHL_IndexInitObj.template_papers_default = true;
 	},
 	obtainDefaultStages: function() {
@@ -104,7 +112,6 @@ var default_papers_template = {
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				console.log(XMLHttpRequest);
 				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
 				$("#logout-btn").click();
 			}
@@ -136,15 +143,7 @@ var IHL_IndexInitObj = {
 		// console.log("iframes_idle: " + this.iframes_idle + "; iframes_schedule: " + this.iframes_schedule + "; template_papers_default: " + this.template_papers_default);
 		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default;
 		if(is_validate) {
-			IHL_BlockMsgObj.unblockMsg(/*function() {
-				
-				if(callback_func && typeof(callback_func) == "function") {
-					callback_func();
-				} else {
-					$.growlUI('Initializing finished', "Now you can start using I hate late! Have fun!");
-				}
-				
-			}*/);
+			IHL_BlockMsgObj.unblockMsg();
 		}
 		
 	}
@@ -158,7 +157,6 @@ var IHL_IndexInitObj = {
 				url: "userAction!logout.action",
 				success: function(json_data) {
 					var data = $.parseJSON(json_data);
-					// console.log(data);
 					if(data.statusCode == "200") {
 						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + data.info + "</h1>", undefined, function() {
 							window.location.reload();

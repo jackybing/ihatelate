@@ -53,10 +53,7 @@
 				success: function(json_data){
 					var data = $.parseJSON(json_data);
 					if(data.statusCode == "200") {
-						// 1 second for image loading
-						window.setTimeout(function() {
-							window.location.replace(data.redirect_url);
-						}, 500);
+						window.location.replace(data.redirect_url);
 					} else {
 						showErrorTip(email_element, data.info);
 						unsetBtnLoading(this_btn);
@@ -70,7 +67,7 @@
 		}
 		// function to set button to loading state
 		function setBtnLoading(this_btn) {
-			this_btn.data("originHtml", this_btn.html()).html('<img src="img/loading.gif" style="height: 19px;" alt="Loading ..." />').addClass("disabled").attr("disabled", "disabled");
+			this_btn.data("originHtml", this_btn.html()).html('<img src="img/loading.gif" style="height: 19px;" alt="Loading ..." /> Loading ...').addClass("disabled").attr("disabled", "disabled");
 		}
 		// function to unset button to loading state
 		function unsetBtnLoading(this_btn) {
