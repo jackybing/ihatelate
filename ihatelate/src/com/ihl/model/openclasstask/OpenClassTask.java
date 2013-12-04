@@ -57,12 +57,7 @@ public class OpenClassTask extends BaseTask{
 	
 	@Override
 	public int getFeedbackTime(String... strs) {
-		int startClass = Integer.parseInt(strs[0]);
-		int endClass = Integer.parseInt(strs[1]);
-		int startClassTime = Integer.parseInt(strs[2]);
-		int endClassTime = Integer.parseInt(strs[3]);
-		
-		return (endClass - startClass) * timeForPerClass + endClassTime - startClassTime;
+		return Integer.parseInt(strs[0]);
 	}
 	
 	public String getClassName() {

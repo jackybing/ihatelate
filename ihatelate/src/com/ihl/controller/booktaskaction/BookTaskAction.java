@@ -51,7 +51,7 @@ public class BookTaskAction extends BaseTaskAction{
 		
 		BaseTask baseTask = getBaseTaskService().get(Integer.parseInt(id));
 		int completedTime = baseTask.getFeedbackTime(completedPageNum);
-		baseTask.feedback(completedTime,Integer.parseInt(getUsedDay()));
+		baseTask.feedback(completedTime);
 		getBaseTaskService().update(baseTask);
 		
 		resultMap.put("statusCode", "200");

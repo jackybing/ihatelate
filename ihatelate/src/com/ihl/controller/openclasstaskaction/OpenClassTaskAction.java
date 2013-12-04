@@ -19,10 +19,7 @@ public class OpenClassTaskAction extends BaseTaskAction{
 	private OpenClassTaskService openClassTaskService;
 	
 	//反馈参数
-	private String startClass;//从第几节课开始
-	private String endClass;//到第几节课结束
-	private String startClassTime;//开始时间
-	private String endClassTime;//结束时间
+	private String classTime;//完成时间
 
 	public String create() throws ParseException{
 		Map<String, String> resultMap = new HashMap<String, String>();
@@ -53,8 +50,8 @@ public class OpenClassTaskAction extends BaseTaskAction{
 		Map<String, String> resultMap = new HashMap<String, String>();
 		
 		BaseTask baseTask = getBaseTaskService().get(Integer.parseInt(id));
-		int completedTime = baseTask.getFeedbackTime(startClass,endClass,startClassTime,endClassTime);
-		baseTask.feedback(completedTime,Integer.parseInt(getUsedDay()));
+		int completedTime = baseTask.getFeedbackTime(classTime);
+		baseTask.feedback(completedTime);
 		getBaseTaskService().update(baseTask);
 		
 		resultMap.put("statusCode", "200");
@@ -110,35 +107,12 @@ public class OpenClassTaskAction extends BaseTaskAction{
 	public void setClassName(String className) {
 		this.className = className;
 	}
-	public String getStartClass() {
-		return startClass;
+
+	public String getClassTime() {
+		return classTime;
 	}
 
-	public void setStartClass(String startClass) {
-		this.startClass = startClass;
-	}
-
-	public String getEndClass() {
-		return endClass;
-	}
-
-	public void setEndClass(String endClass) {
-		this.endClass = endClass;
-	}
-
-	public String getStartClassTime() {
-		return startClassTime;
-	}
-
-	public void setStartClassTime(String startClassTime) {
-		this.startClassTime = startClassTime;
-	}
-
-	public String getEndClassTime() {
-		return endClassTime;
-	}
-
-	public void setEndClassTime(String endClassTime) {
-		this.endClassTime = endClassTime;
+	public void setClassTime(String classTime) {
+		this.classTime = classTime;
 	}
 }

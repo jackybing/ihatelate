@@ -67,11 +67,12 @@ public abstract class BaseTask {
 		}
 	}
 	//time为反馈的任务完成时间
-	public void feedback(int time,int usedDay){
+	public void feedback(int time){
 		setCompleted(getCompleted() + time);
-		setUsedDay(getUsedDay() + usedDay);
+		int usedDay2 = time / getTime();
+		setUsedDay(getUsedDay() + usedDay2);
 		updateTime();
-		if(getCompleted() == getTotal()){
+		if(getCompleted() >= getTotal()){
 			setIsCompleted(true);
 		}
 	}

@@ -42,8 +42,6 @@ public class BaseTaskAction extends ActionSupport{
 	
 	private String stages;//非量化任务对应的阶段
 	
-	private String usedDay;//任务反馈，所用的天数
-	
 	private String taskID;//所用模版对应的任务ID
 	
 	//非量化任务反馈参数（还有任务id）
@@ -110,11 +108,14 @@ public class BaseTaskAction extends ActionSupport{
 			stages.add(nowStage);
 			baseTask.setStages(stages);
 			baseTask.setCompleted(completed + Integer.parseInt(stageTime));
+			baseTask.setTotal(baseTask.getTotal() + Integer.parseInt(stageTime) - nowStageUncompleteTime);
 		}
-		baseTask.setUsedDay(baseTask.getUsedDay() + 1);
+		int usedDay = Integer.parseInt(stageTime) / baseTask.getTime();
+		baseTask.setUsedDay(baseTask.getUsedDay() + usedDay);
 		if(baseTask.getCompleted() >= baseTask.getTotal()){
 			baseTask.setIsCompleted(true);
 		}
+		baseTask.updateTime();
 		baseTaskService.update(baseTask);
 		
 		resultMap.put("statusCode", "200");
@@ -206,14 +207,6 @@ public class BaseTaskAction extends ActionSupport{
 	}
 	public void setBaseTaskService(BaseTaskService baseTaskService) {
 		this.baseTaskService = baseTaskService;
-	}
-
-	public String getUsedDay() {
-		return usedDay;
-	}
-
-	public void setUsedDay(String usedDay) {
-		this.usedDay = usedDay;
 	}
 
 	public StageService getStageService() {

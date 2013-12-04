@@ -48,7 +48,7 @@ public class ExerciseTaskAction extends BaseTaskAction{
 		
 		BaseTask baseTask = getBaseTaskService().get(Integer.parseInt(id));
 		int completedTime = baseTask.getFeedbackTime(completedGroupCount);
-		baseTask.feedback(completedTime,Integer.parseInt(getUsedDay()));
+		baseTask.feedback(completedTime);
 		getBaseTaskService().update(baseTask);
 		
 		resultMap.put("statusCode", "200");

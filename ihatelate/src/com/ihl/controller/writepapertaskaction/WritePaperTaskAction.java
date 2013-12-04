@@ -55,22 +55,6 @@ public class WritePaperTaskAction extends BaseTaskAction{
 		
 		return SUCCESS;
 	}
-
-	public String feedback(){
-		Map<String, String> resultMap = new HashMap<String, String>();
-		
-		BaseTask baseTask = getBaseTaskService().get(Integer.parseInt(id));
-		int completedTime = baseTask.getFeedbackTime(startStage,endStage,startStageTime,endStageTime);
-		baseTask.feedback(completedTime,Integer.parseInt(getUsedDay()));
-
-		getBaseTaskService().update(baseTask);
-		
-		resultMap.put("statusCode", "200");
-		resultMap.put("info", "feedback successfully !");
-		
-		setResult(JSONObject.fromObject(resultMap).toString());
-		return SUCCESS;
-	}
 	
 	public String getPaperName() {
 		return paperName;
