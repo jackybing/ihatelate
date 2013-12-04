@@ -17,12 +17,6 @@ public class ApplyUniversityTaskAction extends BaseTaskAction{
 	private String material;
 	private ApplyUniversityTaskService applyUniversityTaskService;
 	
-	//反馈参数
-	private String startStage;//从第几节课开始
-	private String endStage;//到第几节课结束
-	private String startStageTime;//开始时间
-	private String endStageTime;//结束时间
-	
 	public String create() throws ParseException{
 		Map<String, String> resultMap = new HashMap<String, String>();
 		ApplyUniversityTask applyUniversityTask = new ApplyUniversityTask();
@@ -60,22 +54,6 @@ public class ApplyUniversityTaskAction extends BaseTaskAction{
 		return SUCCESS;
 	}
 	
-	public String feedback(){
-		Map<String, String> resultMap = new HashMap<String, String>();
-		
-		BaseTask baseTask = getBaseTaskService().get(Integer.parseInt(id));
-		int completedTime = baseTask.getFeedbackTime(startStage,endStage,startStageTime,endStageTime);
-		baseTask.feedback(completedTime,Integer.parseInt(getUsedDay()));
-
-		getBaseTaskService().update(baseTask);
-		
-		resultMap.put("statusCode", "200");
-		resultMap.put("info", "feedback successfully !");
-		
-		setResult(JSONObject.fromObject(resultMap).toString());
-		return SUCCESS;
-	}
-	
 	public String getUniversityName() {
 		return universityName;
 	}
@@ -102,36 +80,5 @@ public class ApplyUniversityTaskAction extends BaseTaskAction{
 	public void setApplyUniversityTaskService(
 			ApplyUniversityTaskService applyUniversityTaskService) {
 		this.applyUniversityTaskService = applyUniversityTaskService;
-	}
-	public String getStartStage() {
-		return startStage;
-	}
-
-	public void setStartStage(String startStage) {
-		this.startStage = startStage;
-	}
-
-	public String getEndStage() {
-		return endStage;
-	}
-
-	public void setEndStage(String endStage) {
-		this.endStage = endStage;
-	}
-
-	public String getStartStageTime() {
-		return startStageTime;
-	}
-
-	public void setStartStageTime(String startStageTime) {
-		this.startStageTime = startStageTime;
-	}
-
-	public String getEndStageTime() {
-		return endStageTime;
-	}
-
-	public void setEndStageTime(String endStageTime) {
-		this.endStageTime = endStageTime;
 	}
 }

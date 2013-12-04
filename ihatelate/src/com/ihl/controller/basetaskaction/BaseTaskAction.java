@@ -2,8 +2,12 @@ package com.ihl.controller.basetaskaction;
 
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import net.sf.json.JSONArray;
@@ -42,6 +46,9 @@ public class BaseTaskAction extends ActionSupport{
 	
 	private String taskID;//所用模版对应的任务ID
 	
+	//非量化任务反馈参数（还有任务id）
+	private String stageTime;//某一阶段的完成时间
+	
 	private UserService userService;
 	private BaseTaskService baseTaskService;
 	private StageService stageService;
@@ -77,29 +84,46 @@ public class BaseTaskAction extends ActionSupport{
 		return baseTask;
 	}
 	
-//	public void updateDefaultStage(int type,BaseTask baseTask){
-//		List<Stage> stages = stageService.getDefault(type);
-//		int max = 0;
-//		int success = 0;
-//		for(Stage stage : stages){
-//			if(stage.getStep() == 1){
-//				max = stage.getSuccessCount();
-//			}
-//		}
-//		for(Stage stage : baseTask.getStages()){
-//			if(stage.getStep() == 1){
-//				success = stage.getSuccessCount();
-//			}
-//		}
-//		if(success > max){
-//			for(Stage stage : stages){
-//				stage.setIsDefault(false);
-//			}
-//			for(Stage stage : baseTask.getStages()){
-//				stage.setIsDefault(true);
-//			}
-//		}
-//	}
+	public String feedback(){
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		BaseTask baseTask = baseTaskService.get(Integer.parseInt(id));
+		int completed = baseTask.getCompleted();
+		Set<Stage> stages = baseTask.getStages();
+		ArrayList<Stage> stagesList = new ArrayList<Stage>(stages);
+		Collections.sort(stagesList);
+		int time = 0;
+		Stage nowStage = null;
+		for(Stage stage : stagesList){
+			time += stage.getTime();
+			if(time > completed){
+				nowStage = stage;
+				break;
+			}
+		}
+		int nowStageUncompleteTime = time - completed;
+		if(Integer.parseInt(stageTime) <= nowStageUncompleteTime){
+			baseTask.setCompleted(completed + Integer.parseInt(stageTime));
+		}else {
+			stages.remove(nowStage);
+			nowStage.setTime(nowStage.getTime() - nowStageUncompleteTime +Integer.parseInt(stageTime));
+			stages.add(nowStage);
+			baseTask.setStages(stages);
+			baseTask.setCompleted(completed + Integer.parseInt(stageTime));
+		}
+		baseTask.setUsedDay(baseTask.getUsedDay() + 1);
+		if(baseTask.getCompleted() >= baseTask.getTotal()){
+			baseTask.setIsCompleted(true);
+		}
+		baseTaskService.update(baseTask);
+		
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "feedback successfully !");
+		
+		setResult(JSONObject.fromObject(resultMap).toString());
+		
+		return SUCCESS;
+	}
 	
 	public String getName() {
 		return name;
@@ -205,5 +229,13 @@ public class BaseTaskAction extends ActionSupport{
 	}
 	public void setTaskID(String taskID) {
 		this.taskID = taskID;
+	}
+
+	public String getStageTime() {
+		return stageTime;
+	}
+
+	public void setStageTime(String stageTime) {
+		this.stageTime = stageTime;
 	}
 }
