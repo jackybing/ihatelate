@@ -711,5 +711,6 @@
 	<script type="text/javascript" src="js/pages/index-global.js"></script>
 	<script type="text/javascript" src="js/pages/index-books.js"></script>
 	<script type="text/javascript" src="js/pages/index-papers-default.js"></script>
+	<script type="text/javascript" src="js/pages/index-open-class-default.js"></script>
   </body>
 </html>
