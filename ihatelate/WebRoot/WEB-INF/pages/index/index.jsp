@@ -242,7 +242,83 @@
 										        </div>
 								              </div>
 								              <div class="tab-pane fade" id="open-class-tab-pane">
-								                <p>Open class fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              
+								                <div id="open-class-task-form" class="form-horizontal">
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-task-name">Task Name:</label>
+										              <div class="controls">
+										                <input type="text" id="open-class-task-name" placeholder="Task Name" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-start-time">Date Range:</label>
+										              <div class="controls">
+
+										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+														    <input type="text" id="open-class-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <span class="add-on">to</span>
+														    <input type="text" id="open-class-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														</div>
+
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-total-day">Days to Spend:</label>
+										              <div class="controls">
+										                <input type="text" id="open-class-total-day" placeholder="Integer between 0 and date range" class="input-width-280px"/>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-name">Class Name:</label>
+										              <div class="controls">
+										                <input type="text" id="open-class-name" placeholder="Class Name" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-amount">Amount:</label>
+										              <div class="controls">
+										                <input type="text" id="open-class-amount" placeholder="Amount" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-time-4-each-class">Time for Each Class:</label>
+										              <div class="controls">
+										                <input type="text" id="open-class-time-4-each-class" placeholder="Time for Each Class" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-remark">Remark:</label>
+										              <div class="controls">
+										              	<textarea id="open-class-remark" placeholder="Remark" class="input-width-280px" style="resize: none;"></textarea>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="open-class-is-active">Active or not:</label>
+										              <div class="controls">
+										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+														    <input id="open-class-is-active" type="checkbox" checked />
+														</div>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+
+										            <div class="form-actions">
+													  <button type="button" class="btn btn-primary" id="add-oc-task-btn">Add an Open Class Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-oc-task-btn" style="width: 78px;">Reset</button>
+													</div>
+										            
+										        </div>
+										        
 								              </div>
 								              <div class="tab-pane fade" id="fitness-tab-pane">
 								                <p>Fitness fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
@@ -273,7 +349,7 @@
 										            <div class="control-group">
 										              <label class="control-label" for="papers-task-name-d">Task Name:</label>
 										              <div class="controls">
-										                <input type="text" id="papers-task-name-d" placeholder="Task Name" class="input-width-280px">
+										                <input type="text" id="papers-task-name-d" placeholder="Task Name" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
