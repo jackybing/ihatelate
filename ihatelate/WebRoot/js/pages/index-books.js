@@ -5,7 +5,7 @@
 			placement: 'bottom'
 		});
 		// when #index-page-btn clicked
-		$(".top-right-btns").on("click", function() {
+		$(document).on("click", ".top-right-btns", function() {
 			/*window.location.replace("jumpAction!index");*/
 			var this_btn = $(this);
 			if(!this_btn.hasClass("glow")) {
@@ -68,7 +68,7 @@
                 $.blockUI(blockUIoptions);
             }
         }
-		$("#idle-calendar-save-btn").on("click", function() {
+		$(document).on("click", "#idle-calendar-save-btn", function() {
 			showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Saving ...<h1>");
 			var childFrameContents = $("#itc-iframe").contents();
 			var free_time_array = [];
@@ -123,7 +123,7 @@
 		initRangeDatepicker();
 		
 		// 从豆瓣获取书籍信息
-		$("#search-book-title-btn").on("click", function() {
+		$(document).on("click", "#search-book-title-btn", function() {
 			var book_title_element = $("#input-book-title"), book_title = $.trim(book_title_element.val());
 			if(book_title == "") {
 				showErrorTip(book_title_element, "Please input a book title");
@@ -260,10 +260,10 @@
             }
         }
 		// clear error tip for controls
-		$("input").on("input", function() {
+		$(document).on("input", "input, textarea", function() {
             clearMyErrorTip($(this));
         });
-        $("input").on("change", function() {
+        $(document).on("change", "input, textarea", function() {
             clearMyErrorTip($(this));
         });
         // function to compute date range days
