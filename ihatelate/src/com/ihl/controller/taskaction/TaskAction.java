@@ -27,6 +27,8 @@ public class TaskAction extends ActionSupport{
 	public String obtainTaskByTaskID(){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		BaseTask task = baseTaskService.get(Integer.parseInt(id));
+		task.setUser(null);
+		task.setStages(null);
 		
 		JsonConfig jsonConfig = new JsonConfig();
 		jsonConfig.registerJsonValueProcessor(java.util.Date.class, new JsonDateValueProcessor("yyyy-MM-dd HH:mm:ss"));
@@ -49,6 +51,7 @@ public class TaskAction extends ActionSupport{
 			baseTaskService.clear();
 			for(BaseTask baseTask : baseTasks){
 				baseTask.setUser(null);
+				baseTask.setStages(null);
 			}
 		}
 		
@@ -108,5 +111,11 @@ public class TaskAction extends ActionSupport{
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

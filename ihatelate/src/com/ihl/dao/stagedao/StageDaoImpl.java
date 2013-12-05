@@ -29,4 +29,14 @@ public class StageDaoImpl extends HibernateDaoSupport implements StageDao{
 		return null;
 	}
 
+	public void delete(Stage stage) {
+		getHibernateTemplate().delete(stage);
+	}
+
+	public void deleteByID(int ID) {
+		String query = "from Stage s where s.task.id = ?";
+		List<Stage> stages = getHibernateTemplate().find(query,ID);
+		getHibernateTemplate().deleteAll(stages);
+	}
+
 }

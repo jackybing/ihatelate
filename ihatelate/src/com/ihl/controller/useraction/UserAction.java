@@ -20,10 +20,12 @@ public class UserAction extends ActionSupport {
 	private UserService userService;
 	
 	private String email;
-	private String password;
 	private String username;
+	private String password;
+	private String passwordNew;
 	private String sex;
 	private String result;
+	private String type;//0:学生，1：办公室职员，2：户外工作者,3:其他
 	
 	private String url;//头像物理地址
 	private String disk;//头像服务器磁盘地址
@@ -39,6 +41,7 @@ public class UserAction extends ActionSupport {
 			user.setEmail(email);
 			user.setPassword(EncoderUtil.getEncodedPasswordByMd5(password));
 			user.setSex(Integer.parseInt(sex));
+			user.setType(Integer.parseInt(type));
 			user.setUserName(username);
 			user.setCreateDate(new Date());
 			
@@ -93,6 +96,68 @@ public class UserAction extends ActionSupport {
 		ActionContext.getContext().getSession().remove("userID");
 		resultMap.put("statusCode", "200");
 		resultMap.put("info", "logout successfully !");
+		setResult(JSONObject.fromObject(resultMap).toString());
+		return SUCCESS;
+	}
+	/**
+	 * 获得登录用户的信息
+	 */
+	public String obtainUserInfo(){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		User user = userService.getLoginUser();
+		userService.clear();
+		user.setBaseTasks(null);
+		user.setFreeTimes(null);
+		user.setCreateDate(null);
+		user.setPassword(null);
+		resultMap.put("statusCode", "200");
+		resultMap.put("user", user);
+		setResult(JSONObject.fromObject(resultMap).toString());
+		return SUCCESS;
+	}
+	/**
+	 * 更改用户信息
+	 */
+	public String modifyUserInfo(){
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		User user = userService.getLoginUser();
+		if(!username.equals("")){
+			user.setUserName(username);
+		}
+		if(!type.equals("")){
+			user.setType(Integer.parseInt(type));
+		}
+		userService.update(user);
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "modify successfully");
+		setResult(JSONObject.fromObject(resultMap).toString());
+		return SUCCESS;
+	}
+	
+	/**
+	 * 更改密码
+	 * @return
+	 */
+	public String modifyPassword(){
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		User user = userService.getLoginUser();
+		try {
+			if(EncoderUtil.getEncodedPasswordByMd5(password).equals(user.getPassword())){
+				user.setPassword(EncoderUtil.getEncodedPasswordByMd5(passwordNew));
+				userService.update(user);
+				resultMap.put("statusCode", "200");
+				resultMap.put("info", "modify password successfully");
+			}else {
+				resultMap.put("statusCode", "500");
+				resultMap.put("info", "wrong password");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "error");
+		}
 		setResult(JSONObject.fromObject(resultMap).toString());
 		return SUCCESS;
 	}
@@ -168,5 +233,16 @@ public class UserAction extends ActionSupport {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getPasswordNew() {
+		return passwordNew;
+	}
+	public void setPasswordNew(String passwordNew) {
+		this.passwordNew = passwordNew;
+	}
 }

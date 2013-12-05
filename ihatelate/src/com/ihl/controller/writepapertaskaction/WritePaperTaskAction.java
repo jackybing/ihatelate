@@ -15,12 +15,6 @@ public class WritePaperTaskAction extends BaseTaskAction{
 	private String paperName;
 	private WritePaperTaskService writePaperTaskService;
 	
-	//反馈参数
-	private String startStage;//从第几节课开始
-	private String endStage;//到第几节课结束
-	private String startStageTime;//开始时间
-	private String endStageTime;//结束时间
-
 	public String create() throws ParseException{
 		Map<String, String> resultMap = new HashMap<String, String>();
 		
@@ -70,45 +64,5 @@ public class WritePaperTaskAction extends BaseTaskAction{
 
 	public void setWritePaperTaskService(WritePaperTaskService writePaperTaskService) {
 		this.writePaperTaskService = writePaperTaskService;
-	}
-
-
-	public String getStartStage() {
-		return startStage;
-	}
-
-
-	public void setStartStage(String startStage) {
-		this.startStage = startStage;
-	}
-
-
-	public String getEndStage() {
-		return endStage;
-	}
-
-
-	public void setEndStage(String endStage) {
-		this.endStage = endStage;
-	}
-
-
-	public String getStartStageTime() {
-		return startStageTime;
-	}
-
-
-	public void setStartStageTime(String startStageTime) {
-		this.startStageTime = startStageTime;
-	}
-
-
-	public String getEndStageTime() {
-		return endStageTime;
-	}
-
-
-	public void setEndStageTime(String endStageTime) {
-		this.endStageTime = endStageTime;
 	}
 }

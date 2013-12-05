@@ -70,6 +70,50 @@ public class ScheduleAction extends ActionSupport {
 
 		return SUCCESS;
 	}
+	/**
+	 * 安排今天的任务
+	 * @return
+	 * @throws ParseException
+	 */
+	public String scheduleToday() throws ParseException{
+		Map<String, String> resultMap = new HashMap<String, String>();
+		JSONArray schedule = new JSONArray();
+		JSONArray cannotBeCompleted = new JSONArray();
+		List<BaseTask> baseTasks = baseTaskService.getNeedToBeScheduledTask();
+		baseTaskService.clear();
+		//如果任务列表不为空，则安排任务
+		if(baseTasks.size() > 0){
+			Date date = new Date();
+			int today = DateUtil.getWeekOfDate(date);
+			
+			int week = today % 7;
+			if (week == 0) {
+				week = 7;
+			}
+			// 获得要安排的这天的空闲时间
+			List<FreeTime> freeTimes = freeTimeService.getFreeTimesForDay(week);
+			freeTimeService.clear();
+			Map<String, Object> res= new HashMap<String, Object>();
+			res = scheduleDayTasks(baseTasks, freeTimes, 0);
+			JSONObject dayScheduleObject = new JSONObject();
+			JSONArray dayScheduleArray = (JSONArray) res.get("dayScheduleArray");
+			
+			if(((JSONArray)res.get("cannotBeCompleted")).size() > 0){
+				cannotBeCompleted.add(res.get("cannotBeCompleted"));
+			}
+			baseTasks = (List<BaseTask>) res.get("baseTasks");
+			if(dayScheduleArray.size() > 0){
+				dayScheduleObject.put(week, dayScheduleArray);
+				schedule.add(dayScheduleObject);
+			}
+		}
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "task scheduled successfully !");
+		resultMap.put("scheduel", JSONArray.fromObject(schedule).toString());
+		resultMap.put("cannotBeCompleted", JSONArray.fromObject(cannotBeCompleted).toString());
+		setResult(JSONObject.fromObject(resultMap).toString());
+		return SUCCESS;
+	}
 
 	// 安排一天的任务
 	public Map<String, Object> scheduleDayTasks(List<BaseTask> baseTasks,
@@ -194,6 +238,7 @@ public class ScheduleAction extends ActionSupport {
 		baseTask.setCompleted(baseTask.getCompleted() + completed);
 		baseTask.updateTime();
 		taskScheduleObject.put("taskID", baseTask.getId());
+		taskScheduleObject.put("type", baseTask.getType());
 		taskScheduleObject.put("time", taskScheduleTimeArray);
 		taskScheduleObject.put("scheduleInfo", taskScheduleTaskInfoObject);
 		

@@ -52,9 +52,6 @@ public class BaseTaskAction extends ActionSupport{
 	private StageService stageService;
 
 	public BaseTask createBaseTask(BaseTask baseTask) throws ParseException{
-		if(id != null && !id.equals("")){
-			baseTask.setId(Integer.parseInt(id));
-		}
 		baseTask.setName(name);
 		baseTask.setStartTime(DateUtil.stringToDate(startTime));
 		baseTask.setEndTime(DateUtil.stringToDate(endTime));
@@ -72,7 +69,6 @@ public class BaseTaskAction extends ActionSupport{
 				stage.setType(baseTask.getType());
 				stageSet.add(stage);
 			}
-			
 			baseTask.setStages(stageSet);
 		}
 		
@@ -82,6 +78,34 @@ public class BaseTaskAction extends ActionSupport{
 		return baseTask;
 	}
 	
+	public BaseTask updateBaseTask(BaseTask baseTask) throws ParseException{
+		if(baseTask == null){
+			return null;
+		}
+		baseTask.setName(name);
+		baseTask.setStartTime(DateUtil.stringToDate(startTime));
+		baseTask.setEndTime(DateUtil.stringToDate(endTime));
+		baseTask.setTotalDay(Integer.parseInt(totalDay));
+		baseTask.setIsActive(isActive.equals("1")?true:false);
+		
+		if(stages != null){
+			stageService.deleteByID(Integer.parseInt(id));
+			JSONArray jsonArray = JSONArray.fromObject(stages);
+			Set<Stage> stageSet = (Set<Stage>) new HashSet();
+			for(int i = 0;i < jsonArray.size();i++){
+				Stage stage = (Stage) JSONObject.toBean(jsonArray.getJSONObject(i),Stage.class);
+				stage.setTask(baseTask);
+				stage.setType(baseTask.getType());
+				stageSet.add(stage);
+			}
+			baseTask.setStages(stageSet);
+		}
+		return baseTask;
+	}
+	
+	/*
+	 * 非量化阶段的反馈
+	 */
 	public String feedback(){
 		Map<String, String> resultMap = new HashMap<String, String>();
 		
@@ -123,6 +147,42 @@ public class BaseTaskAction extends ActionSupport{
 		
 		setResult(JSONObject.fromObject(resultMap).toString());
 		
+		return SUCCESS;
+	}
+	/*
+	 * 任务反馈时根据任务id获得此任务各阶段的完成情况
+	 */
+	public String obtainStagesInfo(){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		BaseTask baseTask = baseTaskService.get(Integer.parseInt(id));
+		if(baseTask == null){
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "task not exists!");
+			setResult(JSONObject.fromObject(resultMap).toString());
+			return SUCCESS;
+		}
+		
+		Set<Stage> stages = baseTask.getStages();
+		ArrayList<Stage> stagesList = new ArrayList<Stage>(stages);
+		Collections.sort(stagesList);
+		
+		int completed = baseTask.getCompleted();
+		int time = 0;
+		JSONObject jsonObject = new JSONObject();
+		for(Stage stage : stagesList){
+			time += stage.getTime();
+			if(time <= completed){
+				jsonObject.put(stage.getStep(), stage.getTime() + ":" + stage.getTime());
+			}else if(time - stage.getTime() > completed){
+				jsonObject.put(stage.getStep(), stage.getTime() + ":0");
+			}else {
+				jsonObject.put(stage.getStep(), stage.getTime() + ":" + (completed - time + stage.getTime()));
+			}
+		}
+		resultMap.put("statusCode", "200");
+		resultMap.put("stages", jsonObject);
+		setResult(JSONObject.fromObject(resultMap).toString());
 		return SUCCESS;
 	}
 	

@@ -49,4 +49,12 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		}		
 		return tag;
 	}
+
+	public void clear() {
+		getHibernateTemplate().clear();
+	}
+
+	public void update(User user) {
+		getHibernateTemplate().update(user);
+	}
 }

@@ -50,4 +50,12 @@ public class UserServiceImpl implements UserService {
 	public Boolean uploadAvatar(Integer userID,String url,String disk){
 		return userDao.uploadAvatar(userID, url, disk);
 	}
+
+	public void clear() {
+		userDao.clear();
+	}
+
+	public void update(User user) {
+		userDao.update(user);
+	}
 }
