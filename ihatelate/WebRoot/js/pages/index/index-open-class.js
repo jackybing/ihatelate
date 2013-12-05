@@ -17,7 +17,6 @@
         // reset open class task form function
         function resetOpenClassTaskForm() {
         	$("#open-class-task-form input[type=text], #open-class-task-form textarea").val("").trigger("change");
-        	$("#open-class-is-active").parent().removeClass("switch-off").addClass("switch-on");
         }
 		$(document).on("click", "#add-oc-task-btn", function() {
 			var task_name_element = $("#open-class-task-name"), start_time_element = $("#open-class-start-time"),
@@ -30,9 +29,9 @@
 				class_name = $.trim(class_name_element.val()), amount = $.trim(amount_element.val()),
 				time_4_each_class = $.trim(time_4_each_class_element.val()), remark = $.trim(remark_element.val()),
 				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
-			console.log("task_name: " + task_name + "; start_time: " + start_time + "; end_time: " + end_time);
+			/*console.log("task_name: " + task_name + "; start_time: " + start_time + "; end_time: " + end_time);
 			console.log("total_day: " + total_day + "; class_name: " + class_name + "; amount: " + amount);
-			console.log("time_4_each_class: " + time_4_each_class + "; remark: " + remark + "; is_active: " + is_active);
+			console.log("time_4_each_class: " + time_4_each_class + "; remark: " + remark + "; is_active: " + is_active);*/
 			var is_validate = true;
 			if(task_name == "") {
 				showErrorTip(task_name_element, "Please input a task name");
@@ -116,7 +115,7 @@
 					type: 'post',
 					success: function(json_data) {
 						var data = $.parseJSON(json_data);
-						console.log(data);
+						// console.log(data);
 						IHL_BlockMsgObj.unblockMsg(function() { 
                             if(data.statusCode == "200") {
 								$.growlUI('Success', data.info);

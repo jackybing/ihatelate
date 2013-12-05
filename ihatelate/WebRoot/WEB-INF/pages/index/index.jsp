@@ -321,7 +321,76 @@
 										        
 								              </div>
 								              <div class="tab-pane fade" id="fitness-tab-pane">
-								                <p>Fitness fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+								              
+								                <div id="fitness-task-form" class="form-horizontal">
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-task-name">Task Name:</label>
+										              <div class="controls">
+										                <input type="text" id="fitness-task-name" placeholder="Task Name" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-start-time">Date Range:</label>
+										              <div class="controls">
+
+										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+														    <input type="text" id="fitness-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <span class="add-on">to</span>
+														    <input type="text" id="fitness-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														</div>
+
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-total-day">Days to Spend:</label>
+										              <div class="controls">
+										                <input type="text" id="fitness-total-day" placeholder="Integer between 0 and date range" class="input-width-280px"/>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-name">Exercise Name:</label>
+										              <div class="controls">
+										                <input type="text" id="fitness-name" placeholder="Exercise Name" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-group-count">Group Count:</label>
+										              <div class="controls">
+										                <input type="text" id="fitness-group-count" placeholder="Number of Exercise Groups" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-time-4-each-group">Time for Each Group:</label>
+										              <div class="controls">
+										                <input type="text" id="fitness-time-4-each-group" placeholder="Time for Each Group (in minutes)" class="input-width-280px" />
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+										            
+										            <div class="control-group">
+										              <label class="control-label" for="fitness-is-active">Active or not:</label>
+										              <div class="controls">
+										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+														    <input id="fitness-is-active" type="checkbox" checked />
+														</div>
+										                <span class="help-inline"></span>
+										              </div>
+										            </div>
+
+										            <div class="form-actions">
+													  <button type="button" class="btn btn-primary" id="add-fitness-task-btn">Add a fitness Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-fitness-task-btn" style="width: 78px;">Reset</button>
+													</div>
+										            
+										        </div>
+										        
 								              </div>
 								          </div>
 								      	
@@ -708,9 +777,10 @@
 			});
 		})(jQuery);
 	</script>
-	<script type="text/javascript" src="js/pages/index-global.js"></script>
-	<script type="text/javascript" src="js/pages/index-books.js"></script>
-	<script type="text/javascript" src="js/pages/index-papers-default.js"></script>
-	<script type="text/javascript" src="js/pages/index-open-class-default.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-global.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-books.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-papers-default.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-open-class.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-fitness.js"></script>
   </body>
 </html>
