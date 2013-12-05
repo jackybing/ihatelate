@@ -8,4 +8,6 @@ import com.ihl.model.stage.Stage;
 public interface StageDao {
 	public List<Stage> getDefault(int type);
 	public List<Stage> getByFirstStage(BaseTask baseTask);
+	public void delete(Stage stage);
+	public void deleteByID(int ID);
 }

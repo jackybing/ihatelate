@@ -54,6 +54,17 @@ public class ApplyUniversityTaskAction extends BaseTaskAction{
 		return SUCCESS;
 	}
 	
+	public String update() throws ParseException{
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if(getId().equals("")){
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "task ID is null");
+			return SUCCESS;
+		}
+		
+		return SUCCESS;
+	}
+	
 	public String getUniversityName() {
 		return universityName;
 	}

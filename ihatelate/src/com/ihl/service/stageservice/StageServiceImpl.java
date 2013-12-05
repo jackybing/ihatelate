@@ -52,4 +52,10 @@ public class StageServiceImpl implements StageService{
 	public void setBaseTaskDao(BaseTaskDao baseTaskDao) {
 		this.baseTaskDao = baseTaskDao;
 	}
+	public void delete(Stage stage) {
+		stageDao.delete(stage);
+	}
+	public void deleteByID(int ID) {
+		stageDao.deleteByID(ID);
+	}
 }
