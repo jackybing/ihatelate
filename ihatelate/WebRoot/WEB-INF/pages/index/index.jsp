@@ -283,14 +283,14 @@
 										            <div class="control-group">
 										              <label class="control-label" for="open-class-amount">Amount:</label>
 										              <div class="controls">
-										                <input type="text" id="open-class-amount" placeholder="Amount" class="input-width-280px" />
+										                <input type="text" id="open-class-amount" placeholder="Number of Course Sessions" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
 										              <label class="control-label" for="open-class-time-4-each-class">Time for Each Class:</label>
 										              <div class="controls">
-										                <input type="text" id="open-class-time-4-each-class" placeholder="Time for Each Class" class="input-width-280px" />
+										                <input type="text" id="open-class-time-4-each-class" placeholder="Time for Each Class (in minutes)" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>

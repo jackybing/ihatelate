@@ -23,19 +23,7 @@
 			scrollToElement(element);
 			element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
 		}
-		// function to clear error tips
-		function clearMyErrorTip(myself) {
-            var myControlGroupParent = myself.parents(".control-group");
-            if(myControlGroupParent.hasClass("error")) {
-                myControlGroupParent.removeClass("error").find(".help-inline").text("");
-            }
-        }
-		// clear error tip for controls
-		$(document).on("input", "input", function() {
-            clearMyErrorTip($(this));
-        }).on("change", "input", function() {
-            clearMyErrorTip($(this));
-        });;
+		
         // function to compute date range days
         function computeDateRangeDays(sDate1, sDate2) {	//sDate1和sDate2是2002-12-18格式 
         	var aDate, oDate1, oDate2, iDays  
@@ -183,10 +171,8 @@
 
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						$.unblockUI({
-                            onUnblock: function(){ 
-                                $.growlUI('Error', textStatus + " " + errorThrown);
-                            }
+						IHL_BlockMsgObj.unblockMsg(function() { 
+                            $.growlUI('Error', textStatus + " " + errorThrown);
                         });
 					}
 				});
