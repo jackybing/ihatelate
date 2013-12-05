@@ -402,7 +402,7 @@ $(document).ready(function() {
     $("#ihl-calendar-refresh").click(function() {
     	if(!refresh_callback_func) {
     		refresh_callback_func = function() {
-    			window.parent.showGrowlMsg("Refreshing finished", "You can view your schedule now!");
+    			window.parent.IHL_BlockMsgObj.showGrowlMsg("Refreshing finished", "You can view your schedule now!");
     		};
     	}
     	$calendar.weekCalendar("refresh");

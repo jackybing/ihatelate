@@ -1,40 +1,5 @@
 (function($) {
 	$(function() {
-		// scroll to element
-		var isInScrolling = false;
-        function scrollToElement(targetEle) {
-            if(!isInScrolling) {
-                isInScrolling = true;
-                var anh = targetEle.offset().top - 95;
-                $("html,body").stop().animate({scrollTop: anh}, 
-                    { 
-                        duration: 500, 
-                        queue: false, 
-                        complete: function() { 
-                            isInScrolling = false;
-                            // targetEle.focus().select();
-                        } 
-                    }
-                );
-            }
-        }
-		// 展示error tip的function
-		function showErrorTip(element, msg) {
-			scrollToElement(element);
-			element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
-		}
-		
-        // function to compute date range days
-        function computeDateRangeDays(sDate1, sDate2) {	//sDate1和sDate2是2002-12-18格式 
-        	var aDate, oDate1, oDate2, iDays  
-	        aDate = sDate1.split("-")  
-	        oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0])  //转换为12-18-2002格式 
-	        aDate = sDate2.split("-") 
-	        oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]) 
-	        iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 /24)  //把相差的毫秒数转换为天数 
-	        return iDays 
-        }
-        
         function resetPapersTaskForm(item, type) {
         	$("#" + item + "-" + type + "-task-form input[type=text]").val("").trigger("change");
         }
@@ -60,45 +25,45 @@
 			// 对输入控件的值进行检测，如果不对，显示error tip
 			var is_validate = true;
 			if(task_name == "") {
-				showErrorTip(task_name_element, "Please input a task name");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(task_name_element, "Please input a task name");
 				is_validate = false;
 			}
 			if(start_time == "" && end_time == "") {
-				showErrorTip(start_time_element, "Please input a start date and an end date");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_element, "Please input a start date and an end date");
 				is_validate = false;
 			} else if(start_time == "") {
-				showErrorTip(start_time_element, "Please input a start date");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_element, "Please input a start date");
 				is_validate = false;
 			} else if(end_time == "") {
-				showErrorTip(end_time_element, "Please input an end date");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(end_time_element, "Please input an end date");
 				is_validate = false;
 			}
 			if(start_time == "" || end_time == "") {
-				showErrorTip(total_day_element, "Please input Date Range first");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_element, "Please input Date Range first");
 				is_validate = false;
 			} else if(total_day == "") {
-				showErrorTip(total_day_element, "Please input days you plan to spend on this task");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_element, "Please input days you plan to spend on this task");
 				is_validate = false;
 			} else if(isNaN(total_day)) {
-				showErrorTip(total_day_element, "Please input an integer");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_element, "Please input an integer");
 				is_validate = false;
 			} else if(parseInt(total_day) != parseFloat(total_day)) {
-				showErrorTip(total_day_element, "Please input an integer, not a float");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_element, "Please input an integer, not a float");
 				is_validate = false;
 			} else {
 				total_day = parseInt(total_day);
 				total_day_element.val(total_day).trigger("change");
-				var date_range_days = computeDateRangeDays(start_time, end_time);
+				var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
 				if(total_day < 1) {
-					showErrorTip(total_day_element, "You must cost at least 1 day on this task");
+					IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_element, "You must cost at least 1 day on this task");
 					is_validate = false;
 				} else if(total_day > date_range_days) {
-					showErrorTip(total_day_element, "You must cost no more than " + date_range_days + " days (on date range)");
+					IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_element, "You must cost no more than " + date_range_days + " days (on date range)");
 					is_validate = false;
 				}
 			}
 			if(paper_name == "") {
-				showErrorTip(paper_name_element, "Please input a paper name");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(paper_name_element, "Please input a paper name");
 				is_validate = false;
 			}
 			// 获取stages的container，以获得step的总数
@@ -117,17 +82,17 @@
 				var cur_sname = cur_sname_element.val(), cur_stime = cur_stime_element.val();
 				// console.log("cur_sname[" + i + "]: " + cur_sname + "; cur_stime[" + i + "]: " + cur_stime);
 				if(cur_sname == "") {
-					showErrorTip(cur_sname_element, "Please input a stage name");
+					IHL_ErrorTipObj.showErrTipAndScroll2Ele(cur_sname_element, "Please input a stage name");
 					is_validate = false;
 				}
 				if(cur_stime == "") {
-					showErrorTip(cur_stime_element, "Please input a stage time");
+					IHL_ErrorTipObj.showErrTipAndScroll2Ele(cur_stime_element, "Please input a stage time");
 					is_validate = false;
 				} else if(isNaN(cur_stime)) {
-					showErrorTip(cur_stime_element, "Please input an integer");
+					IHL_ErrorTipObj.showErrTipAndScroll2Ele(cur_stime_element, "Please input an integer");
 					is_validate = false;
 				} else if(parseInt(cur_stime) != parseFloat(cur_stime)) {
-					showErrorTip(cur_stime_element, "Please input an integer, not a float");
+					IHL_ErrorTipObj.showErrTipAndScroll2Ele(cur_stime_element, "Please input an integer, not a float");
 					is_validate = false;
 				}
 				// 向stages里面push stage

@@ -125,7 +125,7 @@ $(document).ready(function() {
                   var is_valide = true;
                   if(end_field_val.indexOf("00:00:00") > 0) {
                 	  // end_field_val.replace("00:00:00", "23:45:00");
-                	  window.parent.showGrowlMsg("Warning", "Cannot set End Time to 00:00:00");
+                	  window.parent.IHL_BlockMsgObj.showGrowlMsg("Warning", "Cannot set End Time to 00:00:00");
                 	  is_valide = false;
                   }
                   
@@ -133,7 +133,7 @@ $(document).ready(function() {
                   calEvent.title = titleField.val();
                   calEvent.body = bodyField.val();
                   if(calEvent.end.toString().indexOf(":") == -1) {
-                	  window.parent.showGrowlMsg("Warning", "Invalid End Time 00:00:00");
+                	  window.parent.IHL_BlockMsgObj.showGrowlMsg("Warning", "Invalid End Time 00:00:00");
                 	  is_valide = false;
                   }
 				  // Start: 201311211709 添加空闲时间
@@ -163,7 +163,7 @@ $(document).ready(function() {
                 	  try {
 	                	  $calendar.weekCalendar("updateEvent", calEvent);
 	                  } catch(e) {
-	                	  showGrowlMsg("Error", e);
+	                	  window.parent.IHL_BlockMsgObj.showGrowlMsg("Error", e);
 	                  }
                   } else {
                 	  $calendar.weekCalendar("removeEvent", calEvent);
@@ -398,7 +398,7 @@ $(document).ready(function() {
     $("#ihl-calendar-refresh").click(function() {
     	if(!refresh_callback_func) {
     		refresh_callback_func = function() {
-    			window.parent.showGrowlMsg("Refreshing finished", "You can view your free time now!");
+    			window.parent.IHL_BlockMsgObj.showGrowlMsg("Refreshing finished", "You can view your free time now!");
     		};
     	}
 		$("#calendar").weekCalendar("refresh");

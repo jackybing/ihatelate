@@ -1,8 +1,45 @@
-function showGrowlMsg(title, msg) {
-	$.growlUI(title, msg);
+// Task Form Operation 相关对象
+var IHL_TaskFormOprtObj = {
+	computeDateRangeDays: function(sDate1, sDate2) {
+		var aDate, oDate1, oDate2, iDays;
+        aDate = sDate1.split("-");
+        oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);  //转换为12-18-2002格式 
+        aDate = sDate2.split("-");
+        oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]); 
+        iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 /24);  //把相差的毫秒数转换为天数 
+        return iDays;
+	}
 }
+// Error Tip 的相关对象
+var IHL_ErrorTipObj = {
+	isInScrolling: false,
+	scrollToElement: function(targetEle) {
+		var that = this;
+		if(!that.isInScrolling) {
+            that.isInScrolling = true;
+            var anh = targetEle.offset().top - 95;
+            $("html,body").stop().animate({scrollTop: anh}, 
+                { 
+                    duration: 500, 
+                    queue: false, 
+                    complete: function() { 
+                        that.isInScrolling = false;
+                        // targetEle.focus().select();
+                    } 
+                }
+            );
+        }
+	},
+	showErrTipAndScroll2Ele: function(element, msg) {
+		this.scrollToElement(element);
+		element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
+	}
+};
 // Block Message 展示和消除的对象
 var IHL_BlockMsgObj = {
+	showGrowlMsg: function(title, msg) {
+		$.growlUI(title, msg);
+	},
 	showBlockMsg: function(msg, element, callback) {
 		var blockUIoptions = { 
             message: msg,
