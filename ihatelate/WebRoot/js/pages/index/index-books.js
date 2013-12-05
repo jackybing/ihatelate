@@ -256,10 +256,10 @@
             }
         }
 		// clear error tip for controls
-		$(document).on("input", "input, textarea", function() {
+		$(document).on("input", "input", function() {
             clearMyErrorTip($(this));
         });
-        $(document).on("change", "input, textarea", function() {
+        $(document).on("change", "input", function() {
             clearMyErrorTip($(this));
         });
         // function to reset Reading Book Task forms
