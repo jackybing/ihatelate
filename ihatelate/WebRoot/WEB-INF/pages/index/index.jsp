@@ -155,7 +155,7 @@
 								          <ul id="quantifiable-tab" class="nav nav-tabs">
 								              <li class="active"><a href="#reading-tab-pane" data-toggle="tab">Reading Books</a></li>
 								              <li><a href="#open-class-tab-pane" data-toggle="tab">Open Class</a></li>
-								              <li><a href="#fitness-tab-pane" data-toggle="tab">Fitness</a></li>
+								              <li><a href="#exercise-tab-pane" data-toggle="tab">exercise</a></li>
 								          </ul>
 								          <div id="quantifiable-tab-content" class="tab-content">
 								              <div class="tab-pane fade in active" id="reading-tab-pane">
@@ -320,24 +320,24 @@
 										        </div>
 										        
 								              </div>
-								              <div class="tab-pane fade" id="fitness-tab-pane">
+								              <div class="tab-pane fade" id="exercise-tab-pane">
 								              
-								                <div id="fitness-task-form" class="form-horizontal">
+								                <div id="exercise-task-form" class="form-horizontal">
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-task-name">Task Name:</label>
+										              <label class="control-label" for="exercise-task-name">Task Name:</label>
 										              <div class="controls">
-										                <input type="text" id="fitness-task-name" placeholder="Task Name" class="input-width-280px" />
+										                <input type="text" id="exercise-task-name" placeholder="Task Name" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-start-time">Date Range:</label>
+										              <label class="control-label" for="exercise-start-time">Date Range:</label>
 										              <div class="controls">
 
 										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
-														    <input type="text" id="fitness-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <input type="text" id="exercise-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
 														    <span class="add-on">to</span>
-														    <input type="text" id="fitness-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														    <input type="text" id="exercise-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
 														</div>
 
 										                <span class="help-inline"></span>
@@ -345,48 +345,48 @@
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-total-day">Days to Spend:</label>
+										              <label class="control-label" for="exercise-total-day">Days to Spend:</label>
 										              <div class="controls">
-										                <input type="text" id="fitness-total-day" placeholder="Integer between 0 and date range" class="input-width-280px"/>
+										                <input type="text" id="exercise-total-day" placeholder="Integer between 0 and date range" class="input-width-280px"/>
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-name">Exercise Name:</label>
+										              <label class="control-label" for="exercise-name">Exercise Name:</label>
 										              <div class="controls">
-										                <input type="text" id="fitness-name" placeholder="Exercise Name" class="input-width-280px" />
+										                <input type="text" id="exercise-name" placeholder="Exercise Name" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-group-count">Group Count:</label>
+										              <label class="control-label" for="exercise-group-count">Group Count:</label>
 										              <div class="controls">
-										                <input type="text" id="fitness-group-count" placeholder="Number of Exercise Groups" class="input-width-280px" />
+										                <input type="text" id="exercise-group-count" placeholder="Number of Exercise Groups" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-time-4-each-group">Time for Each Group:</label>
+										              <label class="control-label" for="exercise-time-4-each-group">Time for Each Group:</label>
 										              <div class="controls">
-										                <input type="text" id="fitness-time-4-each-group" placeholder="Time for Each Group (in minutes)" class="input-width-280px" />
+										                <input type="text" id="exercise-time-4-each-group" placeholder="Time for Each Group (in minutes)" class="input-width-280px" />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="fitness-is-active">Active or not:</label>
+										              <label class="control-label" for="exercise-is-active">Active or not:</label>
 										              <div class="controls">
 										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
-														    <input id="fitness-is-active" type="checkbox" checked />
+														    <input id="exercise-is-active" type="checkbox" checked />
 														</div>
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-fitness-task-btn">Add a fitness Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-fitness-task-btn" style="width: 78px;">Reset</button>
+													  <button type="button" class="btn btn-primary" id="add-exercise-task-btn">Add an exercise Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-exercise-task-btn" style="width: 78px;">Reset</button>
 													</div>
 										            
 										        </div>
@@ -781,6 +781,6 @@
 	<script type="text/javascript" src="js/pages/index/index-books.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-papers-default.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-open-class.js"></script>
-	<script type="text/javascript" src="js/pages/index/index-fitness.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-exercise.js"></script>
   </body>
 </html>
