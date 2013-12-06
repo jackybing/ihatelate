@@ -494,7 +494,7 @@
 								              	
 								              </div>
 								              <div class="tab-pane fade in" id="papers-tab-pane-customize">
-								                <div id="papers-customize-task-form" class="form-horizontal">
+								                <div id="papers-c-task-form" class="form-horizontal">
 										            <div class="control-group">
 										              <label class="control-label" for="papers-task-name-c">Task Name:</label>
 										              <div class="controls">
@@ -552,7 +552,7 @@
 										            		</div>
 										            	</div>
 										            </div>
-										            <div id="papers-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;" data-total-stage-num="1">
+										            <div id="papers-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;" data-total-stage-num="1" data-task-id="-1">
 										            	
 										            	<div id="papers-stage-wrapper-c-1" data-step="1">
 										            		<div class="control-group">
@@ -581,8 +581,8 @@
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-paper-c-task-btn">Add a Writing Paper Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-paper-c-task-btn" style="width: 78px;">Reset</button>
+										            	<button type="button" class="btn btn-primary add-non-quant-task-btn" data-item="papers" data-type="c">Add a Writing Paper Task</button>
+													  	<button type="button" class="btn btn-danger reset-non-quant-task-btn" data-item="papers" data-type="c">Reset</button>
 													</div>
 										            
 										        </div>
@@ -827,7 +827,7 @@
 	</script>
 	<script type="text/javascript" src="js/pages/index/index-global.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-books.js"></script>
-	<script type="text/javascript" src="js/pages/index/index-papers-default.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-papers.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-open-class.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-exercise.js"></script>
   </body>
