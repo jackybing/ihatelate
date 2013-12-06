@@ -75,19 +75,32 @@ var IHL_BlockMsgObj = {
 	}
 };
 // 默认写论文初始化的对象
-function formOneStageSubHtml(item, type, stage_step, stage_name, stage_time) {
-	var ret_html = '<div class="control-group">' +
+function formOneStageSubHtml(item, type, stage_step, stage_name, stage_time, sname_tip, stime_tip) {
+	var sname_err_class, stime_err_class;
+	if(sname_tip) {
+		sname_err_class = " error";
+	} else {
+		sname_tip = "";
+		sname_err_class = ""
+	}
+	if(stime_tip) {
+		stime_err_class = " error";
+	} else {
+		stime_tip = "";
+		stime_err_class = ""
+	}
+	var ret_html = '<div class="control-group' + sname_err_class + '">' +
 			              '<label class="control-label" for="' + item + '-sname-' + type + '-' + stage_step + '">Stage ' + stage_step + ' Name:</label>' +
 			              '<div class="controls">' +
 				              '<input value="' + stage_name + '" type="text" id="' + item + '-sname-' + type + '-' + stage_step + '" placeholder="Stage ' + stage_step + ' Name" class="input-width-280px">' +
-				              '<span class="help-inline"></span>' +
+				              '<span class="help-inline">' + sname_tip + '</span>' +
 			              '</div>' +
 		             '</div>' +
-		             '<div class="control-group">' +
+		             '<div class="control-group' + stime_err_class + '">' +
 			              '<label class="control-label" for="' + item + '-stime-' + type + '-' + stage_step + '">Stage ' + stage_step + ' Time:</label>' +
 			              '<div class="controls">' +
 				              '<input value="' + stage_time + '" type="text" id="' + item + '-stime-' + type + '-' + stage_step + '" placeholder="Stage ' + stage_step + ' Time" class="input-width-280px">' +
-				              '<span class="help-inline"></span>' +
+				              '<span class="help-inline">' + stime_tip + '</span>' +
 			              '</div>' +
 		             '</div>' +
 		             '<div class="control-group">' +

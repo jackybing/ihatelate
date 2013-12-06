@@ -151,12 +151,17 @@
 				wrapper_element = target_element.find(wrapper_id), step = wrapper_element.data("step");
 			var add_stage_step = step + 1;
 			
+			var sname_prefix = "#" + item + "-sname-" + type + "-", stime_prefix = "#" + item + "-stime-" + type + "-";
 			for(var i = total_stage_num; i >= add_stage_step; i--) {
 				var stage_wrapper = $("#" + item + "-stage-wrapper-" + type + "-" +  i);
-				var stage_name = stage_wrapper.find("#" + item + "-sname-" + type + "-" + i).val(),
-					stage_time = stage_wrapper.find("#" + item + "-stime-" + type + "-" + i).val(),
+				var stage_name_element = stage_wrapper.find(sname_prefix + i),
+					stage_time_element = stage_wrapper.find(stime_prefix + i);
+				var stage_name = stage_name_element.val(),
+					stage_time = stage_time_element.val(),
 					tmp_stage_step = i + 1;
-				stage_wrapper.html(formOneStageSubHtml(item, type, tmp_stage_step, stage_name, stage_time)).data("step", tmp_stage_step).attr("data-step", tmp_stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + tmp_stage_step);
+				var sname_tip = stage_name_element.next(".help-inline").text(),
+					stime_tip = stage_time_element.next(".help-inline").text();
+				stage_wrapper.html(formOneStageSubHtml(item, type, tmp_stage_step, stage_name, stage_time, sname_tip, stime_tip)).data("step", tmp_stage_step).attr("data-step", tmp_stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + tmp_stage_step);
 			}
 			
 			var new_stage_html = formOneStageHtml(item, type, add_stage_step, "", "", "hide");
@@ -175,13 +180,18 @@
 				var main_container_element = $(main_container_id), wrapper_element = main_container_element.find(wrapper_id), 
 					total_stage_num = main_container_element.data("totalStageNum"), step = wrapper_element.data("step");
 				
+				var sname_prefix = "#" + item + "-sname-" + type + "-", stime_prefix = "#" + item + "-stime-" + type + "-",
+					stage_wrapper_prefix = "#" + item + "-stage-wrapper-" + type + "-";
 				for(var i = step + 1; i <= total_stage_num; i++) {
-					var stage_wrapper = $("#" + item + "-stage-wrapper-" + type + "-" +  i);
-					var stage_name = stage_wrapper.find("#" + item + "-sname-" + type + "-" + i).val(),
-						stage_time = stage_wrapper.find("#" + item + "-stime-" + type + "-" + i).val(),
+					var stage_wrapper = $(stage_wrapper_prefix +  i);
+					var stage_name_element = stage_wrapper.find(sname_prefix + i),
+						stage_time_element = stage_wrapper.find(stime_prefix + i);
+					var stage_name = stage_name_element.val(),
+						stage_time = stage_time_element.val(),
 						stage_step = i - 1;
-					
-					stage_wrapper.html(formOneStageSubHtml(item, type, stage_step, stage_name, stage_time)).data("step", stage_step).attr("data-step", stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + stage_step);
+					var sname_tip = stage_name_element.next(".help-inline").text(),
+						stime_tip = stage_time_element.next(".help-inline").text();
+					stage_wrapper.html(formOneStageSubHtml(item, type, stage_step, stage_name, stage_time, sname_tip, stime_tip)).data("step", stage_step).attr("data-step", stage_step).attr("id", item + "-stage-wrapper-" + type + "-" + stage_step);
 				}
 				
 				var new_total_stage_num = total_stage_num - 1;
@@ -205,10 +215,14 @@
 			// 先将已有的wrapper都+1
 			for(var i = total_stage_num; i > 0; i--) {
 				var stage_wrapper = $(wrappers_prefix +  i);
-				var stage_name = stage_wrapper.find(stage_name_prefix + i).val(),
-					stage_time = stage_wrapper.find(stage_time_prefix + i).val(),
+				var stage_name_element = stage_wrapper.find(stage_name_prefix + i),
+					stage_time_element = stage_wrapper.find(stage_time_prefix + i);
+				var stage_name = stage_name_element.val(),
+					stage_time = stage_time_element.val(),
 					tmp_stage_step = i + 1;
-				stage_wrapper.html(formOneStageSubHtml(item, type, tmp_stage_step, stage_name, stage_time)).data("step", tmp_stage_step).attr("data-step", tmp_stage_step).attr("id", wrappers_str_prefix + tmp_stage_step);
+				var sname_tip = stage_name_element.next(".help-inline").text(),
+					stime_tip = stage_time_element.next(".help-inline").text();
+				stage_wrapper.html(formOneStageSubHtml(item, type, tmp_stage_step, stage_name, stage_time, sname_tip, stime_tip)).data("step", tmp_stage_step).attr("data-step", tmp_stage_step).attr("id", wrappers_str_prefix + tmp_stage_step);
 			}
 			// 再增加一个wrapper
 			$(formOneStageHtml(item, type, 1, "", "", "hide")).prependTo(stages_container.data("totalStageNum", total_stage_num + 1)).data("taskId", -1).slideDown("slow");
