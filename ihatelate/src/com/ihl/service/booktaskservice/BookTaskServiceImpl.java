@@ -16,4 +16,8 @@ public class BookTaskServiceImpl implements BookTaskService{
 	public void setBookTaskDao(BookTaskDao bookTaskDao) {
 		this.bookTaskDao = bookTaskDao;
 	}
+
+	public BookTask get(int ID) {
+		return bookTaskDao.get(ID);
+	}
 }

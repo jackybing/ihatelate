@@ -18,4 +18,8 @@ public class ApplyUniversityTaskServiceImpl implements ApplyUniversityTaskServic
 			ApplyUniversityTaskDao applyUniversityTaskDao) {
 		this.applyUniversityTaskDao = applyUniversityTaskDao;
 	}
+
+	public ApplyUniversityTask get(int ID) {
+		return applyUniversityTaskDao.get(ID);
+	}
 }

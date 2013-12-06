@@ -50,6 +50,34 @@ public class WritePaperTaskAction extends BaseTaskAction{
 		return SUCCESS;
 	}
 	
+	public String update() throws ParseException{
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		if("".equals(getId())){
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "task ID is null");
+			return SUCCESS;
+		}
+		
+		WritePaperTask writePaperTask = writePaperTaskService.get(Integer.parseInt(getId()));
+		updateBaseTask(writePaperTask);
+		
+		writePaperTask.setPaperName(paperName);
+		
+		writePaperTask.set_Total();
+		writePaperTask.updateTime();
+		
+		getBaseTaskService().update(writePaperTask);
+		
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "update successfully");
+		
+		setResult(JSONObject.fromObject(resultMap).toString());
+		
+		return SUCCESS;
+	}
+	
 	public String getPaperName() {
 		return paperName;
 	}

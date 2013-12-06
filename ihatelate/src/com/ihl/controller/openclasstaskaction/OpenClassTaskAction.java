@@ -46,6 +46,35 @@ public class OpenClassTaskAction extends BaseTaskAction{
 		return SUCCESS;
 	}
 	
+	public String update() throws ParseException{
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		if("".equals(getId())){
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "task ID is null");
+			return SUCCESS;
+		}
+		
+		OpenClassTask openClassTask = openClassTaskService.get(Integer.parseInt(getId()));
+		updateBaseTask(openClassTask);
+		
+		openClassTask.setClassName(className);
+		openClassTask.setAmount(Integer.parseInt(amount));
+		openClassTask.setTimeForPerClass(Integer.parseInt(timeForPerClass));
+		openClassTask.setRemark(remark);
+		
+		openClassTask.set_Total();
+		openClassTask.updateTime();
+		
+		getBaseTaskService().update(openClassTask);
+		
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "update successfully");
+		
+		setResult(JSONObject.fromObject(resultMap).toString());
+		return SUCCESS;
+	}
+	
 	public String feedback(){
 		Map<String, String> resultMap = new HashMap<String, String>();
 		

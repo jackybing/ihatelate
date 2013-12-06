@@ -10,4 +10,8 @@ public class ApplyUniversityTaskDaoImpl extends HibernateDaoSupport implements A
 		getHibernateTemplate().saveOrUpdate(applyUniversityTask);
 		return applyUniversityTask;
 	}
+
+	public ApplyUniversityTask get(int ID) {
+		return getHibernateTemplate().get(ApplyUniversityTask.class, ID);
+	}
 }

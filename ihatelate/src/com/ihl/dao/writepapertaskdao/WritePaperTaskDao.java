@@ -4,4 +4,6 @@ import com.ihl.model.writepapertask.WritePaperTask;
 
 public interface WritePaperTaskDao {
 	public WritePaperTask saveOrUpdate(WritePaperTask writePaperTask);
+
+	public WritePaperTask get(int ID);
 }

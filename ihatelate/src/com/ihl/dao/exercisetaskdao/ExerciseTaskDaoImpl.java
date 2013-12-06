@@ -11,4 +11,8 @@ public class ExerciseTaskDaoImpl extends HibernateDaoSupport implements Exercise
 		return exerciseTask;
 	}
 
+	public ExerciseTask get(int ID) {
+		return getHibernateTemplate().get(ExerciseTask.class, ID);
+	}
+
 }

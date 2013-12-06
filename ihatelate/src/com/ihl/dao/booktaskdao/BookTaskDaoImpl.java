@@ -11,4 +11,8 @@ public class BookTaskDaoImpl extends HibernateDaoSupport implements BookTaskDao{
 		return bookTask;
 	}
 
+	public BookTask get(int ID) {
+		return getHibernateTemplate().get(BookTask.class, ID);
+	}
+
 }

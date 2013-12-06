@@ -265,7 +265,6 @@
 				});
 			}
 			function createApplyUniversityTask(){
-				var id = $("#id").val();
 				var name = $("#name").val();
 				var startTime = $("#startTime").val();
 				var endTime = $("#endTime").val();
@@ -316,6 +315,69 @@
 				
 				jQuery.ajax({
 					url: "applyUniversityTaskAction!create.action",
+					data: json,    
+					type: 'post',
+					cache: false,
+					dataType: 'json',
+					success: function(data){
+						var data = eval("("+data+")");
+						alert(data.info);
+					},
+					error : function(data){
+						alert("fail");
+					}
+				});
+			}
+			function updateApplyUniversityTask(){
+				var id = $("#id").val();
+				var name = $("#name").val();
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+				var totalDay = $("#totalDay").val();
+				var isActive = $("#isActive").val();
+				
+				var universityName = $("#universityName").val();
+				var deadline = $("#deadline").val();
+				var material = $("#material").val();
+				var stage1Time = $("#stage11").val();
+				var stage2Time = $("#stage21").val();
+				var stage3Time = $("#stage31").val();
+				
+				var stages = [];
+				var stage1 = new Object();
+				var stage2 = new Object();
+				var stage3 = new Object();
+				
+				stage1.step = "1";
+				stage1.name = "stage1"; 
+				stage1.time = stage1Time;
+				
+				stage2.step = "2";
+				stage2.name = "stage2"; 
+				stage2.time = stage2Time;
+				
+				stage3.step = "3";
+				stage3.name = "stage3"; 
+				stage3.time = stage3Time;
+				
+				stages.push(stage1);
+				stages.push(stage2);
+				stages.push(stage3);
+				
+				var stagesJson = JSON.stringify(stages);
+				
+				var json = "id=" + id + "&name=" + name +"&startTime=" + startTime 
+					+"&endTime=" + endTime +"&totalDay=" + totalDay 
+					+"&isActive=" + isActive;
+				
+				json = json +"&universityName=" + universityName
+					+"&deadline=" + deadline
+					+"&material=" + material 
+					+"&stages=" + stagesJson
+					+"&taskID=-1";
+				
+				jQuery.ajax({
+					url: "applyUniversityTaskAction!update.action",
 					data: json,    
 					type: 'post',
 					cache: false,
@@ -538,6 +600,7 @@
 			</tr>
 			<tr>
 				<td><input type="submit" value="提交" onclick="createApplyUniversityTask();"></td>
+				<td><input type="submit" value="更新" onclick="updateApplyUniversityTask();"></td>
 			</tr>
 		</table>
 		<hr/>

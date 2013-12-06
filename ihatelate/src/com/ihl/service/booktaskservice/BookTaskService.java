@@ -4,4 +4,5 @@ import com.ihl.model.booktask.BookTask;
 
 public interface BookTaskService {
 	public BookTask saveOrUpdate(BookTask bookTask);
+	public BookTask get(int ID);
 }

@@ -11,4 +11,8 @@ public class WritePaperTaskDaoImpl extends HibernateDaoSupport implements WriteP
 		return writePaperTask;
 	}
 
+	public WritePaperTask get(int ID) {
+		return getHibernateTemplate().get(WritePaperTask.class, ID);
+	}
+
 }

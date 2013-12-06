@@ -14,4 +14,7 @@ public class OpenClassTaskServiceImpl implements OpenClassTaskService{
 	public void setOpenClassTaskDao(OpenClassTaskDao openClassTaskDao) {
 		this.openClassTaskDao = openClassTaskDao;
 	}
+	public OpenClassTask get(int ID) {
+		return openClassTaskDao.get(ID);
+	}
 }

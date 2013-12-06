@@ -17,4 +17,8 @@ public class WritePaperTaskServiceImpl implements WritePaperTaskService{
 	public void setWritePaperTaskDao(WritePaperTaskDao writePaperTaskDao) {
 		this.writePaperTaskDao = writePaperTaskDao;
 	}
+
+	public WritePaperTask get(int ID) {
+		return writePaperTaskDao.get(ID);
+	}
 }

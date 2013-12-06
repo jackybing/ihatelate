@@ -11,4 +11,8 @@ public class OpenClassTaskDaoImpl extends HibernateDaoSupport implements OpenCla
 		return openClassTask;
 	}
 
+	public OpenClassTask get(int ID) {
+		return getHibernateTemplate().get(OpenClassTask.class, ID);
+	}
+
 }

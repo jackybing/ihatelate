@@ -46,6 +46,34 @@ public class BookTaskAction extends BaseTaskAction{
 		return SUCCESS;
 	}
 	
+	public String update() throws ParseException{
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		if("".equals(getId())){
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "task ID is null");
+			return SUCCESS;
+		}
+		
+		BookTask bookTask = bookTaskService.get(Integer.parseInt(getId()));
+		updateBaseTask(bookTask);
+		
+		bookTask.setEfficiency(Integer.parseInt(efficiency));
+		
+		bookTask.set_Total();
+		bookTask.updateTime();
+		
+		getBaseTaskService().update(bookTask);
+		
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "update successfully");
+		
+		setResult(JSONObject.fromObject(resultMap).toString());
+		
+		return SUCCESS;
+	}
+	
 	public String feedback(){
 		Map<String, String> resultMap = new HashMap<String, String>();
 		

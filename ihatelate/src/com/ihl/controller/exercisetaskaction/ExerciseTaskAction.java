@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import net.sf.json.JSONObject;
 
 import com.ihl.controller.basetaskaction.BaseTaskAction;
@@ -40,6 +41,35 @@ public class ExerciseTaskAction extends BaseTaskAction{
 		
 		setResult(JSONObject.fromObject(resultMap).toString());
 		
+		return SUCCESS;
+	}
+	
+	public String update() throws ParseException{
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		if("".equals(getId())){
+			resultMap.put("statusCode", "500");
+			resultMap.put("info", "task ID is null");
+			return SUCCESS;
+		}
+		
+		ExerciseTask exerciseTask = exerciseTaskService.get(Integer.parseInt(getId()));
+		updateBaseTask(exerciseTask);
+		
+		exerciseTask.setExerciseName(exerciseName);
+		exerciseTask.setGroupCount(Integer.parseInt(groupCount));
+		exerciseTask.setTimePerGroup(Integer.parseInt(timePerGroup));
+		exerciseTask.setDayLast(Integer.parseInt(getTotalDay()));
+		
+		exerciseTask.set_Total();
+		exerciseTask.updateTime();
+		
+		getBaseTaskService().update(exerciseTask);
+		
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "update successfully");
+		
+		setResult(JSONObject.fromObject(resultMap).toString());
 		return SUCCESS;
 	}
 	

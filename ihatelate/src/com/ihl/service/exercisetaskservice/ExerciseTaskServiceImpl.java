@@ -17,4 +17,8 @@ public class ExerciseTaskServiceImpl implements ExerciseTaskService{
 	public void setExerciseTaskDao(ExerciseTaskDao exerciseTaskDao) {
 		this.exerciseTaskDao = exerciseTaskDao;
 	}
+
+	public ExerciseTask get(int ID) {
+		return exerciseTaskDao.get(ID);
+	}
 }

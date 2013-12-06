@@ -56,11 +56,29 @@ public class ApplyUniversityTaskAction extends BaseTaskAction{
 	
 	public String update() throws ParseException{
 		Map<String, String> resultMap = new HashMap<String, String>();
-		if(getId().equals("")){
+		
+		if("".equals(getId())){
 			resultMap.put("statusCode", "500");
 			resultMap.put("info", "task ID is null");
 			return SUCCESS;
 		}
+		
+		ApplyUniversityTask applyUniversityTask = applyUniversityTaskService.get(Integer.parseInt(getId()));
+		updateBaseTask(applyUniversityTask);
+		
+		applyUniversityTask.setUniversityName(universityName);
+		applyUniversityTask.setDeadline(deadline);
+		applyUniversityTask.setMaterial(material);
+		
+		applyUniversityTask.set_Total();
+		applyUniversityTask.updateTime();
+		
+		getBaseTaskService().update(applyUniversityTask);
+		
+		resultMap.put("statusCode", "200");
+		resultMap.put("info", "update successfully");
+		
+		setResult(JSONObject.fromObject(resultMap).toString());
 		
 		return SUCCESS;
 	}
