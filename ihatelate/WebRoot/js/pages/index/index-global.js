@@ -155,11 +155,63 @@ var default_papers_template = {
 		});
 	}
 };
+
+var default_university_template = {
+	taskId: -1,
+	stages: '[{"1":"开题"},{"2":"写正文"},{"3":"答辩"}]',
+	check_stages: [],
+	initDefaultStages: function() {
+		var taskId = this.taskId, stages = $.trim(this.stages);
+		stages = stages.substring(1, stages.length - 1).split(",");
+		var stages_html_array = [];
+		var stage_step = 0, total_step_num = stages.length;
+		for(var step_idx = 1; step_idx <= total_step_num; step_idx++) {
+			for(var stages_idx in stages) {
+				var stages_obj = $.parseJSON(stages[stages_idx]);
+				for(stage_step in stages_obj) {
+					if(step_idx == stage_step) {
+						var stage_name = stages_obj[stage_step];
+						this.check_stages.push(stage_name);
+						var stage_html = formOneStageHtml("university", "d", stage_step, stage_name, "");
+						stages_html_array.push(stage_html);
+					}
+					
+				}
+				
+			}
+		}
+			
+		$("#university-stages-d").data("taskId", this.taskId).data("totalStageNum", total_step_num).html(stages_html_array.join(""));
+		IHL_IndexInitObj.template_university_default = true;
+	},
+	obtainDefaultStages: function() {
+		var that = this;
+		$.ajax({
+			url: "stageAction!obtainDefaultStage.action",
+			data: { type: 21 },
+			async: false,
+			success: function(json_data_obj) {
+				var data_obj = $.parseJSON(json_data_obj);
+				if(data_obj.statusCode == "200") {
+					that.taskId = data_obj.taskID;
+					that.stages = data_obj.stages;
+					that.initDefaultStages();
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
+				$("#logout-btn").click();
+			}
+		});
+	}
+};
+
 // 进行初始化的对象
 var IHL_IndexInitObj = {
 	iframes_idle: false,		// idle iframe 初始化完毕设置为true
 	iframes_schedule: false,	// schedule iframe 初始化完毕设置为true
 	template_papers_default: false, // 写论文模板（默认）初始化完毕设置为true
+	template_university_default: false, // 申请大学模板（默认）初始化完毕设置为true
 	startInit: function() {
 		var that = this;
 		IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Initializing ... Please wait ...</h1>", undefined, function() {
@@ -171,6 +223,7 @@ var IHL_IndexInitObj = {
 	},
 	initDefaultStages: function() {
 		default_papers_template.obtainDefaultStages();
+		default_university_template.obtainDefaultStages();
 	},
 	initIframes: function() {
 		$("#itc-iframe").attr("src", "jumpAction!idleTimeCalendar");
@@ -178,7 +231,7 @@ var IHL_IndexInitObj = {
 	},
 	endInit: function(callback_func) {
 		// console.log("iframes_idle: " + this.iframes_idle + "; iframes_schedule: " + this.iframes_schedule + "; template_papers_default: " + this.template_papers_default);
-		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default;
+		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default && this.template_university_default;
 		if(is_validate) {
 			IHL_BlockMsgObj.unblockMsg();
 		}

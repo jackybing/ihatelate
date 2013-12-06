@@ -191,7 +191,7 @@
 				});
 				
 				if(new_total_stage_num == 1) {
-					main_container_element.find(".delete-stage-btn").addClass("disabled").removeAttr("disabled");
+					main_container_element.find(".delete-stage-btn").addClass("disabled").attr("disabled", "disabled");
 				}
 			}
 				

@@ -408,8 +408,8 @@
 								      	  <ul id="non-quantifiable-tab" class="nav nav-tabs">
 								              <li class="active"><a href="#papers-tab-pane-default" data-toggle="tab">Write Papers (Default)</a></li>
 								              <li><a href="#papers-tab-pane-customize" data-toggle="tab">Write Papers (Customize)</a></li>
-								              <li><a href="#college-tab-pane-default" data-toggle="tab">Apply for College (Default)</a></li>
-								              <li><a href="#college-tab-pane-customize" data-toggle="tab">Apply for College (Customize)</a></li>
+								              <li><a href="#university-tab-pane-default" data-toggle="tab">Apply for University (Default)</a></li>
+								              <li><a href="#university-tab-pane-customize" data-toggle="tab">Apply for University (Customize)</a></li>
 								          </ul>
 								          <div id="quantifiable-tab-content" class="tab-content">
 								              <div class="tab-pane fade in active" id="papers-tab-pane-default">
@@ -548,12 +548,36 @@
 										            			Write Papers (Default) - Stages
 										            		</div>
 										            		<div class="span6" style="text-align: right;">
-										            			<button class="btn btn-info">Add a New Stage at the Beginning</button>
+										            			<button data-item="papers" data-type="c" class="btn btn-info add-new-stage-beginning-btn">Add a New Stage at the Beginning</button>
 										            		</div>
 										            	</div>
 										            </div>
-										            <div id="papers-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;">
-										            
+										            <div id="papers-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;" data-total-stage-num="1">
+										            	
+										            	<div id="papers-stage-wrapper-c-1" data-step="1">
+										            		<div class="control-group">
+										            			<label class="control-label" for="papers-sname-c-1">Stage 1 Name:</label>
+										            			<div class="controls">
+										            				<input value="" type="text" id="papers-sname-c-1" placeholder="Stage 1 Name" class="input-width-280px" />
+										            				<span class="help-inline"></span>
+										            			</div>
+										            		</div>
+										            		<div class="control-group">
+										            			<label class="control-label" for="papers-stime-c-1">Stage 1 Time:</label>
+										            			<div class="controls">
+										            				<input value="" type="text" id="papers-stime-c-1" placeholder="Stage 1 Time" class="input-width-280px" />
+										            				<span class="help-inline"></span>
+										            			</div>
+										            		</div>
+										            		<div class="control-group">
+										            			<div class="controls">
+										            				<button data-item="papers" data-type="c" data-wrapper-id="#papers-stage-wrapper-c-1" class="btn btn-danger delete-stage-btn disabled" disabled>Delete this Stage</button>
+										            				<button data-item="papers" data-type="c" data-wrapper-id="#papers-stage-wrapper-c-1" class="btn btn-primary add-new-stage-btn margin-left-5px">Add a New Stage After Me</button>
+										            			</div>
+										            		</div>
+										            		<div style="width: 98%; height: 1px; border-bottom: 1px solid rgb(210, 210, 210); margin: -10px 0 10px 19px;"></div>
+										            	</div>
+										            	
 										            </div>
 
 										            <div class="form-actions">
@@ -563,23 +587,23 @@
 										            
 										        </div>
 								              </div>
-								              <div class="tab-pane fade" id="college-tab-pane-default">
-								              	<div id="college-default-task-form" class="form-horizontal">
+								              <div class="tab-pane fade" id="university-tab-pane-default">
+								              	<div id="university-default-task-form" class="form-horizontal">
 										            <div class="control-group">
-										              <label class="control-label" for="college-task-name-d">Task Name:</label>
+										              <label class="control-label" for="university-task-name-d">Task Name:</label>
 										              <div class="controls">
-										                <input type="text" id="college-task-name-d" placeholder="Task Name" class="input-width-280px">
+										                <input type="text" id="university-task-name-d" placeholder="Task Name" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="college-start-time-d">Date Range:</label>
+										              <label class="control-label" for="university-start-time-d">Date Range:</label>
 										              <div class="controls">
 
 										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
-														    <input type="text" id="college-start-time-d" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <input type="text" id="university-start-time-d" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
 														    <span class="add-on">to</span>
-														    <input type="text" id="college-end-time-d" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														    <input type="text" id="university-end-time-d" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
 														</div>
 
 										                <span class="help-inline"></span>
@@ -587,40 +611,40 @@
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="college-total-day-d">Days to Spend:</label>
+										              <label class="control-label" for="university-total-day-d">Days to Spend:</label>
 										              <div class="controls">
-										                <input type="text" id="college-total-day-d" placeholder="Integer between 0 and date range" class="input-width-280px">
+										                <input type="text" id="university-total-day-d" placeholder="Integer between 0 and date range" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="college-university-name-d">University Name:</label>
+										              <label class="control-label" for="university-name-d">University Name:</label>
 										              <div class="controls">
-										                <input type="text" id="college-university-name-d" placeholder="University Name" class="input-width-280px">
+										                <input type="text" id="university-name-d" placeholder="University Name" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="college-deadline-d">Deadline:</label>
+										              <label class="control-label" for="university-deadline-d">Deadline:</label>
 										              <div class="controls">
-										                <input type="text" id="college-deadline-d" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
+										                <input type="text" id="university-deadline-d" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="college-material-d">Material:</label>
+										              <label class="control-label" for="university-material-d">Material:</label>
 										              <div class="controls">
-										                <input type="text" id="college-material-d" placeholder="Material" class="input-width-280px">
+										                <input type="text" id="university-material-d" placeholder="Material" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 
 										            <div class="control-group">
-										              <label class="control-label" for="college-is-active-d">Active or not:</label>
+										              <label class="control-label" for="university-is-active-d">Active or not:</label>
 										              <div class="controls">
 										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
-														    <input id="college-is-active-d" type="checkbox" checked />
+														    <input id="university-is-active-d" type="checkbox" checked />
 														</div>
 										                <span class="help-inline"></span>
 										              </div>
@@ -632,38 +656,38 @@
 										            			Write Papers (Default) - Stages
 										            		</div>
 										            		<div class="span6" style="text-align: right;">
-										            			<button class="btn btn-info">Add a New Stage at the Beginning</button>
+										            			<button data-item="university" data-type="d" class="btn btn-info add-new-stage-beginning-btn">Add a New Stage at the Beginning</button>
 										            		</div>
 										            	</div>
 										            </div>
-										            <div id="college-stages-d" class="well" style="padding-bottom: 0; padding-left: 0;">
+										            <div id="university-stages-d" class="well" style="padding-bottom: 0; padding-left: 0;">
 										            
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-college-d-task-btn">Add an Apply for College Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-college-d-task-btn" style="width: 78px;">Reset</button>
+													  <button type="button" class="btn btn-primary" id="add-university-d-task-btn">Add an Apply for University Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-university-d-task-btn" style="width: 78px;">Reset</button>
 													</div>
 										            
 										        </div>
 								              </div>
-								              <div class="tab-pane fade" id="college-tab-pane-customize">
-								                <div id="college-customize-task-form" class="form-horizontal">
+								              <div class="tab-pane fade" id="university-tab-pane-customize">
+								                <div id="university-customize-task-form" class="form-horizontal">
 										            <div class="control-group">
-										              <label class="control-label" for="college-task-name-c">Task Name:</label>
+										              <label class="control-label" for="university-task-name-c">Task Name:</label>
 										              <div class="controls">
-										                <input type="text" id="college-task-name-c" placeholder="Task Name" class="input-width-280px">
+										                <input type="text" id="university-task-name-c" placeholder="Task Name" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="college-start-time-c">Date Range:</label>
+										              <label class="control-label" for="university-start-time-c">Date Range:</label>
 										              <div class="controls">
 
 										                <div class="input-daterange start-end-datepicker" style="display: inline-block">
-														    <input type="text" id="college-start-time-c" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
+														    <input type="text" id="university-start-time-c" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px" />
 														    <span class="add-on">to</span>
-														    <input type="text" id="college-end-time-c" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
+														    <input type="text" id="university-end-time-c" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px" />
 														</div>
 
 										                <span class="help-inline"></span>
@@ -671,40 +695,40 @@
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="college-total-day-c">Days to Spend:</label>
+										              <label class="control-label" for="university-total-day-c">Days to Spend:</label>
 										              <div class="controls">
-										                <input type="text" id="college-total-day-c" placeholder="Integer between 0 and date range" class="input-width-280px">
+										                <input type="text" id="university-total-day-c" placeholder="Integer between 0 and date range" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            
 										            <div class="control-group">
-										              <label class="control-label" for="college-university-name-c">University Name:</label>
+										              <label class="control-label" for="university-name-c">University Name:</label>
 										              <div class="controls">
-										                <input type="text" id="college-university-name-c" placeholder="University Name" class="input-width-280px">
+										                <input type="text" id="university-university-name-c" placeholder="University Name" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="college-deadline-c">Deadline:</label>
+										              <label class="control-label" for="university-deadline-c">Deadline:</label>
 										              <div class="controls">
-										                <input type="text" id="college-deadline-c" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
+										                <input type="text" id="university-deadline-c" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 										            <div class="control-group">
-										              <label class="control-label" for="college-material-c">Material:</label>
+										              <label class="control-label" for="university-material-c">Material:</label>
 										              <div class="controls">
-										                <input type="text" id="college-material-c" placeholder="Material" class="input-width-280px">
+										                <input type="text" id="university-material-c" placeholder="Material" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
 
 										            <div class="control-group">
-										              <label class="control-label" for="college-is-active-c">Active or not:</label>
+										              <label class="control-label" for="university-is-active-c">Active or not:</label>
 										              <div class="controls">
 										                <div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
-														    <input id="college-is-active-c" type="checkbox" checked />
+														    <input id="university-is-active-c" type="checkbox" checked />
 														</div>
 										                <span class="help-inline"></span>
 										              </div>
@@ -716,17 +740,41 @@
 										            			Write Papers (Default) - Stages
 										            		</div>
 										            		<div class="span6" style="text-align: right;">
-										            			<button class="btn btn-info">Add a New Stage at the Beginning</button>
+										            			<button data-item="university" data-type="c" class="btn btn-info add-new-stage-beginning-btn">Add a New Stage at the Beginning</button>
 										            		</div>
 										            	</div>
 										            </div>
-										            <div id="college-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;">
-										            
+										            <div id="university-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;" data-total-stage-num="1">
+										            	
+										            	<div id="university-stage-wrapper-c-1" data-step="1">
+										            		<div class="control-group">
+										            			<label class="control-label" for="university-sname-c-1">Stage 1 Name:</label>
+										            			<div class="controls">
+										            				<input value="" type="text" id="university-sname-c-1" placeholder="Stage 1 Name" class="input-width-280px" />
+										            				<span class="help-inline"></span>
+										            			</div>
+										            		</div>
+										            		<div class="control-group">
+										            			<label class="control-label" for="university-stime-c-1">Stage 1 Time:</label>
+										            			<div class="controls">
+										            				<input value="" type="text" id="university-stime-c-1" placeholder="Stage 1 Time" class="input-width-280px" />
+										            				<span class="help-inline"></span>
+										            			</div>
+										            		</div>
+										            		<div class="control-group">
+										            			<div class="controls">
+										            				<button data-item="university" data-type="c" data-wrapper-id="#university-stage-wrapper-c-1" class="btn btn-danger delete-stage-btn disabled" disabled>Delete this Stage</button>
+										            				<button data-item="university" data-type="c" data-wrapper-id="#university-stage-wrapper-c-1" class="btn btn-primary add-new-stage-btn margin-left-5px">Add a New Stage After Me</button>
+										            			</div>
+										            		</div>
+										            		<div style="width: 98%; height: 1px; border-bottom: 1px solid rgb(210, 210, 210); margin: -10px 0 10px 19px;"></div>
+										            	</div>
+										            	
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-college-c-task-btn">Add an Apply for College Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-college-c-task-btn" style="width: 78px;">Reset</button>
+													  <button type="button" class="btn btn-primary" id="add-university-c-task-btn">Add an Apply for University Task</button>
+													  <button type="button" class="btn btn-danger" id="reset-university-c-task-btn" style="width: 78px;">Reset</button>
 													</div>
 										            
 										        </div>
