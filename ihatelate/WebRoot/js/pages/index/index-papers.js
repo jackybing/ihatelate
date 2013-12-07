@@ -21,7 +21,7 @@
 			var task_name = $.trim(task_name_element.val()), start_time = $.trim(start_time_element.val()),
 				end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
 				paper_name = $.trim(paper_name_element.val()),
-				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";;
+				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
 			// 对输入控件的值进行检测，如果不对，显示error tip
 			var is_validate = true;
 			if(task_name == "") {

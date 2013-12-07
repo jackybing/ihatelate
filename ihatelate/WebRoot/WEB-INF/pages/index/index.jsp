@@ -705,7 +705,7 @@
 										            <div class="control-group">
 										              <label class="control-label" for="university-name-c">University Name:</label>
 										              <div class="controls">
-										                <input type="text" id="university-university-name-c" placeholder="University Name" class="input-width-280px">
+										                <input type="text" id="university-name-c" placeholder="University Name" class="input-width-280px">
 										                <span class="help-inline"></span>
 										              </div>
 										            </div>
@@ -744,7 +744,7 @@
 										            		</div>
 										            	</div>
 										            </div>
-										            <div id="university-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;" data-total-stage-num="1">
+										            <div id="university-stages-c" class="well" style="padding-bottom: 0; padding-left: 0;" data-total-stage-num="1" data-task-id="-1">
 										            	
 										            	<div id="university-stage-wrapper-c-1" data-step="1">
 										            		<div class="control-group">

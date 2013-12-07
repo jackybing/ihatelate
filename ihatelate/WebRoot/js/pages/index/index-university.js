@@ -15,13 +15,16 @@
 				start_time_element = $("#" + item + "-start-time-" + type),
 				end_time_element = $("#" + item + "-end-time-" + type),
 				total_day_element = $("#" + item + "-total-day-" + type),
-				paper_name_element = $("#" + item + "-paper-name-" + type),
+				university_name_element = $("#" + item + "-name-" + type),
+				deadline_element = $("#" + item + "-deadline-" + type),
+				material_element = $("#" + item + "-material-" + type),
 				is_active_element = $("#" + item + "-is-active-" + type);
 			// 再获取所有输入控件的值（去掉前后空格）
 			var task_name = $.trim(task_name_element.val()), start_time = $.trim(start_time_element.val()),
 				end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
-				paper_name = $.trim(paper_name_element.val()),
-				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";;
+				university_name = $.trim(university_name_element.val()),
+				deadline = $.trim(deadline_element.val()), material = $.trim(material_element.val()),
+				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
 			// 对输入控件的值进行检测，如果不对，显示error tip
 			var is_validate = true;
 			if(task_name == "") {
@@ -62,8 +65,16 @@
 					is_validate = false;
 				}
 			}
-			if(paper_name == "") {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(paper_name_element, "Please input a paper name");
+			if(university_name == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(university_name_element, "Please input an university name");
+				is_validate = false;
+			}
+			if(deadline == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(deadline_element, "Please input a deadline");
+				is_validate = false;
+			}
+			if(material == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(material_element, "Please input material");
 				is_validate = false;
 			}
 			// 获取stages的container，以获得step的总数
@@ -74,7 +85,7 @@
 			var stages = [];
 			
 			var task_id = stages_container.data("taskId"),
-				orig_check_stages = default_papers_template.check_stages;
+				orig_check_stages = default_university_template.check_stages;
 			
 			for(var i = 1; i <= total_step_num; i++) {
 				var cur_sname_element = $(cur_sname_prefix + i),
@@ -110,7 +121,7 @@
 			if(is_validate) {
 				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Adding task ...<h1>");
 				$.ajax({
-					url: "writePaperTaskAction!create.action",
+					url: "applyUniversityTaskAction!create.action",
 					data: {
 						name: task_name,
 						startTime: start_time,
@@ -118,7 +129,9 @@
 						totalDay: total_day,
 						type: "20",
 						isActive: is_active,
-						paperName: paper_name,
+						universityName: university_name,
+						deadline: deadline,
+						material: material,
 						taskID: stages_container.data("taskId"),
 						stages: JSON.stringify(stages)
 					},
