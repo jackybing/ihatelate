@@ -264,7 +264,8 @@
         });
         // function to reset Reading Book Task forms
         function resetBookTaskForm() {
-        	$("#read-book-task-form input[type=text]").val("").trigger("change");
+        	$("#read-book-task-form input[type=text]").not("[id*=-sname-]").val("").trigger("change");
+        	$("#read-book-task-form input[id*=-sname-]").trigger("change");
         }
 		$(document).on("click", ".btsr-reset-btn", function() {
 			btsrReset();

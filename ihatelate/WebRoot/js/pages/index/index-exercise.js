@@ -2,7 +2,8 @@
 	$(function() {
 		// reset exercise task form function
         function resetExerciseTaskForm() {
-        	$("#exercise-task-form input[type=text]").val("").trigger("change");
+        	$("#exercise-task-form input[type=text]").not("[id*=-sname-]").val("").trigger("change");
+        	$("#exercise-task-form input[id*=-sname-]").trigger("change");
         }
 		$(document).on("click", "#add-exercise-task-btn", function() {
 			var task_name_element = $("#exercise-task-name"), start_time_element = $("#exercise-start-time"),

@@ -1,7 +1,9 @@
 (function($) {
 	$(function() {
         function resetUniversityTaskForm(item, type) {
-        	$("#" + item + "-" + type + "-task-form input[type=text]").val("").trigger("change");
+        	var common_prefix = "#" + item + "-" + type + "-task-form input";
+        	$(common_prefix + "[type=text]").not("[id*=-sname-]").val("").trigger("change");
+        	$(common_prefix + "[id*=-sname-]").trigger("change");
         }
         
 		// 通过事件委托绑定事件

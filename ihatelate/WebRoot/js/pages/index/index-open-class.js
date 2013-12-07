@@ -2,7 +2,8 @@
 	$(function() {
         // reset open class task form function
         function resetOpenClassTaskForm() {
-        	$("#open-class-task-form input[type=text], #open-class-task-form textarea").val("").trigger("change");
+        	$("#open-class-task-form input[type=text], #open-class-task-form textarea").not("[id*=-sname-]").val("").trigger("change");
+        	$("#open-class-task-form input[id*=-sname-]").trigger("change");
         }
 		$(document).on("click", "#add-oc-task-btn", function() {
 			var task_name_element = $("#open-class-task-name"), start_time_element = $("#open-class-start-time"),
