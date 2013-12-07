@@ -588,7 +588,7 @@
 										        </div>
 								              </div>
 								              <div class="tab-pane fade" id="university-tab-pane-default">
-								              	<div id="university-default-task-form" class="form-horizontal">
+								              	<div id="university-d-task-form" class="form-horizontal">
 										            <div class="control-group">
 										              <label class="control-label" for="university-task-name-d">Task Name:</label>
 										              <div class="controls">
@@ -665,14 +665,14 @@
 										            </div>
 
 										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-university-d-task-btn">Add an Apply for University Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-university-d-task-btn" style="width: 78px;">Reset</button>
+										            	<button type="button" class="btn btn-primary add-non-quant-u-task-btn" data-item="university" data-type="d">Add an Apply for University Task</button>
+													  	<button type="button" class="btn btn-danger reset-non-quant-u-task-btn" data-item="university" data-type="d">Reset</button>
 													</div>
 										            
 										        </div>
 								              </div>
 								              <div class="tab-pane fade" id="university-tab-pane-customize">
-								                <div id="university-customize-task-form" class="form-horizontal">
+								                <div id="university-c-task-form" class="form-horizontal">
 										            <div class="control-group">
 										              <label class="control-label" for="university-task-name-c">Task Name:</label>
 										              <div class="controls">
@@ -772,9 +772,9 @@
 										            	
 										            </div>
 
-										            <div class="form-actions">
-													  <button type="button" class="btn btn-primary" id="add-university-c-task-btn">Add an Apply for University Task</button>
-													  <button type="button" class="btn btn-danger" id="reset-university-c-task-btn" style="width: 78px;">Reset</button>
+													<div class="form-actions">
+										            	<button type="button" class="btn btn-primary add-non-quant-u-task-btn" data-item="university" data-type="c">Add an Apply for University Task</button>
+													  	<button type="button" class="btn btn-danger reset-non-quant-u-task-btn" data-item="university" data-type="c">Reset</button>
 													</div>
 										            
 										        </div>
@@ -830,5 +830,6 @@
 	<script type="text/javascript" src="js/pages/index/index-papers.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-open-class.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-exercise.js"></script>
+	<script type="text/javascript" src="js/pages/index/index-university.js"></script>
   </body>
 </html>
