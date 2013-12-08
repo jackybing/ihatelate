@@ -6704,7 +6704,7 @@ select:focus:required:invalid:focus {
 }
 .btn {
   position: relative;
-  padding: 4px 12px;
+  padding: 3px 12px;
   margin: 0;
   color: #333;
   text-shadow: 0 1px 0 #fff;
@@ -6733,6 +6733,8 @@ select:focus:required:invalid:focus {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+/* css hack for webkit browsers by Payne Pandaroid Wang */
+@media screen and (-webkit-min-device-pixel-ratio:0){ .btn { padding: 4px 12px; } }
 .btn:hover {
   text-shadow: none;
   border-color: #c6c6c6;

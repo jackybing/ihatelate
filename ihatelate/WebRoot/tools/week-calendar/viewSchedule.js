@@ -236,10 +236,13 @@ $(document).ready(function() {
 				success: function(json_data){
 					var data = JSON.parse(json_data);
 					data = JSON.parse(data);
+					console.log("Original Data: ");
 					console.log(data);
 					if(data.statusCode == "200") {
 						var schedule_array_str = data.scheduel;
 						var schedule_array = JSON.parse(schedule_array_str);
+						console.log("schedule_array: ");
+						console.log(schedule_array);
 						for(var sIndex in schedule_array) {
 							var schedule = schedule_array[sIndex];
 							for(var s_tag in schedule) {
@@ -249,14 +252,14 @@ $(document).ready(function() {
 								var task_array = schedule[s_tag];
 								
 								for(var task_index in task_array) {
-									console.log(cur_task);
+									// console.log(cur_task);
 									var cur_task = task_array[task_index];
 									if(cur_task) {
 										if(cur_task.taskID && cur_task.scheduleInfo && cur_task.time) {
 											var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
 												title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
 												end_page = cur_task_schedule_info.endPage, time_array = cur_task.time;
-											console.log(cur_task_schedule_info);
+											// console.log(cur_task_schedule_info);
 											for(var time_idx in time_array) {
 												var time_obj = time_array[time_idx], start_time = time_obj.startTime,
 													end_time = time_obj.endTime;
