@@ -129,7 +129,7 @@
 						startTime: start_time,
 						endTime: end_time,
 						totalDay: total_day,
-						type: "20",
+						type: "21",
 						isActive: is_active,
 						universityName: university_name,
 						deadline: deadline,

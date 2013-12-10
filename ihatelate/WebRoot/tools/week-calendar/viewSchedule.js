@@ -216,10 +216,79 @@ $(document).ready(function() {
       $dialogContent.find("textarea").val("");
    }
 
+    function genEveObjByType(cur_task_id, cur_task_type, cur_task_schedule_info) {
+		var ret_event_obj;
+		
+		if(cur_task_type == "10") {
+			var title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
+				end_page = cur_task_schedule_info.endPage;
+		  	ret_event_obj = {
+                "title": title,
+                "start_page": start_page,
+                "end_page": end_page,
+                "body_desc": ("Task #" + cur_task_id + ": <br />《" + title + "》<br />P" + start_page + " - P" + end_page)
+            };
+		} else if(cur_task_type == "11") {
+			var class_name = cur_task_schedule_info.className, start_class = cur_task_schedule_info.startClass,
+				end_class = cur_task_schedule_info.endClass, start_class_time = cur_task_schedule_info.startTime,
+				end_class_time = cur_task_schedule_info.endTime;
+		  	ret_event_obj = {
+		  		"title": class_name,
+                "class_name": class_name,
+                "start_class": start_class,
+                "end_class": end_class,
+                "start_class_time": start_class_time,
+                "end_class_time": end_class_time,
+                "body_desc": ("Task #" + cur_task_id + ": <br />" + class_name + "<br />Class " + start_class + ", " + start_class_time + " min<br /> to <br />Class " + end_class + ", " + end_class_time + "min")
+            };
+		} else if(cur_task_type == "12") {
+		  	var exercise_name = cur_task_schedule_info.exerciseName, group = cur_task_schedule_info.group;
+		  	ret_event_obj = {
+		  		"title": exercise_name,
+                "exercise_name": exercise_name,
+                "group": group,
+                "body_desc": ("Task #" + cur_task_id + ": <br />" + exercise_name + "<br />" + group + " groups")
+            };
+		} else if(cur_task_type == "20") {
+			var paper_name = cur_task_schedule_info.paperName, start_stage = cur_task_schedule_info.startStage,
+				end_stage = cur_task_schedule_info.endStage, start_step = cur_task_schedule_info.startStep,
+				end_step = cur_task_schedule_info.endStep, start_paper_time = cur_task_schedule_info.startTime,
+				end_paper_time = cur_task_schedule_info.endTime;
+		  	ret_event_obj = {
+		  		"title": paper_name,
+                "paper_name": paper_name,
+                "start_stage": start_stage,
+                "end_stage": end_stage,
+                "start_step": start_step,
+                "end_step": end_step,
+                "start_paper_time": start_paper_time,
+                "end_paper_time": end_paper_time,
+                "body_desc": ("Task #" + cur_task_id + ": <br />" + paper_name + "<br />Stage " + start_stage + " Step " + start_step + " Time " + start_paper_time + "<br />To<br />" + "Stage " + end_stage + " Step " + end_step + " Time " + end_paper_time)
+            };
+		} else if(cur_task_type == "21") {
+			var university_name = cur_task_schedule_info.universityName, start_stage = cur_task_schedule_info.startStage,
+				end_stage = cur_task_schedule_info.endStage, start_step = cur_task_schedule_info.startStep,
+				end_step = cur_task_schedule_info.endStep, start_university_time = cur_task_schedule_info.startTime,
+				end_university_time = cur_task_schedule_info.endTime;
+		  	ret_event_obj = {
+		  		"title": university_name,
+                "university_name": university_name,
+                "start_stage": start_stage,
+                "end_stage": end_stage,
+                "start_step": start_step,
+                "end_step": end_step,
+                "start_university_time": start_university_time,
+                "end_university_time": end_university_time,
+                "body_desc": ("Task #" + cur_task_id + ": <br />" + university_name + "<br />Stage " + start_stage + " Step " + start_step + " Time " + start_university_time + "<br />To<br />" + "Stage " + end_stage + " Step " + end_step + " Time " + end_university_time)
+            };
+		}
+		
+		return ret_event_obj;
+	}
+   
     function getEventData() {
     	var ihl_vs_is_not_first = window.parent.IHL_IndexInitObj.iframes_schedule;
     	if(ihl_vs_is_not_first) {
-    		// console.log("pull data - view schedule");
     		var year = new Date().getFullYear();
 	      	var month = new Date().getMonth();
 	      	var day = new Date().getDate();
@@ -236,13 +305,9 @@ $(document).ready(function() {
 				success: function(json_data){
 					var data = JSON.parse(json_data);
 					data = JSON.parse(data);
-					console.log("Original Data: ");
-					console.log(data);
 					if(data.statusCode == "200") {
 						var schedule_array_str = data.scheduel;
 						var schedule_array = JSON.parse(schedule_array_str);
-						console.log("schedule_array: ");
-						console.log(schedule_array);
 						for(var sIndex in schedule_array) {
 							var schedule = schedule_array[sIndex];
 							for(var s_tag in schedule) {
@@ -252,37 +317,35 @@ $(document).ready(function() {
 								var task_array = schedule[s_tag];
 								
 								for(var task_index in task_array) {
-									// console.log(cur_task);
 									var cur_task = task_array[task_index];
 									if(cur_task) {
-										if(cur_task.taskID && cur_task.scheduleInfo && cur_task.time) {
-											var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
-												title = cur_task_schedule_info.title, start_page = cur_task_schedule_info.startPage,
-												end_page = cur_task_schedule_info.endPage, time_array = cur_task.time;
-											// console.log(cur_task_schedule_info);
-											for(var time_idx in time_array) {
-												var time_obj = time_array[time_idx], start_time = time_obj.startTime,
+										var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
+											cur_task_time_array = cur_task.time, cur_task_type = cur_task.type;
+										if(cur_task_id && cur_task_schedule_info && cur_task_time_array && cur_task_type) {
+											for(var time_idx in cur_task_time_array) {
+												var time_obj = cur_task_time_array[time_idx], start_time = time_obj.startTime,
 													end_time = time_obj.endTime;
+												var eventObj = genEveObjByType(cur_task_id, cur_task_type, cur_task_schedule_info);
+												eventObj.id = cur_task_id;
+												eventObj.type = cur_task_type;
+												eventObj.start = new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5));
+												eventObj.end = new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5));
+												eventObj.start_time = start_time;
+												eventObj.end_time = end_time;
+												eventObj.readOnly = true;
 												
-												var eventObj = {
+												/*eventObj = eventObj || {
 									               "id": cur_task_id,
+									               "type": cur_task_type,
 									               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
 									               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
-									               //"title":"空闲时间"
-									               "title": title,
-									               "body_desc": ("Task #" + cur_task_id + ": <br />" + title + "<br />P" + start_page + " - P" + end_page),
 									               "start_time": start_time,
 									               "end_time": end_time,
-									               "start_page": start_page,
-									               "end_page": end_page,
 									               readOnly : true
-									            }
+									            };*/
 												eventArray.push(eventObj);
 												
 											}
-										} else if(cur_task.paperName && cur_task.startStage && cur_task.endStage && cur_task.startStep && cur_task.endStep
-												 && cur_task.startTime && cur_task.endTime) {
-											
 										}
 											
 									}
@@ -295,52 +358,8 @@ $(document).ready(function() {
 				}
 		  	});
 	      	// End  : 201311212024 ajax读取空闲时间数据
-	      	
-	      	return {
-	         	events : eventArray
-	         	/*[
-	            	{
-	               		"id":1,
-	               		"start": new Date(year, month, day, 12),
-	               		"end": new Date(year, month, day, 13, 30),
-	               		"title":"跟李彦宏吃午饭"
-	            	},
-	            	{
-	               		"id":2,
-	               		"start": new Date(year, month, day, 14),
-	               		"end": new Date(year, month, day, 14, 45),
-	               		"title":"百度WDM研发会议"
-	            	},
-	            	{
-	               		"id":3,
-	               		"start": new Date(year, month, day + 1, 17),
-	               		"end": new Date(year, month, day + 1, 17, 45),
-	               		"title":"去南门威申国际剪头发"
-	            	},
-	            	{
-	               		"id":4,
-	               		"start": new Date(year, month, day + 1, 8),
-	               		"end": new Date(year, month, day + 1, 9, 30),
-	               		"title":"page、mark和plat组团队建设活动"
-	            	},
-	            	{
-	               		"id":5,
-	               		"start": new Date(year, month, day + 1, 14),
-	               		"end": new Date(year, month, day + 1, 15),
-	               		"title":"WD产品展示会"
-	            	},
-	            	{
-	               		"id":6,
-	               		"start": new Date(year, month, day, 10),
-	               		"end": new Date(year, month, day, 11),
-	               		"title":"如果我是只读的，说明朱建兵很帅",
-	               		readOnly : true
-	            	}
-	
-	         	]*/
-	      	};
+	      	return { events : eventArray };
     	} else {
-    		// console.log("empty data - view schedule");
     		return {events: []};
     	}
 	        
