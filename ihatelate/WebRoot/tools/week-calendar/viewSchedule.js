@@ -226,7 +226,7 @@ $(document).ready(function() {
                 "title": title,
                 "start_page": start_page,
                 "end_page": end_page,
-                "body_desc": ("Task #" + cur_task_id + ": <br />《" + title + "》<br />P" + start_page + " - P" + end_page)
+                "body_desc": ("Task #" + cur_task_id + ": <br />Reading Book<br />《" + title + "》<br />P" + start_page + " - P" + end_page)
             };
 		} else if(cur_task_type == "11") {
 			var class_name = cur_task_schedule_info.className, start_class = cur_task_schedule_info.startClass,
@@ -239,7 +239,7 @@ $(document).ready(function() {
                 "end_class": end_class,
                 "start_class_time": start_class_time,
                 "end_class_time": end_class_time,
-                "body_desc": ("Task #" + cur_task_id + ": <br />" + class_name + "<br />Class " + start_class + ", " + start_class_time + " min<br /> to <br />Class " + end_class + ", " + end_class_time + "min")
+                "body_desc": ("Task #" + cur_task_id + ": <br />Open Class<br />" + class_name + "<br />Class " + start_class + ", " + start_class_time + " min<br /> to <br />Class " + end_class + ", " + end_class_time + "min")
             };
 		} else if(cur_task_type == "12") {
 		  	var exercise_name = cur_task_schedule_info.exerciseName, group = cur_task_schedule_info.group;
@@ -247,7 +247,7 @@ $(document).ready(function() {
 		  		"title": exercise_name,
                 "exercise_name": exercise_name,
                 "group": group,
-                "body_desc": ("Task #" + cur_task_id + ": <br />" + exercise_name + "<br />" + group + " groups")
+                "body_desc": ("Task #" + cur_task_id + ": <br />Taking Exercise<br />" + exercise_name + "<br />" + group + " groups")
             };
 		} else if(cur_task_type == "20") {
 			var paper_name = cur_task_schedule_info.paperName, start_stage = cur_task_schedule_info.startStage,
@@ -263,7 +263,7 @@ $(document).ready(function() {
                 "end_step": end_step,
                 "start_paper_time": start_paper_time,
                 "end_paper_time": end_paper_time,
-                "body_desc": ("Task #" + cur_task_id + ": <br />" + paper_name + "<br />Stage " + start_stage + " Step " + start_step + " Time " + start_paper_time + "<br />To<br />" + "Stage " + end_stage + " Step " + end_step + " Time " + end_paper_time)
+                "body_desc": ("Task #" + cur_task_id + ": <br />Write Paper<br />《" + paper_name + "》<br />Stage " + start_stage + " Step " + start_step + " Time " + start_paper_time + "<br />To<br />" + "Stage " + end_stage + " Step " + end_step + " Time " + end_paper_time)
             };
 		} else if(cur_task_type == "21") {
 			var university_name = cur_task_schedule_info.universityName, start_stage = cur_task_schedule_info.startStage,
@@ -279,7 +279,7 @@ $(document).ready(function() {
                 "end_step": end_step,
                 "start_university_time": start_university_time,
                 "end_university_time": end_university_time,
-                "body_desc": ("Task #" + cur_task_id + ": <br />" + university_name + "<br />Stage " + start_stage + " Step " + start_step + " Time " + start_university_time + "<br />To<br />" + "Stage " + end_stage + " Step " + end_step + " Time " + end_university_time)
+                "body_desc": ("Task #" + cur_task_id + ": <br />Apply for University<br />" + university_name + "<br />Stage " + start_stage + " Step " + start_step + " Time " + start_university_time + "<br />To<br />" + "Stage " + end_stage + " Step " + end_step + " Time " + end_university_time)
             };
 		}
 		
