@@ -26,7 +26,7 @@
 		.ui-dialog .ui-dialog-title { margin: 0; padding: 0; }
 		.ui-dialog .ui-dialog-buttonpane { margin: 0 }
 		.ui-dialog .ui-dialog-titlebar-close span { margin-top: 9px; }
-		.table td.detail-info-table-td-1 { text-align: right; width: 90px; }
+		.table td.detail-info-table-td-1 { text-align: right; width: 130px; font-weight: bold; }
 	</style>
   </head>
   
@@ -61,7 +61,7 @@
   	</div>
   	<!-- Start: 201311241702 点击后展示任务信息的dialog -->
 	<div id="detail-info-dialog" title="View Task Infomation" style="display: none;">
-		<table class="table table-striped table-hover table-condensed">
+		<table id="detail-info-table" class="table table-striped table-hover table-condensed">
 			<thead></thead>
 			<tbody>
 				<tr>

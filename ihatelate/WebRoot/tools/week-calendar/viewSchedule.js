@@ -1,13 +1,14 @@
 $(document).ready(function() {
 	// Start: 201311241721 init dialog
-	var dialog_top = 0;
-	var refresh_callback_func = undefined;
+	var dialog_top = 0, dialog_width = $(window).width() * 0.85;
+	var refresh_callback_func;
 	var $dialogDetailInfo = $("#detail-info-dialog");
 	$dialogDetailInfo.dialog({
       	draggable: true,
     	resizable: false,
     	autoOpen: false,
         modal: true,
+        width: dialog_width,
         open: function( event, ui ) {
         	$("#ui-dialog-title-detail-info-dialog").parents(".ui-dialog.ui-widget.ui-widget-content.ui-corner-all").css("top", dialog_top);
         	 	
@@ -22,6 +23,46 @@ $(document).ready(function() {
         }
     });
 	// End  : 201311241721 init dialog
+	
+	// Start: 201312110844 生成对话框detail table的tbody
+	function genDiTbBody(calEvent) {
+		var html_array = [], cur_task_type = calEvent.type;
+		if(cur_task_type == "10") {
+			html_array.push("<tr><td class='detail-info-table-td-1'>Book Title:</td><td colspan='3'>", calEvent.title, 
+				"</td></tr>", "<tr><td class='detail-info-table-td-1'>Start Page:</td><td>", calEvent.start_page, 
+				"</td><td class='detail-info-table-td-1'>End Page:</td><td>", calEvent.end_page, "</td></tr>");
+		} else if(cur_task_type == "11") {
+			html_array.push("<tr><td class='detail-info-table-td-1'>Class Name:</td><td colspan='3'>", calEvent.class_name,
+				"</td></tr>", "<tr><td class='detail-info-table-td-1'>Start Class:</td><td>", calEvent.start_class,
+				"</td><td class='detail-info-table-td-1'>End Class:</td><td>", calEvent.end_class, "</td></tr>",
+				"<tr><td class='detail-info-table-td-1'>Start Time:</td><td>", calEvent.start_class_time,
+				"</td><td class='detail-info-table-td-1'>End Time:</td><td>", calEvent.end_class_time, "</td></tr>");
+		} else if(cur_task_type == "12") {
+			html_array.push("<tr><td class='detail-info-table-td-1'>Exercise Name:</td><td>", calEvent.exercise_name,
+				"</td><td class='detail-info-table-td-1'>Group:</td><td>", calEvent.group, "</td></tr>");
+		} else if(cur_task_type == "20") {
+			html_array.push("<tr><td class='detail-info-table-td-1'>Paper Name:</td><td colspan='3'>", calEvent.paper_name,
+				"</td></tr>", "<tr><td class='detail-info-table-td-1'>Start Stage:</td><td>", calEvent.start_stage,
+				"</td><td class='detail-info-table-td-1'>End Stage:</td><td>", calEvent.end_stage, "</td></tr>",
+				"<tr><td class='detail-info-table-td-1'>Start Step:</td><td>", calEvent.start_step,
+				"</td><td class='detail-info-table-td-1'>End Step:</td><td>", calEvent.end_step, "</td></tr>",
+				"<tr><td class='detail-info-table-td-1'>Start Time:</td><td>", calEvent.start_paper_time,
+				"</td><td class='detail-info-table-td-1'>End Time:</td><td>", calEvent.end_paper_time, "</td></tr>");
+		} else if(cur_task_type == "21") {
+			html_array.push("<tr><td class='detail-info-table-td-1'>University Name:</td><td colspan='3'>", calEvent.university_name,
+				"</td></tr>", "<tr><td class='detail-info-table-td-1'>Start Stage:</td><td>", calEvent.start_stage,
+				"</td><td class='detail-info-table-td-1'>End Stage:</td><td>", calEvent.end_stage, "</td></tr>",
+				"<tr><td class='detail-info-table-td-1'>Start Step:</td><td>", calEvent.start_step,
+				"</td><td class='detail-info-table-td-1'>End Step:</td><td>", calEvent.end_step, "</td></tr>",
+				"<tr><td class='detail-info-table-td-1'>Start Time:</td><td>", calEvent.start_university_time,
+				"</td><td class='detail-info-table-td-1'>End Time:</td><td>", calEvent.end_university_time, "</td></tr>");
+		}
+		html_array.push("<tr><td class='detail-info-table-td-1'>Time Period:</td><td colspan='3'>From ",
+				calEvent.start_time, " to ", calEvent.end_time, "</td></tr>");
+		return html_array.join("");
+	}
+	// End  : 201312110844 生成对话框detail table的tbody
+	
    var $calendar = $('#calendar');
    var id = 10;
    var my_date = new Date();
@@ -113,12 +154,14 @@ $(document).ready(function() {
         	  dialog_top = 1514;
           }
     	  
-    	  $("#did-task-id").text(calEvent.id);
+    	  /*$("#did-task-id").text(calEvent.id);
     	  $("#did-title").text(calEvent.title);
     	  $("#did-start-time").text(calEvent.start_time);
     	  $("#did-end-time").text(calEvent.end_time);
     	  $("#did-start-page").text(calEvent.start_page);
-    	  $("#did-end-page").text(calEvent.end_page);
+    	  $("#did-end-page").text(calEvent.end_page);*/
+          
+          $dialogDetailInfo.find("#detail-info-table tbody").html(genDiTbBody(calEvent));
     	  $dialogDetailInfo.dialog("open");
     	  
     	  window.setTimeout(function() {
