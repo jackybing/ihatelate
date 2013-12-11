@@ -61,8 +61,10 @@
   	</div>
   	<!-- Start: 201311241702 点击后展示任务信息的dialog -->
 	<div id="detail-info-dialog" title="View Task Infomation" style="display: none;">
-		<table id="detail-info-table" class="table table-striped table-hover table-condensed table-bordered">
-			<thead></thead>
+		<table id="detail-info-table" class="table table-striped table-hover table-condensed">
+			<thead>
+			
+			</thead>
 			<tbody>
 				
 			</tbody>
