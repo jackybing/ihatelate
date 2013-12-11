@@ -831,5 +831,9 @@
 	<script type="text/javascript" src="js/pages/index/index-open-class.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-exercise.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-university.js"></script>
+	<!-- 刚进入时的遮罩层 页面初始化完毕后去掉 -->
+	<div class="blockUI" style="display:none"></div>
+	<div style="z-index: 1030; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay"></div>
+	<div style="z-index: 1041; position: fixed; padding: 15px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: rgb(255, 255, 255); border: medium none; background-color: rgb(0, 0, 0); cursor: wait; border-radius: 10px; opacity: 0.5;" class="blockUI blockMsg blockPage"><h1 style="font-size: 24px; line-height: 29px;">Initializing ... Please wait ...</h1></div>
   </body>
 </html>

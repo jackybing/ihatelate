@@ -61,57 +61,10 @@
   	</div>
   	<!-- Start: 201311241702 点击后展示任务信息的dialog -->
 	<div id="detail-info-dialog" title="View Task Infomation" style="display: none;">
-		<table id="detail-info-table" class="table table-striped table-hover table-condensed">
+		<table id="detail-info-table" class="table table-striped table-hover table-condensed table-bordered">
 			<thead></thead>
 			<tbody>
-				<tr>
-					<td class="detail-info-table-td-1">
-						Task ID:
-					</td>
-					<td>
-						<span id="did-task-id"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class="detail-info-table-td-1">
-						Title:
-					</td>
-					<td>
-						<span id="did-title"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class="detail-info-table-td-1">
-						Start Time:
-					</td>
-					<td>
-						<span id="did-start-time"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class="detail-info-table-td-1">
-						End Time:
-					</td>
-					<td>
-						<span id="did-end-time"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class="detail-info-table-td-1">
-						Start Page:
-					</td>
-					<td>
-						<span id="did-start-page"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class="detail-info-table-td-1">
-						End Page:
-					</td>
-					<td>
-						<span id="did-end-page"></span>
-					</td>
-				</tr>
+				
 			</tbody>
 		</table>
 	</div>
