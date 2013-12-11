@@ -58,7 +58,7 @@ var IHL_BlockMsgObj = {
 		if(callback && typeof(callback) == "function") {
 			blockUIoptions.onBlock = callback;
 		}
-        if(element) {
+		if(element) {
             element.block(blockUIoptions);
         } else {
             $.blockUI(blockUIoptions);
@@ -226,13 +226,9 @@ var IHL_IndexInitObj = {
 	template_papers_default: false, // 写论文模板（默认）初始化完毕设置为true
 	template_university_default: false, // 申请大学模板（默认）初始化完毕设置为true
 	startInit: function() {
-		var that = this;
-		IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Initializing ... Please wait ...</h1>", undefined, function() {
-			that.initIframes();
-			that.initDefaultStages();
-			that.endInit();
-		});
-		
+		this.initIframes();
+		this.initDefaultStages();
+		this.endInit();
 	},
 	initDefaultStages: function() {
 		default_papers_template.obtainDefaultStages();
