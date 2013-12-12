@@ -48,8 +48,8 @@
   						</div>
   						<div class="span10">
   							<div class="row-fluid tile-first-row">
-  								<div class="span8 tile-word" style="white-space:nowrap; overflow: hidden; line-height: 44px;">
-		  							Payne Pandaroid Wang
+  								<div id="username-div" class="span8 tile-word" style="white-space:nowrap; overflow: hidden; line-height: 44px;">
+		  							Retrieving Username ...
 		  						</div>
 		  						<div class="span4 tile-icon" style="color: rgb(143, 143, 143); text-align: right;">
 		  							<button id="lang-change-btn" class="button button-rounded button-flat" style="font-size: 20px; padding: 0 10px;" data-toggle="tooltip" title="Change language">

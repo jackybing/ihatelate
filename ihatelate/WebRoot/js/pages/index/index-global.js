@@ -226,9 +226,25 @@ var IHL_IndexInitObj = {
 	template_papers_default: false, // 写论文模板（默认）初始化完毕设置为true
 	template_university_default: false, // 申请大学模板（默认）初始化完毕设置为true
 	startInit: function() {
-		this.initIframes();
+		this.initUsernameDiv();
 		this.initDefaultStages();
+		this.initIframes();
 		this.endInit();
+	},
+	initUsernameDiv: function() {
+		$.ajax({
+			url:"userAction!obtainUserInfo.action",
+			success: function(data) {
+				data = $.parseJSON(data);
+				if(data.statusCode == "200") {
+					var user = data.user;
+					$("#username-div").text(user.userName);
+				} else {
+					$("#username-div").text("Obtain username failed");
+				}
+			}
+		});
+		
 	},
 	initDefaultStages: function() {
 		default_papers_template.obtainDefaultStages();
