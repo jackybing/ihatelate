@@ -227,9 +227,32 @@ var IHL_IndexInitObj = {
 	template_university_default: false, // 申请大学模板（默认）初始化完毕设置为true
 	startInit: function() {
 		this.initUsernameDiv();
+		this.initTimeline();
 		this.initDefaultStages();
 		this.initIframes();
 		this.endInit();
+	},
+	initTimeline: function() {
+		console.log("Now let us init the timeline ...");
+		$.ajax({
+			url: "scheduleAction!scheduleToday.action",
+			success: function(data) {
+				data = $.parseJSON(data);
+				console.log("data:");
+				console.log(data);
+				if(data.statusCode == "200") {
+					var schedule = data.scheduel;
+					console.log("schedule:");
+					console.log(schedule);
+					schedule_array = $.parseJSON(schedule);
+					console.log("schedule_array:");
+					console.log(schedule_array);
+					
+				} else {
+					alert("Failed to obtain your schedule!");
+				}
+			}
+		});
 	},
 	initUsernameDiv: function() {
 		$.ajax({
