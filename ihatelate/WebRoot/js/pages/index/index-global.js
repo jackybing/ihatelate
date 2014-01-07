@@ -353,7 +353,7 @@ var IHL_IndexInitObj = {
 						}
 						
 					}
-					$("#index-tl-ul").html(timeline_ul_array.join(""));
+					$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
 					
 					
 				} else {
