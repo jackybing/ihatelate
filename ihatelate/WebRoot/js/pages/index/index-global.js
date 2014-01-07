@@ -330,8 +330,6 @@ var IHL_IndexInitObj = {
 		this.endInit();
 	},
 	initTimeline: function() {
-		$("#index-timeline-container ul").slideUp("slow");
-		// console.log("Now let us init the timeline ...");
 		var tl_date = new Date(), tl_today_index = tl_date.getDay(), tl_today_index = tl_today_index == 0 ? 7 : tl_today_index;
 		var today_full_tag = IHL_Compute.computeFullDayTag(tl_today_index);
 		$("#index-tl-weekday").text(today_full_tag);
@@ -339,27 +337,15 @@ var IHL_IndexInitObj = {
 			url: "scheduleAction!scheduleToday.action",
 			success: function(data) {
 				data = $.parseJSON(data);
-				// console.log("data:");
-				// console.log(data);
 				if(data.statusCode == "200") {
 					var schedule = data.scheduel;
-					console.log("schedule:");
-					console.log(schedule);
 					schedule_array = $.parseJSON(schedule);
-					console.log("schedule_array:");
-					console.log(schedule_array);
 					var today_schedule = schedule_array[0];
-					console.log("today_schedule:");
-					console.log(today_schedule);
 					var timeline_ul_array = [];
 					for(var today_index in today_schedule) {
-						console.log("today_index: " + today_index);
 						var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
 							today_timeline_array = today_schedule[today_index];
 						$("#index-tl-weekday").text(today_full_tag);
-						console.log("today_full_tag: " + today_full_tag);
-						console.log("today_timeline_array: ");
-						console.log(today_timeline_array);
 						
 						for(var tl_index in today_timeline_array) {
 							var cur_timeline = today_timeline_array[tl_index];
@@ -400,7 +386,6 @@ var IHL_IndexInitObj = {
 		$("#vs-iframe").attr("src", "jumpAction!viewSchedule");
 	},
 	endInit: function(callback_func) {
-		// console.log("iframes_idle: " + this.iframes_idle + "; iframes_schedule: " + this.iframes_schedule + "; template_papers_default: " + this.template_papers_default);
 		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default && this.template_university_default;
 		if(is_validate) {
 			IHL_BlockMsgObj.unblockMsg(function() {

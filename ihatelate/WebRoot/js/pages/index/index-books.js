@@ -7,9 +7,6 @@
 		
 		$(document).on("click", "#index-page-btn", function() {	// when #index-page-btn clicked
 			IHL_IndexInitObj.initTimeline();
-			window.setTimeout(function() {
-				$("#index-timeline-container ul").slideDown("slow");
-			}, 100);
 		}).on("click", ".top-right-btns", function() {
 			/*window.location.replace("jumpAction!index");*/
 			var this_btn = $(this);
