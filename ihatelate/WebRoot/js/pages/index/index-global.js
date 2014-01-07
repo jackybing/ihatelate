@@ -219,6 +219,103 @@ var default_university_template = {
 	}
 };
 
+// 进行计算的对象
+var IHL_Compute = {
+	computeFullDayTag: function(day_index) {
+		var ret_full_day_tag = "Monday";
+		if(day_index == 1) {
+			ret_full_day_tag = "Monday";
+	   	} else if(day_index == 2) {
+			ret_full_day_tag = "Tuesday";
+	   	} else if(day_index == 3) {
+		   	ret_full_day_tag = "Wednesday";
+	   	} else if(day_index == 4) {
+		   	ret_full_day_tag = "Thursday";
+	   	} else if(day_index == 5) {
+		   	ret_full_day_tag = "Friday";
+	   	} else if(day_index == 6) {
+		   	ret_full_day_tag = "Saturday";
+	   	} else if(day_index == 7) {
+		   	ret_full_day_tag = "Sunday";
+	   	}
+	   	return ret_full_day_tag;
+	},
+	genTimelineLi: function(cur_timeline) {
+		var cur_task_id = cur_timeline.taskID, cur_task_type = cur_timeline.type, ret_html = "", 
+			cur_tl_info = cur_timeline.scheduleInfo, cur_tl_time_array = cur_timeline.time,
+			cur_tl_time = cur_tl_time_array[0], start_time = cur_tl_time.startTime, 
+			end_time = cur_tl_time.endTime;
+		if(start_time == end_time) {
+			cur_tl_time = cur_tl_time_array[cur_tl_time_array.length - 1];
+			start_time = cur_tl_time.startTime, end_time = cur_tl_time.endTime;
+		}
+			
+		if(cur_task_type == "10") {
+			var title = cur_tl_info.title, start_page = cur_tl_info.startPage,
+				end_page = cur_tl_info.endPage;
+			ret_html = "<li>" +
+				         	"<h3>" + start_time + "<span>to " + end_time + "</span></h3>" +
+				          	"<dl>" +
+				            	"<dt>Reading 《" + title + "》" +
+									"<span>Task #" + cur_task_id + ": P" + start_page + " - P" + end_page + "</span>" +
+								"</dt>" +
+				          	"</dl>" +
+				        "</li>";
+		} else if(cur_task_type == "11") {
+			var class_name = cur_tl_info.className, start_class = cur_tl_info.startClass,
+				end_class = cur_tl_info.endClass, start_class_time = cur_tl_info.startTime,
+				end_class_time = cur_tl_info.endTime;
+			ret_html = "<li>" +
+				         	"<h3>" + start_time + "<span>to " + end_time + "</span></h3>" +
+				          	"<dl>" +
+				            	"<dt>Attend open class: " + class_name +
+									"<span>Task #" + cur_task_id + ": Class " + start_class + ", " + start_class_time + " min, to Class " + end_class + ", " + end_class_time + "min" + "</span>" +
+								"</dt>" +
+				          	"</dl>" +
+				        "</li>";
+			
+		} else if(cur_task_type == "12") {
+		  	var exercise_name = cur_tl_info.exerciseName, group = cur_tl_info.group;
+		  	ret_html = "<li>" +
+				         	"<h3>" + start_time + "<span>to " + end_time + "</span></h3>" +
+				          	"<dl>" +
+				            	"<dt>Taking Exercise: " + exercise_name +
+									"<span>" + "Task #" + cur_task_id + ": " + group + " groups" +  "</span>" +
+								"</dt>" +
+				          	"</dl>" +
+				        "</li>";
+		} else if(cur_task_type == "20") {
+			var paper_name = cur_tl_info.paperName, start_stage = cur_tl_info.startStage,
+				end_stage = cur_tl_info.endStage, start_step = cur_tl_info.startStep,
+				end_step = cur_tl_info.endStep, start_paper_time = cur_tl_info.startTime,
+				end_paper_time = cur_tl_info.endTime;
+			ret_html = "<li>" +
+				         	"<h3>" + start_time + "<span>to " + end_time + "</span></h3>" +
+				          	"<dl>" +
+				            	"<dt>Write Paper 《" + paper_name + "》" +
+									"<span>Task #" + cur_task_id + ": Stage " + start_stage + " Step " + start_step + " Time " + start_paper_time + ", to " + "Stage " + end_stage + " Step " + end_step + " Time " + end_paper_time + "</span>" +
+								"</dt>" +
+				          	"</dl>" +
+				        "</li>";
+		} else if(cur_task_type == "21") {
+			var university_name = cur_tl_info.universityName, start_stage = cur_tl_info.startStage,
+				end_stage = cur_tl_info.endStage, start_step = cur_tl_info.startStep,
+				end_step = cur_tl_info.endStep, start_university_time = cur_tl_info.startTime,
+				end_university_time = cur_tl_info.endTime;
+			ret_html = "<li>" +
+				         	"<h3>" + start_time + "<span>to " + end_time + "</span></h3>" +
+				          	"<dl>" +
+				            	"<dt>Apply for University " + university_name +
+									"<span>" + "Task #" + cur_task_id + ": Stage " + start_stage + " Step " + start_step + " Time " + start_university_time + ", To " + "Stage " + end_stage + " Step " + end_step + " Time " + end_university_time + "</span>" +
+								"</dt>" +
+				          	"</dl>" +
+				        "</li>";
+		}
+		return ret_html;
+	}
+	
+};
+
 // 进行初始化的对象
 var IHL_IndexInitObj = {
 	iframes_idle: false,		// idle iframe 初始化完毕设置为true
@@ -233,13 +330,17 @@ var IHL_IndexInitObj = {
 		this.endInit();
 	},
 	initTimeline: function() {
-		console.log("Now let us init the timeline ...");
+		$("#index-timeline-container ul").slideUp("slow");
+		// console.log("Now let us init the timeline ...");
+		var tl_date = new Date(), tl_today_index = tl_date.getDay(), tl_today_index = tl_today_index == 0 ? 7 : tl_today_index;
+		var today_full_tag = IHL_Compute.computeFullDayTag(tl_today_index);
+		$("#index-tl-weekday").text(today_full_tag);
 		$.ajax({
 			url: "scheduleAction!scheduleToday.action",
 			success: function(data) {
 				data = $.parseJSON(data);
-				console.log("data:");
-				console.log(data);
+				// console.log("data:");
+				// console.log(data);
 				if(data.statusCode == "200") {
 					var schedule = data.scheduel;
 					console.log("schedule:");
@@ -247,6 +348,27 @@ var IHL_IndexInitObj = {
 					schedule_array = $.parseJSON(schedule);
 					console.log("schedule_array:");
 					console.log(schedule_array);
+					var today_schedule = schedule_array[0];
+					console.log("today_schedule:");
+					console.log(today_schedule);
+					var timeline_ul_array = [];
+					for(var today_index in today_schedule) {
+						console.log("today_index: " + today_index);
+						var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
+							today_timeline_array = today_schedule[today_index];
+						$("#index-tl-weekday").text(today_full_tag);
+						console.log("today_full_tag: " + today_full_tag);
+						console.log("today_timeline_array: ");
+						console.log(today_timeline_array);
+						
+						for(var tl_index in today_timeline_array) {
+							var cur_timeline = today_timeline_array[tl_index];
+							timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
+						}
+						
+					}
+					$("#index-tl-ul").html(timeline_ul_array.join(""));
+					
 					
 				} else {
 					alert("Failed to obtain your schedule!");
@@ -281,7 +403,11 @@ var IHL_IndexInitObj = {
 		// console.log("iframes_idle: " + this.iframes_idle + "; iframes_schedule: " + this.iframes_schedule + "; template_papers_default: " + this.template_papers_default);
 		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default && this.template_university_default;
 		if(is_validate) {
-			IHL_BlockMsgObj.unblockMsg();
+			IHL_BlockMsgObj.unblockMsg(function() {
+				window.setTimeout(function() {
+					$("#index-timeline-container ul").slideDown("slow");
+				}, 100);
+			});
 		}
 		
 	}

@@ -15,25 +15,9 @@
 	<![endif]-->
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="css/index/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/index/timeline/css/index-timeline.css" />
 	<style type="text/css">
-		button.top-right-btns { height: 64px; font-size: 60px; padding: 0 10px; }
-		.margin-bottom-20px { margin-bottom: 20px; }
-		.input-width-280px { width: 280px; }
-		.input-width-128px { width: 127px; }
-		.margin-left-5px { margin-left: 5px; }
-		.stages-pre-header {
-			display: block;
-			padding: 9.5px;
-			font-size: 16px;
-			font-weight: bold;
-			line-height: 28px;
-			word-break: break-all;
-			word-wrap: break-word;
-			background-color: #f5f5f5;
-			border: 1px solid #ccc;
-			border: 1px solid rgba(0, 0, 0, 0.15);
-			color: #333333;
-		}
+		
 	</style>
   </head>
   
@@ -100,7 +84,7 @@
 	  				
   			</div>
   		</div>
-  		<div class="wrapper-container">
+  		<div class="wrapper-container margin-bottom-20px">
   			<div id="index-wrapper" class="content-wrappers selected">
 	  			<div class="row-fluid">
 		  			<div class="span12 tile" style="">
@@ -109,10 +93,109 @@
 		  						What's Next?
 		  					</div>
 		  				</div>
+		  				<div class="row-fluid">
+		  					<div class="span12">
+		  						<!-- Start: the timeline -->
+		  						<div id="index-timeline-container" class="main">
+								  	<div class="history">
+								    	<div class="history-date">
+								    		<h2 class="first"><a id="index-tl-weekday" href="javascript: void(0);">2012年</a></h2>
+								      		<ul id="index-tl-ul" style="display: none;">
+								         		<!-- <li class="green">
+								          			<h3>10.08<span>2012</span></h3>
+								          			<dl>
+								            			<dt>发布全新的极速浏览器6.0版本
+															<span>升级极速内核到21.0；全新默认界面；新增小窗口播放功能</span>
+														</dt>
+								          			</dl>
+								        		</li>
+								
+										       	<li>
+										         	<h3>07.19<span>2012</span></h3>
+										          	<dl>
+										            	<dt>升级极速内核到20.0
+															<span>HTML5支持度全球最好，达到469分，测试页面： </span>
+														</dt>
+										          	</dl>
+										        </li>
+								
+										        <li>
+										          	<h3>07.02<span>2012</span></h3>
+										          	<dl>
+										            	<dt>升级极速内核到19.0
+															<span>支持网络摄像头，浏览器可直接访问摄像头</span>
+														</dt>
+										          	</dl>
+										        </li>
+								
+										       	<li>
+										          	<h3>06.27<span>2012</span></h3>
+										          	<dl>
+										            	<dt>发布国内首个HTML5实验室
+															<span>大力推广HTML5</span>
+														</dt>
+										          	</dl>
+										        </li>
+										        <li>
+										          	<h3>06.15<span>2012</span></h3>
+										          	<dl>
+										            	<dt>新增了下载文件前扫描下载链接安全性的功能</dt>
+										          	</dl>
+										        </li>
+										        <li>
+								          			<h3>06.05<span>2012</span></h3>
+								          			<dl>
+								            			<dt>W3C联盟首席执行官访华，首站访问360公司
+														</dt>
+								          			</dl>
+								        		</li>
+								        		<li>
+								          			<h3>05.12<span>2012</span></h3>
+								          			<dl>
+								            			<dt>360受邀出席W3C联盟成员见面会议</dt>
+								          			</dl>
+								        		</li>
+										        <li>
+										          	<h3>05.11<span>2012</span></h3>
+										          	<dl>
+										            	<dt>升级极速内核到18.0
+															<span>新增多用户使用浏览器的功能</span>
+														</dt>
+										          	</dl>
+										        </li>
+								        		<li>
+								          			<h3>05.03<span>2012</span></h3>
+								          			<dl>
+								            			<dt>360极速浏览器用户数突破5000万，活跃用户超2000万
+														</dt>
+								          			</dl>
+								        		</li>
+								        		<li>
+								          			<h3>03.08<span>2012</span></h3>
+								          			<dl>
+								            			<dt>升级极速内核到17.0，提升浏览器速度、增强安全性
+															<span>新增HTTP管线化技术，大幅提升网页加载速度</span>
+														</dt>
+								          			</dl>
+								        		</li>
+								        		<li>
+								          			<h3>01.29<span>2012</span></h3>
+								          			<dl>
+								            			<dt>国内率先加入W3C联盟HTML工作组，参与HTML5标准制定</span>
+														</dt>
+								          			</dl>
+								        		</li> -->
+								      		</ul>
+								    	</div>
+								  	</div>
+								</div>
+								<!-- End: the timeline -->
+		  					</div>
+		  				</div>
 		  			</div>
 		  		</div>
 	  		</div>
-		  	<div id="idle-calendar-wrapper" class="hide content-wrappers margin-bottom-20px">
+		  	<div id="idle-calendar-wrapper" class="hide content-wrappers">
 	  			<div class="row-fluid">
 		  			<div class="span12 tile" style="">
 		  				<div class="row-fluid tile-row tile-first-row" style="margin-bottom: 0;">
@@ -131,7 +214,7 @@
 		  			</div>
 		  		</div>
 	  		</div>
-	  		<div id="add-task-wrapper" class="hide content-wrappers margin-bottom-20px">
+	  		<div id="add-task-wrapper" class="hide content-wrappers">
 	  			<div class="row-fluid">
 		  			<div class="span12 tile" style="">
 		  				<div class="row-fluid tile-row tile-first-row">
@@ -790,7 +873,7 @@
 		  			</div>
 		  		</div>
 	  		</div>
-	  		<div id="view-schedule-wrapper" class="hide content-wrappers margin-bottom-20px">
+	  		<div id="view-schedule-wrapper" class="hide content-wrappers">
 	  			<div class="row-fluid">
 		  			<div class="span12 tile" style="">
 		  				<div class="row-fluid tile-row tile-first-row">
@@ -821,6 +904,7 @@
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
+				
 				
 			});
 		})(jQuery);
