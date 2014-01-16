@@ -350,7 +350,11 @@
 					type: 'post',
 					async: false,
 					success: function(json_data){
-						var data = JSON.parse(json_data);
+						try {
+							var data = JSON.parse(json_data);
+						} catch(exception) {
+							window.parent.location.reload();
+						}
 						data = JSON.parse(data);
 						if(data.statusCode == "200") {
 							var schedule_array_str = data.scheduel;

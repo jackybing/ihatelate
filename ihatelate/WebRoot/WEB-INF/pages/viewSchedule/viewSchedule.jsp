@@ -61,7 +61,7 @@
   	</div>
   	<!-- Start: 201311241702 点击后展示任务信息的dialog -->
 	<div id="detail-info-dialog" title="View Task Infomation" style="display: none;">
-		<table id="detail-info-table" class="table table-striped table-hover table-condensed">
+		<table id="detail-info-table" class="table table-striped table-hover table-condensed" style="margin-bottom: 0;">
 			<thead>
 			
 			</thead>
@@ -69,6 +69,11 @@
 				
 			</tbody>
 		</table>
+		<div class="row-fluid">
+			<div class="span12">
+				反馈信息的控件们
+			</div>
+		</div>
 	</div>
 	<input id="ihl-calendar-refresh" type="hidden" />
 	<!-- End  : 201311241702 点击后展示任务信息的dialog -->

@@ -299,7 +299,13 @@ $(document).ready(function() {
 				type: 'post',
 				async: false,
 				success: function(json_data){
-					var data = JSON.parse(json_data);
+					try {
+						var data = JSON.parse(json_data);
+					} 
+					catch(exception) {
+						window.parent.location.reload();
+					}
+					
 					data = JSON.parse(data);
 					if(data.status == "200") {
 						var freeTime = data.freeTime;

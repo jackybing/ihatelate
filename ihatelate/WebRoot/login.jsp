@@ -104,7 +104,15 @@
 	<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/pages/login.js"></script>
 	<script	type="text/javascript">
-		
+		(function($) {
+			$(function() {
+				var win_parent = window.parent;
+				if(win_parent !== window) {
+					console.log(win_parent === window);
+					win_parent.location.reload();
+				}
+			});
+		})(jQuery);
 	</script>
   </body>
 </html>
