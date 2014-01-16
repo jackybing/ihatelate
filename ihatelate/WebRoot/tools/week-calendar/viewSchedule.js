@@ -162,7 +162,10 @@
 	    	  $("#did-start-page").text(calEvent.start_page);
 	    	  $("#did-end-page").text(calEvent.end_page);*/
 	          
-	          $dialogDetailInfo.find("#detail-info-table tbody").html(genDiTbBody(calEvent));
+	          // to move the first row of tbody to thead
+	          var first_tr = $dialogDetailInfo.find("#detail-info-table tbody").html(genDiTbBody(calEvent)).find("tr:first");
+	          $("#detail-info-table thead").html(first_tr);
+	          
 	    	  $dialogDetailInfo.dialog("open");
 	    	  
 	    	  window.setTimeout(function() {
