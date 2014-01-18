@@ -1,5 +1,7 @@
 (function($) {
 	$(function() {
+		var IHL_BlockMsgObj = window.parent.IHL_BlockMsgObj,
+			IHL_ErrorTipObj = window.parent.IHL_ErrorTipObj;
 		// function to clear error tips
 		function clearMyErrorTip(myself) {
             var myControlGroupParent = myself.parents(".control-group");
@@ -19,17 +21,18 @@
 			// 对输入控件的值进行检测，如果不对，显示error tip
 			var is_validate = true;
 			if(fb_book_page_num == "") {
-				window.parent.IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, "Please input a page number");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, "Please input a page number");
 				is_validate = false;
 			} else if(isNaN(fb_book_page_num)) {
-				window.parent.IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, "Please input an integer");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, "Please input an integer");
 				is_validate = false;
 			} else if(parseInt(fb_book_page_num) != parseFloat(fb_book_page_num)) {
-				window.parent.IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, "Please input an integer, not a float");
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, "Please input an integer, not a float");
 				is_validate = false;
 			}
 			// 通过检测，则ajax提交结果，提交成功后触发reset事件
 			if(is_validate) {
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Submiting feedback ...<h1>");
 				$.ajax({
 					url: "bookTaskAction!feedback.action",
 					data: {
@@ -39,15 +42,17 @@
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
 						console.log(response_data);
-						if(response_data.statusCode == "200") {
-							$('#calendar').weekCalendar("refresh");
-	    					$("#detail-info-dialog").dialog("close");
-	    					window.parent.IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
-						} else {
-							var fb_info = response_data.info;
-							window.parent.IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
-							window.parent.IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, fb_info);
-						}
+						IHL_BlockMsgObj.unblockMsg(function() { 
+                            if(response_data.statusCode == "200") {
+								$('#calendar').weekCalendar("refresh");
+		    					$("#detail-info-dialog").dialog("close");
+		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+							} else {
+								var fb_info = response_data.info;
+								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, fb_info);
+							}
+                        });
 						
 					}
 				});
