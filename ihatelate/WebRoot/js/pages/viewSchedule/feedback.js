@@ -14,7 +14,6 @@
 		// 下面是绑定的反馈按钮点击事件
 		$("#fb-book-btn").live("click", function() {
 			var task_id = $(this).attr("data-id");
-			console.log(task_id);
 			var fb_book_page_num_element = $("#fb-book-page-num");
 			var fb_book_page_num = fb_book_page_num_element.val();
 			// 对输入控件的值进行检测，如果不对，显示error tip
@@ -31,7 +30,6 @@
 			}
 			// 通过检测，则ajax提交结果，提交成功后触发reset事件
 			if(is_validate) {
-				console.log("开始调用ajax api进行反馈");
 				$.ajax({
 					url: "bookTaskAction!feedback.action",
 					data: {
@@ -39,7 +37,18 @@
 						completedPageNum: fb_book_page_num
 					},
 					success: function(response_data) {
+						response_data = JSON.parse(JSON.parse(response_data));
 						console.log(response_data);
+						if(response_data.statusCode == "200") {
+							$('#calendar').weekCalendar("refresh");
+	    					$("#detail-info-dialog").dialog("close");
+	    					window.parent.IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+						} else {
+							var fb_info = response_data.info;
+							window.parent.IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+							window.parent.IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, fb_info);
+						}
+						
 					}
 				});
 			}
