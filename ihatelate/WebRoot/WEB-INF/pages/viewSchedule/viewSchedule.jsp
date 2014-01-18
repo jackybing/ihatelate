@@ -27,6 +27,8 @@
 		.ui-dialog .ui-dialog-buttonpane { margin: 0 }
 		.ui-dialog .ui-dialog-titlebar-close span { margin-top: 9px; }
 		.table td.detail-info-table-td-1 { text-align: right; width: 130px; font-weight: bold; }
+		#vs-fb-div .form-horizontal label.control-label { padding-top: 5px; margin-top: 0; }
+		#vs-fb-div .form-horizontal .control-group { margin-bottom: 10px; }
 	</style>
   </head>
   
@@ -69,11 +71,10 @@
 				
 			</tbody>
 		</table>
-		<div class="row-fluid">
-			<div class="span12">
-				反馈信息的控件们
-			</div>
+		<div id="vs-fb-div" class="well" style="margin-bottom: 3px; padding-bottom: 8px;">
+			
 		</div>
+		
 	</div>
 	<input id="ihl-calendar-refresh" type="hidden" />
 	<!-- End  : 201311241702 点击后展示任务信息的dialog -->
@@ -89,5 +90,6 @@
 			});
 		})(jQuery);
 	</script>
+	<script type='text/javascript' src='js/pages/viewSchedule/feedback.js'></script>
   </body>
 </html>

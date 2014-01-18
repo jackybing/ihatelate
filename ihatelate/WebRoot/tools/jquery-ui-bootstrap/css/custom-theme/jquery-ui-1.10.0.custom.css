@@ -1451,13 +1451,13 @@ textarea,
 .uneditable-input {
   display: inline-block;
   padding: 4px;
-  font-size: 13px;
-  line-height: 18px;
-  color: #808080;
+  font-size: 14px;
+  line-height: 22px;
+  /*color: #808080;*/
   border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
+  /*-webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: 3px;*/
 }
 
 

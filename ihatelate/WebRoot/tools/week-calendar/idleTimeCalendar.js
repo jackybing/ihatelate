@@ -301,8 +301,7 @@ $(document).ready(function() {
 				success: function(json_data){
 					try {
 						var data = JSON.parse(json_data);
-					} 
-					catch(exception) {
+					} catch(exception) {
 						window.parent.location.reload();
 					}
 					

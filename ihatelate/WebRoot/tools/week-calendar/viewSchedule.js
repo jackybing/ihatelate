@@ -25,6 +25,31 @@
 	    });
 		// End  : 201311241721 init dialog
 		
+		//
+		function genFeedbackForm(calEvent) {
+			var cur_task_type = calEvent.type, ret_form_html_array = [];
+			if(cur_task_type == "10") {
+				ret_form_html_array.push('<div class="form-horizontal">',
+				  	'<div class="control-group">',
+					    '<label class="control-label" for="fb-book-page-num">Completed Page: </label>',
+					    '<div class="controls">',
+					      	'<input type="text" id="fb-book-page-num" placeholder="Completed Page Number" style="width: 250px; margin-right: 10px;" />',
+					      	'<span class="help-inline"></span>',
+					      	
+					    '</div>',
+					'</div>',
+					'<div class="control-group">',
+						'<div class="controls">',
+							'<button class="btn btn-success" id="fb-book-btn" data-id="' + calEvent.id + '">Feedback</button>',
+						'</div>',
+					'</div>',
+				'</div>');
+				
+			}
+			return ret_form_html_array.join("");
+		}
+		//
+		
 		// Start: 201312110844 生成对话框detail table的tbody
 		function genDiTbBody(calEvent) {
 			var html_array = [], cur_task_type = calEvent.type;
@@ -163,8 +188,12 @@
 	    	  $("#did-end-page").text(calEvent.end_page);*/
 	          
 	          // to move the first row of tbody to thead
+	          // console.log(calEvent);
 	          var first_tr = $dialogDetailInfo.find("#detail-info-table tbody").html(genDiTbBody(calEvent)).find("tr:first");
 	          $("#detail-info-table thead").html(first_tr);
+	          
+	          // Generate the feedback
+	          $("#vs-fb-div").html(genFeedbackForm(calEvent));
 	          
 	    	  $dialogDetailInfo.dialog("open");
 	    	  
@@ -479,6 +508,7 @@
 	    		};
 	    	}
 	    	$calendar.weekCalendar("refresh");
+	    	$dialogDetailInfo.dialog("close");
 		});
 	});
 })(jQuery);
