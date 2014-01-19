@@ -41,7 +41,6 @@
 					},
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
-						console.log(response_data);
 						IHL_BlockMsgObj.unblockMsg(function() { 
                             if(response_data.statusCode == "200") {
 								$('#calendar').weekCalendar("refresh");
@@ -87,7 +86,6 @@
 					},
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
-						console.log(response_data);
 						IHL_BlockMsgObj.unblockMsg(function() { 
                             if(response_data.statusCode == "200") {
 								$('#calendar').weekCalendar("refresh");
@@ -97,6 +95,51 @@
 								var fb_info = response_data.info;
 								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
 								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, fb_info);
+							}
+                        });
+						
+					}
+				});
+			}
+			
+		});
+		
+		$("#fb-exercise-btn").live("click", function() {
+			var task_id = $(this).attr("data-id");
+			var fb_group_count_element = $("#fb-exercise-group");
+			var fb_group_count = fb_group_count_element.val();
+			// 对输入控件的值进行检测，如果不对，显示error tip
+			var is_validate = true;
+			if(fb_group_count == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, "Please input a group count");
+				is_validate = false;
+			} else if(isNaN(fb_group_count)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, "Please input an integer");
+				is_validate = false;
+			} else if(parseInt(fb_group_count) != parseFloat(fb_group_count)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, "Please input an integer, not a float");
+				is_validate = false;
+			}
+			// 通过检测，则ajax提交结果，提交成功后触发reset事件
+			if(is_validate) {
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Submiting feedback ...<h1>");
+				$.ajax({
+					url: "exerciseTaskAction!feedback.action",
+					data: {
+						id: task_id,
+						completedGroupCount: fb_group_count
+					},
+					success: function(response_data) {
+						response_data = JSON.parse(JSON.parse(response_data));
+						IHL_BlockMsgObj.unblockMsg(function() { 
+                            if(response_data.statusCode == "200") {
+								$('#calendar').weekCalendar("refresh");
+		    					$("#detail-info-dialog").dialog("close");
+		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+							} else {
+								var fb_info = response_data.info;
+								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, fb_info);
 							}
                         });
 						

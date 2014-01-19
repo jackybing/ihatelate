@@ -62,6 +62,23 @@
 					'</div>',
 				'</div>');
 				
+			} else if(cur_task_type == "12") {	// 健身
+				ret_form_html_array.push('<div class="form-horizontal">',
+				  	'<div class="control-group">',
+					    '<label class="control-label" for="fb-exercise-group">Completed Group: </label>',
+					    '<div class="controls">',
+					      	'<input type="text" id="fb-exercise-group" placeholder="Completed Group Count" style="width: 250px; margin-right: 10px;" />',
+					      	'<span class="help-inline"></span>',
+					      	
+					    '</div>',
+					'</div>',
+					'<div class="control-group">',
+						'<div class="controls">',
+							'<button class="btn btn-success" id="fb-exercise-btn" data-id="' + calEvent.id + '">Feedback</button>',
+						'</div>',
+					'</div>',
+				'</div>');
+				
 			}
 			return ret_form_html_array.join("");
 		}
@@ -398,58 +415,59 @@
 					success: function(json_data){
 						try {
 							var data = JSON.parse(json_data);
-						} catch(exception) {
-							window.parent.location.reload();
-						}
-						data = JSON.parse(data);
-						if(data.statusCode == "200") {
-							var schedule_array_str = data.scheduel;
-							var schedule_array = JSON.parse(schedule_array_str);
-							for(var sIndex in schedule_array) {
-								var schedule = schedule_array[sIndex];
-								for(var s_tag in schedule) {
-									var dayShift = s_tag - curTodayTag;
-									dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
-									
-									var task_array = schedule[s_tag];
-									
-									for(var task_index in task_array) {
-										var cur_task = task_array[task_index];
-										if(cur_task) {
-											var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
-												cur_task_time_array = cur_task.time, cur_task_type = cur_task.type;
-											if(cur_task_id && cur_task_schedule_info && cur_task_time_array && cur_task_type) {
-												for(var time_idx in cur_task_time_array) {
-													var time_obj = cur_task_time_array[time_idx], start_time = time_obj.startTime,
-														end_time = time_obj.endTime;
-													var eventObj = genEveObjByType(cur_task_id, cur_task_type, cur_task_schedule_info);
-													eventObj.id = cur_task_id;
-													eventObj.type = cur_task_type;
-													eventObj.start = new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5));
-													eventObj.end = new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5));
-													eventObj.start_time = start_time;
-													eventObj.end_time = end_time;
-													eventObj.readOnly = true;
-													
-													/*eventObj = eventObj || {
-										               "id": cur_task_id,
-										               "type": cur_task_type,
-										               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
-										               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
-										               "start_time": start_time,
-										               "end_time": end_time,
-										               readOnly : true
-										            };*/
-													eventArray.push(eventObj);
-													
+							data = JSON.parse(data);
+							if(data.statusCode == "200") {
+								var schedule_array_str = data.scheduel;
+								var schedule_array = JSON.parse(schedule_array_str);
+								for(var sIndex in schedule_array) {
+									var schedule = schedule_array[sIndex];
+									for(var s_tag in schedule) {
+										var dayShift = s_tag - curTodayTag;
+										dayShift = dayShift < 0 ? dayShift + 7 : dayShift;
+										
+										var task_array = schedule[s_tag];
+										
+										for(var task_index in task_array) {
+											var cur_task = task_array[task_index];
+											if(cur_task) {
+												var cur_task_id = cur_task.taskID, cur_task_schedule_info = cur_task.scheduleInfo,
+													cur_task_time_array = cur_task.time, cur_task_type = cur_task.type;
+												if(cur_task_id && cur_task_schedule_info && cur_task_time_array && cur_task_type) {
+													for(var time_idx in cur_task_time_array) {
+														var time_obj = cur_task_time_array[time_idx], start_time = time_obj.startTime,
+															end_time = time_obj.endTime;
+														var eventObj = genEveObjByType(cur_task_id, cur_task_type, cur_task_schedule_info);
+														eventObj.id = cur_task_id;
+														eventObj.type = cur_task_type;
+														eventObj.start = new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5));
+														eventObj.end = new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5));
+														eventObj.start_time = start_time;
+														eventObj.end_time = end_time;
+														eventObj.readOnly = true;
+														
+														/*eventObj = eventObj || {
+											               "id": cur_task_id,
+											               "type": cur_task_type,
+											               "start": new Date(year, month, day + dayShift, start_time.substring(0, 2), start_time.substring(3, 5)),
+											               "end": new Date(year, month, day + dayShift, end_time.substring(0, 2), end_time.substring(3, 5)),
+											               "start_time": start_time,
+											               "end_time": end_time,
+											               readOnly : true
+											            };*/
+														eventArray.push(eventObj);
+														
+													}
 												}
+													
 											}
 												
 										}
-											
 									}
 								}
 							}
+							
+						} catch(exception) {
+							window.parent.location.reload();
 						}
 						
 					}

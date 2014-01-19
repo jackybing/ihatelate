@@ -894,7 +894,7 @@
   		
   	</div>
 	<!-- Put Javascripts here to make the page load faster -->
-	<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="tools/jquery/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>

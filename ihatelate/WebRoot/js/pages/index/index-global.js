@@ -40,7 +40,22 @@ var IHL_BlockMsgObj = {
 	showGrowlMsg: function(title, msg) {
 		$.growlUI(title, msg);
 	},
+	is_blocked: false,
+	timer_id: 0,
+	confirmBlockExe: function() {
+		this.timer_id = window.setTimeout(function() {
+			if(this_ptr.is_blocked) {
+				if(confirm("服务器长时间无响应，是否继续等待？")) {
+					IHL_BlockMsgObj.confirmBlockExe();
+				} else {
+					window.loacation.reload();
+				}
+			}
+		}, 60000);
+	},
 	showBlockMsg: function(msg, element, callback) {
+		var this_ptr = this;
+		this_ptr.is_blocked = true;
 		var blockUIoptions = { 
             message: msg,
             css: { 
@@ -63,8 +78,13 @@ var IHL_BlockMsgObj = {
         } else {
             $.blockUI(blockUIoptions);
         }
+		// 防止session超时造成无响应异常
+		this_ptr.confirmBlockExe();
 	},
 	unblockMsg: function(callback_func) {
+		var this_ptr = this;
+		window.clearInterval(this_ptr.timer_id);
+		this.is_blocked = false;
 		$.unblockUI({
             onUnblock: function(){ 
                 if(callback_func && typeof(callback_func) == "function") {
