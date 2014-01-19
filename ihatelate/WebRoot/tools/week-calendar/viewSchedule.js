@@ -28,7 +28,7 @@
 		//
 		function genFeedbackForm(calEvent) {
 			var cur_task_type = calEvent.type, ret_form_html_array = [];
-			if(cur_task_type == "10") {
+			if(cur_task_type == "10") {	// Read Book
 				ret_form_html_array.push('<div class="form-horizontal">',
 				  	'<div class="control-group">',
 					    '<label class="control-label" for="fb-book-page-num">Completed Page: </label>',
@@ -41,6 +41,23 @@
 					'<div class="control-group">',
 						'<div class="controls">',
 							'<button class="btn btn-success" id="fb-book-btn" data-id="' + calEvent.id + '">Feedback</button>',
+						'</div>',
+					'</div>',
+				'</div>');
+				
+			} else if(cur_task_type == "11") {	// Open Class
+				ret_form_html_array.push('<div class="form-horizontal">',
+				  	'<div class="control-group">',
+					    '<label class="control-label" for="fb-class-time">Completed Time: </label>',
+					    '<div class="controls">',
+					      	'<input type="text" id="fb-class-time" placeholder="Completed Class Time" style="width: 250px; margin-right: 10px;" />',
+					      	'<span class="help-inline"></span>',
+					      	
+					    '</div>',
+					'</div>',
+					'<div class="control-group">',
+						'<div class="controls">',
+							'<button class="btn btn-success" id="fb-class-btn" data-id="' + calEvent.id + '">Feedback</button>',
 						'</div>',
 					'</div>',
 				'</div>');

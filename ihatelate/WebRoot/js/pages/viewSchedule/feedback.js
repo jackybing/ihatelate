@@ -13,7 +13,7 @@
 		$("input").live("input", function() {
             clearMyErrorTip($(this));
         });
-		// 下面是绑定的反馈按钮点击事件
+		// Start: 下面是绑定的反馈按钮点击事件
 		$("#fb-book-btn").live("click", function() {
 			var task_id = $(this).attr("data-id");
 			var fb_book_page_num_element = $("#fb-book-page-num");
@@ -59,6 +59,53 @@
 			}
 			
 		});
+		
+		$("#fb-class-btn").live("click", function() {
+			var task_id = $(this).attr("data-id");
+			var fb_class_time_element = $("#fb-class-time");
+			var fb_class_time = fb_class_time_element.val();
+			// 对输入控件的值进行检测，如果不对，显示error tip
+			var is_validate = true;
+			if(fb_class_time == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, "Please input a class time");
+				is_validate = false;
+			} else if(isNaN(fb_class_time)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, "Please input an integer");
+				is_validate = false;
+			} else if(parseInt(fb_class_time) != parseFloat(fb_class_time)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, "Please input an integer, not a float");
+				is_validate = false;
+			}
+			// 通过检测，则ajax提交结果，提交成功后触发reset事件
+			if(is_validate) {
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Submiting feedback ...<h1>");
+				$.ajax({
+					url: "openClassTaskAction!feedback.action",
+					data: {
+						id: task_id,
+						classTime: fb_class_time
+					},
+					success: function(response_data) {
+						response_data = JSON.parse(JSON.parse(response_data));
+						console.log(response_data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+                            if(response_data.statusCode == "200") {
+								$('#calendar').weekCalendar("refresh");
+		    					$("#detail-info-dialog").dialog("close");
+		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+							} else {
+								var fb_info = response_data.info;
+								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, fb_info);
+							}
+                        });
+						
+					}
+				});
+			}
+			
+		});
+		// End  : 上面是绑定的反馈按钮点击事件
 		
 	});
 })(jQuery);
