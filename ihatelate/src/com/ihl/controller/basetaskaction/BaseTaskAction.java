@@ -173,11 +173,11 @@ public class BaseTaskAction extends ActionSupport{
 		for(Stage stage : stagesList){
 			time += stage.getTime();
 			if(time <= completed){
-				jsonObject.put(stage.getStep(), stage.getTime() + ":" + stage.getTime());
+				jsonObject.put(stage.getStep()+":"+stage.getName(), stage.getTime() + ":" + stage.getTime());
 			}else if(time - stage.getTime() > completed){
-				jsonObject.put(stage.getStep(), stage.getTime() + ":0");
+				jsonObject.put(stage.getStep()+":"+stage.getName(), stage.getTime() + ":0");
 			}else {
-				jsonObject.put(stage.getStep(), stage.getTime() + ":" + (completed - time + stage.getTime()));
+				jsonObject.put(stage.getStep()+":"+stage.getName(), stage.getTime() + ":" + (completed - time + stage.getTime()));
 			}
 		}
 		resultMap.put("statusCode", "200");
