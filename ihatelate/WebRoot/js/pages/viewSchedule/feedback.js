@@ -176,11 +176,11 @@
 					},
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
+						$("#vs-fb-div").html(NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
 						IHL_BlockMsgObj.unblockMsg(function() { 
                             if(response_data.statusCode == "200") {
 								$('#calendar').weekCalendar("refresh");
 		    					// $("#detail-info-dialog").dialog("close");
-								$("#vs-fb-div").html(NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
 		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
 							} else {
 								var fb_info = response_data.info;
