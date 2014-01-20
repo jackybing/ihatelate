@@ -25,7 +25,7 @@
 	    });
 		// End  : 201311241721 init dialog
 		
-		//
+		// Start: 201401201826 生成反馈form
 		function genFeedbackForm(calEvent) {
 			var cur_task_type = calEvent.type, ret_form_html_array = [];
 			if(cur_task_type == "10") {	// Read Book
@@ -33,7 +33,7 @@
 				  	'<div class="control-group">',
 					    '<label class="control-label" for="fb-book-page-num">Completed Page: </label>',
 					    '<div class="controls">',
-					      	'<input type="text" id="fb-book-page-num" placeholder="Completed Page Number" style="width: 250px; margin-right: 10px;" />',
+					      	'<input type="text" id="fb-book-page-num" placeholder="Completed Page Number" style="width: 180px; margin-right: 10px;" />',
 					      	'<span class="help-inline"></span>',
 					      	
 					    '</div>',
@@ -50,7 +50,7 @@
 				  	'<div class="control-group">',
 					    '<label class="control-label" for="fb-class-time">Completed Time: </label>',
 					    '<div class="controls">',
-					      	'<input type="text" id="fb-class-time" placeholder="Completed Class Time" style="width: 250px; margin-right: 10px;" />',
+					      	'<input type="text" id="fb-class-time" placeholder="Completed Class Time" style="width: 180px; margin-right: 10px;" />',
 					      	'<span class="help-inline"></span>',
 					      	
 					    '</div>',
@@ -67,7 +67,7 @@
 				  	'<div class="control-group">',
 					    '<label class="control-label" for="fb-exercise-group">Completed Group: </label>',
 					    '<div class="controls">',
-					      	'<input type="text" id="fb-exercise-group" placeholder="Completed Group Count" style="width: 250px; margin-right: 10px;" />',
+					      	'<input type="text" id="fb-exercise-group" placeholder="Completed Group Count" style="width: 180px; margin-right: 10px;" />',
 					      	'<span class="help-inline"></span>',
 					      	
 					    '</div>',
@@ -79,10 +79,15 @@
 					'</div>',
 				'</div>');
 				
+			} else if(cur_task_type == "20") {	// 写论文
+				ret_form_html_array = NonQuantStageInfo_Module.obtainStageHtml(calEvent.id);
+				
+			} else if(cur_task_type == "21") {	// 申请大学
+				
 			}
 			return ret_form_html_array.join("");
 		}
-		//
+		// End  : 201401201826 生成反馈form
 		
 		// Start: 201312110844 生成对话框detail table的tbody
 		function genDiTbBody(calEvent) {

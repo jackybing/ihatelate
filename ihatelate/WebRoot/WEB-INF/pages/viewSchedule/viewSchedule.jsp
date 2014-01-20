@@ -29,6 +29,9 @@
 		.table td.detail-info-table-td-1 { text-align: right; width: 130px; font-weight: bold; }
 		#vs-fb-div .form-horizontal label.control-label { padding-top: 5px; margin-top: 0; }
 		#vs-fb-div .form-horizontal .control-group { margin-bottom: 10px; }
+		#vs-fb-div .progress { margin-bottom: 0; margin-top: 3px; }
+		#vs-fb-div .table th { text-align: center; }
+		.wc-cal-event { min-height: 20px; }
 	</style>
   </head>
   
@@ -72,7 +75,48 @@
 			</tbody>
 		</table>
 		<div id="vs-fb-div" class="well" style="margin-bottom: 3px; padding-bottom: 8px;">
-			
+			<table class="table table-striped table-hover table-condensed">
+				<thead style="text-align: center;">
+	                <tr>
+	                  	<th>Index</th>
+	                  	<th>Stage Name</th>
+	                  	<th>Completion Progress</th>
+	                  	<th>Status</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+					<tr class="success">
+	                  	<td>1</td>
+	                  	<td>吃饭</td>
+	                  	<td>
+	                  		<div class="progress progress-striped">
+							  	<div class="bar bar-success" style="width: 100%;"></div>
+							</div>
+	                  	</td>
+	                  	<td>100 / 100</td>
+	                </tr>
+	                <tr class="warning">
+	                  	<td>2</td>
+	                  	<td>睡觉</td>
+	                  	<td>
+	                  		<div class="progress progress-striped active">
+							  	<div class="bar bar-warning" style="width: 50%;"></div>
+							</div>
+	                  	</td>
+	                  	<td>100 / 200</td>
+	                </tr>
+	                <tr class="error">
+	                  	<td>3</td>
+	                  	<td>打豆豆</td>
+	                  	<td>
+	                  		<div class="progress progress-striped active">
+							  	<div class="bar" style="width: 0%;"></div>
+							</div>
+	                  	</td>
+	                  	<td>0 / 300</td>
+	                </tr>
+				</tbody>
+			</table>
 		</div>
 		
 	</div>
@@ -82,7 +126,6 @@
 	<script type='text/javascript' src='tools/jquery/jquery-1.3.2.min.js'></script>
 	<script type='text/javascript' src='tools/jquery-ui/1.7.2/jquery-ui.min.js'></script>
 	<script type='text/javascript' src='tools/week-calendar/jquery.weekcalendar.vs.js'></script>
-	<script type='text/javascript' src='tools/week-calendar/viewSchedule.js'></script>
 	<script	type="text/javascript">
 		(function($) {
 			$(function() {
@@ -90,6 +133,8 @@
 			});
 		})(jQuery);
 	</script>
+	<script type='text/javascript' src='js/pages/viewSchedule/globalModules.js'></script>
+	<script type='text/javascript' src='tools/week-calendar/viewSchedule.js'></script>
 	<script type='text/javascript' src='js/pages/viewSchedule/feedback.js'></script>
   </body>
 </html>

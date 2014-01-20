@@ -37,7 +37,7 @@
 					url: "bookTaskAction!feedback.action",
 					data: {
 						id: task_id,
-						completedPageNum: fb_book_page_num
+						completedPageNum: parseInt(fb_book_page_num)
 					},
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
@@ -82,7 +82,7 @@
 					url: "openClassTaskAction!feedback.action",
 					data: {
 						id: task_id,
-						classTime: fb_class_time
+						classTime: parseInt(fb_class_time)
 					},
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
@@ -127,7 +127,7 @@
 					url: "exerciseTaskAction!feedback.action",
 					data: {
 						id: task_id,
-						completedGroupCount: fb_group_count
+						completedGroupCount: parseInt(fb_group_count)
 					},
 					success: function(response_data) {
 						response_data = JSON.parse(JSON.parse(response_data));
@@ -140,6 +140,52 @@
 								var fb_info = response_data.info;
 								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
 								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, fb_info);
+							}
+                        });
+						
+					}
+				});
+			}
+			
+		});
+		
+		$("#fb-paper-btn").live("click", function() {
+			var task_id = $(this).attr("data-id");
+			var fb_paper_time_element = $("#fb-paper-time");
+			var fb_paper_time = fb_paper_time_element.val();
+			// 对输入控件的值进行检测，如果不对，显示error tip
+			var is_validate = true;
+			if(fb_paper_time == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_paper_time_element, "Please input a stage time");
+				is_validate = false;
+			} else if(isNaN(fb_paper_time)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_paper_time_element, "Please input an integer");
+				is_validate = false;
+			} else if(parseInt(fb_paper_time) != parseFloat(fb_paper_time)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_paper_time_element, "Please input an integer, not a float");
+				is_validate = false;
+			}
+			// 通过检测，则ajax提交结果，提交成功后触发reset事件
+			if(is_validate) {
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Submiting feedback ...<h1>");
+				$.ajax({
+					url: "applyUniversityTaskAction!feedback.action",
+					data: {
+						id: task_id,
+						stageTime: parseInt(fb_paper_time)
+					},
+					success: function(response_data) {
+						response_data = JSON.parse(JSON.parse(response_data));
+						IHL_BlockMsgObj.unblockMsg(function() { 
+                            if(response_data.statusCode == "200") {
+								$('#calendar').weekCalendar("refresh");
+		    					// $("#detail-info-dialog").dialog("close");
+								$("#vs-fb-div").html(NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
+		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+							} else {
+								var fb_info = response_data.info;
+								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_paper_time_element, fb_info);
 							}
                         });
 						
