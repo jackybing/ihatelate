@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 import com.ihl.model.basetask.BaseTask;
+import com.ihl.model.stage.Stage;
 import com.ihl.model.user.User;
 import com.ihl.service.basetaskservice.BaseTaskService;
 import com.ihl.service.userservice.UserService;
@@ -28,7 +30,14 @@ public class TaskAction extends ActionSupport{
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		BaseTask task = baseTaskService.get(Integer.parseInt(id));
 		task.setUser(null);
-		task.setStages(null);
+//		task.setStages(null);
+		
+		Set<Stage> stages = task.getStages();
+		for(Stage stage : stages){
+			stage.setTask(null);
+		}
+		
+		task.setStages(stages);
 		
 		JsonConfig jsonConfig = new JsonConfig();
 		jsonConfig.registerJsonValueProcessor(java.util.Date.class, new JsonDateValueProcessor("yyyy-MM-dd HH:mm:ss"));
