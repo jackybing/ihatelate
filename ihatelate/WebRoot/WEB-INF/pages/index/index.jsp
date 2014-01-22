@@ -888,7 +888,7 @@
 		  				</div>
 		  				<div class="row-fluid">
 		  					<div class="span12">
-		  						<iframe class="span12" id="vs-iframe" frameborder="0" style="height: 1974px;"></iframe>
+		  						<iframe class="span12" id="vs-iframe" frameborder="0" style="height: 470px;"></iframe>
 		  					</div>
 		  				</div>
 		  			</div>
@@ -910,7 +910,6 @@
 		(function($) {
 			$(function() {
 				
-				
 			});
 		})(jQuery);
 	</script>
@@ -930,13 +929,13 @@
 	  		The time you feedback is longer than the unfinished time margin of current stage. Here are two choices for you:
 	    	<ol>
 	    		<li>Confirm finish current stage: Confirm the feedback time is equal to the unfinished time of current stage, feedback and finish current stage.</li>
-	    		<li>提示用户去修改当前阶段的预估总时间数，以便后台在后续时间里继续分配时间来完成当前阶段任务</li>
+	    		<li>Modify task information: Modify the task information to make the total time of current stage enough for you to finish current stage of the task.</li>
 	    	</ol>
 	  	</div>
 	  	<div class="modal-footer">
 	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	    	<button class="btn btn-success" id="fb-nq-paper-confirm">1. Confirm finish current stage</button>
-	    	<button class="btn btn-primary">2. 修改任务信息</button>
+	    	<button class="btn btn-primary" id="fb-nq-paper-modify">2. Modify task information</button>
 	  	</div>
 	</div>
 	<script type='text/javascript' src='js/pages/viewSchedule/fb-nonquant-choice.js'></script>

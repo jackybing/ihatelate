@@ -967,7 +967,7 @@
        * Scroll the calendar to a specific hour
        */
       _scrollToHour : function(hour) {
-         var self = this;
+         /*var self = this;
          var options = this.options;
          var $scrollable = this.element.find(".wc-scrollable-grid");
          var slot = hour;
@@ -989,7 +989,7 @@
             var targetOffset = $target.offset().top;
             var scroll = targetOffset - $scrollable.offset().top - $target.outerHeight();
             $scrollable.animate({scrollTop: scroll}, options.scrollToHourMillis);
-         });
+         });*/
       },
 
       /*

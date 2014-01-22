@@ -1,7 +1,7 @@
 (function($) {
 	$(function() {
 		// Start: 201311241721 init dialog
-		var dialog_top = 0;
+		// var dialog_top = 0;
 		var refresh_callback_func;
 		var $dialogDetailInfo = $("#detail-info-dialog");
 		$dialogDetailInfo.dialog({
@@ -11,7 +11,7 @@
 	        modal: true,
 	        width: 750,
 	        open: function( event, ui ) {
-	        	$("#ui-dialog-title-detail-info-dialog").parents(".ui-dialog.ui-widget.ui-widget-content.ui-corner-all").css("top", dialog_top);
+	        	// $("#ui-dialog-title-detail-info-dialog").parents(".ui-dialog.ui-widget.ui-widget-content.ui-corner-all").css("top", dialog_top);
 	        	 	
 	        },
 	        close: function() {
@@ -213,11 +213,11 @@
 	      eventResize : function(calEvent, $event) {
 	      },
 	      eventClick : function(calEvent, $event) {
-	    	  dialog_top = $($event[0]).offset().top;
+	    	  /*dialog_top = $($event[0]).offset().top;
 	          dialog_top = parseFloat(dialog_top);
 	          if(dialog_top > 1514) {
 	        	  dialog_top = 1514;
-	          }
+	          }*/
 	    	  
 	    	  /*$("#did-task-id").text(calEvent.id);
 	    	  $("#did-title").text(calEvent.title);
@@ -236,9 +236,9 @@
 	          
 	    	  $dialogDetailInfo.dialog("open");
 	    	  
-	    	  window.setTimeout(function() {
+	    	  /*window.setTimeout(function() {
 	         	$("html,body", window.parent.document).scrollTop(parseFloat(dialog_top) + 160);
-	         }, 100);
+	         }, 100);*/
 	         /*if (calEvent.readOnly) {
 	            return;
 	         }

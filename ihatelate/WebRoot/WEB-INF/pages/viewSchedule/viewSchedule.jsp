@@ -20,7 +20,6 @@
 	<style type="text/css">
 		.container-fluid { padding: 0; }
 		td.wc-day-column-header { font-size: 0.8em; }
-		.wc-header .wc-scrollbar-shim { width: 0; }
 		.wc-business-hours { font-size: 1.05em; }
 		.wc-header { border-top: 0; }
 		.ui-dialog .ui-dialog-title { margin: 0; padding: 0; }
@@ -66,7 +65,7 @@
   		</div>
   	</div>
   	<!-- Start: 201311241702 点击后展示任务信息的dialog -->
-	<div id="detail-info-dialog" title="View Task Infomation" style="display: none;">
+	<div id="detail-info-dialog" title="View Task Infomation" style="display: none; max-height: 330px;">
 		<table id="detail-info-table" class="table table-striped table-hover table-condensed" style="margin-bottom: 0;">
 			<thead>
 			
