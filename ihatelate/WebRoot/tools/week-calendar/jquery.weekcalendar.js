@@ -29,7 +29,7 @@
          self._renderCalendar();
          self._loadCalEvents();
          self._resizeCalendar();
-         self._scrollToHour(self.options.date.getHours());
+         // self._scrollToHour(self.options.date.getHours());
 
          $(window).unbind("resize.weekcalendar");
          $(window).bind("resize.weekcalendar", function() {
@@ -967,7 +967,7 @@
        * Scroll the calendar to a specific hour
        */
       _scrollToHour : function(hour) {
-         var self = this;
+         /*var self = this;
          var options = this.options;
          var $scrollable = this.element.find(".wc-scrollable-grid");
          var slot = hour;
@@ -989,7 +989,7 @@
             var targetOffset = $target.offset().top;
             var scroll = targetOffset - $scrollable.offset().top - $target.outerHeight();
             $scrollable.animate({scrollTop: scroll}, options.scrollToHourMillis);
-         });
+         });*/
       },
 
       /*
