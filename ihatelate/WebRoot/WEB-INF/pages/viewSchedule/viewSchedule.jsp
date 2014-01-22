@@ -30,7 +30,8 @@
 		#vs-fb-div .form-horizontal label.control-label { padding-top: 5px; margin-top: 0; }
 		#vs-fb-div .form-horizontal .control-group { margin-bottom: 10px; }
 		#vs-fb-div .progress { margin-bottom: 0; margin-top: 3px; }
-		#vs-fb-div .table th { text-align: center; }
+		#vs-fb-div .table th, #vs-fb-div .table td { text-align: center; }
+		#vs-fb-div .table .controls { text-align: left; }
 		.wc-cal-event { min-height: 20px; }
 	</style>
   </head>

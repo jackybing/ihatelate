@@ -1,11 +1,10 @@
 p, form, input, textarea, ul, li, h1, h2, h3, h4, dl, dt, dd, table, td, th { margin:0; padding:0; }
 table, td, th { border-collapse:collapse; }
-ul, li { list-style:none; }
-h1, h2, h3, h4 { font-size:100%; }
+h1, h2, h4 { font-size:100%; }
 img, input, textarea { vertical-align: middle; }
 a { text-decoration:none; color:#787878; outline:none; }
 a:hover { text-decoration:underline; }
-body { font:12px/1.5 "Century Gothic", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei","tahoma", Verdana, Geneva, sans-serif; color:#666;}
+body { font-family: "Century Gothic", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei","tahoma", Verdana, Geneva, sans-serif; color:#666;}
 .clearfix:after{content:" "; display:block; height:0; clear:both; visibility:hidden;}
 .clearfix{zoom:1;}
 .fl { float:left;}
@@ -19,9 +18,9 @@ a { outline:none; } /*’Î∂‘firefoxµ»*/
 /*history*/
 .history { background:url(../images/line04.gif) repeat-y 187px 0; overflow:hidden; position:relative;}
 .history-date { overflow:hidden;}
-.history-date h2 { background:url(../images/icon06.gif) #fff no-repeat 158px 0; height:59px; font-size:25px; line-height: 19px; font-family:Microsoft Yahei; font-weight:normal; padding-left:45px; }
+.history-date h2 { background:url(../images/icon06.gif) #fff no-repeat 158px 0; height:59px; font-size:23px; line-height: 29px; font-family:Microsoft Yahei; font-weight:normal; padding-left:17px; }
 .history-date h2.first { position:absolute; left:0; top:0; z-index:99;}
-.history-date h2 a { color:#00bbff; display:inline-block; *display:inline; zoom:1; padding-right:17px; margin:21px 97px 0 0; cursor: default; }
+.history-date h2 a { color:#00bbff; display:inline-block; *display:inline; zoom:1; padding-right:17px; margin:14px 97px 0 0; cursor: default; }
 .history-date h2 a:hover { text-decoration:none;}
 .history-date h2 img { vertical-align:-5px;}
 .history-date h2.date02 { background:none;}

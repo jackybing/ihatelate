@@ -22,6 +22,11 @@
   </head>
   
   <body>
+  	<!-- Start: 刚进入时的遮罩层 页面初始化完毕后去掉 -->
+	<div class="blockUI" style="display:none"></div>
+	<div style="z-index: 1030; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay"></div>
+	<div style="z-index: 1041; position: fixed; padding: 15px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: rgb(255, 255, 255); border: medium none; background-color: rgb(0, 0, 0); cursor: wait; border-radius: 10px; opacity: 0.5;" class="blockUI blockMsg blockPage"><h1 style="font-size: 24px; line-height: 29px;">Initializing ... Please wait ...</h1></div>
+	<!-- End  : 刚进入时的遮罩层 页面初始化完毕后去掉 -->
   	<div class="container">
   		<div class="row-fluid margin-bottom-20px">
   			<div class="span7">
@@ -915,9 +920,26 @@
 	<script type="text/javascript" src="js/pages/index/index-open-class.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-exercise.js"></script>
 	<script type="text/javascript" src="js/pages/index/index-university.js"></script>
-	<!-- 刚进入时的遮罩层 页面初始化完毕后去掉 -->
-	<div class="blockUI" style="display:none"></div>
-	<div style="z-index: 1030; border: medium none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay"></div>
-	<div style="z-index: 1041; position: fixed; padding: 15px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: rgb(255, 255, 255); border: medium none; background-color: rgb(0, 0, 0); cursor: wait; border-radius: 10px; opacity: 0.5;" class="blockUI blockMsg blockPage"><h1 style="font-size: 24px; line-height: 29px;">Initializing ... Please wait ...</h1></div>
+	<!-- Start: Feedback Modal -->
+	<div id="fb-paper-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="fb-paper-modal-label" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="fb-paper-modal-label">Choose your feedback option</h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		The time you feedback is longer than the unfinished time margin of current stage. Here are two choices for you:
+	    	<ol>
+	    		<li>Confirm finish current stage: Confirm the feedback time is equal to the unfinished time of current stage, feedback and finish current stage.</li>
+	    		<li>提示用户去修改当前阶段的预估总时间数，以便后台在后续时间里继续分配时间来完成当前阶段任务</li>
+	    	</ol>
+	  	</div>
+	  	<div class="modal-footer">
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	    	<button class="btn btn-success" id="fb-nq-paper-confirm">1. Confirm finish current stage</button>
+	    	<button class="btn btn-primary">2. 修改任务信息</button>
+	  	</div>
+	</div>
+	<script type='text/javascript' src='js/pages/viewSchedule/fb-nonquant-choice.js'></script>
+	<!-- End  : Feedback Modal -->
   </body>
 </html>

@@ -1,7 +1,5 @@
 (function($) {
 	$(function() {
-		var IHL_BlockMsgObj = window.parent.IHL_BlockMsgObj,
-			IHL_ErrorTipObj = window.parent.IHL_ErrorTipObj;
 		// function to clear error tips
 		function clearMyErrorTip(myself) {
             var myControlGroupParent = myself.parents(".control-group");
@@ -165,32 +163,18 @@
 				IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_paper_time_element, "Please input an integer, not a float");
 				is_validate = false;
 			}
+				
 			// 通过检测，则ajax提交结果，提交成功后触发reset事件
 			if(is_validate) {
-				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Submiting feedback ...<h1>");
-				$.ajax({
-					url: "applyUniversityTaskAction!feedback.action",
-					data: {
-						id: task_id,
-						stageTime: parseInt(fb_paper_time)
-					},
-					success: function(response_data) {
-						response_data = JSON.parse(JSON.parse(response_data));
-						$("#vs-fb-div").html(NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
-						IHL_BlockMsgObj.unblockMsg(function() { 
-                            if(response_data.statusCode == "200") {
-								$('#calendar').weekCalendar("refresh");
-		    					// $("#detail-info-dialog").dialog("close");
-		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
-							} else {
-								var fb_info = response_data.info;
-								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
-								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_paper_time_element, fb_info);
-							}
-                        });
-						
-					}
-				});
+				fb_paper_time = parseInt(fb_paper_time);
+				if(fb_paper_time > NonQuantStageInfo_Module.cur_stage_left_time) {
+					window.parent.IHL_NonQuantFbHelper.showPaperDialog(task_id, fb_paper_time);
+					
+				} else {
+					NonQuantStageInfo_Module.feedbackPaperTime(task_id, fb_paper_time);
+					
+				}
+				
 			}
 			
 		});

@@ -1,3 +1,11 @@
+// 非量化反馈相关辅助对象
+var IHL_NonQuantFbHelper = {
+	showPaperDialog: function(task_id, fb_paper_time) {
+		$('#fb-paper-modal').modal('show');
+		$("#fb-paper-modal-label").data("taskId", task_id).data("fbPaperTime", fb_paper_time);
+	}
+};
+
 // Task Form Operation 相关对象
 var IHL_TaskFormOprtObj = {
 	computeDateRangeDays: function(sDate1, sDate2) {
@@ -9,7 +17,7 @@ var IHL_TaskFormOprtObj = {
         iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 /24);  //把相差的毫秒数转换为天数 
         return iDays;
 	}
-}
+};
 // Error Tip 的相关对象
 var IHL_ErrorTipObj = {
 	isInScrolling: false,
