@@ -933,11 +933,26 @@
 	    	</ol>
 	  	</div>
 	  	<div class="modal-footer">
-	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	    	<button class="btn btn-success" id="fb-nq-paper-confirm">1. Confirm finish current stage</button>
 	    	<button class="btn btn-primary" id="fb-nq-paper-modify">2. Modify task information</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	  	</div>
 	</div>
+	
+	<div id="fb-modify-task-info" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="fb-modify-task-info-label" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="fb-modify-task-info-label">Modify Task Information</h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		Modify task information here
+	  	</div>
+	  	<div class="modal-footer">
+	    	<button class="btn btn-primary">Save Modifications</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+	  	</div>
+	</div>
+	
 	<script type='text/javascript' src='js/pages/viewSchedule/fb-nonquant-choice.js'></script>
 	<!-- End  : Feedback Modal -->
   </body>

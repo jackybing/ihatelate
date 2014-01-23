@@ -46,7 +46,14 @@ public class TaskAction extends ActionSupport{
 		resultMap.put("taskInfo",task);
 		
 		setResult(JSONObject.fromObject(resultMap,jsonConfig).toString());
-		
+		// Start: 201401232351 Pandaroid 恢复对PO的改变 消除对数据库的影响
+		task.setUser(userService.getLoginUser());
+		stages = task.getStages();
+		for(Stage stage : stages){
+			stage.setTask(task);
+		}
+		task.setStages(stages);
+		// End  : 201401232351 Pandaroid 恢复对PO的改变 消除对数据库的影响
 		return SUCCESS;
 	}
 	//获得登录用户的所有任务信息

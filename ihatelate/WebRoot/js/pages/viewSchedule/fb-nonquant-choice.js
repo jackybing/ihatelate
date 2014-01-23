@@ -31,7 +31,20 @@
 		}).on("click", "#fb-nq-paper-modify", function() {
 			var dataEle = $("#fb-paper-modal-label"), 
 				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime");
-			console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
+			// console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
+			$('#fb-paper-modal').modal('hide');
+			$("#fb-modify-task-info").modal("show");
+			$.ajax({
+				url: "taskAction!obtainTaskByTaskID.action",
+				data: {
+					id: task_id
+				},
+				success: function(response_data) {
+					response_data = $.parseJSON(response_data);
+					console.log(response_data);
+					
+				}
+			});
 			
 		});
 		// End  : 点击dialog的按钮后会发生的事情
