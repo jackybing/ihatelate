@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index/index.css" />
 	<link rel="stylesheet" type="text/css" href="css/index/timeline/css/index-timeline.css" />
 	<style type="text/css">
-		
+		.fb-mti-form { display: none; }
 	</style>
   </head>
   
@@ -945,6 +945,7 @@
 	    	<h3 id="fb-modify-task-info-label">Modify Task Information</h3>
 	  	</div>
 	  	<div class="modal-body">
+	  		<!-- Start: 20 论文 -->
 	  		<div id="fb-mti-form-paper" class="form-horizontal fb-mti-form">
 	  			<div class="control-group">
 	              	<label class="control-label" for="fb-mti-paper-task-name">Task Name:</label>
@@ -987,7 +988,7 @@
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
-	  			<div class="well" style="padding-bottom: 0; padding-left: 0;">
+	  			<div id="fb-mti-paper-stages" class="well" style="padding-bottom: 0; padding-left: 0;">
 	  				<div id="fb-mti-paper-stage-wrapper-1" data-step="1">
 	  					<div class="control-group">
 	  						<label class="control-label" for="fb-mti-paper-sname-1">Stage 1 Name:</label>
@@ -1007,6 +1008,7 @@
 	  				
 	  			</div>
 	  		</div>
+	  		<!-- End  : 20 论文 -->
 	  		
 	  	</div>
 	  	<div class="modal-footer">

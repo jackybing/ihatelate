@@ -53,13 +53,13 @@ var IHL_BlockMsgObj = {
 	confirmBlockExe: function() {
 		this.timer_id = window.setTimeout(function() {
 			if(this_ptr.is_blocked) {
-				if(confirm("服务器长时间无响应，是否继续等待？")) {
-					IHL_BlockMsgObj.confirmBlockExe();
-				} else {
+				if(confirm("服务器响应超时，若您已无操作一段时间，则session可能已超时。点击“确定”重新登陆，点击“取消”继续等待。")) {
 					window.loacation.reload();
+				} else {
+					IHL_BlockMsgObj.confirmBlockExe();
 				}
 			}
-		}, 60000);
+		}, 30000);
 	},
 	showBlockMsg: function(msg, element, callback) {
 		var this_ptr = this;

@@ -42,7 +42,6 @@
 			$('#fb-paper-modal').modal('hide');
 			tiModify.showTaskInfoModal(task_id);
 			
-			
 		});
 		// End  : 点击dialog的按钮后会发生的事情
 	});
