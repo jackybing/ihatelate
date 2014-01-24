@@ -5,7 +5,11 @@
 			cache_resize_height: 0,
 			resizeVsIframe: function() {
 				// console.log("resize " + this.cache_resize_height);
-				$("#vs-iframe").height(this.cache_resize_height - 194);
+				var tmp_height = this.cache_resize_height - 194;
+				$("#vs-iframe").height(tmp_height).contents().find("#detail-info-dialog")
+				.css("max-height", (tmp_height - 140) + "px");
+				var tmp_dialog_max_height = this.cache_resize_height * 0.75 - 120;
+				$(".modal-body").css("max-height", tmp_dialog_max_height);
 			}
 		};
 		ResizeVsIframeObj.cache_resize_height = document.body.clientHeight;
@@ -18,6 +22,9 @@
 				ResizeVsIframeObj.resizeVsIframe();
 			}
 			
+		});
+		$(document).on("click", "#view-schedule-btn", function() {
+			ResizeVsIframeObj.resizeVsIframe();
 		});
 		// End  : 对于新的VS界面，根据屏幕可视区域自适应高度的对象和方法
 		// Start: 点击dialog的按钮后会发生的事情
@@ -33,18 +40,8 @@
 				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime");
 			// console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
 			$('#fb-paper-modal').modal('hide');
-			$("#fb-modify-task-info").modal("show");
-			$.ajax({
-				url: "taskAction!obtainTaskByTaskID.action",
-				data: {
-					id: task_id
-				},
-				success: function(response_data) {
-					response_data = $.parseJSON(response_data);
-					console.log(response_data);
-					
-				}
-			});
+			tiModify.showTaskInfoModal(task_id);
+			
 			
 		});
 		// End  : 点击dialog的按钮后会发生的事情

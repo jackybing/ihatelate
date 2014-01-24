@@ -939,13 +939,75 @@
 	  	</div>
 	</div>
 	
-	<div id="fb-modify-task-info" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="fb-modify-task-info-label" aria-hidden="true">
+	<div id="fb-modify-task-info" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="fb-modify-task-info-label" aria-hidden="true" style="width: 900px; margin-left: -450px;">
 	  	<div class="modal-header">
 	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    	<h3 id="fb-modify-task-info-label">Modify Task Information</h3>
 	  	</div>
 	  	<div class="modal-body">
-	  		Modify task information here
+	  		<div id="fb-mti-form-paper" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-paper-task-name" placeholder="Task Name" class="input-width-280px">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-paper-start-time" style="cursor: pointer;" placeholder="Start Date" readonly="" class="input-width-128px">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-paper-end-time" style="cursor: pointer;" placeholder="End Date" readonly="" class="input-width-128px">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-paper-total-day" placeholder="Integer between 0 and date range" class="input-width-280px">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-name">Paper Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-paper-name" placeholder="Paper Name" class="input-width-280px">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-paper-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  			<div class="well" style="padding-bottom: 0; padding-left: 0;">
+	  				<div id="fb-mti-paper-stage-wrapper-1" data-step="1">
+	  					<div class="control-group">
+	  						<label class="control-label" for="fb-mti-paper-sname-1">Stage 1 Name:</label>
+	  						<div class="controls">
+	  							<input value="吃饭" type="text" id="fb-mti-paper-sname-1" placeholder="Stage 1 Name" class="input-width-280px" />
+	  							<span class="help-inline"></span>
+	  						</div>
+	  					</div>
+	  					<div class="control-group">
+	  						<label class="control-label" for="fb-mti-paper-stime-1">Stage 1 Time:</label>
+	  						<div class="controls">
+	  							<input value="" type="text" id="fb-mti-paper-stime-1" placeholder="Stage 1 Time" class="input-width-280px" />
+	  							<span class="help-inline"></span>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				
+	  			</div>
+	  		</div>
+	  		
 	  	</div>
 	  	<div class="modal-footer">
 	    	<button class="btn btn-primary">Save Modifications</button>
@@ -953,6 +1015,7 @@
 	  	</div>
 	</div>
 	
+	<script type='text/javascript' src='js/pages/taskInfo/ti-global.js'></script>
 	<script type='text/javascript' src='js/pages/viewSchedule/fb-nonquant-choice.js'></script>
 	<!-- End  : Feedback Modal -->
   </body>
