@@ -27,6 +27,7 @@
 			ResizeVsIframeObj.resizeVsIframe();
 		});
 		// End  : 对于新的VS界面，根据屏幕可视区域自适应高度的对象和方法
+		
 		// Start: 点击dialog的按钮后会发生的事情
 		$(document).on("click", "#fb-nq-paper-confirm", function() {
 			var dataEle = $("#fb-paper-modal-label"), 
@@ -40,9 +41,20 @@
 				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime");
 			// console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
 			$('#fb-paper-modal').modal('hide');
-			tiModify.showTaskInfoModal(task_id);
+			TiModify.showTaskInfoModal(task_id);
 			
 		});
 		// End  : 点击dialog的按钮后会发生的事情
+		
+		// Start: 保存任务信息修改的按钮被点击
+		$(document).on("click", "#save-fbmti-btn", function() {
+			var this_ele = $(this), task_type = this_ele.data("taskType"),
+				stage_num = this_ele.data("stageNum");
+			TiSave.saveModifiedTi(task_type, stage_num);
+		});
+		//
+		
+		
+		
 	});
 })(jQuery);

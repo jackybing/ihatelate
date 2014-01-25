@@ -1,4 +1,4 @@
-var tiModify = {
+var TiModify = {
 	setSwitch: function(switch_check_ele, is_active) {
 		if(is_active) {
 			switch_check_ele.parent().removeClass("switch-off").addClass("switch-on");
@@ -23,29 +23,23 @@ var tiModify = {
 						var s_step = s_key.substring(0, s_key.indexOf(":"));
 						var s_val_splt_idx = s_val.indexOf(":");
 						var s_total = parseInt(s_val.substring(0, s_val_splt_idx)), s_comp = parseInt(s_val.substring(s_val_splt_idx + 1));
-						console.log("s_step: " + s_step);
-						console.log("s_comp: " + s_comp);
-						console.log("s_total: " + s_total);
 						ret_array[s_step - 1] = (s_comp == s_total);
 					}
 				}
 			}
 		});
-		console.log("ret_array: ");
-		console.log(ret_array);
 		return ret_array;
 	},
 	fillStages: function(stages_well_ele, stages, task_id) {
 		var this_ptr = this;
 		var stages_completion_array = this_ptr.obtainStagesCompletionArray(task_id);
 		var stages_array = [], stages_html_array = [];
+		$("#save-fbmti-btn").data("stageNum", stages.length);
 		for(var s_idx in stages) {
 			var stage = stages[s_idx], step = stage.step;
 			console.log(stage);
 			stages_array[step - 1] = stage;
-			
 		}
-		console.log(stages_array);
 		for(var s_idx in stages_array) {
 			var stage = stages_array[s_idx], step = stage.step, name = stage.name, time = stage.time;
 			var is_completed = stages_completion_array[s_idx], class_readonly = is_completed ? " readonly" : "";
@@ -74,6 +68,7 @@ var tiModify = {
 		console.log("taskInfo: ");
 		console.log(task_info);
 		var cur_task_type = task_info.type;
+		$("#save-fbmti-btn").data("taskType", cur_task_type);
 		if(cur_task_type == "10") {	// Read Book
 			
 			
@@ -123,4 +118,145 @@ var tiModify = {
 		
 	}
 
+};
+// 保存编辑过的任务信息
+var TiSave = {
+	savePaperMti: function(stage_num) {
+		// 获取控件
+		var task_name_ele = $("#fb-mti-paper-task-name"), start_time_ele = $("#fb-mti-paper-start-time"),
+			end_time_ele = $("#fb-mti-paper-end-time"), total_day_ele = $("#fb-mti-paper-total-day"),
+			paper_name_ele = $("#fb-mti-paper-name"), is_active_ele = $("#fb-mti-paper-is-active");
+		// 获取值
+		var task_name = $.trim(task_name_ele.val()), start_time = $.trim(start_time_ele.val()),
+			end_time = $.trim(end_time_ele.val()), total_day = $.trim(total_day_ele.val()),
+			paper_name = $.trim(paper_name_ele.val()),
+			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";;
+		// 对输入控件的值进行检测，如果不对，显示error tip
+		var is_validate = true;
+		if(task_name == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(task_name_ele, "Please input a task name");
+			is_validate = false;
+		}
+		if(start_time == "" && end_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date and an end date");
+			is_validate = false;
+		} else if(start_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date");
+			is_validate = false;
+		} else if(end_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(end_time_ele, "Please input an end date");
+			is_validate = false;
+		}
+		if(start_time == "" || end_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input Date Range first");
+			is_validate = false;
+		} else if(total_day == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input days you plan to spend on this task");
+			is_validate = false;
+		} else if(isNaN(total_day)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(total_day) != parseFloat(total_day)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer, not a float");
+			is_validate = false;
+		} else {
+			total_day = parseInt(total_day);
+			total_day_ele.val(total_day).trigger("change");
+			var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
+			if(total_day < 1) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost at least 1 day on this task");
+				is_validate = false;
+			} else if(total_day > date_range_days) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
+				is_validate = false;
+			}
+		}
+		if(paper_name == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(paper_name_ele, "Please input a paper name");
+			is_validate = false;
+		}
+		// 检测stages数据
+		var stages = [], stage_num = parseInt(stage_num);
+		for(var i = 1; i <= stage_num; i++) {
+			var sname_ele = $("#fb-mti-paper-sname-" + i), stime_ele = $("#fb-mti-paper-stime-" + i);
+			var sname = $.trim(sname_ele.val()), stime = $.trim(stime_ele.val());
+			if(sname == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(sname_ele, "Please input a stage name");
+				is_validate = false;
+			}
+			if(stime == "") {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input a stage time");
+				is_validate = false;
+			} else if(isNaN(stime)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input an integer");
+				is_validate = false;
+			} else if(parseInt(stime) != parseFloat(stime)) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input an integer, not a float");
+				is_validate = false;
+			}
+			if(is_validate) {
+				stages.push({step: i, name: sname, time: stime});
+			}
+			
+		}
+		// 若通过检测 则提交并保存
+		if(is_validate) {
+			IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Saving ...<h1>");
+			var task_id = $("#fb-paper-modal-label").data("taskId");
+			$.ajax({
+				url: "writePaperTaskAction!update.action",
+				data: {
+					id: task_id,
+					name: task_name,
+					startTime: start_time,
+					endTime: end_time,
+					totalDay: total_day,
+					isActive: is_active,
+					paperName: paper_name,
+					stages: JSON.stringify(stages)
+				},
+				type: "post",
+				success: function(json_data) {
+					var data = $.parseJSON(json_data);
+					console.log(data);
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        if(data.statusCode == "200") {
+							$.growlUI('Success', data.info);
+							var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+							if(vs_fb_div_ele) {
+								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
+							}
+						} else {
+							$.growlUI('Error', data.info);
+						}
+                    });
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        $.growlUI('Error', textStatus + " " + errorThrown);
+                    });
+				}
+			});
+		}
+			
+	},
+	saveModifiedTi: function(task_type, stage_num) {
+		var this_ptr = this;
+		if(task_type == "10") {	// Read Book
+				
+				
+		} else if(task_type == "11") {	// Open Class
+			
+			
+		} else if(task_type == "12") {	// 健身
+			
+			
+		} else if(task_type == "20") {	// 写论文
+			this_ptr.savePaperMti(stage_num);
+			
+		} else if(task_type == "21") {	// 申请大学
+			
+		}
+	}
 };

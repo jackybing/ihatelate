@@ -1012,7 +1012,7 @@
 	  		
 	  	</div>
 	  	<div class="modal-footer">
-	    	<button class="btn btn-primary">Save Modifications</button>
+	    	<button class="btn btn-primary" id="save-fbmti-btn">Save Modifications</button>
 	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
 	  	</div>
 	</div>

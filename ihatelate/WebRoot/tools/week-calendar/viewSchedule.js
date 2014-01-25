@@ -15,11 +15,11 @@
 	        	 	
 	        },
 	        close: function() {
-	           
+	           	$('#calendar').weekCalendar("refresh");
 	        },
 	        buttons: {
 	           "Close" : function() {
-	              $dialogDetailInfo.dialog("close");
+	              	$dialogDetailInfo.dialog("close");
 	           }
 	        }
 	    });
