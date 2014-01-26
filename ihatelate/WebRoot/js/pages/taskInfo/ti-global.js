@@ -64,6 +64,7 @@ var TiModify = {
 		stages_well_ele.html(stages_html_array.join(""));
 	},
 	fillTaskInfoModal: function(task_info) {
+		$(".fb-mti-form").hide();
 		var this_ptr = this;
 		console.log("taskInfo: ");
 		console.log(task_info);
@@ -89,7 +90,8 @@ var TiModify = {
 			this_ptr.fillStages($("#fb-mti-paper-stages"), task_info.stages, task_info.id);
 			
 		} else if(cur_task_type == "21") {	// 申请大学
-			console.log("填充申请大学的dialog");
+			var univer_form_div = $("#fb-mti-form-university").show();
+			
 		}
 		
 	},

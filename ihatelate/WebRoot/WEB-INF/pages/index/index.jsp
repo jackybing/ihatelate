@@ -1009,7 +1009,84 @@
 	  			</div>
 	  		</div>
 	  		<!-- End  : 20 论文 -->
-	  		
+	  		<!-- Start: 21 大学 -->
+	  		<div id="fb-mti-form-university" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-university-task-name" placeholder="Task Name" class="input-width-280px">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-university-start-time" style="cursor: pointer;" placeholder="Start Date" readonly="" class="input-width-128px">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-university-end-time" style="cursor: pointer;" placeholder="End Date" readonly="" class="input-width-128px">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-university-total-day" placeholder="Integer between 0 and date range" class="input-width-280px">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-name">University Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-university-name" placeholder="Paper Name" class="input-width-280px">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              <label class="control-label" for="fb-mti-university-deadline">Deadline:</label>
+	              <div class="controls">
+	                <input type="text" id="fb-mti-university-deadline" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
+	                <span class="help-inline"></span>
+	              </div>
+	            </div>
+	            <div class="control-group">
+	              <label class="control-label" for="fb-mti-university-material">Material:</label>
+	              <div class="controls">
+	                <input type="text" id="fb-mti-university-material" placeholder="Material" class="input-width-280px">
+	                <span class="help-inline"></span>
+	              </div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-university-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  			<div id="fb-mti-university-stages" class="well" style="padding-bottom: 0; padding-left: 0;">
+	  				<div id="fb-mti-university-stage-wrapper-1" data-step="1">
+	  					<div class="control-group">
+	  						<label class="control-label" for="fb-mti-university-sname-1">Stage 1 Name:</label>
+	  						<div class="controls">
+	  							<input value="吃饭" type="text" id="fb-mti-university-sname-1" placeholder="Stage 1 Name" class="input-width-280px" />
+	  							<span class="help-inline"></span>
+	  						</div>
+	  					</div>
+	  					<div class="control-group">
+	  						<label class="control-label" for="fb-mti-university-stime-1">Stage 1 Time:</label>
+	  						<div class="controls">
+	  							<input value="" type="text" id="fb-mti-university-stime-1" placeholder="Stage 1 Time" class="input-width-280px" />
+	  							<span class="help-inline"></span>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				
+	  			</div>
+	  		</div>
+	  		<!-- End  : 21 大学 -->
 	  	</div>
 	  	<div class="modal-footer">
 	    	<button class="btn btn-primary" id="save-fbmti-btn">Save Modifications</button>
