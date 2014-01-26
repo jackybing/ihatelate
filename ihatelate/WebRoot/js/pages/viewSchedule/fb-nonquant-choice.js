@@ -31,14 +31,16 @@
 		// Start: 点击dialog的按钮后会发生的事情
 		$(document).on("click", "#fb-nq-paper-confirm", function() {
 			var dataEle = $("#fb-paper-modal-label"), 
-				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime");
+				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime"),
+				task_type = dataEle.data("taskType");
 			// console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
 			var nq_stage_info_module = $("#vs-iframe")[0].contentWindow.NonQuantStageInfo_Module;
-			nq_stage_info_module.feedbackPaperTime(task_id, fb_paper_time);
+			nq_stage_info_module.feedbackPaperTime(task_id, fb_paper_time, task_type);
 			$('#fb-paper-modal').modal('hide');
 		}).on("click", "#fb-nq-paper-modify", function() {
 			var dataEle = $("#fb-paper-modal-label"), 
-				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime");
+				task_id = dataEle.data("taskId"), fb_paper_time = dataEle.data("fbPaperTime"),
+				task_type = dataEle.data("taskType");
 			// console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
 			$('#fb-paper-modal').modal('hide');
 			TiModify.showTaskInfoModal(task_id);

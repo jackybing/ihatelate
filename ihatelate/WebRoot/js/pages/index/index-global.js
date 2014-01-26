@@ -1,8 +1,9 @@
 // 非量化反馈相关辅助对象
 var IHL_NonQuantFbHelper = {
-	showPaperDialog: function(task_id, fb_paper_time) {
+	showPaperDialog: function(task_id, fb_paper_time, task_type) {
 		$('#fb-paper-modal').modal('show');
-		$("#fb-paper-modal-label").data("taskId", task_id).data("fbPaperTime", fb_paper_time);
+		$("#fb-paper-modal-label").data("taskId", task_id)
+		.data("fbPaperTime", fb_paper_time).data("taskType", task_type);
 	}
 };
 
@@ -365,29 +366,34 @@ var IHL_IndexInitObj = {
 		$.ajax({
 			url: "scheduleAction!scheduleToday.action",
 			success: function(data) {
-				data = $.parseJSON(data);
-				if(data.statusCode == "200") {
-					var schedule = data.scheduel;
-					schedule_array = $.parseJSON(schedule);
-					var today_schedule = schedule_array[0];
-					var timeline_ul_array = [];
-					for(var today_index in today_schedule) {
-						var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
-							today_timeline_array = today_schedule[today_index];
-						$("#index-tl-weekday").text(today_full_tag);
-						
-						for(var tl_index in today_timeline_array) {
-							var cur_timeline = today_timeline_array[tl_index];
-							timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
-						}
-						
-					}
-					$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
-					
-					
+				if(data == "{timeout:true}") {
+					window.parent.location.reload();
 				} else {
-					alert("Failed to obtain your schedule!");
+					data = $.parseJSON(data);
+					if(data.statusCode == "200") {
+						var schedule = data.scheduel;
+						schedule_array = $.parseJSON(schedule);
+						var today_schedule = schedule_array[0];
+						var timeline_ul_array = [];
+						for(var today_index in today_schedule) {
+							var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
+								today_timeline_array = today_schedule[today_index];
+							$("#index-tl-weekday").text(today_full_tag);
+							
+							for(var tl_index in today_timeline_array) {
+								var cur_timeline = today_timeline_array[tl_index];
+								timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
+							}
+							
+						}
+						$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
+						
+						
+					} else {
+						alert("Failed to obtain your schedule!");
+					}
 				}
+					
 			}
 		});
 	},

@@ -89,7 +89,7 @@ var TiModify = {
 			this_ptr.fillStages($("#fb-mti-paper-stages"), task_info.stages, task_info.id);
 			
 		} else if(cur_task_type == "21") {	// 申请大学
-			
+			console.log("填充申请大学的dialog");
 		}
 		
 	},
@@ -102,8 +102,8 @@ var TiModify = {
 			},
 			success: function(response_data) {
 				response_data = $.parseJSON(response_data);
-				console.log("response_data: ");
-				console.log(response_data);
+				// console.log("response_data: ");
+				// console.log(response_data);
 				if(response_data.statusCode == "200") {
 					var task_info = response_data.taskInfo;
 					this_ptr.fillTaskInfoModal(task_info);
@@ -224,7 +224,7 @@ var TiSave = {
 							$.growlUI('Success', data.info);
 							var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
 							if(vs_fb_div_ele) {
-								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
+								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "20").join(""));
 							}
 						} else {
 							$.growlUI('Error', data.info);

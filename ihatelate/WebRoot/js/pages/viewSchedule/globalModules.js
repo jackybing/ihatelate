@@ -22,10 +22,15 @@ var NonQuantStageInfo_Module = {
 		return ret_bar_class;
 	},
 	cur_stage_left_time: 0,
-	obtainStageHtml: function(task_id) {
+	obtainStageHtml: function(task_id, task_type) {
 		var ret_form_html_array = [], this_ptr = this;
+		var type_url_dict = {
+			"20": "writePaperTaskAction!obtainStagesInfo.action",
+			"21": "applyUniversityTaskAction!obtainStagesInfo.action"
+		};
+		// console.log("|" + task_type + "|");
 		$.ajax({
-			url: "writePaperTaskAction!obtainStagesInfo.action",
+			url: type_url_dict[task_type],
 			data: {
 				id: task_id
 			},
@@ -101,7 +106,7 @@ var NonQuantStageInfo_Module = {
 											'</div>',
 											'<div class="control-group">',
 												'<div class="controls">',
-													'<button class="btn btn-success" id="fb-paper-btn" data-id="' + task_id + '">Feedback</button>',
+													'<button class="btn btn-success" id="fb-paper-btn" data-id="' + task_id + '" data-task-type="' + task_type + '">Feedback</button>',
 												'</div>',
 											'</div>',
 										'</div>',
@@ -126,17 +131,21 @@ var NonQuantStageInfo_Module = {
 		});
 		return ret_form_html_array;
 	},
-	feedbackPaperTime: function(task_id, fb_paper_time) {
+	feedbackPaperTime: function(task_id, fb_paper_time, task_type) {
 		IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Submiting feedback ...<h1>");
+		var type_url_dict = {
+			"20": "writePaperTaskAction!feedback.action",
+			"21": "applyUniversityTaskAction!feedback.action"
+		};
 		$.ajax({
-			url: "writePaperTaskAction!feedback.action",
+			url: type_url_dict[task_type],
 			data: {
 				id: task_id,
 				stageTime: parseInt(fb_paper_time)
 			},
 			success: function(response_data) {
 				response_data = JSON.parse(JSON.parse(response_data));
-				$("#vs-fb-div").html(NonQuantStageInfo_Module.obtainStageHtml(task_id).join(""));
+				$("#vs-fb-div").html(NonQuantStageInfo_Module.obtainStageHtml(task_id, task_type).join(""));
 				IHL_BlockMsgObj.unblockMsg(function() { 
                     if(response_data.statusCode == "200") {
 						$('#calendar').weekCalendar("refresh");
