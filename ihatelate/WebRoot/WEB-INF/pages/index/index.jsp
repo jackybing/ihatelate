@@ -89,13 +89,37 @@
 	  				
   			</div>
   		</div>
+  		
+  		<div class="wrapper-container margin-bottom-20px">
+  			<div class="row-fluid">
+  				<div class="span12 tile">
+  					<div class="row-fluid tile-row tile-first-row">
+  						<div class="span6 tile-word">
+	  						Task List
+	  					</div>
+	  					<div class="span6" style="text-align: right;">
+	  						<button id="hide-task-list" class="btn btn-danger">Hide Task List</button>
+	  					</div>
+  					</div>
+  					<div class="row-fluid">
+  						<div class="span12">
+  							task list displays here
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		
   		<div class="wrapper-container margin-bottom-20px">
   			<div id="index-wrapper" class="content-wrappers selected">
 	  			<div class="row-fluid">
-		  			<div class="span12 tile" style="">
+		  			<div class="span12 tile">
 		  				<div class="row-fluid tile-row tile-first-row">
-		  					<div class="span12 tile-word">
+		  					<div class="span6 tile-word">
 		  						What's Next?
+		  					</div>
+		  					<div class="span6" style="text-align: right;">
+		  						<button id="display-task-list" class="btn btn-primary">Display Task List</button>
 		  					</div>
 		  				</div>
 		  				<div class="row-fluid">
@@ -106,90 +130,7 @@
 								    	<div class="history-date">
 								    		<h2 class="first"><a id="index-tl-weekday" href="javascript: void(0);">2012年</a></h2>
 								      		<ul id="index-tl-ul" style="display: none;">
-								         		<!-- <li class="green">
-								          			<h3>10.08<span>2012</span></h3>
-								          			<dl>
-								            			<dt>发布全新的极速浏览器6.0版本
-															<span>升级极速内核到21.0；全新默认界面；新增小窗口播放功能</span>
-														</dt>
-								          			</dl>
-								        		</li>
-								
-										       	<li>
-										         	<h3>07.19<span>2012</span></h3>
-										          	<dl>
-										            	<dt>升级极速内核到20.0
-															<span>HTML5支持度全球最好，达到469分，测试页面： </span>
-														</dt>
-										          	</dl>
-										        </li>
-								
-										        <li>
-										          	<h3>07.02<span>2012</span></h3>
-										          	<dl>
-										            	<dt>升级极速内核到19.0
-															<span>支持网络摄像头，浏览器可直接访问摄像头</span>
-														</dt>
-										          	</dl>
-										        </li>
-								
-										       	<li>
-										          	<h3>06.27<span>2012</span></h3>
-										          	<dl>
-										            	<dt>发布国内首个HTML5实验室
-															<span>大力推广HTML5</span>
-														</dt>
-										          	</dl>
-										        </li>
-										        <li>
-										          	<h3>06.15<span>2012</span></h3>
-										          	<dl>
-										            	<dt>新增了下载文件前扫描下载链接安全性的功能</dt>
-										          	</dl>
-										        </li>
-										        <li>
-								          			<h3>06.05<span>2012</span></h3>
-								          			<dl>
-								            			<dt>W3C联盟首席执行官访华，首站访问360公司
-														</dt>
-								          			</dl>
-								        		</li>
-								        		<li>
-								          			<h3>05.12<span>2012</span></h3>
-								          			<dl>
-								            			<dt>360受邀出席W3C联盟成员见面会议</dt>
-								          			</dl>
-								        		</li>
-										        <li>
-										          	<h3>05.11<span>2012</span></h3>
-										          	<dl>
-										            	<dt>升级极速内核到18.0
-															<span>新增多用户使用浏览器的功能</span>
-														</dt>
-										          	</dl>
-										        </li>
-								        		<li>
-								          			<h3>05.03<span>2012</span></h3>
-								          			<dl>
-								            			<dt>360极速浏览器用户数突破5000万，活跃用户超2000万
-														</dt>
-								          			</dl>
-								        		</li>
-								        		<li>
-								          			<h3>03.08<span>2012</span></h3>
-								          			<dl>
-								            			<dt>升级极速内核到17.0，提升浏览器速度、增强安全性
-															<span>新增HTTP管线化技术，大幅提升网页加载速度</span>
-														</dt>
-								          			</dl>
-								        		</li>
-								        		<li>
-								          			<h3>01.29<span>2012</span></h3>
-								          			<dl>
-								            			<dt>国内率先加入W3C联盟HTML工作组，参与HTML5标准制定</span>
-														</dt>
-								          			</dl>
-								        		</li> -->
+								         		
 								      		</ul>
 								    	</div>
 								  	</div>
@@ -1097,5 +1038,9 @@
 	<script type='text/javascript' src='js/pages/taskInfo/ti-global.js'></script>
 	<script type='text/javascript' src='js/pages/viewSchedule/fb-nonquant-choice.js'></script>
 	<!-- End  : Feedback Modal -->
+	
+	<!-- Start: Task List and Task Modify -->
+	<script type='text/javascript' src='js/pages/taskList/task-list.js'></script>
+	<!-- End  : Task List and Task Modify -->
   </body>
 </html>
