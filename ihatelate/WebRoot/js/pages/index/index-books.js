@@ -359,7 +359,7 @@
 			}
 
 			if(is_validate) {
-				showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Adding task ...<h1>");
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Adding task ...<h1>");
 				$.ajax({
 					url: "bookTaskAction!create.action",
 					data: {
@@ -377,15 +377,13 @@
 					type: 'post',
 					success: function(json_data) {
 						var data = $.parseJSON(json_data);
-						$.unblockUI({
-                            onUnblock: function(){ 
-                                if(data.statusCode == "200") {
-									$.growlUI('Success', data.info);
-									resetBookTaskForm();
-								} else {
-									$.growlUI('Error', data.info);
-								}
-                            }
+						IHL_BlockMsgObj.unblockMsg(function() { 
+                            if(data.statusCode == "200") {
+								$.growlUI('Success', data.info);
+								resetBookTaskForm();
+							} else {
+								$.growlUI('Error', data.info);
+							}
                         });
 
 					},

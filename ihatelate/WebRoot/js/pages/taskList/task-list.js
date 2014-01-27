@@ -150,16 +150,24 @@
 			var display_tl_btn = $(this);
 			$.ajax({
 				url: "taskAction!obtainAllTask.action",
+				beforeSend: function() {
+					IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Obtaining Task List ...<h1>");
+				},
 				success: function(rsps_data) {
 					display_tl_btn.fadeOut("slow");
 					var rsps_obj = $.parseJSON(rsps_data);
-					if(rsps_obj.statusCode == "200") {
-						var task_array = rsps_obj.task;
-						var taskTbHtml = TaskListHelper.formTaskTbHtml(task_array);
-						$("#tl-tb-div").html(taskTbHtml);
-						initTlTable();
-						$("#task-list-wrapper").slideDown("slow");
-					}
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        if(rsps_obj.statusCode == "200") {
+							var task_array = rsps_obj.task;
+							var taskTbHtml = TaskListHelper.formTaskTbHtml(task_array);
+							$("#tl-tb-div").html(taskTbHtml);
+							initTlTable();
+							$("#task-list-wrapper").slideDown("slow");
+						} else {
+							$.growlUI('Error', rsps_obj.info);
+						}
+                    });
+						
 				}
 			});
 			
