@@ -8,6 +8,7 @@
 		$(document).on("click", "#index-page-btn", function() {	// when #index-page-btn clicked
 			IHL_IndexInitObj.initTimeline();
 		}).on("click", ".top-right-btns", function() {
+			$("#hide-task-list").click();
 			/*window.location.replace("jumpAction!index");*/
 			var this_btn = $(this);
 			if(!this_btn.hasClass("glow")) {

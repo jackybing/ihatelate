@@ -95,7 +95,7 @@
   			</div>
   		</div>
   		
-  		<div class="wrapper-container margin-bottom-20px">
+  		<div id="task-list-wrapper" class="wrapper-container margin-bottom-20px hide">
   			<div class="row-fluid">
   				<div class="span12 tile">
   					<div class="row-fluid tile-row tile-first-row">
@@ -109,109 +109,10 @@
   					<div class="row-fluid">
   						<div class="span12">
   							<!-- Start: 展示任务列表的table 根据后端api 不用分页 -->
-  							<table id="task-list-tb" cellspacing="1" cellpadding="3" class="tablehead table table-paper table-condensed table-striped table-sortable" style="background:#CCC;">
-					          	<thead>  
-					            	<tr class="stathead">
-					              		<th class="{sorter: false}" colspan="6">Common Information</th>
-					              		<th class="{sorter: false}" colspan="2">Unique Information</th>
-					              		<th class="{sorter: false}">Operations</th>
-					            	</tr>
-					            	<tr class="colhead">
-					              		<th id="tl-tb-index" title="Task Index">No.</th>
-					              		<th>Task Name</th>
-					              		<th>Start Date</th>
-					              		<th>End Date</th>
-					              		<th title="Days to Spend on the Task">Days</th>
-					              		<th class="{sorter: false}" title="is the Task Active or not">Active</th>
-					              		<th>Task Type</th>
-					              		<th title="Book Title, Class Name, Exercise Name, Paper Name, University Name, etc.">Task Subject</th>
-					              		<th class="{sorter: false}">Operations</th>
-					            	</tr>
-					          	</thead>
-					          	<tbody>
-					          		<tr class="oddrow">
-					          			<td>1</td>
-					          			<td>Read Book</td>
-					          			<td>2014-01-03</td>
-					          			<td>2014-07-01</td>
-					          			<td>100</td>
-					          			<td class="highlight-success is-active-td"><i class="icon-ok"></i></td>
-					          			<td>Reading</td>
-					          			<td>编程之美</td>
-					          			<td>
-					          				<div class="btn-group">
-					          					<button class="btn btn-info btn-mini" title="Edit Task Information"><i class="icon-edit"></i></button>
-						          				<button class="btn btn-danger btn-mini" title="Delete Task Information"><i class="icon-trash"></i></button>
-					          				</div>
-					          			</td>
-					          		</tr>
-					          		<tr class="evenrow">
-					          			<td>2</td>
-					          			<td>Attend Open Class</td>
-					          			<td>2014-01-01</td>
-					          			<td>2014-06-29</td>
-					          			<td>79</td>
-					          			<td class="highlight-danger is-active-td"><i class="icon-remove"></i></td>
-					          			<td>Open Class</td>
-					          			<td>离散数学</td>
-					          			<td>
-					          				<div class="btn-group">
-					          					<button class="btn btn-info btn-mini" title="Edit Task Information"><i class="icon-edit"></i></button>
-						          				<button class="btn btn-danger btn-mini" title="Delete Task Information"><i class="icon-trash"></i></button>
-					          				</div>
-					          			</td>
-					          		</tr>
-					          		<tr class="oddrow">
-					          			<td>3</td>
-					          			<td>Exercise</td>
-					          			<td>2014-01-02</td>
-					          			<td>2014-05-01</td>
-					          			<td>60</td>
-					          			<td class="highlight-success is-active-td"><i class="icon-ok"></i></td>
-					          			<td>Exercise</td>
-					          			<td>仰卧起坐</td>
-					          			<td>
-					          				<div class="btn-group">
-					          					<button class="btn btn-info btn-mini" title="Edit Task Information"><i class="icon-edit"></i></button>
-						          				<button class="btn btn-danger btn-mini" title="Delete Task Information"><i class="icon-trash"></i></button>
-					          				</div>
-					          			</td>
-					          		</tr>
-					          		<tr class="evenrow">
-					          			<td>4</td>
-					          			<td>Write Paper</td>
-					          			<td>2014-01-07</td>
-					          			<td>2015-01-01</td>
-					          			<td>345</td>
-					          			<td class="highlight-success is-active-td"><i class="icon-ok"></i></td>
-					          			<td>Paper</td>
-					          			<td>SaaS云平台离线应用</td>
-					          			<td>
-					          				<div class="btn-group">
-					          					<button class="btn btn-info btn-mini" title="Edit Task Information"><i class="icon-edit"></i></button>
-						          				<button class="btn btn-danger btn-mini" title="Delete Task Information"><i class="icon-trash"></i></button>
-					          				</div>
-					          			</td>
-					          		</tr>
-					          		<tr class="oddrow">
-					          			<td>5</td>
-					          			<td>Apply for University</td>
-					          			<td>2014-01-15</td>
-					          			<td>2014-04-01</td>
-					          			<td>60</td>
-					          			<td class="highlight-danger is-active-td"><i class="icon-remove"></i></td>
-					          			<td>University</td>
-					          			<td>MIT</td>
-					          			<td>
-					          				<div class="btn-group">
-					          					<button class="btn btn-info btn-mini" title="Edit Task Information"><i class="icon-edit"></i></button>
-						          				<button class="btn btn-danger btn-mini" title="Delete Task Information"><i class="icon-trash"></i></button>
-					          				</div>
-					          			</td>
-					          		</tr>
-					          	</tbody>
-					        </table>
-  							<!-- Start: 展示任务列表的table 根据后端api 不用分页 -->
+  							<div id="tl-tb-div">
+  								
+  							</div>
+	  						<!-- Start: 展示任务列表的table 根据后端api 不用分页 -->
   						</div>
   					</div>
   				</div>
