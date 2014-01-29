@@ -116,6 +116,8 @@ var TiModify = {
 		
 	},
 	showTaskInfoModal: function(task_id) {
+		// console.log("Data task_id on showTaskInfoModal: " + task_id);
+		$("#fb-paper-modal-label").data("taskId", task_id);
 		var this_ptr = this;
 		$.ajax({
 			url: "taskAction!obtainTaskByTaskID.action",
@@ -410,6 +412,10 @@ var TiSave = {
 			this_ptr.savePaperMti(stage_num);
 		} else if(task_type == "21") {	// 申请大学
 			this_ptr.saveUniversityMti(stage_num);
+		}
+		if($("#task-list-wrapper").css("display") == "block") {
+			// 刷新任务列表
+			$("#display-task-list").click();
 		}
 	}
 };

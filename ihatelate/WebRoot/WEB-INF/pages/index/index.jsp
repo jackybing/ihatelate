@@ -23,6 +23,7 @@
 		#task-list-tb .btn-group > .btn-mini { font-size: 12.8px; }
 		/* css hack for webkit browsers by Payne Pandaroid Wang */
 		@media screen and (-webkit-min-device-pixel-ratio:0){ #task-list-tb .btn-group > .btn-mini { font-size: 14.4px; } }
+		input[type="checkbox"].tltb-check-single { margin-left: 2px; }
 	</style>
   </head>
   

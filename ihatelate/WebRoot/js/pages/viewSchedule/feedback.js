@@ -169,6 +169,7 @@
 			if(is_validate) {
 				fb_paper_time = parseInt(fb_paper_time);
 				if(fb_paper_time > NonQuantStageInfo_Module.cur_stage_left_time) {
+					// console.log("showPaperDialog task_id: " + task_id);
 					window.parent.IHL_NonQuantFbHelper.showPaperDialog(task_id, fb_paper_time, task_type);
 					
 				} else {

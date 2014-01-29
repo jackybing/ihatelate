@@ -16,7 +16,7 @@
 				var ret_html_array = [];
 				ret_html_array.push(
 				'<div class="btn-group">',
-	          		'<button class="btn btn-info btn-mini" title="Edit Task Information"><i class="icon-edit"></i></button>',
+	          		'<button class="btn btn-info btn-mini modify-task-btn" title="Edit Task Information" data-id="', task_id, '"><i class="icon-edit"></i></button>',
 		        	'<button class="btn btn-danger btn-mini delete-task-btn" title="Delete Task Information" data-name="', task_name, '" data-id="', task_id, '"><i class="icon-trash"></i></button>',
 	          	'</div>');
 				return ret_html_array.join("");
@@ -217,6 +217,9 @@
 			}
 		}).on("click", "#delete-selected-tasks", function() {
 			TaskDeleteHelper.deleteTasksByIds();
+		}).on("click", ".modify-task-btn", function() {
+			var task_id = $(this).data("id");
+			TiModify.showTaskInfoModal(task_id);
 		});
 		
 	});
