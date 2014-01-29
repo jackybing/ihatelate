@@ -103,7 +103,8 @@
 	  						Task List
 	  					</div>
 	  					<div class="span6" style="text-align: right;">
-	  						<button id="hide-task-list" class="btn btn-danger">Hide Task List</button>
+	  						<button id="delete-selected-tasks" class="btn btn-danger">Delete Selected Tasks</button>
+	  						<button id="hide-task-list" class="btn btn-warning">Hide Task List</button>
 	  					</div>
   					</div>
   					<div class="row-fluid">

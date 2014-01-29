@@ -55,7 +55,7 @@ var IHL_BlockMsgObj = {
 		var this_ptr = this;
 		this_ptr.timer_id = window.setTimeout(function() {
 			if(this_ptr.is_blocked) {
-				if(confirm("服务器响应超时，若您已无操作一段时间，则session可能已超时。点击“确定”重新登陆，点击“取消”继续等待。")) {
+				if(confirm("服务器响应超时，若您已无操作一段时间，则session可能已超时。点击“确定”刷新或重新登陆，点击“取消”继续等待。")) {
 					window.location.reload();
 				} else {
 					IHL_BlockMsgObj.confirmBlockExe();

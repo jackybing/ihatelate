@@ -23,10 +23,11 @@
 			},
 			genTaskTbTr: function(task, idx) {
 				var this_ptr = this, ret_html_array = [], task_type = task.type, idx = parseInt(idx), 
-					tr_class = (idx % 2) ? "oddrow" : "evenrow", tr_idx = idx + 1, task_name = task.name,
+					tr_class = (idx % 2) ? "oddrow" : "evenrow", tr_idx = idx + 1, task_name = task.name, task_id = task.id,
 					is_active_tr_html = task.isActive ? '<td class="highlight-success is-active-td"><i class="icon-ok"></i></td>' : '<td class="highlight-danger is-active-td"><i class="icon-remove"></i></td>',
 					start_time = task.startTime.substring(0, 10), end_time = task.endTime.substring(0, 10);
-				ret_html_array.push('<tr class="', tr_class, '">');
+				ret_html_array.push('<tr class="', tr_class, '">', 
+				'<td><input class="tltb-check-single" type="checkbox" data-id="', task_id, '" /></td>');
 				if(task_type == "10") {	// Read Book
 					ret_html_array.push(
           			'<td>', tr_idx, '</td>',
@@ -80,7 +81,7 @@
 				}
 				ret_html_array.push(
 					'<td>',
-	          			this_ptr.genTaskTbTrBtns(task.id, task_name),
+	          			this_ptr.genTaskTbTrBtns(task_id, task_name),
           			'</td>',
           		'</tr>');
 				return ret_html_array.join("");
@@ -98,11 +99,12 @@
 				'<table id="task-list-tb" cellspacing="1" cellpadding="3" class="tablehead table table-paper table-condensed table-striped table-sortable" style="background:#CCC;">',
 		          	'<thead>',
 		            	'<tr class="stathead">',
-		              		'<th class="{sorter: false}" colspan="6">Common Information</th>',
+		              		'<th class="{sorter: false}" colspan="7">Common Information</th>',
 		              		'<th class="{sorter: false}" colspan="2">Unique Information</th>',
 		              		'<th class="{sorter: false}" title="Operations">Opts</th>',
 		            	'</tr>',
 		            	'<tr class="colhead">',
+		            		'<th class="{sorter: false}" title="Click to Select All Tasks" style="text-align: center;"><input id="tltb-check-all" type="checkbox" /></th>',
 		              		'<th id="tl-tb-index" title="Task Index">No.</th>',
 		              		'<th>Task Name</th>',
 		              		'<th>Start Date</th>',
@@ -123,32 +125,46 @@
 		};
 		
 		var TaskDeleteHelper = {
+			deleteTasksAjax: function(ids, msg) {
+				$.ajax({
+					url: "taskAction!deleteTaskByID.action",
+					data: {
+						ids: ids
+					},
+					beforeSend: function() {
+						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + msg + "<h1>");
+					},
+					success: function(rsps_data) {
+						var rsps_obj = $.parseJSON(rsps_data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(rsps_obj.statusCode == "200") {
+	                        	// 刷新列表
+								$("#display-task-list").click();
+							} else {
+								$.growlUI('Error', rsps_obj.info);
+							}
+	                    });
+							
+					}
+				});
+			},
+			deleteTasksByIds: function() {
+				var selected_checkboxes = $(".tltb-check-single:checked");
+				if(confirm("确定要删除选定的" + selected_checkboxes.length + "个任务？")) {
+					var this_ptr = this, ids_array = [];
+					selected_checkboxes.each(function() {
+						ids_array.push($(this).data("id"));
+					});
+					this_ptr.deleteTasksAjax(JSON.stringify(ids_array), "Deleting Selected Tasks ...");
+				}
+					
+			},
 			deleteTaskById: function(task_id, task_name) {
+				var this_ptr = this;
 				if(confirm("确定要删除任务“" + task_name + "”？")) {
 					var ids_array = [];
 					ids_array.push(task_id);
-					$.ajax({
-						url: "taskAction!deleteTaskByID.action",
-						data: {
-							ids: JSON.stringify(ids_array)
-						},
-						beforeSend: function() {
-							IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Deleting Task ...<h1>");
-						},
-						success: function(rsps_data) {
-							var rsps_obj = $.parseJSON(rsps_data);
-							IHL_BlockMsgObj.unblockMsg(function() { 
-		                        if(rsps_obj.statusCode == "200") {
-		                        	// 刷新列表
-									$("#display-task-list").click();
-								} else {
-									$.growlUI('Error', rsps_obj.info);
-								}
-		                    });
-								
-						}
-					});
-					
+					this_ptr.deleteTasksAjax(JSON.stringify(ids_array), "Deleting Task ...");
 				}
 					
 			}
@@ -167,8 +183,7 @@
 					IHL_BlockMsgObj.unblockMsg(function() { 
                         if(rsps_obj.statusCode == "200") {
 							var task_array = rsps_obj.task;
-							var taskTbHtml = TaskListHelper.formTaskTbHtml(task_array);
-							$("#tl-tb-div").html(taskTbHtml);
+							$("#tl-tb-div").html(TaskListHelper.formTaskTbHtml(task_array));
 							initTlTable();
 							$("#task-list-wrapper").slideDown("slow");
 						} else {
@@ -185,6 +200,23 @@
 		}).on("click", ".delete-task-btn", function() {
 			var this_ele = $(this), task_id = this_ele.data("id"), task_name = this_ele.data("name");
 			TaskDeleteHelper.deleteTaskById(task_id, task_name);
+		}).on("click", "#tltb-check-all", function() {
+			var tltb_check_all_ele = $(this);
+			if($("#tltb-check-all:checked").length) {
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Seleting All Tasks ...<h1>", undefined, function() {
+					var all_checkbox_ele = $(".tltb-check-single");
+					all_checkbox_ele.filter(":checked").click();
+					all_checkbox_ele.click();
+					IHL_BlockMsgObj.unblockMsg();
+					tltb_check_all_ele.attr("title", "Click to Deselect All Tasks");
+				});
+					
+			} else {
+				$(".tltb-check-single").removeAttr("checked");
+				tltb_check_all_ele.attr("title", "Click to Select All Tasks");
+			}
+		}).on("click", "#delete-selected-tasks", function() {
+			TaskDeleteHelper.deleteTasksByIds();
 		});
 		
 	});
