@@ -902,7 +902,7 @@
 	  			<div class="control-group">
 	              	<label class="control-label" for="fb-mti-book-task-name">Task Name:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-book-task-name" placeholder="Task Name" class="input-width-280px">
+	                	<input type="text" id="fb-mti-book-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
@@ -910,9 +910,9 @@
 	              	<label class="control-label" for="fb-mti-book-start-time">Date Range:</label>
 	              	<div class="controls">
 		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
-						    <input type="text" id="fb-mti-book-start-time" style="cursor: pointer;" placeholder="Start Date" readonly="" class="input-width-128px">
+						    <input type="text" id="fb-mti-book-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
 						    <span class="add-on">to</span>
-						    <input type="text" id="fb-mti-book-end-time" style="cursor: pointer;" placeholder="End Date" readonly="" class="input-width-128px">
+						    <input type="text" id="fb-mti-book-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
 						</div>
 		                <span class="help-inline"></span>
 	              	</div>
@@ -920,7 +920,7 @@
 	            <div class="control-group">
 	              	<label class="control-label" for="fb-mti-book-total-day">Days to Spend:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-book-total-day" placeholder="Integer between 0 and date range" class="input-width-280px">
+	                	<input type="text" id="fb-mti-book-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
@@ -948,7 +948,7 @@
 	            <div class="control-group">
 	              	<label class="control-label" for="fb-mti-book-efficiency">Efficiency:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-book-efficiency" placeholder="Efficiency" class="input-width-280px" />
+	                	<input type="text" id="fb-mti-book-efficiency" placeholder="Efficiency" class="input-width-280px not-readonly" />
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
@@ -969,7 +969,7 @@
 	  			<div class="control-group">
 	              	<label class="control-label" for="fb-mti-paper-task-name">Task Name:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-paper-task-name" placeholder="Task Name" class="input-width-280px">
+	                	<input type="text" id="fb-mti-paper-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
@@ -977,9 +977,9 @@
 	              	<label class="control-label" for="fb-mti-paper-start-time">Date Range:</label>
 	              	<div class="controls">
 		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
-						    <input type="text" id="fb-mti-paper-start-time" style="cursor: pointer;" placeholder="Start Date" readonly="" class="input-width-128px">
+						    <input type="text" id="fb-mti-paper-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
 						    <span class="add-on">to</span>
-						    <input type="text" id="fb-mti-paper-end-time" style="cursor: pointer;" placeholder="End Date" readonly="" class="input-width-128px">
+						    <input type="text" id="fb-mti-paper-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
 						</div>
 		                <span class="help-inline"></span>
 	              	</div>
@@ -987,14 +987,14 @@
 	            <div class="control-group">
 	              	<label class="control-label" for="fb-mti-paper-total-day">Days to Spend:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-paper-total-day" placeholder="Integer between 0 and date range" class="input-width-280px">
+	                	<input type="text" id="fb-mti-paper-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	            <div class="control-group">
 	              	<label class="control-label" for="fb-mti-paper-name">Paper Name:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-paper-name" placeholder="Paper Name" class="input-width-280px">
+	                	<input type="text" id="fb-mti-paper-name" placeholder="Paper Name" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
@@ -1017,7 +1017,7 @@
 	  			<div class="control-group">
 	              	<label class="control-label" for="fb-mti-university-task-name">Task Name:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-university-task-name" placeholder="Task Name" class="input-width-280px">
+	                	<input type="text" id="fb-mti-university-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
@@ -1025,9 +1025,9 @@
 	              	<label class="control-label" for="fb-mti-university-start-time">Date Range:</label>
 	              	<div class="controls">
 		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
-						    <input type="text" id="fb-mti-university-start-time" style="cursor: pointer;" placeholder="Start Date" readonly="" class="input-width-128px">
+						    <input type="text" id="fb-mti-university-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable" />
 						    <span class="add-on">to</span>
-						    <input type="text" id="fb-mti-university-end-time" style="cursor: pointer;" placeholder="End Date" readonly="" class="input-width-128px">
+						    <input type="text" id="fb-mti-university-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable" />
 						</div>
 		                <span class="help-inline"></span>
 	              	</div>
@@ -1035,28 +1035,28 @@
 	            <div class="control-group">
 	              	<label class="control-label" for="fb-mti-university-total-day">Days to Spend:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-university-total-day" placeholder="Integer between 0 and date range" class="input-width-280px">
+	                	<input type="text" id="fb-mti-university-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly" />
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	            <div class="control-group">
 	              	<label class="control-label" for="fb-mti-university-name">University Name:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-university-name" placeholder="Paper Name" class="input-width-280px">
+	                	<input type="text" id="fb-mti-university-name" placeholder="Paper Name" class="input-width-280px not-readonly">
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	            <div class="control-group">
 	              <label class="control-label" for="fb-mti-university-deadline">Deadline:</label>
 	              <div class="controls">
-	                <input type="text" id="fb-mti-university-deadline" placeholder="Deadline" class="input-width-280px start-end-datepicker" readonly />
+	                <input type="text" id="fb-mti-university-deadline" placeholder="Deadline" class="input-width-280px start-end-datepicker dp-changeable" readonly />
 	                <span class="help-inline"></span>
 	              </div>
 	            </div>
 	            <div class="control-group">
 	              <label class="control-label" for="fb-mti-university-material">Material:</label>
 	              <div class="controls">
-	                <input type="text" id="fb-mti-university-material" placeholder="Material" class="input-width-280px">
+	                <input type="text" id="fb-mti-university-material" placeholder="Material" class="input-width-280px not-readonly">
 	                <span class="help-inline"></span>
 	              </div>
 	            </div>

@@ -50,11 +50,15 @@
 		
 		// Start: 保存任务信息修改的按钮被点击
 		$(document).on("click", "#save-fbmti-btn", function() {
-			var this_ele = $(this), task_type = this_ele.data("taskType"),
-				stage_num = this_ele.data("stageNum");
-			TiSave.saveModifiedTi(task_type, stage_num);
+			var this_ele = $(this);
+			if(!this_ele.hasClass("disabled")) {
+				var task_type = this_ele.data("taskType"),
+					stage_num = this_ele.data("stageNum");
+				TiSave.saveModifiedTi(task_type, stage_num);
+			}
+				
 		});
-		//
+		// End  : 保存任务信息修改的按钮被点击
 		
 		
 	});

@@ -74,6 +74,19 @@ var TiModify = {
 		}
 		stages_well_ele.html(stages_html_array.join(""));
 	},
+	judgeIsCompleted: function(is_completed, target_form_div) {
+		if(is_completed) {
+			target_form_div.find(".not-readonly").attr("readonly", "readonly");
+			target_form_div.find(".has-switch").bootstrapSwitch('setActive', false);
+			target_form_div.find(".dp-changeable").addClass("dp-unchangeable").removeClass("dp-changeable");
+			$("#save-fbmti-btn").addClass("disabled");
+		} else {
+			target_form_div.find(".not-readonly").removeAttr("readonly");
+			target_form_div.find(".has-switch").bootstrapSwitch('setActive', true);
+			target_form_div.find(".dp-unchangeable").addClass("dp-changeable").removeClass("dp-unchangeable");
+			$("#save-fbmti-btn").removeClass("disabled");
+		}
+	},
 	fillTaskInfoModal: function(task_info) {
 		$(".fb-mti-form").hide();
 		var this_ptr = this;
@@ -81,6 +94,7 @@ var TiModify = {
 		console.log(task_info);
 		var cur_task_type = task_info.type;
 		$("#save-fbmti-btn").data("taskType", cur_task_type);
+		var target_form_div;
 		if(cur_task_type == "10") {	// Read Book
 			var read_book_form_div = $("#fb-mti-form-read").show();
 			read_book_form_div.find("#fb-mti-book-task-name").val(task_info.name);
@@ -92,6 +106,7 @@ var TiModify = {
 			read_book_form_div.find("#fb-mti-book-page-num").val(task_info.pageNum);
 			read_book_form_div.find("#fb-mti-book-efficiency").val(task_info.efficiency);
 			this_ptr.setSwitch(read_book_form_div.find("#fb-mti-book-is-active"), task_info.isActive);
+			target_form_div = read_book_form_div;
 		} else if(cur_task_type == "11") {	// Open Class
 			
 			
@@ -107,6 +122,7 @@ var TiModify = {
 			paper_form_div.find("#fb-mti-paper-name").val(task_info.paperName);
 			this_ptr.setSwitch(paper_form_div.find("#fb-mti-paper-is-active"), task_info.isActive);
 			this_ptr.fillStages(paper_form_div.find("#fb-mti-paper-stages"), task_info.stages, task_info.id, task_info.type);
+			target_form_div = paper_form_div;
 		} else if(cur_task_type == "21") {	// 申请大学
 			var univer_form_div = $("#fb-mti-form-university").show();
 			univer_form_div.find("#fb-mti-university-task-name").val(task_info.name);
@@ -118,7 +134,9 @@ var TiModify = {
 			univer_form_div.find("#fb-mti-university-material").val(task_info.material);
 			this_ptr.setSwitch(univer_form_div.find("#fb-mti-university-is-active"), task_info.isActive);
 			this_ptr.fillStages(univer_form_div.find("#fb-mti-university-stages"), task_info.stages, task_info.id, task_info.type);
+			target_form_div = univer_form_div;
 		}
+		this_ptr.judgeIsCompleted(task_info.isCompleted, target_form_div);
 		
 	},
 	showTaskInfoModal: function(task_id) {
@@ -130,19 +148,30 @@ var TiModify = {
 			data: {
 				id: task_id
 			},
+			beforeSend: function() {
+				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Loading ...<h1>");
+			},
 			success: function(response_data) {
-				response_data = $.parseJSON(response_data);
-				// console.log("response_data: ");
-				// console.log(response_data);
-				if(response_data.statusCode == "200") {
-					var task_info = response_data.taskInfo;
-					this_ptr.fillTaskInfoModal(task_info);
+				IHL_BlockMsgObj.unblockMsg(function() {
+					if(response_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						response_data = $.parseJSON(response_data);
+						// console.log("response_data: ");
+						// console.log(response_data);
+						if(response_data.statusCode == "200") {
+							var task_info = response_data.taskInfo;
+							this_ptr.fillTaskInfoModal(task_info);
+							
+						} else {
+							alert("Server is crashed when obtaining task information");
+						}
+						
+						$("#fb-modify-task-info").modal("show");
+					}
+	                    
+                });
 					
-				} else {
-					alert("Server is crashed when obtaining task information");
-				}
-				
-				$("#fb-modify-task-info").modal("show");
 			}
 		});
 		

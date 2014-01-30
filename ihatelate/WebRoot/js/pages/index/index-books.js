@@ -113,11 +113,11 @@
 		});
 		// init datepicker
 		function initRangeDatepicker() {
-			var cur_date = new Date(),
-				start_date = cur_date.getFullYear() + "-" + (parseInt(cur_date.getMonth()) + 1) + "-" + cur_date.getDate() + "+00:00:00";
+			var cur_date = new Date();//,
+				//start_date = cur_date.getFullYear() + "-" + (parseInt(cur_date.getMonth()) + 1) + "-" + cur_date.getDate() + "+00:00:00";
 			$('.start-end-datepicker').datepicker({
 			    format: "yyyy-mm-dd",
-			    startDate: start_date,
+			    //startDate: start_date,
 			    autoclose: true,
 			    todayHighlight: true
 			});
