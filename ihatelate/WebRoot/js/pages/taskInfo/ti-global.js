@@ -77,13 +77,21 @@ var TiModify = {
 	fillTaskInfoModal: function(task_info) {
 		$(".fb-mti-form").hide();
 		var this_ptr = this;
-		// console.log("taskInfo: ");
-		// console.log(task_info);
+		console.log("taskInfo: ");
+		console.log(task_info);
 		var cur_task_type = task_info.type;
 		$("#save-fbmti-btn").data("taskType", cur_task_type);
 		if(cur_task_type == "10") {	// Read Book
 			var read_book_form_div = $("#fb-mti-form-read").show();
-			
+			read_book_form_div.find("#fb-mti-book-task-name").val(task_info.name);
+			read_book_form_div.find("#fb-mti-book-start-time").val(task_info.startTime.substring(0, 10));
+			read_book_form_div.find("#fb-mti-book-end-time").val(task_info.endTime.substring(0, 10));
+			read_book_form_div.find("#fb-mti-book-total-day").val(task_info.totalDay);
+			read_book_form_div.find("#fb-mti-book-title").val(task_info.title);
+			read_book_form_div.find("#fb-mti-book-isbn").val(task_info.ISBN);
+			read_book_form_div.find("#fb-mti-book-page-num").val(task_info.pageNum);
+			read_book_form_div.find("#fb-mti-book-efficiency").val(task_info.efficiency);
+			this_ptr.setSwitch(read_book_form_div.find("#fb-mti-book-is-active"), task_info.isActive);
 		} else if(cur_task_type == "11") {	// Open Class
 			
 			
@@ -99,7 +107,6 @@ var TiModify = {
 			paper_form_div.find("#fb-mti-paper-name").val(task_info.paperName);
 			this_ptr.setSwitch(paper_form_div.find("#fb-mti-paper-is-active"), task_info.isActive);
 			this_ptr.fillStages(paper_form_div.find("#fb-mti-paper-stages"), task_info.stages, task_info.id, task_info.type);
-			
 		} else if(cur_task_type == "21") {	// 申请大学
 			var univer_form_div = $("#fb-mti-form-university").show();
 			univer_form_div.find("#fb-mti-university-task-name").val(task_info.name);
@@ -111,7 +118,6 @@ var TiModify = {
 			univer_form_div.find("#fb-mti-university-material").val(task_info.material);
 			this_ptr.setSwitch(univer_form_div.find("#fb-mti-university-is-active"), task_info.isActive);
 			this_ptr.fillStages(univer_form_div.find("#fb-mti-university-stages"), task_info.stages, task_info.id, task_info.type);
-			
 		}
 		
 	},

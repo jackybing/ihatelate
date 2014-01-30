@@ -925,9 +925,30 @@
 	              	</div>
 	            </div>
 	            <div class="control-group">
-	              	<label class="control-label" for="fb-mti-book-name">Book Name:</label>
+	              	<label class="control-label" for="fb-mti-book-title">Book Title:</label>
 	              	<div class="controls">
-	                	<input type="text" id="fb-mti-book-name" placeholder="Book Name" class="input-width-280px">
+	                	<input type="text" id="fb-mti-book-title" placeholder="Book Title" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-isbn">ISBN:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-isbn" placeholder="ISBN" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-page-num">Number of Pages:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-page-num" placeholder="Page Number" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-efficiency">Efficiency:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-efficiency" placeholder="Efficiency" class="input-width-280px" />
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
