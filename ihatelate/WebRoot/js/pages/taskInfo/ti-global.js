@@ -448,7 +448,7 @@ var TiSave = {
 		} else if(task_type == "21") {	// 申请大学
 			this_ptr.saveUniversityMti(stage_num);
 		}
-		if($("#task-list-wrapper").css("display") == "block") {
+		if($("#task-list-wrapper").is(":visible")) {
 			// 刷新任务列表
 			$("#display-task-list").click();
 		}
