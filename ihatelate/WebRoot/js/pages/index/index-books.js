@@ -245,6 +245,9 @@
 				    
 				});
 			}
+		}).on("click", "#reset-bt-btn", function() {
+			$("#input-book-title").css("width", "210px").removeAttr("readonly").add("#input-isbn, #input-page-num").val("");
+			$("#reset-bt-btn").text("Search").attr("id", "search-book-title-btn");
 		});
 		function btsrReset() {
 			$("#book-title-search-result").slideUp("slow", function() {
@@ -275,7 +278,8 @@
 		}).on("click", ".btsr-choose-btn", function() {
 			var this_btn = $(this), title = this_btn.data("title"), isbn = this_btn.data("isbn"),
 				page_num = this_btn.data("pages");
-			$("#input-book-title").val(title);
+			$("#input-book-title").attr("readonly", "readonly").val(title).css("width", "219px");
+			$("#search-book-title-btn").attr("id", "reset-bt-btn").text("Reset");
 			$("#input-isbn").val(isbn).trigger("change");
 			$("#input-page-num").val(page_num).trigger("change");
 			btsrReset();

@@ -82,7 +82,7 @@ var TiModify = {
 		var cur_task_type = task_info.type;
 		$("#save-fbmti-btn").data("taskType", cur_task_type);
 		if(cur_task_type == "10") {	// Read Book
-			
+			var read_book_form_div = $("#fb-mti-form-read").show();
 			
 		} else if(cur_task_type == "11") {	// Open Class
 			

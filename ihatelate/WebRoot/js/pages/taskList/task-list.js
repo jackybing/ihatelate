@@ -149,8 +149,11 @@
 				});
 			},
 			deleteTasksByIds: function() {
-				var selected_checkboxes = $(".tltb-check-single:checked");
-				if(confirm("确定要删除选定的" + selected_checkboxes.length + "个任务？")) {
+				var selected_checkboxes = $(".tltb-check-single:checked"),
+					task_count = selected_checkboxes.length;
+				if(task_count == 0) {
+					alert("请选择要删除的任务");
+				} else if(confirm("确定要删除选定的" + task_count + "个任务？")) {
 					var this_ptr = this, ids_array = [];
 					selected_checkboxes.each(function() {
 						ids_array.push($(this).data("id"));
