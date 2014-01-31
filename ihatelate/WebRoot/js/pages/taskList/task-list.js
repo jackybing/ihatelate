@@ -25,6 +25,7 @@
 				var this_ptr = this, ret_html_array = [], task_type = task.type, idx = parseInt(idx), 
 					tr_class = (idx % 2) ? "oddrow" : "evenrow", tr_idx = idx + 1, task_name = task.name, task_id = task.id,
 					is_active_tr_html = task.isActive ? '<td class="highlight-success is-active-td"><i class="icon-ok"></i></td>' : '<td class="highlight-danger is-active-td"><i class="icon-remove"></i></td>',
+					is_cmpltd_tr_html = task.isCompleted ? '<td class="highlight-success is-active-td"><i class="icon-ok"></i></td>' : '<td class="highlight-danger is-active-td"><i class="icon-remove"></i></td>',
 					start_time = task.startTime.substring(0, 10), end_time = task.endTime.substring(0, 10);
 				ret_html_array.push('<tr class="', tr_class, '">', 
 				'<td><input class="tltb-check-single" type="checkbox" data-id="', task_id, '" /></td>');
@@ -80,6 +81,7 @@
           			'<td>', task.universityName, '</td>');
 				}
 				ret_html_array.push(
+					is_cmpltd_tr_html,
 					'<td>',
 	          			this_ptr.genTaskTbTrBtns(task_id, task_name),
           			'</td>',
@@ -101,7 +103,7 @@
 		            	'<tr class="stathead">',
 		              		'<th class="{sorter: false}" colspan="7">Common Information</th>',
 		              		'<th class="{sorter: false}" colspan="2">Unique Information</th>',
-		              		'<th class="{sorter: false}" title="Operations">Opts</th>',
+		              		'<th class="{sorter: false}" colspan="2" title="Completion and Operations">Other Info.</th>',
 		            	'</tr>',
 		            	'<tr class="colhead">',
 		            		'<th class="{sorter: false}" title="Click to Select All Tasks" style="text-align: center;"><input id="tltb-check-all" type="checkbox" /></th>',
@@ -110,10 +112,11 @@
 		              		'<th>Start Date</th>',
 		              		'<th>End Date</th>',
 		              		'<th title="Days to Spend on the Task">Days</th>',
-		              		'<th class="{sorter: false}" title="is the Task Active or not">Active</th>',
+		              		'<th class="{sorter: false}" title="is the Task Active or not">Actv</th>',
 		              		'<th>Task Type</th>',
 		              		'<th title="Book Title, Class Name, Exercise Name, Paper Name, University Name, etc.">Task Subject</th>',
-		              		'<th class="{sorter: false}" title="Operations">Opts</th>',
+		              		'<th class="{sorter: false}" title="is the Task Completed or not">Cplt</th>',
+		              		'<th class="{sorter: false}" title="Operations: Edit Task, Delete Task, etc.">Oprts</th>',
 		            	'</tr>',
 		          	'</thead>',
 		          	'<tbody>',
