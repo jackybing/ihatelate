@@ -108,10 +108,28 @@ var TiModify = {
 			this_ptr.setSwitch(read_book_form_div.find("#fb-mti-book-is-active"), task_info.isActive);
 			target_form_div = read_book_form_div;
 		} else if(cur_task_type == "11") {	// Open Class
-			
-			
+			var class_form_div = $("#fb-mti-form-class").show();
+			class_form_div.find("#fb-mti-class-task-name").val(task_info.name);
+			class_form_div.find("#fb-mti-class-start-time").val(task_info.startTime.substring(0, 10));
+			class_form_div.find("#fb-mti-class-end-time").val(task_info.endTime.substring(0, 10));
+			class_form_div.find("#fb-mti-class-total-day").val(task_info.totalDay);
+			class_form_div.find("#fb-mti-class-name").val(task_info.className);
+			class_form_div.find("#fb-mti-class-amount").val(task_info.amount);
+			class_form_div.find("#fb-mti-class-each-time").val(task_info.timeForPerClass);
+			class_form_div.find("#fb-mti-class-remark").val(task_info.remark);
+			this_ptr.setSwitch(class_form_div.find("#fb-mti-class-is-active"), task_info.isActive);
+			target_form_div = class_form_div;
 		} else if(cur_task_type == "12") {	// 健身
-			
+			var exercise_form_div = $("#fb-mti-form-exercise").show();
+			exercise_form_div.find("#fb-mti-exercise-task-name").val(task_info.name);
+			exercise_form_div.find("#fb-mti-exercise-start-time").val(task_info.startTime.substring(0, 10));
+			exercise_form_div.find("#fb-mti-exercise-end-time").val(task_info.endTime.substring(0, 10));
+			exercise_form_div.find("#fb-mti-exercise-total-day").val(task_info.totalDay);
+			exercise_form_div.find("#fb-mti-exercise-name").val(task_info.exerciseName);
+			exercise_form_div.find("#fb-mti-exercise-group-count").val(task_info.groupCount);
+			exercise_form_div.find("#fb-mti-exercise-group-time").val(task_info.timePerGroup);
+			this_ptr.setSwitch(exercise_form_div.find("#fb-mti-exercise-is-active"), task_info.isActive);
+			target_form_div = exercise_form_div;
 			
 		} else if(cur_task_type == "20") {	// 写论文
 			var paper_form_div = $("#fb-mti-form-paper").show();
@@ -164,6 +182,7 @@ var TiModify = {
 							this_ptr.fillTaskInfoModal(task_info);
 							
 						} else {
+							console.log(response_data);
 							alert("Server is crashed when obtaining task information");
 						}
 						

@@ -1,4 +1,4 @@
-p, form, input, textarea, ul, li, h1, h2, h3, h4, dl, dt, dd, table, td, th { margin:0; padding:0; }
+p, form, input, ul, li, h1, h2, h3, h4, dl, dt, dd, table, td, th { margin:0; padding:0; }
 table, td, th { border-collapse:collapse; }
 h1, h2, h4 { font-size:100%; }
 img, input, textarea { vertical-align: middle; }

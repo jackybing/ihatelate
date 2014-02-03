@@ -964,6 +964,133 @@
 	  		</div>
 	  		<!-- End  : 10 读书 -->
 	  		
+	  		<!-- Start: 11 公开课 -->
+	  		<div id="fb-mti-form-class" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-class-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-class-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-name">Class Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-name" placeholder="Class Name" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-amount">Amount:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-amount" placeholder="Amount" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-each-time">Time for Each Class:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-each-time" placeholder="Time for Each Class" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-remark">Remark:</label>
+	              	<div class="controls">
+	                	<textarea id="fb-mti-class-remark" placeholder="Remark" class="input-width-280px not-readonly" style="resize: none;"></textarea>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-class-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  		</div>
+	  		<!-- End  : 11 公开课 -->
+	  		
+	  		<!-- Start: 12 健身 -->
+	  		<div id="fb-mti-form-exercise" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-exercise-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-exercise-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-name">Exercise Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-name" placeholder="Exercise Name" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-group-count">Group Count:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-group-count" placeholder="Number of Exercise Groups" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-group-time">Time for Each Group:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-group-time" placeholder="Time for Each Group" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-exercise-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  		</div>
+	  		<!-- End  : 12 健身 -->
+	  		
 	  		<!-- Start: 20 论文 -->
 	  		<div id="fb-mti-form-paper" class="form-horizontal fb-mti-form">
 	  			<div class="control-group">
