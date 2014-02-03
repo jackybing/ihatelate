@@ -39,6 +39,9 @@ var IHL_ErrorTipObj = {
             );
         }
 	},
+	showErrTip: function(element, msg) {
+		element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
+	},
 	showErrTipAndScroll2Ele: function(element, msg) {
 		this.scrollToElement(element);
 		element.parents(".control-group").addClass("error").find(".help-inline").text(msg);

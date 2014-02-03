@@ -208,49 +208,49 @@ var TiSave = {
 		var task_name = $.trim(task_name_ele.val()), start_time = $.trim(start_time_ele.val()),
 			end_time = $.trim(end_time_ele.val()), total_day = $.trim(total_day_ele.val()),
 			paper_name = $.trim(paper_name_ele.val()),
-			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";;
+			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";
 		// 对输入控件的值进行检测，如果不对，显示error tip
 		var is_validate = true;
 		if(task_name == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(task_name_ele, "Please input a task name");
+			IHL_ErrorTipObj.showErrTip(task_name_ele, "Please input a task name");
 			is_validate = false;
 		}
 		if(start_time == "" && end_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date and an end date");
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date and an end date");
 			is_validate = false;
 		} else if(start_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date");
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date");
 			is_validate = false;
 		} else if(end_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(end_time_ele, "Please input an end date");
+			IHL_ErrorTipObj.showErrTip(end_time_ele, "Please input an end date");
 			is_validate = false;
 		}
 		if(start_time == "" || end_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input Date Range first");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input Date Range first");
 			is_validate = false;
 		} else if(total_day == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input days you plan to spend on this task");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input days you plan to spend on this task");
 			is_validate = false;
 		} else if(isNaN(total_day)) {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer");
 			is_validate = false;
 		} else if(parseInt(total_day) != parseFloat(total_day)) {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer, not a float");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer, not a float");
 			is_validate = false;
 		} else {
 			total_day = parseInt(total_day);
 			total_day_ele.val(total_day).trigger("change");
 			var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
 			if(total_day < 1) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost at least 1 day on this task");
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost at least 1 day on this task");
 				is_validate = false;
 			} else if(total_day > date_range_days) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
 				is_validate = false;
 			}
 		}
 		if(paper_name == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(paper_name_ele, "Please input a paper name");
+			IHL_ErrorTipObj.showErrTip(paper_name_ele, "Please input a paper name");
 			is_validate = false;
 		}
 		// 检测stages数据
@@ -259,17 +259,17 @@ var TiSave = {
 			var sname_ele = $("#fb-mti-paper-sname-" + i), stime_ele = $("#fb-mti-paper-stime-" + i);
 			var sname = $.trim(sname_ele.val()), stime = $.trim(stime_ele.val());
 			if(sname == "") {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(sname_ele, "Please input a stage name");
+				IHL_ErrorTipObj.showErrTip(sname_ele, "Please input a stage name");
 				is_validate = false;
 			}
 			if(stime == "") {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input a stage time");
+				IHL_ErrorTipObj.showErrTip(stime_ele, "Please input a stage time");
 				is_validate = false;
 			} else if(isNaN(stime)) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input an integer");
+				IHL_ErrorTipObj.showErrTip(stime_ele, "Please input an integer");
 				is_validate = false;
 			} else if(parseInt(stime) != parseFloat(stime)) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input an integer, not a float");
+				IHL_ErrorTipObj.showErrTip(stime_ele, "Please input an integer, not a float");
 				is_validate = false;
 			}
 			if(is_validate) {
@@ -294,6 +294,7 @@ var TiSave = {
 					stages: JSON.stringify(stages)
 				},
 				type: "post",
+				async: false,
 				success: function(json_data) {
 					var data = $.parseJSON(json_data);
 					// console.log(data);
@@ -330,57 +331,57 @@ var TiSave = {
 			end_time = $.trim(end_time_ele.val()), total_day = $.trim(total_day_ele.val()),
 			university_name = $.trim(university_name_ele.val()), deadline = $.trim(deadline_ele.val()),
 			material = $.trim(material_ele.val()),
-			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";;
+			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";
 		// 对输入控件的值进行检测，如果不对，显示error tip
 		var is_validate = true;
 		if(task_name == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(task_name_ele, "Please input a task name");
+			IHL_ErrorTipObj.showErrTip(task_name_ele, "Please input a task name");
 			is_validate = false;
 		}
 		if(start_time == "" && end_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date and an end date");
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date and an end date");
 			is_validate = false;
 		} else if(start_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date");
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date");
 			is_validate = false;
 		} else if(end_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(end_time_ele, "Please input an end date");
+			IHL_ErrorTipObj.showErrTip(end_time_ele, "Please input an end date");
 			is_validate = false;
 		}
 		if(start_time == "" || end_time == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input Date Range first");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input Date Range first");
 			is_validate = false;
 		} else if(total_day == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input days you plan to spend on this task");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input days you plan to spend on this task");
 			is_validate = false;
 		} else if(isNaN(total_day)) {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer");
 			is_validate = false;
 		} else if(parseInt(total_day) != parseFloat(total_day)) {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer, not a float");
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer, not a float");
 			is_validate = false;
 		} else {
 			total_day = parseInt(total_day);
 			total_day_ele.val(total_day).trigger("change");
 			var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
 			if(total_day < 1) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost at least 1 day on this task");
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost at least 1 day on this task");
 				is_validate = false;
 			} else if(total_day > date_range_days) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
 				is_validate = false;
 			}
 		}
 		if(university_name == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(university_name_ele, "Please input an university name");
+			IHL_ErrorTipObj.showErrTip(university_name_ele, "Please input an university name");
 			is_validate = false;
 		}
 		if(deadline == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(deadline_ele, "Please input a deadline");
+			IHL_ErrorTipObj.showErrTip(deadline_ele, "Please input a deadline");
 			is_validate = false;
 		}
 		if(material == "") {
-			IHL_ErrorTipObj.showErrTipAndScroll2Ele(material_ele, "Please input material");
+			IHL_ErrorTipObj.showErrTip(material_ele, "Please input material");
 			is_validate = false;
 		}
 		// 检测stages数据
@@ -389,17 +390,17 @@ var TiSave = {
 			var sname_ele = $("#fb-mti-university-sname-" + i), stime_ele = $("#fb-mti-university-stime-" + i);
 			var sname = $.trim(sname_ele.val()), stime = $.trim(stime_ele.val());
 			if(sname == "") {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(sname_ele, "Please input a stage name");
+				IHL_ErrorTipObj.showErrTip(sname_ele, "Please input a stage name");
 				is_validate = false;
 			}
 			if(stime == "") {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input a stage time");
+				IHL_ErrorTipObj.showErrTip(stime_ele, "Please input a stage time");
 				is_validate = false;
 			} else if(isNaN(stime)) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input an integer");
+				IHL_ErrorTipObj.showErrTip(stime_ele, "Please input an integer");
 				is_validate = false;
 			} else if(parseInt(stime) != parseFloat(stime)) {
-				IHL_ErrorTipObj.showErrTipAndScroll2Ele(stime_ele, "Please input an integer, not a float");
+				IHL_ErrorTipObj.showErrTip(stime_ele, "Please input an integer, not a float");
 				is_validate = false;
 			}
 			if(is_validate) {
@@ -426,6 +427,7 @@ var TiSave = {
 					material: material
 				},
 				type: "post",
+				async: false,
 				success: function(json_data) {
 					var data = $.parseJSON(json_data);
 					// console.log(data);
@@ -451,11 +453,134 @@ var TiSave = {
 		}
 			
 	},
+	saveReadBookMti: function() {
+		// 获取控件
+		var task_name_ele = $("#fb-mti-book-task-name"), start_time_ele = $("#fb-mti-book-start-time"),
+			end_time_ele = $("#fb-mti-book-end-time"), total_day_ele = $("#fb-mti-book-total-day"),
+			book_title_ele = $("#fb-mti-book-title"), isbn_ele = $("#fb-mti-book-isbn"),
+			page_num_ele = $("#fb-mti-book-page-num"), efficiency_ele = $("#fb-mti-book-efficiency"),
+			is_active_ele = $("#fb-mti-book-is-active");
+		// 获取值
+		var task_name = $.trim(task_name_ele.val()), start_time = $.trim(start_time_ele.val()),
+			end_time = $.trim(end_time_ele.val()), total_day = $.trim(total_day_ele.val()),
+			book_title = $.trim(book_title_ele.val()), isbn = $.trim(isbn_ele.val()),
+			page_num = $.trim(page_num_ele.val()), efficiency = $.trim(efficiency_ele.val()),
+			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";
+		// 检测输入值是否合法
+		var is_validate = true;
+		if(task_name == "") {
+			IHL_ErrorTipObj.showErrTip(task_name_ele, "Please input a task name");
+			is_validate = false;
+		}
+		if(start_time == "" && end_time == "") {
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date and an end date");
+			is_validate = false;
+		} else if(start_time == "") {
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date");
+			is_validate = false;
+		} else if(end_time == "") {
+			IHL_ErrorTipObj.showErrTip(end_time_ele, "Please input an end date");
+			is_validate = false;
+		}
+		if(start_time == "" || end_time == "") {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input Date Range first");
+			is_validate = false;
+		} else if(total_day == "") {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input days you plan to spend on this task");
+			is_validate = false;
+		} else if(isNaN(total_day)) {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(total_day) != parseFloat(total_day)) {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer, not a float");
+			is_validate = false;
+		} else {
+			total_day = parseInt(total_day);
+			total_day_ele.val(total_day).trigger("change");
+			var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
+			if(total_day < 1) {
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost at least 1 day on this task");
+				is_validate = false;
+			} else if(total_day > date_range_days) {
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
+				is_validate = false;
+			}
+		}
+		if(book_title == "") {
+			IHL_ErrorTipObj.showErrTip(book_title_ele, "Please input a book title");
+			is_validate = false;
+		}
+		if(isbn == "" && page_num == "") {
+			IHL_ErrorTipObj.showErrTip(isbn_ele, "Please input a book title and choose a book");
+			IHL_ErrorTipObj.showErrTip(page_num_ele, "Please input a book title and choose a book");
+			is_validate = false;
+		}
+		if(efficiency == "") {
+			IHL_ErrorTipObj.showErrTip(efficiency_ele, "Please input your efficiency");
+			is_validate = false;
+		} else if(isNaN(efficiency)) {
+			IHL_ErrorTipObj.showErrTip(efficiency_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(efficiency) != parseFloat(efficiency)) {
+			IHL_ErrorTipObj.showErrTip(efficiency_ele, "Please input an integer, not a float");
+			is_validate = false;
+		} else {
+			efficiency = parseInt(efficiency);
+			efficiency_ele.val(efficiency).trigger("change");
+			if(efficiency < 1) {
+				IHL_ErrorTipObj.showErrTip(efficiency_ele, "You must cost at least 1 minutes to finish 1 page");
+				is_validate = false;
+			}
+		}
+		// 若通过检测 则提交并保存
+		if(is_validate) {
+			IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Saving ...<h1>");
+			var task_id = $("#fb-paper-modal-label").data("taskId");
+			$.ajax({
+				url: "bookTaskAction!update.action",
+				data: {
+					id: task_id,
+					name: task_name,
+					startTime: start_time,
+					endTime: end_time,
+					totalDay: total_day,
+					isActive: is_active,
+					title: book_title,
+					ISBN: isbn,
+					pageNum: page_num,
+					efficiency: efficiency
+				},
+				type: "post",
+				async: false,
+				success: function(json_data) {
+					var data = $.parseJSON(json_data);
+					// console.log(data);
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        if(data.statusCode == "200") {
+							$.growlUI('Success', data.info);
+							/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+							if(vs_fb_div_ele) {
+								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+							}*/
+						} else {
+							$.growlUI('Error', data.info);
+						}
+                    });
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        $.growlUI('Error', textStatus + " " + errorThrown);
+                    });
+				}
+			});
+		}
+		
+	},
 	saveModifiedTi: function(task_type, stage_num) {
 		var this_ptr = this;
 		if(task_type == "10") {	// Read Book
-				
-				
+			this_ptr.saveReadBookMti();
 		} else if(task_type == "11") {	// Open Class
 			
 			
