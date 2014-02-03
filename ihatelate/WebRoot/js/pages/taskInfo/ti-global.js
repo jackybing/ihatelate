@@ -90,8 +90,8 @@ var TiModify = {
 	fillTaskInfoModal: function(task_info) {
 		$(".fb-mti-form").hide();
 		var this_ptr = this;
-		console.log("taskInfo: ");
-		console.log(task_info);
+		// console.log("taskInfo: ");
+		// console.log(task_info);
 		var cur_task_type = task_info.type;
 		$("#save-fbmti-btn").data("taskType", cur_task_type);
 		var target_form_div;
@@ -318,7 +318,7 @@ var TiSave = {
 				}
 			});
 		}
-			
+		return is_validate;
 	},
 	saveUniversityMti: function(stage_num) {
 		// 获取控件
@@ -451,7 +451,7 @@ var TiSave = {
 				}
 			});
 		}
-			
+		return is_validate;	
 	},
 	saveReadBookMti: function() {
 		// 获取控件
@@ -575,24 +575,262 @@ var TiSave = {
 				}
 			});
 		}
-		
+		return is_validate;
+	},
+	saveOpenClassMti: function() {
+		// 获取控件
+		var task_name_ele = $("#fb-mti-class-task-name"), start_time_ele = $("#fb-mti-class-start-time"),
+			end_time_ele = $("#fb-mti-class-end-time"), total_day_ele = $("#fb-mti-class-total-day"),
+			class_name_ele = $("#fb-mti-class-name"), amount_ele = $("#fb-mti-class-amount"),
+			time_4_each_class_ele = $("#fb-mti-class-each-time"), remark_ele = $("#fb-mti-class-remark"),
+			is_active_ele = $("#fb-mti-class-is-active");
+		// 获取值
+		var task_name = $.trim(task_name_ele.val()), start_time = $.trim(start_time_ele.val()),
+			end_time = $.trim(end_time_ele.val()), total_day = $.trim(total_day_ele.val()),
+			class_name = $.trim(class_name_ele.val()), amount = $.trim(amount_ele.val()),
+			time_4_each_class = $.trim(time_4_each_class_ele.val()), remark = $.trim(remark_ele.val()),
+			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";
+		// 验证 validate
+		var is_validate = true;
+		if(task_name == "") {
+			IHL_ErrorTipObj.showErrTip(task_name_ele, "Please input a task name");
+			is_validate = false;
+		}
+		if(start_time == "" && end_time == "") {
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date and an end date");
+			is_validate = false;
+		} else if(start_time == "") {
+			IHL_ErrorTipObj.showErrTip(start_time_ele, "Please input a start date");
+			is_validate = false;
+		} else if(end_time == "") {
+			IHL_ErrorTipObj.showErrTip(end_time_ele, "Please input an end date");
+			is_validate = false;
+		}
+		if(start_time == "" || end_time == "") {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input Date Range first");
+			is_validate = false;
+		} else if(total_day == "") {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input days you plan to spend on this task");
+			is_validate = false;
+		} else if(isNaN(total_day)) {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(total_day) != parseFloat(total_day)) {
+			IHL_ErrorTipObj.showErrTip(total_day_ele, "Please input an integer, not a float");
+			is_validate = false;
+		} else {
+			total_day = parseInt(total_day);
+			total_day_ele.val(total_day).trigger("change");
+			var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
+			if(total_day < 1) {
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost at least 1 day on this task");
+				is_validate = false;
+			} else if(total_day > date_range_days) {
+				IHL_ErrorTipObj.showErrTip(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
+				is_validate = false;
+			}
+		}
+		if(class_name == "") {
+			IHL_ErrorTipObj.showErrTip(class_name_ele, "Please input a class name");
+			is_validate = false;
+		}
+		if(amount == "") {
+			IHL_ErrorTipObj.showErrTip(amount_ele, "Please input an amount");
+			is_validate = false;
+		} else if(isNaN(amount)) {
+			IHL_ErrorTipObj.showErrTip(amount_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(amount) != parseFloat(amount)) {
+			IHL_ErrorTipObj.showErrTip(amount_ele, "Please input an integer, not a float");
+			is_validate = false;
+		}
+		if(time_4_each_class == "") {
+			IHL_ErrorTipObj.showErrTip(time_4_each_class_ele, "Please input a time for each class in minutes");
+			is_validate = false;
+		} else if(isNaN(time_4_each_class)) {
+			IHL_ErrorTipObj.showErrTip(time_4_each_class_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(time_4_each_class) != parseFloat(time_4_each_class)) {
+			IHL_ErrorTipObj.showErrTip(time_4_each_class_ele, "Please input an integer, not a float");
+			is_validate = false;
+		}
+		// 若通过检测 则提交并保存
+		if(is_validate) {
+			IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Saving ...<h1>");
+			var task_id = $("#fb-paper-modal-label").data("taskId");
+			$.ajax({
+				url: "openClassTaskAction!update.action",
+				data: {
+					id: task_id,
+					name: task_name,
+					startTime: start_time,
+					endTime: end_time,
+					totalDay: total_day,
+					isActive: is_active,
+					className: book_title,
+					amount: isbn,
+					timeForPerClass: page_num,
+					remark: efficiency
+				},
+				type: "post",
+				async: false,
+				success: function(json_data) {
+					var data = $.parseJSON(json_data);
+					// console.log(data);
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        if(data.statusCode == "200") {
+							$.growlUI('Success', data.info);
+							/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+							if(vs_fb_div_ele) {
+								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+							}*/
+						} else {
+							$.growlUI('Error', data.info);
+						}
+                    });
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        $.growlUI('Error', textStatus + " " + errorThrown);
+                    });
+				}
+			});
+		}
+		return is_validate;
+	},
+	saveExerciseMti: function() {
+		var task_name_ele = $("#fb-mti-exercise-task-name"), start_time_ele = $("#fb-mti-exercise-start-time"),
+			end_time_ele = $("#fb-mti-exercise-end-time"), total_day_ele = $("#fb-mti-exercise-total-day"),
+			exercise_name_ele = $("#fb-mti-exercise-name"), group_count_ele = $("#fb-mti-exercise-group-count"),
+			time_4_each_group_ele = $("#fb-mti-exercise-group-time"), is_active_ele = $("#fb-mti-exercise-is-active");
+		var task_name = $.trim(task_name_ele.val()), start_time = $.trim(start_time_ele.val()),
+			end_time = $.trim(end_time_ele.val()), total_day = $.trim(total_day_ele.val()),
+			exercise_name = $.trim(exercise_name_ele.val()), group_count = $.trim(group_count_ele.val()),
+			time_4_each_group = $.trim(time_4_each_group_ele.val()),
+			is_active = is_active_ele.parent().hasClass("switch-on") ? "1" : "0";
+		// 检测是否validate
+		var is_validate = true;
+		if(task_name == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(task_name_ele, "Please input a task name");
+			is_validate = false;
+		}
+		if(start_time == "" && end_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date and an end date");
+			is_validate = false;
+		} else if(start_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(start_time_ele, "Please input a start date");
+			is_validate = false;
+		} else if(end_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(end_time_ele, "Please input an end date");
+			is_validate = false;
+		}
+		if(start_time == "" || end_time == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input Date Range first");
+			is_validate = false;
+		} else if(total_day == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input days you plan to spend on this task");
+			is_validate = false;
+		} else if(isNaN(total_day)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(total_day) != parseFloat(total_day)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "Please input an integer, not a float");
+			is_validate = false;
+		} else {
+			total_day = parseInt(total_day);
+			total_day_ele.val(total_day).trigger("change");
+			var date_range_days = IHL_TaskFormOprtObj.computeDateRangeDays(start_time, end_time);
+			if(total_day < 1) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost at least 1 day on this task");
+				is_validate = false;
+			} else if(total_day > date_range_days) {
+				IHL_ErrorTipObj.showErrTipAndScroll2Ele(total_day_ele, "You must cost no more than " + date_range_days + " days (on date range)");
+				is_validate = false;
+			}
+		}
+		if(exercise_name == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(exercise_name_ele, "Please input an exercise name");
+			is_validate = false;
+		}
+		if(group_count == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(group_count_ele, "Please input an group count");
+			is_validate = false;
+		} else if(isNaN(group_count)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(group_count_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(group_count) != parseFloat(group_count)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(group_count_ele, "Please input an integer, not a float");
+			is_validate = false;
+		}
+		if(time_4_each_group == "") {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(time_4_each_group_ele, "Please input a time for each group in minutes");
+			is_validate = false;
+		} else if(isNaN(time_4_each_group)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(time_4_each_group_ele, "Please input an integer");
+			is_validate = false;
+		} else if(parseInt(time_4_each_group) != parseFloat(time_4_each_group)) {
+			IHL_ErrorTipObj.showErrTipAndScroll2Ele(time_4_each_group_ele, "Please input an integer, not a float");
+			is_validate = false;
+		}
+		// 若通过检测 则提交并保存
+		if(is_validate) {
+			IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Saving ...<h1>");
+			var task_id = $("#fb-paper-modal-label").data("taskId");
+			$.ajax({
+				url: "exerciseTaskAction!update.action",
+				data: {
+					id: task_id,
+					name: task_name,
+					startTime: start_time,
+					endTime: end_time,
+					totalDay: total_day,
+					isActive: is_active,
+					exerciseName: exercise_name,
+					groupCount: group_count,
+					timePerGroup: time_4_each_group
+				},
+				type: "post",
+				async: false,
+				success: function(json_data) {
+					var data = $.parseJSON(json_data);
+					// console.log(data);
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        if(data.statusCode == "200") {
+							$.growlUI('Success', data.info);
+							/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+							if(vs_fb_div_ele) {
+								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+							}*/
+						} else {
+							$.growlUI('Error', data.info);
+						}
+                    });
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					IHL_BlockMsgObj.unblockMsg(function() { 
+                        $.growlUI('Error', textStatus + " " + errorThrown);
+                    });
+				}
+			});
+		}
+		return is_validate;
 	},
 	saveModifiedTi: function(task_type, stage_num) {
-		var this_ptr = this;
+		var this_ptr = this, is_validate;
 		if(task_type == "10") {	// Read Book
-			this_ptr.saveReadBookMti();
+			is_validate = this_ptr.saveReadBookMti();
 		} else if(task_type == "11") {	// Open Class
-			
-			
+			is_validate = this_ptr.saveOpenClassMti();
 		} else if(task_type == "12") {	// 健身
-			
-			
+			is_validate = this_ptr.saveExerciseMti();
 		} else if(task_type == "20") {	// 写论文
-			this_ptr.savePaperMti(stage_num);
+			is_validate = this_ptr.savePaperMti(stage_num);
 		} else if(task_type == "21") {	// 申请大学
-			this_ptr.saveUniversityMti(stage_num);
+			is_validate = this_ptr.saveUniversityMti(stage_num);
 		}
-		if($("#task-list-wrapper").is(":visible")) {
+		if(is_validate && $("#task-list-wrapper").is(":visible")) {
 			// 刷新任务列表
 			$("#display-task-list").click();
 		}

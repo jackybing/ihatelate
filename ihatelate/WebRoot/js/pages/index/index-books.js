@@ -294,7 +294,7 @@
 				end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
 				book_title = $.trim(book_title_element.val()), isbn = $.trim(isbn_element.val()),
 				page_num = $.trim(page_num_element.val()), efficiency = $.trim(efficiency_element.val()),
-				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
+				is_active = is_active_element.parent().hasClass("switch-on") ? "1" : "0";
 			
 			var is_validate = true;
 			if(task_name == "") {

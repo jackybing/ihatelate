@@ -14,7 +14,7 @@
 				end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
 				exercise_name = $.trim(exercise_name_element.val()), group_count = $.trim(group_count_element.val()),
 				time_4_each_group = $.trim(time_4_each_group_element.val()),
-				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
+				is_active = is_active_element.parent().hasClass("switch-on") ? "1" : "0";
 			/*console.log("task_name: " + task_name + "; start_time: " + start_time + "; end_time: " + end_time);
 			console.log("total_day: " + total_day + "; exercise_name: " + exercise_name + "; group_count: " + group_count);
 			console.log("time_4_each_group: " + time_4_each_group + "; is_active: " + is_active);*/
