@@ -87,7 +87,7 @@ var TiModify = {
 			$("#save-fbmti-btn").removeClass("disabled");
 		}
 	},
-	fillTaskInfoModal: function(task_info) {
+	fillTaskInfoModal: function(task_info, is_feedback) {
 		$(".fb-mti-form").hide();
 		var this_ptr = this;
 		// console.log("taskInfo: ");
@@ -154,10 +154,18 @@ var TiModify = {
 			this_ptr.fillStages(univer_form_div.find("#fb-mti-university-stages"), task_info.stages, task_info.id, task_info.type);
 			target_form_div = univer_form_div;
 		}
-		this_ptr.judgeIsCompleted(task_info.isCompleted, target_form_div);
+		// 判断基本信息是否只读 对于反馈 目的是编辑stage信息 故基本信息部分只读
+		if(is_feedback) {
+			target_form_div.find(".not-readonly").attr("readonly", "readonly");
+			target_form_div.find(".has-switch").bootstrapSwitch('setActive', false);
+			target_form_div.find(".dp-changeable").addClass("dp-unchangeable").removeClass("dp-changeable");
+			$("#save-fbmti-btn").removeClass("disabled");
+		} else {
+			this_ptr.judgeIsCompleted(task_info.isCompleted, target_form_div);
+		}
 		
 	},
-	showTaskInfoModal: function(task_id) {
+	showTaskInfoModal: function(task_id, is_feedback) {
 		// console.log("Data task_id on showTaskInfoModal: " + task_id);
 		$("#fb-paper-modal-label").data("taskId", task_id);
 		var this_ptr = this;
@@ -179,7 +187,7 @@ var TiModify = {
 						// console.log(response_data);
 						if(response_data.statusCode == "200") {
 							var task_info = response_data.taskInfo;
-							this_ptr.fillTaskInfoModal(task_info);
+							this_ptr.fillTaskInfoModal(task_info, is_feedback);
 							
 						} else {
 							console.log(response_data);

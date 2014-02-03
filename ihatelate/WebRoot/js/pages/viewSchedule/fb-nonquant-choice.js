@@ -43,7 +43,7 @@
 				task_type = dataEle.data("taskType");
 			// console.log($(this).text() + " | " + task_id + " | " + fb_paper_time);
 			$('#fb-paper-modal').modal('hide');
-			TiModify.showTaskInfoModal(task_id);
+			TiModify.showTaskInfoModal(task_id, true);
 			
 		});
 		// End  : 点击dialog的按钮后会发生的事情
