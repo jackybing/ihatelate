@@ -130,6 +130,7 @@
 		  						What's Next?
 		  					</div>
 		  					<div class="span6" style="text-align: right;">
+		  						<button id="change-task-priority" class="btn btn-primary">Change Task Priority</button>
 		  						<button id="display-task-list" class="btn btn-primary">Display Task List</button>
 		  					</div>
 		  				</div>
@@ -1218,5 +1219,9 @@
 	<script type='text/javascript' src='tools/tablecloth/js/jquery.tablecloth.js'></script>
 	<script type='text/javascript' src='js/pages/taskList/task-list.js'></script>
 	<!-- End  : Task List and Task Modify -->
+	
+	<!-- Start: Task Priority -->
+	
+	<!-- End  : Task Priority -->
   </body>
 </html>
