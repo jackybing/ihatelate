@@ -853,6 +853,7 @@
   	</div>
 	<!-- Put Javascripts here to make the page load faster -->
 	<script type="text/javascript" src="tools/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="tools/jquery/jquery-migrate-1.2.1.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
@@ -1226,7 +1227,24 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    	<h3 id="priority-drag-sort-label">Drag Task to Sort Priority</h3>
 	  	</div>
-	  	<div class="modal-body">
+	  	<div class="modal-body" style="padding-bottom: 0; padding-top: 18px;">
+	  		<ul  id="tp-drag-sorter" class="unstyled">
+				<li>
+					<div class="alert alert-info tp-ds-subdiv" data-task-id="70">
+						First Task: #70
+					</div>
+				</li>
+				<li>
+					<div class="alert alert-info tp-ds-subdiv" data-task-id="73">
+						Second Task: #73
+					</div>
+				</li>
+				<li>
+					<div class="alert alert-info tp-ds-subdiv" data-task-id="76">
+						Third Task: #76
+					</div>
+				</li>
+			</ul>
 	  		
 	  	</div>
 	  	<div class="modal-footer">

@@ -1,6 +1,21 @@
 (function($) {
 	$(function() {
 		var PriorityDragSorter = {
+			enableDragSorter: function() {
+				$("#tp-drag-sorter").dragsort({ 
+					dragSelector: "div.tp-ds-subdiv", 
+					dragEnd: function() {
+						var priority_id_array = $("#tp-drag-sorter .tp-ds-subdiv").map(function() { 
+							return $(this).data("taskId"); 
+						}).get();
+						console.log("priority_id_array: ");
+						console.log(priority_id_array);
+						$("#tp-drag-sorter").data("priorityIdArray", priority_id_array.join("|"));
+						// console.log("priority_id_array: ");
+						// console.log($("#tp-drag-sorter").data("priorityIdArray").split("|"));
+					}
+				});
+			},
 			obtainAllPriority: function() {
 				$.ajax({
 					url: "modifyPriorityAction!obtainAll.action",
@@ -36,6 +51,6 @@
 		$(document).on("click", "#change-task-priority", function() {
 			PriorityDragSorter.obtainAllPriority();
 		});
-		
+		PriorityDragSorter.enableDragSorter();
 	});
 })(jQuery);
