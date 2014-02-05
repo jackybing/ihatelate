@@ -3,12 +3,14 @@ package com.ihl.controller.modifypriorityaction;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 import com.ihl.model.basetask.BaseTask;
+import com.ihl.model.stage.Stage;
 import com.ihl.model.user.User;
 import com.ihl.service.basetaskservice.BaseTaskService;
 import com.ihl.service.userservice.UserService;
@@ -29,6 +31,13 @@ public class ModifyPriorityAction extends ActionSupport{
 			baseTaskService.clear();
 			for(BaseTask baseTask : baseTasks){
 				baseTask.setUser(null);
+				// Start: 201402051321 Pandaroid 去掉转化json时可能引起循环引用的问题
+				Set<Stage> stages = baseTask.getStages();
+				for(Stage stage : stages){
+					stage.setTask(null);
+				}
+				baseTask.setStages(stages);
+				// End  : 201402051321 Pandaroid 去掉转化json时可能引起循环引用的问题
 			}
 			JsonConfig jsonConfig = new JsonConfig();
 			jsonConfig.registerJsonValueProcessor(java.util.Date.class, new JsonDateValueProcessor("yyyy-MM-dd HH:mm:ss"));

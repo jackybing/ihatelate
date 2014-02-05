@@ -130,8 +130,8 @@
 		  						What's Next?
 		  					</div>
 		  					<div class="span6" style="text-align: right;">
-		  						<button id="change-task-priority" class="btn btn-primary">Change Task Priority</button>
 		  						<button id="display-task-list" class="btn btn-primary">Display Task List</button>
+		  						<button id="change-task-priority" class="btn btn-info">Change Task Priority</button>
 		  					</div>
 		  				</div>
 		  				<div class="row-fluid">
@@ -1221,7 +1221,21 @@
 	<!-- End  : Task List and Task Modify -->
 	
 	<!-- Start: Task Priority -->
-	
+	<div id="priority-drag-sort" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="priority-drag-sort-label" aria-hidden="true" style="width: 900px; margin-left: -450px;">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="priority-drag-sort-label">Drag Task to Sort Priority</h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		
+	  	</div>
+	  	<div class="modal-footer">
+	    	<button class="btn btn-primary" id="save-priority-btn">Save Task Priority</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+	  	</div>
+	</div>
+	<script type='text/javascript' src='js/pages/taskPriority/jquery.dragsort-0.5.1.min.js'></script>
+	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort.js'></script>
 	<!-- End  : Task Priority -->
   </body>
 </html>
