@@ -1228,23 +1228,6 @@
 	    	<h3 id="priority-drag-sort-label">Drag Task to Sort Priority</h3>
 	  	</div>
 	  	<div class="modal-body" style="padding-bottom: 0; padding-top: 18px;">
-	  		<ul  id="tp-drag-sorter" class="unstyled">
-				<li>
-					<div class="alert alert-info tp-ds-subdiv" data-task-id="70">
-						First Task: #70
-					</div>
-				</li>
-				<li>
-					<div class="alert alert-info tp-ds-subdiv" data-task-id="73">
-						Second Task: #73
-					</div>
-				</li>
-				<li>
-					<div class="alert alert-info tp-ds-subdiv" data-task-id="76">
-						Third Task: #76
-					</div>
-				</li>
-			</ul>
 	  		
 	  	</div>
 	  	<div class="modal-footer">
