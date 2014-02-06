@@ -24,6 +24,7 @@
 		/* css hack for webkit browsers by Payne Pandaroid Wang */
 		@media screen and (-webkit-min-device-pixel-ratio:0){ #task-list-tb .btn-group > .btn-mini { font-size: 14.4px; } }
 		input[type="checkbox"].tltb-check-single { margin-left: 2px; }
+		#tp-drag-sorter .alert { margin-bottom: 0; }
 	</style>
   </head>
   
@@ -1227,7 +1228,7 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    	<h3 id="priority-drag-sort-label">Drag Task to Sort Priority</h3>
 	  	</div>
-	  	<div class="modal-body" style="padding-bottom: 0; padding-top: 18px;">
+	  	<div class="modal-body">
 	  		
 	  	</div>
 	  	<div class="modal-footer">
@@ -1235,7 +1236,7 @@
 	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
 	  	</div>
 	</div>
-	<script type='text/javascript' src='js/pages/taskPriority/jquery.dragsort-0.5.1.min.js'></script>
+	<script type='text/javascript' src='js/pages/taskPriority/jquery.dragsort-0.5.1.js'></script>
 	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort.js'></script>
 	<!-- End  : Task Priority -->
   </body>

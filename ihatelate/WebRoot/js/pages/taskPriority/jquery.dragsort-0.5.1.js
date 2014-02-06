@@ -134,8 +134,8 @@
 					list.draggedItem.attr("data-origstyle", orig ? orig : "");
 					list.draggedItem.css({ position: "absolute", opacity: 0.8, "z-index": 999, height: h, width: w });
 
-					//auto-scroll setup
-					list.scroll = { moveX: 0, moveY: 0, maxX: $(document).width() - $(window).width(), maxY: $(document).height() - $(window).height() };
+					//auto-scroll setup 201402061641 Pandaroid 添加maxH辅助防止dragItem偏移超出scrollContainer
+					list.scroll = { moveX: 0, moveY: 0, maxX: $(document).width() - $(window).width(), maxY: $(document).height() - $(window).height(), maxH: ($(opts.scrollContainer)[0].scrollHeight - h) };
 					list.scroll.scrollY = window.setInterval(function() {
 						if (opts.scrollContainer != window) {
 							$(opts.scrollContainer).scrollTop($(opts.scrollContainer).scrollTop() + list.scroll.moveY);
@@ -173,7 +173,7 @@
 					//remove mouse offset so mouse cursor remains in same place on draggedItem instead of top left corner
 					var top = y - this.offset.top;
 					var left = x - this.offset.left;
-
+					
 					//limit top, left to within box draggedItem can't be dragged outside of
 					if (!opts.dragBetween) {
 						top = Math.min(this.offsetLimit.bottom, Math.max(top, this.offsetLimit.top));
@@ -206,6 +206,17 @@
 					list.scroll.moveX = x == 0 ? 0 : x * opts.scrollSpeed / Math.abs(x);
 					list.scroll.moveY = y == 0 ? 0 : y * opts.scrollSpeed / Math.abs(y);
 
+					// Start: 201402061637 Pandaroid 修复在scrollContainer中会dragItem偏移的bug
+					if (opts.scrollContainer != window) {
+						top = $(opts.scrollContainer).scrollTop() + top;
+						if(top > list.scroll.maxH) {
+							top = list.scroll.maxH;
+						} else if(top < 0) {
+							top = 0;
+						}
+					}
+					// End  : 201402061637 Pandaroid 修复在scrollContainer中会dragItem偏移的bug
+					
 					//move draggedItem to new mouse cursor location
 					this.draggedItem.css({ top: top, left: left });
 				},
