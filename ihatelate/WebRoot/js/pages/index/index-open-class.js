@@ -107,6 +107,7 @@
                             if(data.statusCode == "200") {
 								$.growlUI('Success', data.info);
 								resetOpenClassTaskForm();
+								PriorityDragSorter.confirmAjustPriority();
 							} else {
 								$.growlUI('Error', data.info);
 							}

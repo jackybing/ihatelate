@@ -128,7 +128,7 @@ var PriorityDragSorter = {
 						if(response_data.status == "200") {
 							IHL_IndexInitObj.initTimeline();
 							$("#save-priority-btn").addClass("disabled");
-							IHL_BlockMsgObj.showGrowlMsg("Success", "Task Priority Saved Successfully");
+							IHL_BlockMsgObj.showGrowlMsg("Success", "Task Priority saved successfully");
 						} else {
 							if(window.console && window.console.log) {
 								console.log(response_data);

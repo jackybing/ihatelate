@@ -144,6 +144,7 @@
                             if(data.statusCode == "200") {
 								$.growlUI('Success', data.info);
 								resetUniversityTaskForm(item, type);
+								PriorityDragSorter.confirmAjustPriority();
 							} else {
 								$.growlUI('Error', data.info);
 							}

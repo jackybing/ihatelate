@@ -675,10 +675,10 @@ var TiSave = {
 					endTime: end_time,
 					totalDay: total_day,
 					isActive: is_active,
-					className: book_title,
-					amount: isbn,
-					timeForPerClass: page_num,
-					remark: efficiency
+					className: class_name,
+					amount: amount,
+					timeForPerClass: time_4_each_class,
+					remark: remark
 				},
 				type: "post",
 				async: false,
