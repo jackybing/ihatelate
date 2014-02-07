@@ -838,9 +838,12 @@ var TiSave = {
 		} else if(task_type == "21") {	// 申请大学
 			is_validate = this_ptr.saveUniversityMti(stage_num);
 		}
-		if(is_validate && $("#task-list-wrapper").is(":visible")) {
-			// 刷新任务列表
-			$("#display-task-list").click();
+		if(is_validate) {
+			IHL_IndexInitObj.initTimeline();
+			if($("#task-list-wrapper").is(":visible")) {
+				// 刷新任务列表
+				$("#display-task-list").click();
+			}
 		}
 	}
 };

@@ -123,6 +123,7 @@
 							} else {
 								response_data = $.parseJSON(response_data);
 								if(response_data.status == "200") {
+									IHL_IndexInitObj.initTimeline();
 									$("#save-priority-btn").addClass("disabled");
 									IHL_BlockMsgObj.showGrowlMsg("Success", "Task Priority Saved Successfully");
 								} else {

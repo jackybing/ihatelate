@@ -143,6 +143,7 @@
 	                        if(rsps_obj.statusCode == "200") {
 	                        	// 刷新列表
 								$("#display-task-list").click();
+								IHL_IndexInitObj.initTimeline();
 							} else {
 								$.growlUI('Error', rsps_obj.info);
 							}
