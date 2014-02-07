@@ -1237,6 +1237,7 @@
 	  	</div>
 	</div>
 	<script type='text/javascript' src='js/pages/taskPriority/jquery.dragsort-0.5.1.js'></script>
+	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort-global.js'></script>
 	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort.js'></script>
 	<!-- End  : Task Priority -->
   </body>

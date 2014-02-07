@@ -363,44 +363,41 @@ var IHL_IndexInitObj = {
 		this.endInit();
 	},
 	initTimeline: function() {
-		if($("#index-wrapper").is(":visible")) {
-			var tl_date = new Date(), tl_today_index = tl_date.getDay(), tl_today_index = tl_today_index == 0 ? 7 : tl_today_index;
-			var today_full_tag = IHL_Compute.computeFullDayTag(tl_today_index);
-			$("#index-tl-weekday").text(today_full_tag);
-			$.ajax({
-				url: "scheduleAction!scheduleToday.action",
-				success: function(data) {
-					if(data == "{timeout:true}") {
-						window.parent.location.reload();
-					} else {
-						data = $.parseJSON(data);
-						if(data.statusCode == "200") {
-							var schedule = data.scheduel;
-							schedule_array = $.parseJSON(schedule);
-							var today_schedule = schedule_array[0];
-							var timeline_ul_array = [];
-							for(var today_index in today_schedule) {
-								var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
-									today_timeline_array = today_schedule[today_index];
-								$("#index-tl-weekday").text(today_full_tag);
-								
-								for(var tl_index in today_timeline_array) {
-									var cur_timeline = today_timeline_array[tl_index];
-									timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
-								}
-								
-							}
-							$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
+		var tl_date = new Date(), tl_today_index = tl_date.getDay(), tl_today_index = tl_today_index == 0 ? 7 : tl_today_index;
+		var today_full_tag = IHL_Compute.computeFullDayTag(tl_today_index);
+		$("#index-tl-weekday").text(today_full_tag);
+		$.ajax({
+			url: "scheduleAction!scheduleToday.action",
+			success: function(data) {
+				if(data == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					data = $.parseJSON(data);
+					if(data.statusCode == "200") {
+						var schedule = data.scheduel;
+						schedule_array = $.parseJSON(schedule);
+						var today_schedule = schedule_array[0];
+						var timeline_ul_array = [];
+						for(var today_index in today_schedule) {
+							var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
+								today_timeline_array = today_schedule[today_index];
+							$("#index-tl-weekday").text(today_full_tag);
 							
-						} else {
-							alert("Failed to obtain your schedule!");
+							for(var tl_index in today_timeline_array) {
+								var cur_timeline = today_timeline_array[tl_index];
+								timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
+							}
+							
 						}
-					}
+						$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
 						
+					} else {
+						alert("Failed to obtain your schedule!");
+					}
 				}
-			});
-			
-		}
+					
+			}
+		});
 			
 	},
 	initUsernameDiv: function() {

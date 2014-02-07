@@ -137,7 +137,7 @@
 				    var btsr_html_array = [], btsr_is_first = true;
 				    if(result.count > 0) {
 				    	for(var book_idx in books_array) {
-					    	var book = books_array[book_idx];
+					    	var book = books_array[book_idx], book_pages = book.pages ? book.pages : 200;
 					    	if(btsr_is_first) {
 					    		btsr_html_array.push('<ul class="thumbnails" style="width: 97%; margin: 3px auto;">');
 					    	}
@@ -166,7 +166,7 @@
 					                  				'<tbody>' +
 					                  					'<tr>' +
 					                  						'<th style="text-align: right;">Pages:</th>' +
-					                  						'<td>' + book.pages + '</td>' +
+					                  						'<td>' + book_pages + '</td>' +
 					                  					'</tr>' +
 					                  					'<tr>' +
 					                  						'<th style="text-align: right;">Rating:</th>' +
@@ -189,7 +189,7 @@
 					                  						'<td colspan="2">' +
 					                  							'<div class="row-fluid">' +
 					                  								'<div class="span6">' +
-					                  									'<a href="javascript: void(0);" class="btn btn-primary btn-block btsr-choose-btn" data-title="' + book.title + '" data-pages="' + book.pages + '" data-isbn="' + book.isbn10 + '">Choose</a>' +
+					                  									'<a href="javascript: void(0);" class="btn btn-primary btn-block btsr-choose-btn" data-title="' + book.title + '" data-pages="' + book_pages + '" data-isbn="' + book.isbn10 + '">Choose</a>' +
 					                  								'</div>' +
 					                  								'<div class="span6">' +
 					                  									'<a href="javascript: void(0);" class="btn btn-warning btn-block btsr-reset-btn">Return</a>' +
@@ -272,6 +272,7 @@
         function resetBookTaskForm() {
         	$("#read-book-task-form input[type=text]").not("[id*=-sname-]").val("").trigger("change");
         	$("#read-book-task-form input[id*=-sname-]").trigger("change");
+        	$("#reset-bt-btn").click();
         }
 		$(document).on("click", ".btsr-reset-btn", function() {
 			btsrReset();
@@ -385,6 +386,7 @@
                             if(data.statusCode == "200") {
 								$.growlUI('Success', data.info);
 								resetBookTaskForm();
+								PriorityDragSorter.confirmAjustPriority();
 							} else {
 								$.growlUI('Error', data.info);
 							}
