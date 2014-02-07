@@ -9,11 +9,11 @@
 						var priority_id_array = $("#tp-drag-sorter .tp-ds-subdiv").map(function() { 
 							return $(this).data("taskId"); 
 						}).get();
-						console.log("priority_id_array: ");
-						console.log(priority_id_array);
 						$("#tp-drag-sorter").data("priorityIdArray", priority_id_array.join("|"));
-						// console.log("priority_id_array: ");
-						// console.log($("#tp-drag-sorter").data("priorityIdArray").split("|"));
+						var save_priority_btn = $("#save-priority-btn");
+						if(save_priority_btn.hasClass("disabled")) {
+							save_priority_btn.removeClass("disabled");
+						}
 					}
 				});
 			},
@@ -35,16 +35,37 @@
 				box_html_array.push('</div></li>');
 				return box_html_array.join("");
 			},
+			sortPriorityList: function(priority_list) {
+				var ret_list = [], sort_obj = {};
+				for(var pri_idx in priority_list) {
+					var pri_task = priority_list[pri_idx], priority_level = pri_task.priority;
+					if(sort_obj[priority_level]) {
+						sort_obj[priority_level].push(pri_task);
+					} else {
+						var pri_level_array = [];
+						pri_level_array.push(pri_task);
+						sort_obj[priority_level] = pri_level_array;
+					}
+				}
+				for(var sort_key in sort_obj) {
+					ret_list = ret_list.concat(sort_obj[sort_key]);
+				}
+				return ret_list;
+			},
 			genDragSortList: function(priority_list) {
-				var drag_sort_html_array = [], this_ptr = this;
+				var drag_sort_html_array = [], this_ptr = this, priority_id_array = [];
 				drag_sort_html_array.push('<ul  id="tp-drag-sorter" class="unstyled">');
+				priority_list = this_ptr.sortPriorityList(priority_list);
 				for(var priority_task_idx in priority_list) {
 					var priority_task = priority_list[priority_task_idx];
 					drag_sort_html_array.push(this_ptr.genOneDragSortBoxHtml(priority_task));
+					priority_id_array.push(priority_task.id);
 				}
 				drag_sort_html_array.push('</ul>');
 				$("#priority-drag-sort .modal-body").html(drag_sort_html_array.join(""));
 				this_ptr.enableDragSorter();
+				$("#tp-drag-sorter").data("priorityIdArray", priority_id_array.join("|"));
+				$("#save-priority-btn").addClass("disabled");
 			},
 			obtainAllPriority: function() {
 				var this_ptr = this;
@@ -59,12 +80,8 @@
 								window.parent.location.reload();
 							} else {
 								response_data = $.parseJSON(response_data);
-								// console.log("response_data: ");
-								// console.log(response_data);
 								if(response_data.status == "200") {
 									var priority_list = response_data.lists;
-									console.log("priority_list: ");
-									console.log(priority_list);
 									this_ptr.genDragSortList(priority_list);
 									$("#priority-drag-sort").modal('show');
 								} else {
@@ -80,10 +97,55 @@
 						
 					}
 				});
+			},
+			formIdPriorityStr: function(priority_id_array) {
+				var id_priority_array = [];
+				for(var id_idx in priority_id_array) {
+					id_priority_array.push({"ID": priority_id_array[id_idx], "priority": parseInt(id_idx) + 1});
+				}
+				return JSON.stringify(id_priority_array);
+			},
+			saveTaskPriority: function() {
+				var priority_id_array = $("#tp-drag-sorter").data("priorityIdArray").split("|"),
+					id_priority_str = this.formIdPriorityStr(priority_id_array);
+				$.ajax({
+					url: "modifyPriorityAction!modifyPriority.action",
+					beforeSend: function() {
+						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Saving ...<h1>");
+					},
+					data: {
+						IDPriorityStr: id_priority_str
+					},
+					success: function(response_data) {
+						IHL_BlockMsgObj.unblockMsg(function() {
+							if(response_data == "{timeout:true}") {
+								window.parent.location.reload();
+							} else {
+								response_data = $.parseJSON(response_data);
+								if(response_data.status == "200") {
+									$("#save-priority-btn").addClass("disabled");
+									IHL_BlockMsgObj.showGrowlMsg("Success", "Task Priority Saved Successfully");
+								} else {
+									if(window.console && window.console.log) {
+										console.log(response_data);
+									}
+									alert("Server is crashed when saving task priority information");
+								}
+								
+							}
+			                    
+		                });
+						
+					}
+				});
 			}
 		};
 		$(document).on("click", "#change-task-priority", function() {
 			PriorityDragSorter.obtainAllPriority();
+		}).on("click", "#save-priority-btn", function() {
+			if(!$("#save-priority-btn").hasClass("disabled")) {
+				PriorityDragSorter.saveTaskPriority();
+			}
 		});
 		
 	});
