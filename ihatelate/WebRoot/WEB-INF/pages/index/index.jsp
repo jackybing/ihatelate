@@ -37,10 +37,10 @@
   	<div class="container">
   		<div class="row-fluid margin-bottom-20px">
   			<div class="span7">
-  				<div class="tile span12" style="max-width: 490px;">
+  				<div class="tile span12" style="max-width: 490px; padding: 4px;">
   					<div class="row-fluid tile-row">
   						<div class="span2 tile-icon" style="font-size: 84px;">
-  							<i class="icon-user"></i>
+  							<img src="img/avatar.jpg" style="width: 100%;" />
   						</div>
   						<div class="span10">
   							<div class="row-fluid tile-first-row">
