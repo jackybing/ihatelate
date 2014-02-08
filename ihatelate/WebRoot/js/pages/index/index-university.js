@@ -26,7 +26,7 @@
 				end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
 				university_name = $.trim(university_name_element.val()),
 				deadline = $.trim(deadline_element.val()), material = $.trim(material_element.val()),
-				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
+				is_active = is_active_element.parent().hasClass("switch-on") ? "1" : "0";
 			// 对输入控件的值进行检测，如果不对，显示error tip
 			var is_validate = true;
 			if(task_name == "") {
@@ -144,6 +144,7 @@
                             if(data.statusCode == "200") {
 								$.growlUI('Success', data.info);
 								resetUniversityTaskForm(item, type);
+								PriorityDragSorter.confirmAjustPriority();
 							} else {
 								$.growlUI('Error', data.info);
 							}

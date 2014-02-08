@@ -16,8 +16,15 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="css/index/index.css" />
 	<link rel="stylesheet" type="text/css" href="css/index/timeline/css/index-timeline.css" />
+	<link rel="stylesheet" type="text/css" href="tools/tablecloth/css/tablecloth.css" />
 	<style type="text/css">
-		
+		.fb-mti-form { display: none; }
+		#task-list-tb .is-active-td { text-align: center; padding-top: 7px; }
+		#task-list-tb .btn-group > .btn-mini { font-size: 12.8px; }
+		/* css hack for webkit browsers by Payne Pandaroid Wang */
+		@media screen and (-webkit-min-device-pixel-ratio:0){ #task-list-tb .btn-group > .btn-mini { font-size: 14.4px; } }
+		input[type="checkbox"].tltb-check-single { margin-left: 2px; }
+		#tp-drag-sorter .alert { margin-bottom: 0; }
 	</style>
   </head>
   
@@ -89,13 +96,43 @@
 	  				
   			</div>
   		</div>
+  		
+  		<div id="task-list-wrapper" class="wrapper-container margin-bottom-20px hide">
+  			<div class="row-fluid">
+  				<div class="span12 tile">
+  					<div class="row-fluid tile-row tile-first-row">
+  						<div class="span6 tile-word">
+	  						Task List
+	  					</div>
+	  					<div class="span6" style="text-align: right;">
+	  						<button id="delete-selected-tasks" class="btn btn-danger">Delete Selected Tasks</button>
+	  						<button id="hide-task-list" class="btn btn-warning">Hide Task List</button>
+	  					</div>
+  					</div>
+  					<div class="row-fluid">
+  						<div class="span12">
+  							<!-- Start: 展示任务列表的table 根据后端api 不用分页 -->
+  							<div id="tl-tb-div">
+  								
+  							</div>
+	  						<!-- Start: 展示任务列表的table 根据后端api 不用分页 -->
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		
   		<div class="wrapper-container margin-bottom-20px">
   			<div id="index-wrapper" class="content-wrappers selected">
 	  			<div class="row-fluid">
-		  			<div class="span12 tile" style="">
+		  			<div class="span12 tile">
 		  				<div class="row-fluid tile-row tile-first-row">
-		  					<div class="span12 tile-word">
+		  					<div class="span6 tile-word">
 		  						What's Next?
+		  					</div>
+		  					<div class="span6" style="text-align: right;">
+		  						<button id="display-task-list" class="btn btn-primary">Display Task List</button>
+		  						<button id="change-task-priority" class="btn btn-info">Change Task Priority</button>
 		  					</div>
 		  				</div>
 		  				<div class="row-fluid">
@@ -106,90 +143,7 @@
 								    	<div class="history-date">
 								    		<h2 class="first"><a id="index-tl-weekday" href="javascript: void(0);">2012年</a></h2>
 								      		<ul id="index-tl-ul" style="display: none;">
-								         		<!-- <li class="green">
-								          			<h3>10.08<span>2012</span></h3>
-								          			<dl>
-								            			<dt>发布全新的极速浏览器6.0版本
-															<span>升级极速内核到21.0；全新默认界面；新增小窗口播放功能</span>
-														</dt>
-								          			</dl>
-								        		</li>
-								
-										       	<li>
-										         	<h3>07.19<span>2012</span></h3>
-										          	<dl>
-										            	<dt>升级极速内核到20.0
-															<span>HTML5支持度全球最好，达到469分，测试页面： </span>
-														</dt>
-										          	</dl>
-										        </li>
-								
-										        <li>
-										          	<h3>07.02<span>2012</span></h3>
-										          	<dl>
-										            	<dt>升级极速内核到19.0
-															<span>支持网络摄像头，浏览器可直接访问摄像头</span>
-														</dt>
-										          	</dl>
-										        </li>
-								
-										       	<li>
-										          	<h3>06.27<span>2012</span></h3>
-										          	<dl>
-										            	<dt>发布国内首个HTML5实验室
-															<span>大力推广HTML5</span>
-														</dt>
-										          	</dl>
-										        </li>
-										        <li>
-										          	<h3>06.15<span>2012</span></h3>
-										          	<dl>
-										            	<dt>新增了下载文件前扫描下载链接安全性的功能</dt>
-										          	</dl>
-										        </li>
-										        <li>
-								          			<h3>06.05<span>2012</span></h3>
-								          			<dl>
-								            			<dt>W3C联盟首席执行官访华，首站访问360公司
-														</dt>
-								          			</dl>
-								        		</li>
-								        		<li>
-								          			<h3>05.12<span>2012</span></h3>
-								          			<dl>
-								            			<dt>360受邀出席W3C联盟成员见面会议</dt>
-								          			</dl>
-								        		</li>
-										        <li>
-										          	<h3>05.11<span>2012</span></h3>
-										          	<dl>
-										            	<dt>升级极速内核到18.0
-															<span>新增多用户使用浏览器的功能</span>
-														</dt>
-										          	</dl>
-										        </li>
-								        		<li>
-								          			<h3>05.03<span>2012</span></h3>
-								          			<dl>
-								            			<dt>360极速浏览器用户数突破5000万，活跃用户超2000万
-														</dt>
-								          			</dl>
-								        		</li>
-								        		<li>
-								          			<h3>03.08<span>2012</span></h3>
-								          			<dl>
-								            			<dt>升级极速内核到17.0，提升浏览器速度、增强安全性
-															<span>新增HTTP管线化技术，大幅提升网页加载速度</span>
-														</dt>
-								          			</dl>
-								        		</li>
-								        		<li>
-								          			<h3>01.29<span>2012</span></h3>
-								          			<dl>
-								            			<dt>国内率先加入W3C联盟HTML工作组，参与HTML5标准制定</span>
-														</dt>
-								          			</dl>
-								        		</li> -->
+								         		
 								      		</ul>
 								    	</div>
 								  	</div>
@@ -243,7 +197,7 @@
 								          <ul id="quantifiable-tab" class="nav nav-tabs">
 								              <li class="active"><a href="#reading-tab-pane" data-toggle="tab">Reading Books</a></li>
 								              <li><a href="#open-class-tab-pane" data-toggle="tab">Open Class</a></li>
-								              <li><a href="#exercise-tab-pane" data-toggle="tab">exercise</a></li>
+								              <li><a href="#exercise-tab-pane" data-toggle="tab">Exercise</a></li>
 								          </ul>
 								          <div id="quantifiable-tab-content" class="tab-content">
 								              <div class="tab-pane fade in active" id="reading-tab-pane">
@@ -900,6 +854,7 @@
   	</div>
 	<!-- Put Javascripts here to make the page load faster -->
 	<script type="text/javascript" src="tools/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="tools/jquery/jquery-migrate-1.2.1.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
@@ -933,12 +888,357 @@
 	    	</ol>
 	  	</div>
 	  	<div class="modal-footer">
-	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	    	<button class="btn btn-success" id="fb-nq-paper-confirm">1. Confirm finish current stage</button>
 	    	<button class="btn btn-primary" id="fb-nq-paper-modify">2. Modify task information</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	  	</div>
 	</div>
+	
+	<div id="fb-modify-task-info" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="fb-modify-task-info-label" aria-hidden="true" style="width: 900px; margin-left: -450px;">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="fb-modify-task-info-label">Modify Task Information</h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		<!-- Start: 10 读书 -->
+	  		<div id="fb-mti-form-read" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-book-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-book-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-title">Book Title:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-title" placeholder="Book Title" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-isbn">ISBN:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-isbn" placeholder="ISBN" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-page-num">Number of Pages:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-page-num" placeholder="Page Number" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-efficiency">Efficiency:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-book-efficiency" placeholder="Efficiency" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-book-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-book-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  		</div>
+	  		<!-- End  : 10 读书 -->
+	  		
+	  		<!-- Start: 11 公开课 -->
+	  		<div id="fb-mti-form-class" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-class-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-class-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-name">Class Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-name" placeholder="Class Name" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-amount">Amount:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-amount" placeholder="Amount" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-each-time">Time for Each Class:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-class-each-time" placeholder="Time for Each Class" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-remark">Remark:</label>
+	              	<div class="controls">
+	                	<textarea id="fb-mti-class-remark" placeholder="Remark" class="input-width-280px not-readonly" style="resize: none;"></textarea>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-class-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-class-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  		</div>
+	  		<!-- End  : 11 公开课 -->
+	  		
+	  		<!-- Start: 12 健身 -->
+	  		<div id="fb-mti-form-exercise" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-exercise-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-exercise-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-name">Exercise Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-name" placeholder="Exercise Name" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-group-count">Group Count:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-group-count" placeholder="Number of Exercise Groups" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-group-time">Time for Each Group:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-exercise-group-time" placeholder="Time for Each Group" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-exercise-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-exercise-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  		</div>
+	  		<!-- End  : 12 健身 -->
+	  		
+	  		<!-- Start: 20 论文 -->
+	  		<div id="fb-mti-form-paper" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-paper-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-paper-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable">
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-paper-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable">
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-paper-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-name">Paper Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-paper-name" placeholder="Paper Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-paper-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-paper-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  			<div id="fb-mti-paper-stages" class="well" style="padding-bottom: 0; padding-left: 0;">
+	  				
+	  			</div>
+	  		</div>
+	  		<!-- End  : 20 论文 -->
+	  		<!-- Start: 21 大学 -->
+	  		<div id="fb-mti-form-university" class="form-horizontal fb-mti-form">
+	  			<div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-task-name">Task Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-university-task-name" placeholder="Task Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-start-time">Date Range:</label>
+	              	<div class="controls">
+		                <div class="input-daterange start-end-datepicker" style="display: inline-block">
+						    <input type="text" id="fb-mti-university-start-time" style="cursor: pointer;" placeholder="Start Date" readonly class="input-width-128px dp-changeable" />
+						    <span class="add-on">to</span>
+						    <input type="text" id="fb-mti-university-end-time" style="cursor: pointer;" placeholder="End Date" readonly class="input-width-128px dp-changeable" />
+						</div>
+		                <span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-total-day">Days to Spend:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-university-total-day" placeholder="Integer between 0 and date range" class="input-width-280px not-readonly" />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-name">University Name:</label>
+	              	<div class="controls">
+	                	<input type="text" id="fb-mti-university-name" placeholder="Paper Name" class="input-width-280px not-readonly">
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              <label class="control-label" for="fb-mti-university-deadline">Deadline:</label>
+	              <div class="controls">
+	                <input type="text" id="fb-mti-university-deadline" placeholder="Deadline" class="input-width-280px start-end-datepicker dp-changeable" readonly />
+	                <span class="help-inline"></span>
+	              </div>
+	            </div>
+	            <div class="control-group">
+	              <label class="control-label" for="fb-mti-university-material">Material:</label>
+	              <div class="controls">
+	                <input type="text" id="fb-mti-university-material" placeholder="Material" class="input-width-280px not-readonly">
+	                <span class="help-inline"></span>
+	              </div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="fb-mti-university-is-active">Active or not:</label>
+	              	<div class="controls">
+	                	<div class="make-switch" data-text-label="Click to change"  data-on-label="Active" data-off-label="InActive" data-on="success" data-off="danger">
+					    	<input id="fb-mti-university-is-active" type="checkbox" checked />
+						</div>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	  			<div id="fb-mti-university-stages" class="well" style="padding-bottom: 0; padding-left: 0;">
+	  				
+	  			</div>
+	  		</div>
+	  		<!-- End  : 21 大学 -->
+	  	</div>
+	  	<div class="modal-footer">
+	    	<button class="btn btn-primary" id="save-fbmti-btn">Save Modifications</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+	  	</div>
+	</div>
+	
+	<script type='text/javascript' src='js/pages/taskInfo/ti-global.js'></script>
 	<script type='text/javascript' src='js/pages/viewSchedule/fb-nonquant-choice.js'></script>
 	<!-- End  : Feedback Modal -->
+	
+	<!-- Start: Task List and Task Modify -->
+	<script type='text/javascript' src='tools/tablecloth/js/jquery.metadata.js'></script>
+	<script type='text/javascript' src='tools/tablecloth/js/jquery.tablesorter.min.js'></script>
+	<script type='text/javascript' src='tools/tablecloth/js/jquery.tablecloth.js'></script>
+	<script type='text/javascript' src='js/pages/taskList/task-list.js'></script>
+	<!-- End  : Task List and Task Modify -->
+	
+	<!-- Start: Task Priority -->
+	<div id="priority-drag-sort" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="priority-drag-sort-label" aria-hidden="true" style="width: 900px; margin-left: -450px;">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="priority-drag-sort-label">Drag Task to Sort Priority</h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		
+	  	</div>
+	  	<div class="modal-footer">
+	    	<button class="btn btn-primary" id="save-priority-btn">Save Task Priority</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+	  	</div>
+	</div>
+	<script type='text/javascript' src='js/pages/taskPriority/jquery.dragsort-0.5.1.js'></script>
+	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort-global.js'></script>
+	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort.js'></script>
+	<!-- End  : Task Priority -->
   </body>
 </html>

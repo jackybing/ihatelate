@@ -471,4 +471,4 @@
   margin-right: -5px;
 }
 /* css hack for webkit browsers by Payne Pandaroid Wang */
-@media screen and (-webkit-min-device-pixel-ratio:0){ .input-daterange .add-on { height: 20px; } }
+@media screen and (-webkit-min-device-pixel-ratio:0){ .input-daterange .add-on { margin-left: -4px; height: 20px; } }

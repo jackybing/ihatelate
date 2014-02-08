@@ -1,8 +1,9 @@
 // 非量化反馈相关辅助对象
 var IHL_NonQuantFbHelper = {
-	showPaperDialog: function(task_id, fb_paper_time) {
+	showPaperDialog: function(task_id, fb_paper_time, task_type) {
 		$('#fb-paper-modal').modal('show');
-		$("#fb-paper-modal-label").data("taskId", task_id).data("fbPaperTime", fb_paper_time);
+		$("#fb-paper-modal-label").data("taskId", task_id)
+		.data("fbPaperTime", fb_paper_time).data("taskType", task_type);
 	}
 };
 
@@ -38,6 +39,9 @@ var IHL_ErrorTipObj = {
             );
         }
 	},
+	showErrTip: function(element, msg) {
+		element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
+	},
 	showErrTipAndScroll2Ele: function(element, msg) {
 		this.scrollToElement(element);
 		element.parents(".control-group").addClass("error").find(".help-inline").text(msg);
@@ -51,15 +55,16 @@ var IHL_BlockMsgObj = {
 	is_blocked: false,
 	timer_id: 0,
 	confirmBlockExe: function() {
-		this.timer_id = window.setTimeout(function() {
+		var this_ptr = this;
+		this_ptr.timer_id = window.setTimeout(function() {
 			if(this_ptr.is_blocked) {
-				if(confirm("服务器长时间无响应，是否继续等待？")) {
-					IHL_BlockMsgObj.confirmBlockExe();
+				if(confirm("服务器响应超时，若您已无操作一段时间，则session可能已超时。点击“确定”刷新或重新登陆，点击“取消”继续等待。")) {
+					window.location.reload();
 				} else {
-					window.loacation.reload();
+					IHL_BlockMsgObj.confirmBlockExe();
 				}
 			}
-		}, 60000);
+		}, 30000);
 	},
 	showBlockMsg: function(msg, element, callback) {
 		var this_ptr = this;
@@ -364,31 +369,36 @@ var IHL_IndexInitObj = {
 		$.ajax({
 			url: "scheduleAction!scheduleToday.action",
 			success: function(data) {
-				data = $.parseJSON(data);
-				if(data.statusCode == "200") {
-					var schedule = data.scheduel;
-					schedule_array = $.parseJSON(schedule);
-					var today_schedule = schedule_array[0];
-					var timeline_ul_array = [];
-					for(var today_index in today_schedule) {
-						var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
-							today_timeline_array = today_schedule[today_index];
-						$("#index-tl-weekday").text(today_full_tag);
-						
-						for(var tl_index in today_timeline_array) {
-							var cur_timeline = today_timeline_array[tl_index];
-							timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
-						}
-						
-					}
-					$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
-					
-					
+				if(data == "{timeout:true}") {
+					window.parent.location.reload();
 				} else {
-					alert("Failed to obtain your schedule!");
+					data = $.parseJSON(data);
+					if(data.statusCode == "200") {
+						var schedule = data.scheduel;
+						schedule_array = $.parseJSON(schedule);
+						var today_schedule = schedule_array[0];
+						var timeline_ul_array = [];
+						for(var today_index in today_schedule) {
+							var today_full_tag = IHL_Compute.computeFullDayTag(today_index), 
+								today_timeline_array = today_schedule[today_index];
+							$("#index-tl-weekday").text(today_full_tag);
+							
+							for(var tl_index in today_timeline_array) {
+								var cur_timeline = today_timeline_array[tl_index];
+								timeline_ul_array.push(IHL_Compute.genTimelineLi(cur_timeline));
+							}
+							
+						}
+						$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
+						
+					} else {
+						alert("Failed to obtain your schedule!");
+					}
 				}
+					
 			}
 		});
+			
 	},
 	initUsernameDiv: function() {
 		$.ajax({

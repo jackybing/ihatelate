@@ -1,4 +1,4 @@
-p, form, input, textarea, ul, li, h1, h2, h3, h4, dl, dt, dd, table, td, th { margin:0; padding:0; }
+p, form, input, ul, li, h1, h2, h3, h4, dl, dt, dd, table, td, th { margin:0; padding:0; }
 table, td, th { border-collapse:collapse; }
 h1, h2, h4 { font-size:100%; }
 img, input, textarea { vertical-align: middle; }
@@ -20,7 +20,7 @@ a { outline:none; } /*’Î∂‘firefoxµ»*/
 .history-date { overflow:hidden;}
 .history-date h2 { background:url(../images/icon06.gif) #fff no-repeat 158px 0; height:59px; font-size:23px; line-height: 29px; font-family:Microsoft Yahei; font-weight:normal; padding-left:17px; }
 .history-date h2.first { position:absolute; left:0; top:0; z-index:99;}
-.history-date h2 a { color:#00bbff; display:inline-block; *display:inline; zoom:1; padding-right:17px; margin:14px 97px 0 0; cursor: default; }
+.history-date h2 a { color:#00bbff; display:inline-block; *display:inline; zoom:1; padding-right:17px; margin:14px 117px 0 0; cursor: default; }
 .history-date h2 a:hover { text-decoration:none;}
 .history-date h2 img { vertical-align:-5px;}
 .history-date h2.date02 { background:none;}

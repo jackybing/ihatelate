@@ -148,9 +148,10 @@
 		});
 		
 		$("#fb-paper-btn").live("click", function() {
-			var task_id = $(this).attr("data-id");
+			var task_id = $(this).attr("data-id"), task_type = $(this).attr("data-task-type");
 			var fb_paper_time_element = $("#fb-paper-time");
 			var fb_paper_time = fb_paper_time_element.val();
+			// console.log("task_type: " + task_type);
 			// 对输入控件的值进行检测，如果不对，显示error tip
 			var is_validate = true;
 			if(fb_paper_time == "") {
@@ -168,10 +169,11 @@
 			if(is_validate) {
 				fb_paper_time = parseInt(fb_paper_time);
 				if(fb_paper_time > NonQuantStageInfo_Module.cur_stage_left_time) {
-					window.parent.IHL_NonQuantFbHelper.showPaperDialog(task_id, fb_paper_time);
+					// console.log("showPaperDialog task_id: " + task_id);
+					window.parent.IHL_NonQuantFbHelper.showPaperDialog(task_id, fb_paper_time, task_type);
 					
 				} else {
-					NonQuantStageInfo_Module.feedbackPaperTime(task_id, fb_paper_time);
+					NonQuantStageInfo_Module.feedbackPaperTime(task_id, fb_paper_time, task_type);
 					
 				}
 				

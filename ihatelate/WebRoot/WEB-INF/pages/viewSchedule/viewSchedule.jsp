@@ -32,6 +32,16 @@
 		#vs-fb-div .table th, #vs-fb-div .table td { text-align: center; }
 		#vs-fb-div .table .controls { text-align: left; }
 		.wc-cal-event { min-height: 20px; }
+		.table-bordered { 
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+		}
+		.table-bordered thead:last-child tr:last-child > th:first-child, .table-bordered tbody:last-child tr:last-child > td:first-child, .table-bordered tbody:last-child tr:last-child > th:first-child, .table-bordered tfoot:last-child tr:last-child > td:first-child, .table-bordered tfoot:last-child tr:last-child > th:first-child {
+			-webkit-border-bottom-left-radius: 0;
+			border-bottom-left-radius: 0;
+			-moz-border-radius-bottomleft: 0;
+		}
 	</style>
   </head>
   
@@ -66,7 +76,7 @@
   	</div>
   	<!-- Start: 201311241702 点击后展示任务信息的dialog -->
 	<div id="detail-info-dialog" title="View Task Infomation" style="display: none; max-height: 330px;">
-		<table id="detail-info-table" class="table table-striped table-hover table-condensed" style="margin-bottom: 0;">
+		<table id="detail-info-table" class="table table-striped table-hover table-condensed table-bordered" style="margin-bottom: 0;">
 			<thead>
 			
 			</thead>

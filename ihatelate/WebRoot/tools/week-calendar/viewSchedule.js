@@ -15,11 +15,11 @@
 	        	 	
 	        },
 	        close: function() {
-	           
+	           	$('#calendar').weekCalendar("refresh");
 	        },
 	        buttons: {
 	           "Close" : function() {
-	              $dialogDetailInfo.dialog("close");
+	              	$dialogDetailInfo.dialog("close");
 	           }
 	        }
 	    });
@@ -80,10 +80,9 @@
 				'</div>');
 				
 			} else if(cur_task_type == "20") {	// 写论文
-				ret_form_html_array = NonQuantStageInfo_Module.obtainStageHtml(calEvent.id);
-				
+				ret_form_html_array = NonQuantStageInfo_Module.obtainStageHtml(calEvent.id, cur_task_type);
 			} else if(cur_task_type == "21") {	// 申请大学
-				
+				ret_form_html_array = NonQuantStageInfo_Module.obtainStageHtml(calEvent.id, cur_task_type);
 			}
 			return ret_form_html_array.join("");
 		}
@@ -114,7 +113,7 @@
 					"<tr><td class='detail-info-table-td-1'>Start Time:</td><td>", calEvent.start_paper_time,
 					"</td><td class='detail-info-table-td-1'>End Time:</td><td>", calEvent.end_paper_time, "</td></tr>");
 			} else if(cur_task_type == "21") {
-				html_array.push("<tr><td class='detail-info-table-td-1'>University Name:</td><td colspan='3'>", calEvent.university_name,
+				html_array.push("<tr><td class='detail-info-table-td-1'>University:</td><td colspan='3'>", calEvent.university_name,
 					"</td></tr>", "<tr><td class='detail-info-table-td-1'>Start Stage:</td><td>", calEvent.start_stage,
 					"</td><td class='detail-info-table-td-1'>End Stage:</td><td>", calEvent.end_stage, "</td></tr>",
 					"<tr><td class='detail-info-table-td-1'>Start Step:</td><td>", calEvent.start_step,

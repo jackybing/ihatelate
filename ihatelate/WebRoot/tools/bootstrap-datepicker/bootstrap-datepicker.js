@@ -302,16 +302,22 @@
 		},
 
 		show: function(e) {
-			if (!this.isInline)
-				this.picker.appendTo('body');
-			this.picker.show();
-			this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
-			this.place();
-			this._attachSecondaryEvents();
-			if (e) {
-				e.preventDefault();
+			// Start: 增加检查代码 如果this.element（即被click的input元素）有dp-unchangeable的class 则不show picker
+			var this_element = this.element;
+			if(!this_element.hasClass("dp-unchangeable")) {
+				if (!this.isInline)
+					this.picker.appendTo('body');
+				this.picker.show();
+				this.height = this.component ? this.component.outerHeight() : this_element.outerHeight();
+				this.place();
+				this._attachSecondaryEvents();
+				if (e) {
+					e.preventDefault();
+				}
+				this._trigger('show');
 			}
-			this._trigger('show');
+			// End  : 增加检查代码 如果this.element（即被click的input元素）有dp-unchangeable的class 则不show picker
+				
 		},
 
 		hide: function(e){

@@ -15,7 +15,7 @@
 				end_time = $.trim(end_time_element.val()), total_day = $.trim(total_day_element.val()),
 				class_name = $.trim(class_name_element.val()), amount = $.trim(amount_element.val()),
 				time_4_each_class = $.trim(time_4_each_class_element.val()), remark = $.trim(remark_element.val()),
-				is_active = is_active_element.parent().hasClass("switch-on") == true ? "1" : "0";
+				is_active = is_active_element.parent().hasClass("switch-on") ? "1" : "0";
 			/*console.log("task_name: " + task_name + "; start_time: " + start_time + "; end_time: " + end_time);
 			console.log("total_day: " + total_day + "; class_name: " + class_name + "; amount: " + amount);
 			console.log("time_4_each_class: " + time_4_each_class + "; remark: " + remark + "; is_active: " + is_active);*/
@@ -107,6 +107,7 @@
                             if(data.statusCode == "200") {
 								$.growlUI('Success', data.info);
 								resetOpenClassTaskForm();
+								PriorityDragSorter.confirmAjustPriority();
 							} else {
 								$.growlUI('Error', data.info);
 							}
