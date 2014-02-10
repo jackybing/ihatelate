@@ -59,7 +59,7 @@
   							<div class="row-fluid tile-row" style="color: rgb(143, 143, 143);">
 		  						<div class="span8 tile-word" style="line-height: 31px;">
 		  							<span style="font-size: 24px;"><i class="icon-time"></i></span>
-		  							<span id="time-display-span" style="margin-left: 10px; font-family: Georgia, 'Times New Roman', Times, serif;">2013-11-17 00:48:27</span>
+		  							<span id="time-display-span" style="margin-left: 10px; font-family: Georgia, 'Times New Roman', Times, serif;">Loading time ...</span>
 		  						</div>
 		  						<div class="span4 tile-word" style="text-align: right;">
 		  							<button id="logout-btn" class="btn btn-primary"><i class="icon-signout"></i> Signout</button>
