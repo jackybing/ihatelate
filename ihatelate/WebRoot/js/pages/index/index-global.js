@@ -187,12 +187,17 @@ var default_papers_template = {
 			data: { type: 20 },
 			async: false,
 			success: function(json_data_obj) {
-				var data_obj = $.parseJSON(json_data_obj);
-				if(data_obj.statusCode == "200") {
-					that.taskId = data_obj.taskID;
-					that.stages = data_obj.stages;
-					that.initDefaultStages();
+				if(json_data_obj == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					var data_obj = $.parseJSON(json_data_obj);
+					if(data_obj.statusCode == "200") {
+						that.taskId = data_obj.taskID;
+						that.stages = data_obj.stages;
+						that.initDefaultStages();
+					}
 				}
+					
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
@@ -237,12 +242,17 @@ var default_university_template = {
 			data: { type: 21 },
 			async: false,
 			success: function(json_data_obj) {
-				var data_obj = $.parseJSON(json_data_obj);
-				if(data_obj.statusCode == "200") {
-					that.taskId = data_obj.taskID;
-					that.stages = data_obj.stages;
-					that.initDefaultStages();
+				if(json_data_obj == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					var data_obj = $.parseJSON(json_data_obj);
+					if(data_obj.statusCode == "200") {
+						that.taskId = data_obj.taskID;
+						that.stages = data_obj.stages;
+						that.initDefaultStages();
+					}
 				}
+					
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
@@ -356,6 +366,7 @@ var IHL_IndexInitObj = {
 	template_papers_default: false, // 写论文模板（默认）初始化完毕设置为true
 	template_university_default: false, // 申请大学模板（默认）初始化完毕设置为true
 	startInit: function() {
+		this.initShowTime();
 		this.initUsernameDiv();
 		this.initTimeline();
 		this.initDefaultStages();
@@ -400,17 +411,59 @@ var IHL_IndexInitObj = {
 		});
 			
 	},
+	initShowTime: function() {
+		window.setInterval(function() {
+			var mon, day, now, hour, min, ampm, time, str, tz, end, beg, sec;  
+		    /*  
+		    mon = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",  
+		            "Sep", "Oct", "Nov", "Dec");  
+		    
+		    mon = new Array("一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月",  
+		            "九月", "十月", "十一月", "十二月");
+		    */
+		    mon = new Array("01", "02", "03", "04", "05", "06", "07", "08",  
+		            "09", "10", "11", "12");
+		    
+		    /*day = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");  
+		    day = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六");*/
+		    
+		    now = new Date();  
+		    hour = now.getHours();  
+		    min = now.getMinutes();  
+		    sec = now.getSeconds();  
+		    if (hour < 10) {  
+		        hour = "0" + hour;  
+		    }  
+		    if (min < 10) {  
+		        min = "0" + min;  
+		    }  
+		    if (sec < 10) {  
+		        sec = "0" + sec;  
+		    }
+		    var dateDay = now.getDate();
+		    dateDay = (dateDay < 10) ? "0" + dateDay : dateDay;
+		    
+			var tmp_time_array = [];
+			tmp_time_array.push(now.getFullYear(), "-", mon[now.getMonth()], "-", dateDay, " ", hour, ":", min, ":", sec);
+			$("#time-display-span").text(tmp_time_array.join(""));
+		}, 1000);
+	},
 	initUsernameDiv: function() {
 		$.ajax({
 			url:"userAction!obtainUserInfo.action",
 			success: function(data) {
-				data = $.parseJSON(data);
-				if(data.statusCode == "200") {
-					var user = data.user;
-					$("#username-div").text(user.userName);
+				if(data == "{timeout:true}") {
+					window.parent.location.reload();
 				} else {
-					$("#username-div").text("Obtain username failed");
+					data = $.parseJSON(data);
+					if(data.statusCode == "200") {
+						var user = data.user;
+						$("#username-div").text(user.userName);
+					} else {
+						$("#username-div").text("Obtain username failed");
+					}
 				}
+					
 			}
 		});
 		
@@ -443,12 +496,17 @@ var IHL_IndexInitObj = {
 			$.ajax({
 				url: "userAction!logout.action",
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					if(data.statusCode == "200") {
-						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + data.info + "</h1>", undefined, function() {
-							window.location.reload();
-						});
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						if(data.statusCode == "200") {
+							IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + data.info + "</h1>", undefined, function() {
+								window.location.reload();
+							});
+						}
 					}
+						
 				}
 			});
 

@@ -59,7 +59,7 @@
   							<div class="row-fluid tile-row" style="color: rgb(143, 143, 143);">
 		  						<div class="span8 tile-word" style="line-height: 31px;">
 		  							<span style="font-size: 24px;"><i class="icon-time"></i></span>
-		  							<span id="time-display-span" style="margin-left: 10px; font-family: Georgia, 'Times New Roman', Times, serif;">2013-11-17 00:48:27</span>
+		  							<span id="time-display-span" style="margin-left: 10px; font-family: Georgia, 'Times New Roman', Times, serif;">Loading time ...</span>
 		  						</div>
 		  						<div class="span4 tile-word" style="text-align: right;">
 		  							<button id="logout-btn" class="btn btn-primary"><i class="icon-signout"></i> Signout</button>
@@ -1240,5 +1240,96 @@
 	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort-global.js'></script>
 	<script type='text/javascript' src='js/pages/taskPriority/priority-drag-sort.js'></script>
 	<!-- End  : Task Priority -->
+	
+	<!-- Start: Account Setting -->
+	<div id="as-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="as-modal-label" aria-hidden="true" style="width: 900px; margin-left: -450px;">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="as-modal-label">Modify your account</h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		<div id="as-form" class="form-horizontal">
+	  			<div class="control-group">
+	              	<label class="control-label" for="as-email">Email:</label>
+	              	<div class="controls">
+	                	<input type="text" id="as-email" placeholder="Email" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group" style="margin-bottom: 10px;">
+	              	<label class="control-label" for="as-gender">Gender:</label>
+	              	<div class="controls">
+	              		<select class="input-width-280px" id="as-gender" disabled>
+		            		<option value="1">Male</option>
+		            		<option value="2">Female</option>
+		            	</select>
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            
+	            <div style="width: 100%; height: 10px; border-top: 1px dashed rgb(218, 218, 218);"></div>
+	            
+	            <div class="tabbable tabs-right">
+	              	<ul class="nav nav-tabs" style="margin-bottom: 0;">
+	                	<li class="active"><a href="#as-tab-base" data-toggle="tab" id="tab-mi">Modify Information</a></li>
+	                	<li class=""><a href="#as-tab-pass" data-toggle="tab" id="tab-mp">Modify Password</a></li>
+	              	</ul>
+	              	<div class="tab-content">
+	                	<div class="tab-pane active" id="as-tab-base">
+	                  		<div class="control-group">
+				              	<label class="control-label" for="as-username">Username:</label>
+				              	<div class="controls">
+				                	<input type="text" id="as-username" placeholder="Username" class="input-width-280px" />
+				                	<span class="help-inline"></span>
+				              	</div>
+				            </div>
+				            <div class="control-group" style="margin-bottom: 0;">
+				              	<label class="control-label" for="as-type">Type:</label>
+				              	<div class="controls">
+				              		<select class="input-width-280px" id="as-type">
+					            		<option value="1">Student</option>
+					            		<option value="2">Office Workers</option>
+					            		<option value="3">Outdoor Workers</option>
+					            		<option value="0">Other Types</option>
+					            	</select>
+				                	<span class="help-inline"></span>
+				              	</div>
+				            </div>
+	                	</div>
+	                	<div class="tab-pane" id="as-tab-pass">
+	                  		<div class="control-group">
+				              	<label class="control-label" for="as-password">Old Password:</label>
+				              	<div class="controls">
+				                	<input type="password" id="as-password" placeholder="Old Password" class="input-width-280px" />
+				                	<span class="help-inline"></span>
+				              	</div>
+				            </div>
+				            <div class="control-group">
+				              	<label class="control-label" for="as-new-pass">New Password:</label>
+				              	<div class="controls">
+				                	<input type="password" id="as-new-pass" placeholder="New Password" class="input-width-280px" />
+				                	<span class="help-inline"></span>
+				              	</div>
+				            </div>
+				            <div class="control-group" style="margin-bottom: 0;">
+				              	<label class="control-label" for="as-retype-new-pass">Retype New Password:</label>
+				              	<div class="controls">
+				                	<input type="password" id="as-retype-new-pass" placeholder="Retype New Password to Confirm" class="input-width-280px" />
+				                	<span class="help-inline"></span>
+				              	</div>
+				            </div>
+	                	</div>
+	              	</div>
+	            </div>
+	            
+	  		</div>
+	  	</div>
+	  	<div class="modal-footer">
+	    	<button class="btn btn-primary" id="save-as-btn" data-save-target="info">Save Information Modifications</button>
+	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+	  	</div>
+	</div>
+	<script type='text/javascript' src='js/pages/account/account-setting.js'></script>
+	<!-- End  : Account Setting -->
   </body>
 </html>

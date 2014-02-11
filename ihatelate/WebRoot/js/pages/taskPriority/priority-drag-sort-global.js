@@ -78,25 +78,29 @@ var PriorityDragSorter = {
 				IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Loading ...<h1>");
 			},
 			success: function(response_data) {
-				IHL_BlockMsgObj.unblockMsg(function() {
-					if(response_data == "{timeout:true}") {
-						window.parent.location.reload();
-					} else {
-						response_data = $.parseJSON(response_data);
-						if(response_data.status == "200") {
-							var priority_list = response_data.lists;
-							this_ptr.genDragSortList(priority_list);
-							$("#priority-drag-sort").modal('show');
+				if(response_data == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					IHL_BlockMsgObj.unblockMsg(function() {
+						if(response_data == "{timeout:true}") {
+							window.parent.location.reload();
 						} else {
-							if(window.console && window.console.log) {
-								console.log(response_data);
+							response_data = $.parseJSON(response_data);
+							if(response_data.status == "200") {
+								var priority_list = response_data.lists;
+								this_ptr.genDragSortList(priority_list);
+								$("#priority-drag-sort").modal('show');
+							} else {
+								if(window.console && window.console.log) {
+									console.log(response_data);
+								}
+								alert("Server is crashed when obtaining task priority information");
 							}
-							alert("Server is crashed when obtaining task priority information");
+							
 						}
-						
-					}
-	                    
-                });
+		                    
+	                });
+				}
 				
 			}
 		});
@@ -120,25 +124,29 @@ var PriorityDragSorter = {
 				IDPriorityStr: id_priority_str
 			},
 			success: function(response_data) {
-				IHL_BlockMsgObj.unblockMsg(function() {
-					if(response_data == "{timeout:true}") {
-						window.parent.location.reload();
-					} else {
-						response_data = $.parseJSON(response_data);
-						if(response_data.status == "200") {
-							IHL_IndexInitObj.initTimeline();
-							$("#save-priority-btn").addClass("disabled");
-							IHL_BlockMsgObj.showGrowlMsg("Success", "Task Priority saved successfully");
+				if(response_data == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					IHL_BlockMsgObj.unblockMsg(function() {
+						if(response_data == "{timeout:true}") {
+							window.parent.location.reload();
 						} else {
-							if(window.console && window.console.log) {
-								console.log(response_data);
+							response_data = $.parseJSON(response_data);
+							if(response_data.status == "200") {
+								IHL_IndexInitObj.initTimeline();
+								$("#save-priority-btn").addClass("disabled");
+								IHL_BlockMsgObj.showGrowlMsg("Success", "Task Priority saved successfully");
+							} else {
+								if(window.console && window.console.log) {
+									console.log(response_data);
+								}
+								alert("Server is crashed when saving task priority information");
 							}
-							alert("Server is crashed when saving task priority information");
+							
 						}
-						
-					}
-	                    
-                });
+		                    
+	                });
+				}
 				
 			}
 		});

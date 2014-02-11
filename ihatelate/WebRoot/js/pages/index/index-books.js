@@ -95,12 +95,17 @@
 				},
 				type: 'post',
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					$.unblockUI({
-                        onUnblock: function(){ 
-                            $.growlUI('Saving Result', data.info);
-                        }
-                    });
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						$.unblockUI({
+	                        onUnblock: function(){ 
+	                            $.growlUI('Saving Result', data.info);
+	                        }
+	                    });
+					}
+						
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					$.unblockUI({
@@ -381,16 +386,20 @@
 					},
 					type: 'post',
 					success: function(json_data) {
-						var data = $.parseJSON(json_data);
-						IHL_BlockMsgObj.unblockMsg(function() { 
-                            if(data.statusCode == "200") {
-								$.growlUI('Success', data.info);
-								resetBookTaskForm();
-								PriorityDragSorter.confirmAjustPriority();
-							} else {
-								$.growlUI('Error', data.info);
-							}
-                        });
+						if(json_data == "{timeout:true}") {
+							window.parent.location.reload();
+						} else {
+							var data = $.parseJSON(json_data);
+							IHL_BlockMsgObj.unblockMsg(function() { 
+	                            if(data.statusCode == "200") {
+									$.growlUI('Success', data.info);
+									resetBookTaskForm();
+									PriorityDragSorter.confirmAjustPriority();
+								} else {
+									$.growlUI('Error', data.info);
+								}
+	                        });
+						}
 
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {

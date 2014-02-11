@@ -38,18 +38,22 @@
 						completedPageNum: parseInt(fb_book_page_num)
 					},
 					success: function(response_data) {
-						response_data = JSON.parse(JSON.parse(response_data));
-						IHL_BlockMsgObj.unblockMsg(function() { 
-                            if(response_data.statusCode == "200") {
-								$('#calendar').weekCalendar("refresh");
-		    					$("#detail-info-dialog").dialog("close");
-		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
-							} else {
-								var fb_info = response_data.info;
-								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
-								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, fb_info);
-							}
-                        });
+						if(response_data == "{timeout:true}") {
+							window.parent.location.reload();
+						} else {
+							response_data = JSON.parse(JSON.parse(response_data));
+							IHL_BlockMsgObj.unblockMsg(function() { 
+	                            if(response_data.statusCode == "200") {
+									$('#calendar').weekCalendar("refresh");
+			    					$("#detail-info-dialog").dialog("close");
+			    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+								} else {
+									var fb_info = response_data.info;
+									IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+									IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_book_page_num_element, fb_info);
+								}
+	                        });
+						}
 						
 					}
 				});
@@ -83,18 +87,22 @@
 						classTime: parseInt(fb_class_time)
 					},
 					success: function(response_data) {
-						response_data = JSON.parse(JSON.parse(response_data));
-						IHL_BlockMsgObj.unblockMsg(function() { 
-                            if(response_data.statusCode == "200") {
-								$('#calendar').weekCalendar("refresh");
-		    					$("#detail-info-dialog").dialog("close");
-		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
-							} else {
-								var fb_info = response_data.info;
-								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
-								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, fb_info);
-							}
-                        });
+						if(response_data == "{timeout:true}") {
+							window.parent.location.reload();
+						} else {
+							response_data = JSON.parse(JSON.parse(response_data));
+							IHL_BlockMsgObj.unblockMsg(function() { 
+	                            if(response_data.statusCode == "200") {
+									$('#calendar').weekCalendar("refresh");
+			    					$("#detail-info-dialog").dialog("close");
+			    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+								} else {
+									var fb_info = response_data.info;
+									IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+									IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_class_time_element, fb_info);
+								}
+	                        });
+						}
 						
 					}
 				});
@@ -128,18 +136,22 @@
 						completedGroupCount: parseInt(fb_group_count)
 					},
 					success: function(response_data) {
-						response_data = JSON.parse(JSON.parse(response_data));
-						IHL_BlockMsgObj.unblockMsg(function() { 
-                            if(response_data.statusCode == "200") {
-								$('#calendar').weekCalendar("refresh");
-		    					$("#detail-info-dialog").dialog("close");
-		    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
-							} else {
-								var fb_info = response_data.info;
-								IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
-								IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, fb_info);
-							}
-                        });
+						if(response_data == "{timeout:true}") {
+							window.parent.location.reload();
+						} else {
+							response_data = JSON.parse(JSON.parse(response_data));
+							IHL_BlockMsgObj.unblockMsg(function() { 
+	                            if(response_data.statusCode == "200") {
+									$('#calendar').weekCalendar("refresh");
+			    					$("#detail-info-dialog").dialog("close");
+			    					IHL_BlockMsgObj.showGrowlMsg("Feedback completed", response_data.info);
+								} else {
+									var fb_info = response_data.info;
+									IHL_BlockMsgObj.showGrowlMsg("Feedback completed", fb_info);
+									IHL_ErrorTipObj.showErrTipAndScroll2Ele(fb_group_count_element, fb_info);
+								}
+	                        });
+						}
 						
 					}
 				});
