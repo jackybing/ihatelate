@@ -19,17 +19,22 @@ var TiModify = {
 			},
 			async: false,
 			success: function(response_data) {
-				response_data = $.parseJSON(response_data);
-				if(response_data.statusCode == "200") {
-					var stages = response_data.stages;
-					for(var s_key in stages) {
-						var s_val = stages[s_key];
-						var s_step = s_key.substring(0, s_key.indexOf(":"));
-						var s_val_splt_idx = s_val.indexOf(":");
-						var s_total = parseInt(s_val.substring(0, s_val_splt_idx)), s_comp = parseInt(s_val.substring(s_val_splt_idx + 1));
-						ret_array[s_step - 1] = (s_comp == s_total);
+				if(response_data == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					response_data = $.parseJSON(response_data);
+					if(response_data.statusCode == "200") {
+						var stages = response_data.stages;
+						for(var s_key in stages) {
+							var s_val = stages[s_key];
+							var s_step = s_key.substring(0, s_key.indexOf(":"));
+							var s_val_splt_idx = s_val.indexOf(":");
+							var s_total = parseInt(s_val.substring(0, s_val_splt_idx)), s_comp = parseInt(s_val.substring(s_val_splt_idx + 1));
+							ret_array[s_step - 1] = (s_comp == s_total);
+						}
 					}
 				}
+					
 			}
 		});
 		return ret_array;
@@ -304,19 +309,23 @@ var TiSave = {
 				type: "post",
 				async: false,
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					// console.log(data);
-					IHL_BlockMsgObj.unblockMsg(function() { 
-                        if(data.statusCode == "200") {
-							$.growlUI('Success', data.info);
-							var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
-							if(vs_fb_div_ele) {
-								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "20").join(""));
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						// console.log(data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(data.statusCode == "200") {
+								$.growlUI('Success', data.info);
+								var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+								if(vs_fb_div_ele) {
+									vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "20").join(""));
+								}
+							} else {
+								$.growlUI('Error', data.info);
 							}
-						} else {
-							$.growlUI('Error', data.info);
-						}
-                    });
+	                    });
+					}
 
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -437,19 +446,22 @@ var TiSave = {
 				type: "post",
 				async: false,
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					// console.log(data);
-					IHL_BlockMsgObj.unblockMsg(function() { 
-                        if(data.statusCode == "200") {
-							$.growlUI('Success', data.info);
-							var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
-							if(vs_fb_div_ele) {
-								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(data.statusCode == "200") {
+								$.growlUI('Success', data.info);
+								var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+								if(vs_fb_div_ele) {
+									vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+								}
+							} else {
+								$.growlUI('Error', data.info);
 							}
-						} else {
-							$.growlUI('Error', data.info);
-						}
-                    });
+	                    });
+					}
 
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -561,19 +573,22 @@ var TiSave = {
 				type: "post",
 				async: false,
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					// console.log(data);
-					IHL_BlockMsgObj.unblockMsg(function() { 
-                        if(data.statusCode == "200") {
-							$.growlUI('Success', data.info);
-							/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
-							if(vs_fb_div_ele) {
-								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
-							}*/
-						} else {
-							$.growlUI('Error', data.info);
-						}
-                    });
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(data.statusCode == "200") {
+								$.growlUI('Success', data.info);
+								/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+								if(vs_fb_div_ele) {
+									vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+								}*/
+							} else {
+								$.growlUI('Error', data.info);
+							}
+	                    });
+					}
 
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -683,19 +698,23 @@ var TiSave = {
 				type: "post",
 				async: false,
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					// console.log(data);
-					IHL_BlockMsgObj.unblockMsg(function() { 
-                        if(data.statusCode == "200") {
-							$.growlUI('Success', data.info);
-							/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
-							if(vs_fb_div_ele) {
-								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
-							}*/
-						} else {
-							$.growlUI('Error', data.info);
-						}
-                    });
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						// console.log(data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(data.statusCode == "200") {
+								$.growlUI('Success', data.info);
+								/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+								if(vs_fb_div_ele) {
+									vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+								}*/
+							} else {
+								$.growlUI('Error', data.info);
+							}
+	                    });
+					}
 
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -801,19 +820,23 @@ var TiSave = {
 				type: "post",
 				async: false,
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					// console.log(data);
-					IHL_BlockMsgObj.unblockMsg(function() { 
-                        if(data.statusCode == "200") {
-							$.growlUI('Success', data.info);
-							/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
-							if(vs_fb_div_ele) {
-								vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
-							}*/
-						} else {
-							$.growlUI('Error', data.info);
-						}
-                    });
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						// console.log(data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(data.statusCode == "200") {
+								$.growlUI('Success', data.info);
+								/*var vs_iframe_ele = $("#vs-iframe"), vs_fb_div_ele = vs_iframe_ele.contents().find("#vs-fb-div");
+								if(vs_fb_div_ele) {
+									vs_fb_div_ele.html(vs_iframe_ele[0].contentWindow.NonQuantStageInfo_Module.obtainStageHtml(task_id, "21").join(""));
+								}*/
+							} else {
+								$.growlUI('Error', data.info);
+							}
+	                    });
+					}
 
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {

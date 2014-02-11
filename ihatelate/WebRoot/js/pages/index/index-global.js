@@ -187,12 +187,17 @@ var default_papers_template = {
 			data: { type: 20 },
 			async: false,
 			success: function(json_data_obj) {
-				var data_obj = $.parseJSON(json_data_obj);
-				if(data_obj.statusCode == "200") {
-					that.taskId = data_obj.taskID;
-					that.stages = data_obj.stages;
-					that.initDefaultStages();
+				if(json_data_obj == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					var data_obj = $.parseJSON(json_data_obj);
+					if(data_obj.statusCode == "200") {
+						that.taskId = data_obj.taskID;
+						that.stages = data_obj.stages;
+						that.initDefaultStages();
+					}
 				}
+					
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
@@ -237,12 +242,17 @@ var default_university_template = {
 			data: { type: 21 },
 			async: false,
 			success: function(json_data_obj) {
-				var data_obj = $.parseJSON(json_data_obj);
-				if(data_obj.statusCode == "200") {
-					that.taskId = data_obj.taskID;
-					that.stages = data_obj.stages;
-					that.initDefaultStages();
+				if(json_data_obj == "{timeout:true}") {
+					window.parent.location.reload();
+				} else {
+					var data_obj = $.parseJSON(json_data_obj);
+					if(data_obj.statusCode == "200") {
+						that.taskId = data_obj.taskID;
+						that.stages = data_obj.stages;
+						that.initDefaultStages();
+					}
 				}
+					
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(textStatus + " \n" + errorThrown + " \nWe are fixing some bugs, please be back later.");
@@ -442,13 +452,18 @@ var IHL_IndexInitObj = {
 		$.ajax({
 			url:"userAction!obtainUserInfo.action",
 			success: function(data) {
-				data = $.parseJSON(data);
-				if(data.statusCode == "200") {
-					var user = data.user;
-					$("#username-div").text(user.userName);
+				if(data == "{timeout:true}") {
+					window.parent.location.reload();
 				} else {
-					$("#username-div").text("Obtain username failed");
+					data = $.parseJSON(data);
+					if(data.statusCode == "200") {
+						var user = data.user;
+						$("#username-div").text(user.userName);
+					} else {
+						$("#username-div").text("Obtain username failed");
+					}
 				}
+					
 			}
 		});
 		
@@ -481,12 +496,17 @@ var IHL_IndexInitObj = {
 			$.ajax({
 				url: "userAction!logout.action",
 				success: function(json_data) {
-					var data = $.parseJSON(json_data);
-					if(data.statusCode == "200") {
-						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + data.info + "</h1>", undefined, function() {
-							window.location.reload();
-						});
+					if(json_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						var data = $.parseJSON(json_data);
+						if(data.statusCode == "200") {
+							IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + data.info + "</h1>", undefined, function() {
+								window.location.reload();
+							});
+						}
 					}
+						
 				}
 			});
 

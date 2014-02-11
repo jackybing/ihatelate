@@ -5,14 +5,18 @@
 				$.ajax({
 					url: "userAction!obtainUserInfo.action",
 					success: function(response_data) {
-						response_data = $.parseJSON(response_data);
-						if(response_data.statusCode == "200") {
-							var user = response_data.user;
-							$("#as-email").val(user.email);
-							$("#as-gender").val(user.sex);
-							$("#as-username").val(user.userName);
-							$("#as-type").val(user.type);
-							$("#as-modal").modal("show");
+						if(response_data == "{timeout:true}") {
+							window.parent.location.reload();
+						} else {
+							response_data = $.parseJSON(response_data);
+							if(response_data.statusCode == "200") {
+								var user = response_data.user;
+								$("#as-email").val(user.email);
+								$("#as-gender").val(user.sex);
+								$("#as-username").val(user.userName);
+								$("#as-type").val(user.type);
+								$("#as-modal").modal("show");
+							}
 						}
 						
 					}
@@ -42,15 +46,20 @@
 						},
 						type: "post",
 						success: function(response_data) {
-							response_data = $.parseJSON(response_data);
-							IHL_BlockMsgObj.unblockMsg(function() { 
-	                            if(response_data.statusCode == "200") {
-	                            	IHL_IndexInitObj.initUsernameDiv();
-									$.growlUI('Success', response_data.info);
-								} else {
-									$.growlUI('Error', response_data.info);
-								}
-	                        });
+							if(response_data == "{timeout:true}") {
+								window.parent.location.reload();
+							} else {
+								response_data = $.parseJSON(response_data);
+								IHL_BlockMsgObj.unblockMsg(function() { 
+		                            if(response_data.statusCode == "200") {
+		                            	IHL_IndexInitObj.initUsernameDiv();
+										$.growlUI('Success', response_data.info);
+									} else {
+										$.growlUI('Error', response_data.info);
+									}
+		                        });
+							}
+								
 						}
 					});
 				}

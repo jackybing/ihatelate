@@ -138,16 +138,20 @@
 						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>" + msg + "<h1>");
 					},
 					success: function(rsps_data) {
-						var rsps_obj = $.parseJSON(rsps_data);
-						IHL_BlockMsgObj.unblockMsg(function() { 
-	                        if(rsps_obj.statusCode == "200") {
-	                        	// 刷新列表
-								$("#display-task-list").click();
-								IHL_IndexInitObj.initTimeline();
-							} else {
-								$.growlUI('Error', rsps_obj.info);
-							}
-	                    });
+						if(rsps_data == "{timeout:true}") {
+							window.parent.location.reload();
+						} else {
+							var rsps_obj = $.parseJSON(rsps_data);
+							IHL_BlockMsgObj.unblockMsg(function() { 
+		                        if(rsps_obj.statusCode == "200") {
+		                        	// 刷新列表
+									$("#display-task-list").click();
+									IHL_IndexInitObj.initTimeline();
+								} else {
+									$.growlUI('Error', rsps_obj.info);
+								}
+		                    });
+						}
 							
 					}
 				});
@@ -185,18 +189,22 @@
 					IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Obtaining Task List ...<h1>");
 				},
 				success: function(rsps_data) {
-					display_tl_btn.fadeOut("slow");
-					var rsps_obj = $.parseJSON(rsps_data);
-					IHL_BlockMsgObj.unblockMsg(function() { 
-                        if(rsps_obj.statusCode == "200") {
-							var task_array = rsps_obj.task;
-							$("#tl-tb-div").html(TaskListHelper.formTaskTbHtml(task_array));
-							initTlTable();
-							$("#task-list-wrapper").slideDown("slow");
-						} else {
-							$.growlUI('Error', rsps_obj.info);
-						}
-                    });
+					if(rsps_data == "{timeout:true}") {
+						window.parent.location.reload();
+					} else {
+						display_tl_btn.fadeOut("slow");
+						var rsps_obj = $.parseJSON(rsps_data);
+						IHL_BlockMsgObj.unblockMsg(function() { 
+	                        if(rsps_obj.statusCode == "200") {
+								var task_array = rsps_obj.task;
+								$("#tl-tb-div").html(TaskListHelper.formTaskTbHtml(task_array));
+								initTlTable();
+								$("#task-list-wrapper").slideDown("slow");
+							} else {
+								$.growlUI('Error', rsps_obj.info);
+							}
+	                    });
+					}
 						
 				}
 			});
