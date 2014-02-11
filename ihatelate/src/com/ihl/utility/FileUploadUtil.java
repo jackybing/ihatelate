@@ -104,8 +104,8 @@ public class FileUploadUtil {
 		Map<String, String> addressMap = new HashMap<String, String>();
 		String filename = UUID.randomUUID().toString() + ".jpg";
 		String webUrl = domain + "/" + fileDisk + "/" + filename;
-		String serverUrl = this.serverPath + fileDisk + File.separator
-				+ filename;
+		/*String serverUrl = this.serverPath + fileDisk + File.separator + filename;*/
+		String serverUrl = "E:\\Workspaces\\Github_Project_test\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
 		File dst = new File(serverUrl), dstParentFile = dst.getParentFile();
 		if(!dstParentFile.exists()) {
 			dstParentFile.mkdirs();
