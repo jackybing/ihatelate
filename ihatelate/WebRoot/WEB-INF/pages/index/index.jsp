@@ -1325,7 +1325,7 @@
 	  		</div>
 	  	</div>
 	  	<div class="modal-footer">
-	    	<button class="btn btn-primary" id="save-as-btn">Save Information Modifications</button>
+	    	<button class="btn btn-primary" id="save-as-btn" data-save-target="info">Save Information Modifications</button>
 	    	<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
 	  	</div>
 	</div>
