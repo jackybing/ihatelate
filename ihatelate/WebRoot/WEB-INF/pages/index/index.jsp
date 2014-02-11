@@ -26,6 +26,8 @@
 		@media screen and (-webkit-min-device-pixel-ratio:0){ #task-list-tb .btn-group > .btn-mini { font-size: 14.4px; } }
 		input[type="checkbox"].tltb-check-single { margin-left: 2px; }
 		#tp-drag-sorter .alert { margin-bottom: 0; }
+		div#as-avatarQueue div.cancel { display: none; }
+		.uploadifyQueueItem { width: 255px; } 
 	</style>
   </head>
   
@@ -40,10 +42,10 @@
   			<div class="span7">
   				<div class="tile span12" style="max-width: 490px; padding: 4px;">
   					<div class="row-fluid tile-row">
-  						<div class="span2 tile-icon" style="font-size: 84px;">
-  							<img src="img/avatar.jpg" style="width: 100%;" id="index-avatar" class="img-rounded" />
+  						<div class="span2 tile-icon" style="width: 85px;">
+  							<img src="img/avatar.jpg" style="width: 100%; max-height: 85px;" id="index-avatar" class="img-rounded" />
   						</div>
-  						<div class="span10">
+  						<div class="span10" style="width: 384px;">
   							<div class="row-fluid tile-first-row">
   								<div id="username-div" class="span8 tile-word" style="white-space:nowrap; overflow: hidden; line-height: 44px;">
 		  							Retrieving Username ...
@@ -1254,11 +1256,11 @@
 	  			<div class="control-group" style="margin-bottom: 10px;">
 	              	<label class="control-label" for="as-avatar">Avatar:</label>
 	              	<div class="controls">
-	              		<input id="as-avatar" type="file" />
-	                	<span class="help-inline"></span>
-				      	<div id="uploaded-img" style="margin: 5px 0 0 1px;">
+				      	<div id="uploaded-img" style="margin: 0 0 5px 1px;">
 				      	  	<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px;" />
 				      	</div>
+				      	<input id="as-avatar" type="file" />
+	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	  			

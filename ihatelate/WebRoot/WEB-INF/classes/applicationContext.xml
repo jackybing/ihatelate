@@ -56,7 +56,7 @@
 	</bean>
 	
 	<bean id="ihl.http.url" class="java.lang.String">
-		<constructor-arg type="java.lang.String" value="http://localhost"/>
+		<constructor-arg type="java.lang.String" value="http://localhost:8080"/>
 	</bean>
 	
 	<bean id="ihl.user.avatar" class="java.lang.String">

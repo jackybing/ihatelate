@@ -64,7 +64,7 @@ var IHL_BlockMsgObj = {
 					IHL_BlockMsgObj.confirmBlockExe();
 				}
 			}
-		}, 30000);
+		}, 60000);
 	},
 	showBlockMsg: function(msg, element, callback) {
 		var this_ptr = this;
@@ -459,6 +459,10 @@ var IHL_IndexInitObj = {
 					if(data.statusCode == "200") {
 						var user = data.user;
 						$("#username-div").text(user.userName);
+						var avatar_url = user.avatar;
+						if(avatar_url) {
+							$("#index-avatar").attr("src", avatar_url);
+						}
 					} else {
 						$("#username-div").text("Obtain username failed");
 					}

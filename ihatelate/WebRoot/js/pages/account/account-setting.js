@@ -4,19 +4,29 @@
 			fillAsForm: function() {
 				$.ajax({
 					url: "userAction!obtainUserInfo.action",
+					beforeSend: function() {
+						IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Loading account information ...<h1>");
+					},
 					success: function(response_data) {
 						if(response_data == "{timeout:true}") {
 							window.parent.location.reload();
 						} else {
-							response_data = $.parseJSON(response_data);
-							if(response_data.statusCode == "200") {
-								var user = response_data.user;
-								$("#as-email").val(user.email);
-								$("#as-gender").val(user.sex);
-								$("#as-username").val(user.userName);
-								$("#as-type").val(user.type);
-								$("#as-modal").modal("show");
-							}
+							IHL_BlockMsgObj.unblockMsg(function() { 
+								response_data = $.parseJSON(response_data);
+	                            if(response_data.statusCode == "200") {
+									var user = response_data.user, avatar_url = user.avatar, id = user.id, avatar_disk = user.disk;
+									if(avatar_url) {
+										$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + avatar_url + "' style='height: 100px;' data-disk='" + avatar_disk + "' class='img-polaroid' />");
+		    							$("input#as-img-id").val("imageUpload" + id + "p");
+									}
+									$("#as-email").val(user.email);
+									$("#as-gender").val(user.sex);
+									$("#as-username").val(user.userName);
+									$("#as-type").val(user.type);
+									$("#as-modal").modal("show");
+								}
+	                        });
+								
 						}
 						
 					}

@@ -177,6 +177,7 @@ public class UserAction extends ActionSupport {
 				resultMap.put("statusCode", "404");
 			}
 		}
+		setResult(JSONObject.fromObject(resultMap).toString());
 		return SUCCESS;
 	}
 	public String getUsername() {
