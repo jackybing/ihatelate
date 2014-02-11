@@ -39,10 +39,6 @@
 		</property>
 	</bean>
 	
-	<bean id="ihl.http.url" class="java.lang.String">
-		<constructor-arg type="java.lang.String" value="http://198.167.137.133"/>
-	</bean>
-	
 	<bean id="ihl.from.email" class="java.lang.String">
 		<constructor-arg type="java.lang.String" value="zuoyour@yeah.net"/>
 	</bean>
@@ -57,6 +53,10 @@
 	
 	<bean id="ihl.disk.path" class="java.lang.String">
 		<constructor-arg type="java.lang.String" value="http://198.167.137.133/FileDisk/avatar.jpg" />
+	</bean>
+	
+	<bean id="ihl.http.url" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="http://198.167.137.133"/>
 	</bean>
 	
 	<bean id="ihl.user.avatar" class="java.lang.String">
@@ -78,7 +78,7 @@
 	<bean id="fileUploadUtil" class="com.ihl.utility.FileUploadUtil"
 		scope="prototype">
 		<property name="fileDisk" ref="ihl.disk.path" />
-		<property name="domain" ref="ihl" />
+		<property name="domain" ref="ihl.http.url" />
 		<property name="acceptExtensions" ref="image.accept.extensions" />
 		<property name="imageMaxSize" ref="image.max.size" />
 	</bean>
