@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index/index.css" />
 	<link rel="stylesheet" type="text/css" href="css/index/timeline/css/index-timeline.css" />
 	<link rel="stylesheet" type="text/css" href="tools/tablecloth/css/tablecloth.css" />
+	<link href="tools/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		.fb-mti-form { display: none; }
 		#task-list-tb .is-active-td { text-align: center; padding-top: 7px; }
@@ -40,7 +41,7 @@
   				<div class="tile span12" style="max-width: 490px; padding: 4px;">
   					<div class="row-fluid tile-row">
   						<div class="span2 tile-icon" style="font-size: 84px;">
-  							<img src="img/avatar.jpg" style="width: 100%;" />
+  							<img src="img/avatar.jpg" style="width: 100%;" id="index-avatar" class="img-rounded" />
   						</div>
   						<div class="span10">
   							<div class="row-fluid tile-first-row">
@@ -1249,6 +1250,20 @@
 	  	</div>
 	  	<div class="modal-body">
 	  		<div id="as-form" class="form-horizontal">
+	  			
+	  			<div class="control-group" style="margin-bottom: 10px;">
+	              	<label class="control-label" for="as-avatar">Avatar:</label>
+	              	<div class="controls">
+	              		<input id="as-avatar" type="file" />
+	                	<span class="help-inline"></span>
+				      	<div id="uploaded-img" style="margin: 5px 0 0 1px;">
+				      	  	<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px;" />
+				      	</div>
+	              	</div>
+	            </div>
+	  			
+	  			<div style="width: 100%; height: 10px; border-top: 1px dashed rgb(218, 218, 218);"></div>
+	  		
 	  			<div class="control-group">
 	              	<label class="control-label" for="as-email">Email:</label>
 	              	<div class="controls">
@@ -1330,6 +1345,10 @@
 	  	</div>
 	</div>
 	<script type='text/javascript' src='js/pages/account/account-setting.js'></script>
+	<script type="text/javascript" src="tools/uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="tools/uploadify/jquery.uploadify.js"></script>
+	<input id="as-img-id" type="hidden" value="" />
+	<script type='text/javascript' src='js/pages/account/as-upload.js'></script>
 	<!-- End  : Account Setting -->
   </body>
 </html>
