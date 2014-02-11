@@ -1300,21 +1300,21 @@
 	                  		<div class="control-group">
 				              	<label class="control-label" for="as-password">Old Password:</label>
 				              	<div class="controls">
-				                	<input type="text" id="as-password" placeholder="Old Password" class="input-width-280px" />
+				                	<input type="password" id="as-password" placeholder="Old Password" class="input-width-280px" />
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>
 				            <div class="control-group">
 				              	<label class="control-label" for="as-new-pass">New Password:</label>
 				              	<div class="controls">
-				                	<input type="text" id="as-new-pass" placeholder="New Password" class="input-width-280px" />
+				                	<input type="password" id="as-new-pass" placeholder="New Password" class="input-width-280px" />
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>
 				            <div class="control-group" style="margin-bottom: 0;">
-				              	<label class="control-label" for="as-new-pass-confirm">Retype New Password:</label>
+				              	<label class="control-label" for="as-retype-new-pass">Retype New Password:</label>
 				              	<div class="controls">
-				                	<input type="text" id="as-new-pass" placeholder="Retype New Password to Confirm" class="input-width-280px" />
+				                	<input type="password" id="as-retype-new-pass" placeholder="Retype New Password to Confirm" class="input-width-280px" />
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>

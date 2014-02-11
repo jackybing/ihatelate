@@ -30,7 +30,7 @@
 				// 3. 检测validate
 				var is_validate = true;
 				if(username == "") {
-					IHL_ErrorTipObj.showErrTipAndScroll2Ele(username_ele, "Please input a username");
+					IHL_ErrorTipObj.showErrTip(username_ele, "Please input a username");
 					is_validate = false;
 				}
 				// 4. 执行ajax
@@ -65,7 +65,63 @@
 				}
 			},
 			savePass: function() {
-				console.log("AccountSetting save password");
+				// 1. 获取element
+				var old_pass_ele = $("#as-password"), new_pass_ele = $("#as-new-pass"),
+					retype_new_pass_ele = $("#as-retype-new-pass");
+				// 2. 获取trim后的val
+				var old_pass = $.trim(old_pass_ele.val()), new_pass = $.trim(new_pass_ele.val()),
+					retype_new_pass = $.trim(retype_new_pass_ele.val());
+				// 3. 检测validate
+				var is_validate = true;
+				if(old_pass == "") {
+					IHL_ErrorTipObj.showErrTip(old_pass_ele, "Please input your old password");
+					is_validate = false;
+				}
+				if(new_pass == "") {
+					IHL_ErrorTipObj.showErrTip(new_pass_ele, "Please input a new password");
+					is_validate = false;
+				}
+				if(retype_new_pass == "") {
+					IHL_ErrorTipObj.showErrTip(retype_new_pass_ele, "Please retype the new password");
+					is_validate = false;
+				} else if(retype_new_pass != new_pass) {
+					IHL_ErrorTipObj.showErrTip(retype_new_pass_ele, "Different with the new password");
+					is_validate = false;
+				}
+				// 4. 执行ajax
+				if(is_validate) {
+					$.ajax({
+						url: "userAction!modifyPassword.action",
+						data: {
+							password: old_pass,
+							passwordNew: new_pass
+						},
+						beforeSend: function() {
+							IHL_BlockMsgObj.showBlockMsg("<h1 style='font-size: 24px; line-height: 29px;'>Changing password ...<h1>");
+						},
+						type: "post",
+						success: function(response_data) {
+							if(response_data == "{timeout:true}") {
+								window.parent.location.reload();
+							} else {
+								response_data = $.parseJSON(response_data);
+								IHL_BlockMsgObj.unblockMsg(function() { 
+		                            if(response_data.statusCode == "200") {
+										$.growlUI('Success', response_data.info);
+										old_pass_ele.val("");
+										new_pass_ele.val("");
+										retype_new_pass_ele.val("");
+									} else if(response_data.statusCode == "500") {
+										var err_info = response_data.info;
+										$.growlUI('Error', err_info);
+										IHL_ErrorTipObj.showErrTip(old_pass_ele.select(), err_info);
+									}
+		                        });
+							}
+								
+						}
+					});
+				}
 			}
 		};
 		
