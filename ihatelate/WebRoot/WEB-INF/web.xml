@@ -21,7 +21,7 @@
 		</init-param>
 		<init-param>
 			<param-name>excludedPage</param-name>
-			<param-value>/index.html,/login.jsp,/index.jsp,/test.html,/test2.html,/userAction!login.action,/userAction!register.action</param-value>
+			<param-value>/index.html,/login.jsp,/index.jsp,/test.html,/test2.html,/userAction!login.action,/userAction!register.action,/imageUpload.action</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
