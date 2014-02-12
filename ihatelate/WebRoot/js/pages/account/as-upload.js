@@ -67,7 +67,7 @@
 		    script    : 'imageUpload.action',
 		    checkScript : '',
 			scriptData : {},
-		    buttonText : 'Upload Avatar',
+		    buttonText : 'Change Avatar',
 		    cancelImg : 'tools/uploadify/cancel.png',
 		    fileExt : '*.jpg;*.jpeg;*.png;*.gif;*.bmp;',
 		    fileDesc : 'All Images',

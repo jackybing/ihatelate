@@ -52,9 +52,9 @@
 		  							Retrieving Username ...
 		  						</div>
 		  						<div class="span4 tile-icon" style="color: rgb(143, 143, 143); text-align: right;">
-		  							<button id="lang-change-btn" class="button button-rounded button-flat" style="font-size: 20px; padding: 0 10px;" data-toggle="tooltip" title="Change language">
+		  							<!-- <button id="lang-change-btn" class="button button-rounded button-flat" style="font-size: 20px; padding: 0 10px;" data-toggle="tooltip" title="Change language">
 		  								En
-		  							</button>
+		  							</button> -->
 		  							<button id="account-setting-btn" class="button button-rounded button-flat" style="font-size: 28px; padding: 0 10px;" data-toggle="tooltip" title="Account settings">
 		  								<i class="icon-cog"></i>
 		  							</button>

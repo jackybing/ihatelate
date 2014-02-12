@@ -368,7 +368,7 @@ var IHL_IndexInitObj = {
 	is_timeline_inited: false,	// 时间轴
 	is_username_inited: false,	// 用户名和头像
 	startInit: function() {
-		// this.initShowTime();
+		this.initShowTime();
 		this.initUsernameDiv();
 		this.initTimeline();
 		this.initDefaultStages();
@@ -487,12 +487,9 @@ var IHL_IndexInitObj = {
 	},
 	endInit: function(callback_func) {
 		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default && this.template_university_default && this.is_timeline_inited && this.is_username_inited;
-		var this_ptr = this;
 		if(is_validate) {
 			IHL_BlockMsgObj.unblockMsg(function() {
-				$("#index-timeline-container ul").slideDown("slow", function() {
-					this_ptr.initShowTime();
-				});
+				$("#index-timeline-container ul").slideDown("slow");
 			});
 		}
 		
