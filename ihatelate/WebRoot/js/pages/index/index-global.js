@@ -486,7 +486,7 @@ var IHL_IndexInitObj = {
 			IHL_BlockMsgObj.unblockMsg(function() {
 				window.setTimeout(function() {
 					$("#index-timeline-container ul").slideDown("slow");
-				}, 100);
+				}, 160);
 			});
 		}
 		

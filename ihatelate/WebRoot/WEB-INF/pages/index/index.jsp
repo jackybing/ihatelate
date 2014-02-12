@@ -28,6 +28,7 @@
 		#tp-drag-sorter .alert { margin-bottom: 0; }
 		div#as-avatarQueue div.cancel { display: none; }
 		.uploadifyQueueItem { width: 255px; } 
+		#as-form .control-group { margin-bottom: 14px; }
 	</style>
   </head>
   
@@ -1250,21 +1251,27 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    	<h3 id="as-modal-label">Modify your account</h3>
 	  	</div>
-	  	<div class="modal-body">
+	  	<div class="modal-body" style="padding-bottom: 0;">
 	  		<div id="as-form" class="form-horizontal">
 	  			
-	  			<div class="control-group" style="margin-bottom: 10px;">
-	              	<label class="control-label" for="as-avatar">Avatar:</label>
+	  			<div class="control-group" style="margin-bottom: 14px;">
+	              	<label class="control-label" for="as-avatarUploader">Avatar:</label>
 	              	<div class="controls">
-				      	<div id="uploaded-img" style="margin: 0 0 5px 1px;">
-				      	  	<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px;" />
-				      	</div>
-				      	<input id="as-avatar" type="file" />
+	              		<div class="row-fluid">
+	              			<div class="span3">
+	              				<div id="uploaded-img" style="margin-left: 1px; padding-top: 1px;">
+						      	  	<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px;" />
+						      	</div>
+	              			</div>
+	              			<div class="span9">
+	              				<input id="as-avatar" type="file" />
+	              			</div>
+	              		</div>
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	  			
-	  			<div style="width: 100%; height: 10px; border-top: 1px dashed rgb(218, 218, 218);"></div>
+	  			<div style="width: 100%; height: 14px; border-top: 1px dashed rgb(218, 218, 218);"></div>
 	  		
 	  			<div class="control-group">
 	              	<label class="control-label" for="as-email">Email:</label>
@@ -1273,7 +1280,7 @@
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
-	            <div class="control-group" style="margin-bottom: 10px;">
+	            <div class="control-group" style="margin-bottom: 14px;">
 	              	<label class="control-label" for="as-gender">Gender:</label>
 	              	<div class="controls">
 	              		<select class="input-width-280px" id="as-gender" disabled>
@@ -1284,7 +1291,7 @@
 	              	</div>
 	            </div>
 	            
-	            <div style="width: 100%; height: 10px; border-top: 1px dashed rgb(218, 218, 218);"></div>
+	            <div style="width: 100%; height: 14px; border-top: 1px dashed rgb(218, 218, 218);"></div>
 	            
 	            <div class="tabbable tabs-right">
 	              	<ul class="nav nav-tabs" style="margin-bottom: 0;">
@@ -1300,7 +1307,7 @@
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>
-				            <div class="control-group" style="margin-bottom: 0;">
+				            <div class="control-group">
 				              	<label class="control-label" for="as-type">Type:</label>
 				              	<div class="controls">
 				              		<select class="input-width-280px" id="as-type">
@@ -1328,7 +1335,7 @@
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>
-				            <div class="control-group" style="margin-bottom: 0;">
+				            <div class="control-group">
 				              	<label class="control-label" for="as-retype-new-pass">Retype New Password:</label>
 				              	<div class="controls">
 				                	<input type="password" id="as-retype-new-pass" placeholder="Retype New Password to Confirm" class="input-width-280px" />
