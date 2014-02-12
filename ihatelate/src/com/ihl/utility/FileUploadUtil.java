@@ -106,7 +106,7 @@ public class FileUploadUtil {
 		String webUrl = domain + "/" + fileDisk + "/" + filename;
 		String serverUrl = this.serverPath + fileDisk + File.separator + filename;
 		//String serverUrl = "E:\\Workspaces\\Github_Project_test\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
-		// String serverUrl = "E:\\Workspaces\\MyEclipse 8.6\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
+		//String serverUrl = "E:\\Workspaces\\MyEclipse 8.6\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
 		File dst = new File(serverUrl), dstParentFile = dst.getParentFile();
 		if(!dstParentFile.exists()) {
 			dstParentFile.mkdirs();

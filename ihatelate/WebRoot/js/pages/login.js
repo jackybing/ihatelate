@@ -172,5 +172,14 @@
 		
 		// focus and select the #input-email element
 		$("#input-email").focus().select();
+		
+		// 绑定回车事件
+		$(document).on("keydown", "*", function(evt) {
+			if(evt.keyCode == "13") {
+				evt.preventDefault();
+				$("#signin-btn, #register-signin-btn").filter(":visible").click();
+			}
+		});
+		
 	});
 })(jQuery);
