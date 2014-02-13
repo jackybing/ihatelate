@@ -16,7 +16,7 @@
 	                            if(response_data.statusCode == "200") {
 									var user = response_data.user, avatar_url = user.avatar, id = user.id, avatar_disk = user.disk;
 									if(avatar_url) {
-										$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + avatar_url + "' style='height: 100px;' data-disk='" + avatar_disk + "' class='img-polaroid' />");
+										$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + avatar_url + "' style='height: 100px; width: 100px;' data-disk='" + avatar_disk + "' class='img-polaroid' />");
 		    							$("input#as-img-id").val("imageUpload" + id + "p");
 									}
 									$("#as-email").val(user.email);
