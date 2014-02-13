@@ -466,6 +466,8 @@ var IHL_IndexInitObj = {
 						var avatar_url = user.avatar;
 						if(avatar_url) {
 							$("#index-avatar").attr("src", avatar_url);
+						} else {
+							$("#index-avatar").attr("src", "img/avatar.jpg");
 						}
 						this_ptr.is_username_inited = true;
 					} else {

@@ -16,8 +16,10 @@
 	                            if(response_data.statusCode == "200") {
 									var user = response_data.user, avatar_url = user.avatar, id = user.id, avatar_disk = user.disk;
 									if(avatar_url) {
-										$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + avatar_url + "' style='height: 100px; width: 100px;' data-disk='" + avatar_disk + "' class='img-polaroid' />");
-		    							$("input#as-img-id").val("imageUpload" + id + "p");
+										$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + avatar_url + "' style='height: 100px; width: 100px; background:url(img/loading-mini.gif) no-repeat center;' data-disk='" + avatar_disk + "' class='img-polaroid' />");
+		    							// $("input#as-img-id").val("imageUpload" + id + "p");
+									} else {
+										$("div#uploaded-img").html('<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px; width: 100px; background:url(img/loading-mini.gif) no-repeat center;" />');
 									}
 									$("#as-email").val(user.email);
 									$("#as-gender").val(user.sex);

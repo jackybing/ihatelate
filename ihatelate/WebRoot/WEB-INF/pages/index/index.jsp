@@ -44,7 +44,7 @@
   				<div class="tile span12" style="max-width: 490px; padding: 4px;">
   					<div class="row-fluid tile-row">
   						<div class="span2 tile-icon" style="width: 85px;">
-  							<img src="img/avatar.jpg" style="width: 100%; height: 85px;" id="index-avatar" class="img-rounded" />
+  							<img style="width: 100%; height: 85px; background:url(img/loading-mini.gif) no-repeat center;" id="index-avatar" class="img-rounded" />
   						</div>
   						<div class="span10" style="width: 384px;">
   							<div class="row-fluid tile-first-row">
@@ -1257,7 +1257,7 @@
 	  			<div class="control-group" style="margin-bottom: 9px;">
 	              	<label class="control-label" for="as-avatarUploader">
 	              		<div id="uploaded-img">
-				      	  	<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px;" />
+				      	  	<img alt="Avatar" class="img-polaroid" style="height: 100px; width: 100px; background:url(img/loading-mini.gif) no-repeat center;" />
 				      	</div>
 	              	</label>
 	              	<div class="controls" style="margin-top: 4px;">
