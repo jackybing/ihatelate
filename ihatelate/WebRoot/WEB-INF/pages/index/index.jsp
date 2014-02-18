@@ -30,6 +30,10 @@
 		.uploadifyQueueItem { width: 255px; } 
 		#as-form .control-group { margin-bottom: 14px; }
 	</style>
+	
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="Bookmark" href="favicon.ico" />
   </head>
   
   <body>

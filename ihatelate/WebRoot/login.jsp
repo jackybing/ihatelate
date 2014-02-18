@@ -11,6 +11,10 @@
 	<style type="text/css">
 		
 	</style>
+	
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="Bookmark" href="favicon.ico" />
   </head>
   
   <body>
