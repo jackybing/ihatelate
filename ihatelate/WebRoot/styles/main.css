@@ -105,3 +105,20 @@ html,body {
 	margin-top: 0; 
 }
 .form-horizontal .control-group { margin-bottom: 10px; }
+
+.pd_sub {
+	position: absolute;
+	left: -38px;
+	top: -23px;
+	width: 51px;
+	height: 63px;
+	padding: 8px 10px 0 10px;
+	background: url('../img/login-gear.png') no-repeat 0 -142px;
+	font-size: 14px;
+	font-style: normal;
+	color: white;
+	line-height: 16px;
+	text-align: center;
+	-webkit-transform: rotate(-15deg) translate3d( 0, 0, 0);
+	transform: rotate(-15deg);
+}
