@@ -9,7 +9,12 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bs_4_ihl.css" />
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
 	<style type="text/css">
-		#login-v {  }
+		#login-v:hover { 
+			box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.7);
+			-webkit-transform: translateX(-3px) translateY(-3px);
+			transform: translateX(-3px) translateY(-3px);
+		}
+		#login-v { transition: all 0.3s linear 0s; }
 	</style>
 	
 	<link rel="icon" type="image/x-icon" href="favicon.ico" />
