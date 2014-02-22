@@ -4,6 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 
 import com.ihl.dao.userdao.UserDao;
 import com.ihl.model.user.User;
@@ -49,6 +52,19 @@ public class UserServiceImpl implements UserService {
 	
 	public Boolean uploadAvatar(Integer userID,String url,String disk){
 		return userDao.uploadAvatar(userID, url, disk);
+	}
+	
+	public JSONArray getAllUserAvatar(){
+		List<User> users = userDao.findAllUsers();
+		JSONArray avatarArray = new JSONArray();
+		JSONObject jsonObject=null;
+		for (User user : users) {
+			jsonObject = new JSONObject();		
+			jsonObject.put("username", user.getUserName());
+			jsonObject.put("avatar", user.getAvatar());		
+			avatarArray.add(jsonObject);
+		}
+		return avatarArray;
 	}
 
 	public void clear() {

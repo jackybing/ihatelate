@@ -180,6 +180,11 @@ public class UserAction extends ActionSupport {
 		setResult(JSONObject.fromObject(resultMap).toString());
 		return SUCCESS;
 	}
+	
+	public String obtainAllUserAvatar() throws Exception{
+		setResult(userService.getAllUserAvatar().toString());
+		return SUCCESS;
+	}
 	public String getUsername() {
 		return username;
 	}

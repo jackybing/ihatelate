@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import net.sf.json.JSONArray;
+
 import com.ihl.model.user.User;
 
 public interface UserService {
@@ -15,4 +17,5 @@ public interface UserService {
 	public Boolean uploadAvatar(Integer userID,String url,String disk);
 	public void clear();
 	public void update(User user);
+	public JSONArray getAllUserAvatar();
 }

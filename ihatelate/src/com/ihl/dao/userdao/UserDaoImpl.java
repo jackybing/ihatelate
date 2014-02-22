@@ -12,6 +12,7 @@ import com.ihl.model.user.User;
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	private static final Logger log = Logger.getLogger(UserDaoImpl.class);
 	
+	@SuppressWarnings("unchecked")
 	public User getUserByEmail(String email) {
 		List<User> users =  getHibernateTemplate().find("from User u where u.email= ?",email);
 		if(users.size() > 0){
@@ -19,6 +20,11 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		}else {
 			return null;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> findAllUsers(){
+		return (List<User>) getHibernateTemplate().find("from User");
 	}
 	
 	public User getUserById(int id) {
