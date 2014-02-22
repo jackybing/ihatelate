@@ -9,8 +9,17 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bs_4_ihl.css" />
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
 	<style type="text/css">
-		
+		#login-v:hover { 
+			box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.7);
+			-webkit-transform: translateX(-3px) translateY(-3px);
+			transform: translateX(-3px) translateY(-3px);
+		}
+		#login-v { transition: all 0.3s linear 0s; }
 	</style>
+	
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="Bookmark" href="favicon.ico" />
   </head>
   
   <body>
@@ -19,7 +28,10 @@
 			<div class="v-image-iconBG" style="width: 100%; height: 100%; position: absolute;"></div>
 			<div class="v-board-clear v-position-left-center-horizontal v-board-decor-vertical">
 				<div style="height: 10%; width: 100%;"></div>
-				<div class="v-card v-position-top-margin-big" style="width: 300px;">
+				<div id="login-v" class="v-card v-position-top-margin-big" style="width: 300px;">
+				
+					<em class="pd_sub" style="display: inline;">Join<br>99999+<br>IHLers</em>
+				
 					<div id="login-container" class="container-fluid" style="padding: 0;">
 						<div class="row-fluid">
 							<div class="span12 form-horizontal">

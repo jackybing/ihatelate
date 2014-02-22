@@ -1,4 +1,8 @@
-body { background-color: rgb(238, 238, 238); padding-top: 10px; }
+body { 
+	padding-top: 10px;
+	background: rgb(238, 238, 238) url(../../img/bg.jpg);
+}
+.top-right-btns { background: transparent; }
 .tile {
 	min-height: 30px;
 	padding: 5px 15px;

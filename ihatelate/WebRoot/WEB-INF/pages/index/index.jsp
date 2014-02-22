@@ -28,7 +28,12 @@
 		#tp-drag-sorter .alert { margin-bottom: 0; }
 		div#as-avatarQueue div.cancel { display: none; }
 		.uploadifyQueueItem { width: 255px; } 
+		#as-form .control-group { margin-bottom: 14px; }
 	</style>
+	
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="Bookmark" href="favicon.ico" />
   </head>
   
   <body>
@@ -43,7 +48,7 @@
   				<div class="tile span12" style="max-width: 490px; padding: 4px;">
   					<div class="row-fluid tile-row">
   						<div class="span2 tile-icon" style="width: 85px;">
-  							<img src="img/avatar.jpg" style="width: 100%; max-height: 85px;" id="index-avatar" class="img-rounded" />
+  							<img style="width: 100%; height: 85px; background:url(img/loading-mini.gif) no-repeat center;" id="index-avatar" class="img-rounded" />
   						</div>
   						<div class="span10" style="width: 384px;">
   							<div class="row-fluid tile-first-row">
@@ -51,9 +56,9 @@
 		  							Retrieving Username ...
 		  						</div>
 		  						<div class="span4 tile-icon" style="color: rgb(143, 143, 143); text-align: right;">
-		  							<button id="lang-change-btn" class="button button-rounded button-flat" style="font-size: 20px; padding: 0 10px;" data-toggle="tooltip" title="Change language">
+		  							<!-- <button id="lang-change-btn" class="button button-rounded button-flat" style="font-size: 20px; padding: 0 10px;" data-toggle="tooltip" title="Change language">
 		  								En
-		  							</button>
+		  							</button> -->
 		  							<button id="account-setting-btn" class="button button-rounded button-flat" style="font-size: 28px; padding: 0 10px;" data-toggle="tooltip" title="Account settings">
 		  								<i class="icon-cog"></i>
 		  							</button>
@@ -1250,43 +1255,24 @@
 	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    	<h3 id="as-modal-label">Modify your account</h3>
 	  	</div>
-	  	<div class="modal-body">
+	  	<div class="modal-body" style="padding-bottom: 0; padding-top: 9px;">
 	  		<div id="as-form" class="form-horizontal">
 	  			
-	  			<div class="control-group" style="margin-bottom: 10px;">
-	              	<label class="control-label" for="as-avatar">Avatar:</label>
-	              	<div class="controls">
-				      	<div id="uploaded-img" style="margin: 0 0 5px 1px;">
-				      	  	<img alt="Avatar" src="img/avatar.jpg" class="img-polaroid" style="height: 100px;" />
+	  			<div class="control-group" style="margin-bottom: 9px;">
+	              	<label class="control-label" for="as-avatarUploader">
+	              		<div id="uploaded-img">
+				      	  	<img alt="Avatar" class="img-polaroid" style="height: 100px; width: 100px; background:url(img/loading-mini.gif) no-repeat center;" />
 				      	</div>
-				      	<input id="as-avatar" type="file" />
+	              	</label>
+	              	<div class="controls" style="margin-top: 4px;">
+	              		<input id="as-avatar" type="file" />
 	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	  			
-	  			<div style="width: 100%; height: 10px; border-top: 1px dashed rgb(218, 218, 218);"></div>
+	  			<div style="width: 100%; height: 14px; border-top: 1px dashed rgb(218, 218, 218);"></div>
 	  		
-	  			<div class="control-group">
-	              	<label class="control-label" for="as-email">Email:</label>
-	              	<div class="controls">
-	                	<input type="text" id="as-email" placeholder="Email" class="input-width-280px" readonly />
-	                	<span class="help-inline"></span>
-	              	</div>
-	            </div>
-	            <div class="control-group" style="margin-bottom: 10px;">
-	              	<label class="control-label" for="as-gender">Gender:</label>
-	              	<div class="controls">
-	              		<select class="input-width-280px" id="as-gender" disabled>
-		            		<option value="1">Male</option>
-		            		<option value="2">Female</option>
-		            	</select>
-	                	<span class="help-inline"></span>
-	              	</div>
-	            </div>
-	            
-	            <div style="width: 100%; height: 10px; border-top: 1px dashed rgb(218, 218, 218);"></div>
-	            
-	            <div class="tabbable tabs-right">
+	  			<div class="tabbable tabs-right">
 	              	<ul class="nav nav-tabs" style="margin-bottom: 0;">
 	                	<li class="active"><a href="#as-tab-base" data-toggle="tab" id="tab-mi">Modify Information</a></li>
 	                	<li class=""><a href="#as-tab-pass" data-toggle="tab" id="tab-mp">Modify Password</a></li>
@@ -1300,7 +1286,7 @@
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>
-				            <div class="control-group" style="margin-bottom: 0;">
+				            <div class="control-group" style="margin-bottom: 14px;">
 				              	<label class="control-label" for="as-type">Type:</label>
 				              	<div class="controls">
 				              		<select class="input-width-280px" id="as-type">
@@ -1328,7 +1314,7 @@
 				                	<span class="help-inline"></span>
 				              	</div>
 				            </div>
-				            <div class="control-group" style="margin-bottom: 0;">
+				            <div class="control-group" style="margin-bottom: 14px;">
 				              	<label class="control-label" for="as-retype-new-pass">Retype New Password:</label>
 				              	<div class="controls">
 				                	<input type="password" id="as-retype-new-pass" placeholder="Retype New Password to Confirm" class="input-width-280px" />
@@ -1336,6 +1322,26 @@
 				              	</div>
 				            </div>
 	                	</div>
+	              	</div>
+	            </div>
+	            
+	            <div style="width: 100%; height: 14px; border-top: 1px dashed rgb(218, 218, 218);"></div>
+	            
+	            <div class="control-group">
+	              	<label class="control-label" for="as-email">Email:</label>
+	              	<div class="controls">
+	                	<input type="text" id="as-email" placeholder="Email" class="input-width-280px" readonly />
+	                	<span class="help-inline"></span>
+	              	</div>
+	            </div>
+	            <div class="control-group">
+	              	<label class="control-label" for="as-gender">Gender:</label>
+	              	<div class="controls">
+	              		<select class="input-width-280px" id="as-gender" disabled>
+		            		<option value="1">Male</option>
+		            		<option value="2">Female</option>
+		            	</select>
+	                	<span class="help-inline"></span>
 	              	</div>
 	            </div>
 	            

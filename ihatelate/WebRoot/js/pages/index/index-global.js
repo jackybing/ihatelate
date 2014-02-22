@@ -365,6 +365,8 @@ var IHL_IndexInitObj = {
 	iframes_schedule: false,	// schedule iframe 初始化完毕设置为true
 	template_papers_default: false, // 写论文模板（默认）初始化完毕设置为true
 	template_university_default: false, // 申请大学模板（默认）初始化完毕设置为true
+	is_timeline_inited: false,	// 时间轴
+	is_username_inited: false,	// 用户名和头像
 	startInit: function() {
 		this.initShowTime();
 		this.initUsernameDiv();
@@ -374,6 +376,7 @@ var IHL_IndexInitObj = {
 		this.endInit();
 	},
 	initTimeline: function() {
+		var this_ptr = this;
 		var tl_date = new Date(), tl_today_index = tl_date.getDay(), tl_today_index = tl_today_index == 0 ? 7 : tl_today_index;
 		var today_full_tag = IHL_Compute.computeFullDayTag(tl_today_index);
 		$("#index-tl-weekday").text(today_full_tag);
@@ -401,7 +404,7 @@ var IHL_IndexInitObj = {
 							
 						}
 						$("#index-tl-ul").html(timeline_ul_array.join("")).find("li:first").addClass("green");
-						
+						this_ptr.is_timeline_inited = true;
 					} else {
 						alert("Failed to obtain your schedule!");
 					}
@@ -449,6 +452,7 @@ var IHL_IndexInitObj = {
 		}, 1000);
 	},
 	initUsernameDiv: function() {
+		var this_ptr = this;
 		$.ajax({
 			url:"userAction!obtainUserInfo.action",
 			success: function(data) {
@@ -462,7 +466,10 @@ var IHL_IndexInitObj = {
 						var avatar_url = user.avatar;
 						if(avatar_url) {
 							$("#index-avatar").attr("src", avatar_url);
+						} else {
+							$("#index-avatar").attr("src", "img/avatar.jpg");
 						}
+						this_ptr.is_username_inited = true;
 					} else {
 						$("#username-div").text("Obtain username failed");
 					}
@@ -481,12 +488,10 @@ var IHL_IndexInitObj = {
 		$("#vs-iframe").attr("src", "jumpAction!viewSchedule");
 	},
 	endInit: function(callback_func) {
-		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default && this.template_university_default;
+		var is_validate = this.iframes_idle && this.iframes_schedule && this.template_papers_default && this.template_university_default && this.is_timeline_inited && this.is_username_inited;
 		if(is_validate) {
 			IHL_BlockMsgObj.unblockMsg(function() {
-				window.setTimeout(function() {
-					$("#index-timeline-container ul").slideDown("slow");
-				}, 100);
+				$("#index-timeline-container ul").slideDown("slow");
 			});
 		}
 		

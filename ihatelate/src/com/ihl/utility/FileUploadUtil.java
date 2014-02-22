@@ -29,8 +29,8 @@ public class FileUploadUtil {
 	+ "webapps" + File.separator;*/
 	
 	private final String serverPath = System.getProperty("user.dir")
-	+File.separator
-	+ "webapps" + File.separator;
+	+ File.separator
+	+ "webapps" + File.separator;	// 部署的时候需在/home/linwei/apache-tomcat-8088/运行./bin/startup.sh
 
 	private String fileDisk;
 	private String domain;
@@ -104,8 +104,9 @@ public class FileUploadUtil {
 		Map<String, String> addressMap = new HashMap<String, String>();
 		String filename = UUID.randomUUID().toString() + ".jpg";
 		String webUrl = domain + "/" + fileDisk + "/" + filename;
-		/*String serverUrl = this.serverPath + fileDisk + File.separator + filename;*/
-		String serverUrl = "E:\\Workspaces\\Github_Project_test\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
+		String serverUrl = this.serverPath + fileDisk + File.separator + filename;
+		//String serverUrl = "E:\\Workspaces\\Github_Project_test\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
+		//String serverUrl = "E:\\Workspaces\\MyEclipse 8.6\\.metadata\\.me_tcat\\webapps" + File.separator + fileDisk + File.separator + filename;
 		File dst = new File(serverUrl), dstParentFile = dst.getParentFile();
 		if(!dstParentFile.exists()) {
 			dstParentFile.mkdirs();

@@ -67,7 +67,7 @@
 		    script    : 'imageUpload.action',
 		    checkScript : '',
 			scriptData : {},
-		    buttonText : 'Upload Avatar',
+		    buttonText : 'Change Avatar',
 		    cancelImg : 'tools/uploadify/cancel.png',
 		    fileExt : '*.jpg;*.jpeg;*.png;*.gif;*.bmp;',
 		    fileDesc : 'All Images',
@@ -92,7 +92,7 @@
 		    	//console.log(result.url);
 		    	//console.log("'imageUpload" + id + "p'");
 		    	saveUserAvatar(url, disk);
-		    	$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + url + "' style='height: 100px;' data-disk='" + disk + "' class='img-polaroid' />");
+		    	$("div#uploaded-img").html("<img id='imageUpload" + id + "p' src='" + url + "' style='height: 100px; width: 100px; background:url(img/loading-mini.gif) no-repeat center;' data-disk='" + disk + "' class='img-polaroid' />");
 		    	$("input#as-img-id").val("imageUpload" + id + "p");
 		    	//deleteFileOnUpload(result.disk);
 			},
